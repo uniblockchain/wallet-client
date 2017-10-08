@@ -40,8 +40,8 @@ jobs:
           name: Install awscli
           working_directory: /
           command: |
-            apt-get -y -qq update
-            apt-get -y -qq install python3
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python3
             curl -O https://bootstrap.pypa.io/get-pip.py
             python3 get-pip.py --user
             pip install awscli --upgrade --user
