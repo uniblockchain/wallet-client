@@ -44,7 +44,7 @@ jobs:
             sudo apt-get -y -qq install python3
             sudo curl -O https://bootstrap.pypa.io/get-pip.py
             sudo python3 get-pip.py --user
-            sudo pip install awscli --upgrade --user
+            sudo pip3 install awscli --upgrade --user
 
       - deploy:
           name: Deploy to S3 if tests pass and branch is Master
