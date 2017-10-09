@@ -3,7 +3,7 @@
 const mockErrorTracker = jest.genMockFromModule('./ErrorTracker');
 jest.mock('./ErrorTracker', () => mockErrorTracker);
 
-const { initialize } = require('./tracker');
+const { initialize } = require('./Tracker');
 
 describe('tracker', () => {
   beforeEach(() => {
