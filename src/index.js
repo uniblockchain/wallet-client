@@ -5,7 +5,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import {
   ConnectedRouter,
   routerReducer,
-  routerMiddleware
+  routerMiddleware,
 } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router';
@@ -22,12 +22,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const history = createHistory();
 
 const rootReducer = combineReducers({
-  router: routerReducer
+  router: routerReducer,
   // ...otherReducers,
 });
 
 const middleware = [
-  routerMiddleware(history)
+  routerMiddleware(history),
   // ...otherMiddleware,
 ];
 
