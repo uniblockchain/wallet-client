@@ -46,7 +46,7 @@ render(
       </div>
     </ConnectedRouter>
   </ReduxProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 registerServiceWorker();
