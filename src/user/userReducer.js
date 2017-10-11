@@ -16,11 +16,13 @@ const userReducer = (
     case userAction.USER_FETCH_SUCCEEDED:
       return {
         ...state,
+        ...action.user,
       };
 
     case userAction.USER_FETCH_FAILED:
       return {
         ...state,
+        error: action.error,
       };
 
     default:
