@@ -1,5 +1,5 @@
 // flow-typed signature: b4ebba1ec37948337add98158cf5c16f
-// flow-typed version: 04b2138446/redux-saga_v0.13.x/flow_>=v0.38.x
+// flow-typed version: 04b2138446/redux-saga_v0.15.x/flow_>=v0.38.x
 
 /* eslint-disable */
 
