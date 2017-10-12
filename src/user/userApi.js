@@ -1,9 +1,12 @@
 // @flow
 
+import config from 'react-global-configuration';
+import { get } from '../http';
+
 import type { UserState } from './userState';
 
-async function fetchUser(): Promise<UserState> {
-  return { id: 1, email: 'erko@risthein.ee' }; // TODO: fetch from wallet-service API
+function fetchUser(): Promise<UserState> {
+  return get(`${config.get('apiUrl')}/me`);
 }
 
 export default { fetchUser };

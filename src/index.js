@@ -11,6 +11,9 @@ import { history, store } from './reduxStore';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
+import configuration from './configuration';
+
+configuration.initialize();
 
 tracker.initialize();
 
