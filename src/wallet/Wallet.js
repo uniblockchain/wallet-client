@@ -3,12 +3,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import walletActions from './walletActions';
-import type { WalletFetchRequest } from './walletActionTypes';
+// import type { WalletFetchRequest } from './walletActionTypes';
 
 type Props = {
-  userId: number,
-  userEmail: string,
-  fetchWallet: () => WalletFetchRequest,
+  wallets: Array<{}>,
+  fetchWallet: void,
 };
 
 export class Wallet extends Component<Props> {
@@ -17,20 +16,16 @@ export class Wallet extends Component<Props> {
   }
 
   render() {
-    const { userId, userEmail } = this.props;
-
     return <div>yoyoy</div>;
   }
 }
 
 const mapStateToProps = state => ({
-  id: state.wallet.id,
-  address: state.wallet.address,
-  coin: state.wallet.coin,
+  wallets: state.wallet ? state.wallet.wallets : [],
 });
 
 const mapDispatchToProps = {
-  fetchWallet: walletActions.userFetchRequested,
+  fetchWallet: walletActions.walletFetchRequested,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

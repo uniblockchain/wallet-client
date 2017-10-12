@@ -10,9 +10,11 @@ import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 
 import { history, store } from './reduxStore';
 import App from './App';
+import { Wallet } from './wallet';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
+import { Container } from 'reactstrap';
 
 configuration.initialize();
 
@@ -21,8 +23,10 @@ tracker.initialize();
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
-      <Route exact path="/" component={App} />
-      {/* <Route path="/about" component={About}/> */}
+      <Container>
+        <Route exact path="/" component={App} />
+        <Route path="/wallet" component={Wallet} />
+      </Container>
     </ConnectedRouter>
   </ReduxProvider>,
   document.getElementById('root'),
