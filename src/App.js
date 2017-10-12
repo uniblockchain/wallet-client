@@ -1,9 +1,7 @@
 // @flow
 
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { User } from './user';
 
 const App = () => (
   <div className="app">
