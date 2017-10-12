@@ -9,9 +9,12 @@ const USER_FETCH_FAILED = '@user/USER_FETCH_FAILED';
 export type UserFetchRequest = { +type: '@user/USER_FETCH_REQUESTED' };
 export type UserFetchSuccess = {
   +type: '@user/USER_FETCH_SUCCEEDED',
-  user: UserState,
+  +user: UserState,
 };
-export type UserFetchFail = { +type: '@user/USER_FETCH_FAILED', error: string };
+export type UserFetchFail = {
+  +type: '@user/USER_FETCH_FAILED',
+  +error: string,
+};
 
 export type UserAction = UserFetchRequest | UserFetchSuccess | UserFetchFail;
 

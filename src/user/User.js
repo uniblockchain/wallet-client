@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import userActions from './userActions';
 import type { UserFetchRequest } from './userActionTypes';
 
-export type Props = {
+type Props = {
   userId: number,
   userEmail: string,
   fetchUser: () => UserFetchRequest,
