@@ -1,18 +1,20 @@
 // @flow
 
 import React from 'react';
-import logo from './logo.svg';
+import { Button } from 'reactstrap';
 import './App.css';
-import { User } from './user';
 
 const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Welcome to React</h1>
-    </header>
-    <div className="App-intro">
-      <User />
+  <div className="app">
+    <h1 className="mb-3">Welcome to Change.</h1>
+    <h1>Your digital wallet.</h1>
+    <div className="bottom">
+      <Button color="primary" size="lg" block>
+        Sign up
+      </Button>
+      <Button color="primary" size="lg" block>
+        Log in
+      </Button>
     </div>
   </div>
 );
