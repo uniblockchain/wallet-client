@@ -21,16 +21,25 @@ describe('wallet api', () => {
     ],
   };
   const error = 'whoops';
+  const balance = 500;
 
   beforeAll(() => {
     config.set({ apiUrl });
   });
 
   it('fetches wallet', () => {
-    mockHttp.get = jest.fn(() => Promise.resolve(wallet));
+    mockHttp.get = jest.fn();
+    mockHttp.get
+      .mockReturnValueOnce(Promise.resolve(wallet))
+      .mockReturnValueOnce(Promise.resolve(balance));
 
     return walletApi.fetchWallet().then(response => {
-      expect(response).toEqual(wallet);
+      expect(response).toEqual([
+        {
+          ...wallet.wallets[0],
+          balance,
+        },
+      ]);
     });
   });
 });
