@@ -29,10 +29,14 @@ export type Wallet = {
 
 export type WalletState = {
   wallets: Array<Wallet>,
+  currency: string,
+  error: ?string,
 };
 
 export const initialWalletState: WalletState = {
   wallets: [],
+  currency: 'EUR',
+  error: null,
 };
 
 export default initialWalletState;

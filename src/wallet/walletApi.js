@@ -41,8 +41,8 @@ function getValueWithCurrencies(coin: string, nominalValue: number): Value {
 }
 
 function addCurrencyValues(walletsWithNominalValues: Array<{}>): Array<Wallet> {
-  // $FlowFixMe
   return walletsWithNominalValues.map(
+    // $FlowFixMe
     (wallet: { coin: string, balance: number, transactions: Array<> }) => ({
       ...wallet,
       balance: getValueWithCurrencies(wallet.coin, wallet.balance),

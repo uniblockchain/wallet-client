@@ -5,15 +5,23 @@ import walletActions from './walletActions';
 import type { WalletState } from './walletState';
 
 describe('wallet reducer', () => {
-  const currentState: WalletState = { wallets: [] };
+  const currentState: WalletState = {
+    wallets: [],
+    currency: 'EUR',
+    error: null,
+  };
   const wallet: WalletState = {
     wallets: [
       {
         id: 1,
         address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
         coin: 'ETH',
+        transactions: [],
+        balance: [],
       },
     ],
+    currency: 'EUR',
+    error: null,
   };
   const error = 'whoops';
 
