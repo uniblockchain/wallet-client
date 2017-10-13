@@ -50,14 +50,12 @@ export class Wallet extends Component<Props> {
               </div>
               <Doughnut data={this.data} options={this.options} />
             </div>
-            <div className="bottom">
-              <nav className="navbar navbar-light bg-light">
-                <i className="material-icons md-dark md-48">home</i>
-                <i className="material-icons md-dark md-48">account_balance</i>
-                <i className="material-icons md-dark md-48">credit_card</i>
-                <i className="material-icons md-dark md-48">apps</i>
-              </nav>
-            </div>
+            <nav className="bottom navbar navbar-light bg-light">
+              <i className="material-icons md-dark md-48">home</i>
+              <i className="material-icons md-dark md-48">account_balance</i>
+              <i className="material-icons md-dark md-48">credit_card</i>
+              <i className="material-icons md-dark md-48">apps</i>
+            </nav>
           </Col>
         </Row>
       </div>
