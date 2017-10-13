@@ -69,15 +69,22 @@ describe('wallet api', () => {
       .mockReturnValueOnce(Promise.resolve(transactions));
 
     return walletApi.fetchWallet().then(response => {
-      expect(response).toEqual({
-        wallets: [
-          {
-            ...walletsResponse[0],
-            balance,
-            transactions,
-          },
-        ],
-      });
+      expect(response.wallets[0].id).toEqual(walletsResponse[0].id);
+      expect(response.wallets[0].address).toEqual(walletsResponse[0].address);
+      expect(response.wallets[0].coin).toEqual(walletsResponse[0].coin);
+
+      expect(response.wallets[0].balance[0].currency).toEqual(
+        walletsResponse[0].coin,
+      );
+      expect(response.wallets[0].balance[0].value).toEqual(balance);
+
+      expect(
+        response.wallets[0].transactions[0].entries[0].value[0].currency,
+      ).toEqual(walletsResponse[0].coin);
+
+      expect(
+        response.wallets[0].transactions[0].entries[0].value[0].value,
+      ).toEqual(transactions[0].entries[0].value);
     });
   });
 });
