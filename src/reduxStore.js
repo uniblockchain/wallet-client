@@ -33,3 +33,5 @@ export const store = createStore(rootReducer, storeEnhancer);
 
 sagaMiddleware.run(userSagas);
 sagaMiddleware.run(walletSagas);
+
+export default store;

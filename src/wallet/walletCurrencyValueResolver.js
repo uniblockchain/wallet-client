@@ -2,7 +2,7 @@
 
 import type { Value, ValueWithCurrency } from './walletState';
 
-import { store } from '../reduxStore';
+import store from '../reduxStore';
 
 function resolve(value: Value): ?number {
   const state = store.getState();
