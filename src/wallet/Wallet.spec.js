@@ -14,6 +14,7 @@ describe('Wallet component', () => {
     address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
     coin: 'ETH',
     fetchWallet: () => walletActions.walletFetchRequested(),
+    wallets: [],
   };
 
   beforeEach(() => {
