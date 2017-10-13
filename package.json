@@ -5,10 +5,12 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "bootstrap-material-design": "4.0.0-beta.3",
+    "chart.js": "^2.7.0",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
     "raven-js": "^3.18.1",
     "react": "^16.0.0",
+    "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.0.0",
     "react-global-configuration": "^1.2.0",
     "react-redux": "^5.0.6",
