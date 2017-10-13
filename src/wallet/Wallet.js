@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { Doughnut } from 'react-chartjs-2';
 import walletActions from './walletActions';
+import walletCurrencyValueResolver from './walletCurrencyValueResolver';
 // import type { WalletFetchRequest } from './walletActionTypes';
 import './Wallet.css';
 
+import type { Wallet as WalletType } from './walletState';
+
 type Props = {
-  wallets: Array<{}>,
+  wallets: Array<WalletType>,
   fetchWallet: void,
 };
 
@@ -18,16 +21,22 @@ export class Wallet extends Component<Props> {
     this.props.fetchWallet();
   }
 
-  data = {
-    datasets: [
-      {
-        data: [10, 20, 30],
-        backgroundColor: ['#19c3ed', '#47d6e2', '#62dfd9'],
-        borderWidth: [0, 0, 0],
-      },
-    ],
-    labels: ['BTC', 'ETH', 'CAG'],
-  };
+  getDataSet() {
+    const dataset = {
+      datasets: [
+        {
+          data: this.props.wallets.map((wallet: WalletType) =>
+            walletCurrencyValueResolver.resolve(wallet.balance),
+          ),
+          backgroundColor: ['#19c3ed', '#47d6e2', '#62dfd9'],
+          borderWidth: [0, 0, 0],
+        },
+      ],
+      labels: this.props.wallets.map((wallet: WalletType) => wallet.coin),
+    };
+
+    return dataset;
+  }
 
   options = {
     circumference: 10 / 6 * Math.PI,
@@ -38,6 +47,7 @@ export class Wallet extends Component<Props> {
   };
 
   render() {
+    const data = this.getDataSet();
     return (
       <div>
         <Row className="justify-content-md-center">
@@ -48,7 +58,7 @@ export class Wallet extends Component<Props> {
                   <i className="material-icons">more_horiz</i>
                 </button>
               </div>
-              <Doughnut data={this.data} options={this.options} />
+              <Doughnut data={data} options={this.options} />
             </div>
             <nav className="bottom navbar navbar-light bg-light">
               <i className="material-icons md-dark md-48">home</i>

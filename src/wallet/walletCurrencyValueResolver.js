@@ -10,7 +10,7 @@ function resolve(value: Value): ?number {
 
   const valueWithCurrency = value.find(
     (valueWithCurrency: ValueWithCurrency) =>
-      valueWithCurrency.currency == activeCurrency,
+      valueWithCurrency.currency === activeCurrency,
   );
   if (valueWithCurrency) {
     return valueWithCurrency.value;
