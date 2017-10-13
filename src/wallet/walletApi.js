@@ -3,13 +3,7 @@
 import config from 'react-global-configuration';
 import { get } from '../http';
 
-import type {
-  Transaction,
-  TransactionEntry,
-  Value,
-  Wallet,
-  WalletState,
-} from './walletState';
+import type { Transaction, Value, Wallet, WalletState } from './walletState';
 
 function fetchWalletBalance(walletId: number): Promise<number> {
   return get(`${config.get('apiUrl')}/wallet/${walletId}/balance`);
