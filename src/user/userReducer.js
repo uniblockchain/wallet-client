@@ -25,6 +25,23 @@ const userReducer = (
         error: action.error,
       };
 
+    case userAction.USER_CREATION_REQUESTED:
+      return {
+        ...state,
+      };
+
+    case userAction.USER_CREATION_SUCCEEDED:
+      return {
+        ...state,
+        ...action.user,
+      };
+
+    case userAction.USER_CREATION_FAILED:
+      return {
+        ...state,
+        error: action.error,
+      };
+
     default:
       return state;
   }

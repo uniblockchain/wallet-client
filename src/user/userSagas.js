@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 import userApi from './userApi';
 import userActions from './userActions';
 import userActionTypes from './userActionTypes';
@@ -14,8 +14,26 @@ function* fetchUser() {
   }
 }
 
+function* createUser(action) {
+  try {
+    const user = yield call(userApi.createUser, action.email, action.password);
+    yield put(userActions.userCreationSucceeded(user));
+  } catch (e) {
+    yield put(userActions.userCreationFailed(e.message));
+    throw e;
+  }
+}
+
 function* userFetchSaga() {
   yield takeLatest(userActionTypes.USER_FETCH_REQUESTED, fetchUser);
 }
 
-export default userFetchSaga;
+function* userCreationSaga() {
+  yield takeLatest(userActionTypes.USER_CREATION_REQUESTED, createUser);
+}
+
+function* userSagas() {
+  yield all([userFetchSaga(), userCreationSaga()]);
+}
+
+export default userSagas;
