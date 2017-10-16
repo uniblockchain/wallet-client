@@ -24,7 +24,7 @@ function urlEncodeParameters(params) {
     .join('&');
 }
 
-export function get(url, params = {}, headers = {}) {
+export function get(url: string, params = {}, headers = {}) {
   const urlParameters = urlEncodeParameters(params);
   return fetch(`${url}${urlParameters ? `?${urlParameters}` : ''}`, {
     method: 'GET',

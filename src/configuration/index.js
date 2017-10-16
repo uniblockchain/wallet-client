@@ -2,7 +2,7 @@
 import initialize from './configuration';
 
 type configurationType = {
-  initialize: void,
+  initialize: () => void,
 };
 
 const configuration: configurationType = {
