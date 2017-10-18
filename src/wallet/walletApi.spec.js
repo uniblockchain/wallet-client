@@ -11,7 +11,11 @@ const walletApi = require('./walletApi').default;
 describe('wallet api', () => {
   const apiUrl = 'sample-api-url';
 
-  const walletsResponse: Array<Wallet> = [
+  const walletsResponse: Array<{
+    id: number,
+    address: string,
+    coin: string,
+  }> = [
     {
       id: 1,
       address: '59dcc2c2e2d55fcb075e09e8dc5d2723',

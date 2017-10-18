@@ -13,7 +13,7 @@ import type { Wallet as WalletType } from './walletState';
 
 type Props = {
   wallets: Array<WalletType>,
-  fetchWallet: void,
+  fetchWallet: () => void,
 };
 
 export class Wallet extends Component<Props> {
