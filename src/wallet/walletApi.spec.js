@@ -22,7 +22,10 @@ describe('wallet api', () => {
   ];
 
   const error = 'whoops';
-  const balance = 500;
+  const balance = [
+    { currency: 'ETH', value: 0.9 },
+    { currency: 'EUR', value: 227.9376254547 },
+  ];
 
   const transactions = [
     {
@@ -32,11 +35,29 @@ describe('wallet api', () => {
       entries: [
         {
           address: '0x1be74bc35c5b9e95ebaa40ac7a35cccd0f52f5a1',
-          value: -100000000000000000,
+          value: [
+            {
+              currency: 'ETH',
+              value: -0.9,
+            },
+            {
+              currency: 'EUR',
+              value: -250.332,
+            },
+          ],
         },
         {
           address: '0x3c12ae77e4ff9f1f50fe53880d3b62f4a3e8a4ec',
-          value: 100000000000000000,
+          value: [
+            {
+              currency: 'ETH',
+              value: 0.9,
+            },
+            {
+              currency: 'EUR',
+              value: 250.332,
+            },
+          ],
         },
       ],
     },
@@ -47,11 +68,29 @@ describe('wallet api', () => {
       entries: [
         {
           address: '0x4d6bb4ed029b33cf25d0810b029bd8b1a6bcab7b',
-          value: -1000000000000000000,
+          value: [
+            {
+              currency: 'ETH',
+              value: -0.9,
+            },
+            {
+              currency: 'EUR',
+              value: -250.332,
+            },
+          ],
         },
         {
           address: '0x1be74bc35c5b9e95ebaa40ac7a35cccd0f52f5a1',
-          value: 1000000000000000000,
+          value: [
+            {
+              currency: 'ETH',
+              value: 0.9,
+            },
+            {
+              currency: 'EUR',
+              value: 250.332,
+            },
+          ],
         },
       ],
     },
@@ -69,22 +108,14 @@ describe('wallet api', () => {
       .mockReturnValueOnce(Promise.resolve(transactions));
 
     return walletApi.fetchWallet().then(response => {
-      expect(response.wallets[0].id).toEqual(walletsResponse[0].id);
-      expect(response.wallets[0].address).toEqual(walletsResponse[0].address);
-      expect(response.wallets[0].coin).toEqual(walletsResponse[0].coin);
+      var firstWallet = response.wallets[0];
 
-      expect(response.wallets[0].balance[0].currency).toEqual(
-        walletsResponse[0].coin,
-      );
-      expect(response.wallets[0].balance[0].value).toEqual(balance);
+      expect(firstWallet.balance).toEqual(balance);
+      expect(firstWallet.transactions).toEqual(transactions);
 
-      expect(
-        response.wallets[0].transactions[0].entries[0].value[0].currency,
-      ).toEqual(walletsResponse[0].coin);
-
-      expect(
-        response.wallets[0].transactions[0].entries[0].value[0].value,
-      ).toEqual(transactions[0].entries[0].value);
+      expect(firstWallet.id).toEqual(walletsResponse[0].id);
+      expect(firstWallet.address).toEqual(walletsResponse[0].address);
+      expect(firstWallet.coin).toEqual(walletsResponse[0].coin);
     });
   });
 });
