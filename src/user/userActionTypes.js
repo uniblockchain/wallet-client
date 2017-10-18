@@ -27,7 +27,7 @@ export type UserCreationRequest = {
 };
 
 export type UserCreationSuccess = {
-  +type: '@user/USER_CREATION_SUCCESS',
+  +type: '@user/USER_CREATION_SUCCEEDED',
   +user: UserState,
 };
 

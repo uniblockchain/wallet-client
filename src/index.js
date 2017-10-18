@@ -12,6 +12,7 @@ import { Container } from 'reactstrap';
 import { history, store } from './reduxStore';
 import App from './App';
 import { Wallet } from './wallet';
+import { Signup } from './signup';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -27,6 +28,7 @@ render(
       <Container>
         <Route exact path="/" component={App} />
         <Route path="/wallet" component={Wallet} />
+        <Route path="/signup" component={Signup} />
       </Container>
     </ConnectedRouter>
   </ReduxProvider>,

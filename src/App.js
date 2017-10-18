@@ -12,7 +12,7 @@ const App = () => (
         <h1 className="mb-3">Welcome to Change.</h1>
         <h1>Your digital wallet.</h1>
         <div className="bottom">
-          <Link to="/wallet">
+          <Link to="/signup">
             <Button color="primary" size="lg" block>
               Sign up
             </Button>

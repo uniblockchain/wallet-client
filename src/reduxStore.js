@@ -6,6 +6,7 @@ import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 
 import { userReducer, userSagas } from './user';
+import { signupReducer } from './signup';
 import { walletReducer, walletSagas } from './wallet';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   router: routerReducer,
   user: userReducer,
   wallet: walletReducer,
+  signup: signupReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
