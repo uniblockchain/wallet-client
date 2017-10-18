@@ -20,7 +20,7 @@ describe('PasswordPage component', () => {
   });
 
   it('contains password value', () => {
-    expect(component.find('#password').prop('value')).toBe(props.password);
+    expect(component.find('#password')).toHaveValue(props.password);
   });
 
   it('updates password value', () => {

@@ -20,7 +20,7 @@ describe('EmailPage component', () => {
   });
 
   it('contains email value', () => {
-    expect(component.find('#emailAddress').prop('value')).toBe(props.email);
+    expect(component.find('#emailAddress')).toHaveValue(props.email);
   });
 
   it('updates email value', () => {
