@@ -22,7 +22,7 @@ export type Transaction = {
 export type Wallet = {
   +id: number,
   +address: string,
-  +coin: string,
+  +currency: string,
   +balance: Value,
   +transactions: Array<Transaction>,
 };

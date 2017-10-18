@@ -10,6 +10,7 @@ import walletCurrencyValueResolver from './walletCurrencyValueResolver';
 import './Wallet.css';
 
 import type { Wallet as WalletType } from './walletState';
+import BottomNavigation from '../bottomNavigation';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -18,11 +19,14 @@ type Props = {
 
 export class Wallet extends Component<Props> {
   componentDidMount() {
-    this.props.fetchWallet();
+    const { fetchWallet } = this.props;
+    if (fetchWallet) {
+      fetchWallet();
+    }
   }
 
   getDataSet() {
-    const dataset = {
+    return {
       datasets: [
         {
           data: this.props.wallets.map((wallet: WalletType) =>
@@ -32,10 +36,8 @@ export class Wallet extends Component<Props> {
           borderWidth: [0, 0, 0],
         },
       ],
-      labels: this.props.wallets.map((wallet: WalletType) => wallet.coin),
+      labels: this.props.wallets.map((wallet: WalletType) => wallet.currency),
     };
-
-    return dataset;
   }
 
   options = {
@@ -60,14 +62,11 @@ export class Wallet extends Component<Props> {
               </div>
               <Doughnut data={data} options={this.options} />
             </div>
-            <nav className="bottom navbar navbar-light bg-light">
-              <i className="material-icons md-dark md-48">home</i>
-              <i className="material-icons md-dark md-48">account_balance</i>
-              <i className="material-icons md-dark md-48">credit_card</i>
-              <i className="material-icons md-dark md-48">apps</i>
-            </nav>
           </Col>
         </Row>
+        <div className="bottom-navigation">
+          <BottomNavigation />
+        </div>
       </div>
     );
   }

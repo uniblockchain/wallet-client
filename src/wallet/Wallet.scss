@@ -1,6 +1,4 @@
 .wallet {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,9 +9,10 @@
     background-color: white;
   }
 
-  .bottom {
-    margin-top: auto;
-    padding: 20px;
-  }
 }
 
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
