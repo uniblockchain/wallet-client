@@ -12,7 +12,6 @@ import { Container } from 'reactstrap';
 import { history, store } from './reduxStore';
 import App from './App';
 import { Wallet } from './wallet';
-import { Signup } from './signup';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -25,11 +24,10 @@ tracker.initialize();
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
-      <Container>
+      <div>
         <Route exact path="/" component={App} />
         <Route path="/wallet" component={Wallet} />
-        <Route path="/signup" component={Signup} />
-      </Container>
+      </div>
     </ConnectedRouter>
   </ReduxProvider>,
   document.getElementById('root'),
