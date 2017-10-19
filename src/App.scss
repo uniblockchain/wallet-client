@@ -1,5 +1,5 @@
 .app {
-  background-color: #27CAEB;
+  background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
   padding: 40px;
   color: white;
   height: 100vh;
@@ -8,12 +8,35 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
+  text-align: left;
+
+  h1 {
+    font-size: 46px;
+    font-weight: bold;
+    line-height: 1.04;
+    letter-spacing: -1.9px;
+    color: #ffffff;
+  }
+
+  h2 {
+    font-size: 28px;
+    line-height: 1.21;
+    letter-spacing: -0.9px;
+    color: #00346b;
+  }
 
   .bottom {
     margin-top: auto;
     .btn {
+      width: 306px;
+      height: 44px;
+      border-radius: 49px;
+      background-color: #ffffff;
+      color: #02bda5;
+    }
+    .btn-primary {
       color: white;
+      background-color: #00346b;
     }
   }
 }
-

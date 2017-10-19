@@ -9,8 +9,8 @@ const App = () => (
   <div>
     <Row className="justify-content-md-center">
       <Col className="app col-lg-4">
-        <h1 className="mb-3">Welcome to Change.</h1>
-        <h1>Your digital wallet.</h1>
+        <h1>Welcome to Change.</h1>
+        <h2>Your gateway to the future of money</h2>
         <div className="bottom">
           <Link to="/signup">
             <Button color="primary" size="lg" block>
@@ -18,7 +18,7 @@ const App = () => (
             </Button>
           </Link>
           <Link to="/wallet">
-            <Button color="primary" size="lg" block btn-raised>
+            <Button size="lg" block>
               Log in
             </Button>
           </Link>
