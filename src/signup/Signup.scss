@@ -1,4 +1,5 @@
 .signup {
+  background-color: white;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -7,12 +8,43 @@
   position: relative;
 
   .top {
-    padding: 20px 40px 40px 40px;
-    background-color: white;
+    padding: 30px 40px 40px 40px;
+
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.13;
+      letter-spacing: -0.5px;
+      text-align: left;
+      color: #083b70;
+    }
+
+    label {
+      margin-top: 40px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      color: #02bda5;
+    }
+
+    input {
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #cccccc;
+    }
+
   }
 
   .bottom {
     margin-top: auto;
     padding: 20px;
+    .btn {
+      height: 44px;
+      border-radius: 49px;
+      background-color: #02bda5;
+      color: #ffffff;
+    }
   }
 }
