@@ -5,12 +5,11 @@ import { render } from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 
 import { history, store } from './reduxStore';
 import App from './App';
 import { Wallet } from './wallet';
+import { Signup } from './signup';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -26,6 +25,7 @@ render(
       <div>
         <Route exact path="/" component={App} />
         <Route path="/wallet" component={Wallet} />
+        <Route path="/signup" component={Signup} />
       </div>
     </ConnectedRouter>
   </ReduxProvider>,
