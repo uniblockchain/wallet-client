@@ -1,15 +1,15 @@
 // @flow
 
-export type ValueWithCurrency = {
-  +currency: string,
+export type MonetaryValue = {
   +value: number,
+  +currency: string,
 };
 
-export type Value = Array<ValueWithCurrency>;
+export type MonetaryValues = Array<MonetaryValue>;
 
 export type TransactionEntry = {
   +address: string,
-  +value: Value,
+  +value: MonetaryValues,
 };
 
 export type Transaction = {
@@ -23,7 +23,7 @@ export type Wallet = {
   +id: number,
   +address: string,
   +currency: string,
-  +balance: Value,
+  +balance: MonetaryValues,
   +transactions: Array<Transaction>,
 };
 

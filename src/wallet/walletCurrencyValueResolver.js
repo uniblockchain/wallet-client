@@ -1,22 +1,22 @@
 // @flow
 
-import type { Value, ValueWithCurrency } from './walletState';
+import type { MonetaryValues, MonetaryValue } from './walletState';
 
 import store from '../reduxStore';
 
-function resolve(value: Value): ?number {
-  const state = store.getState();
-  const activeCurrency = state.wallet.currency;
-
-  const valueWithCurrency = value.find(
-    (valueWithCurrency: ValueWithCurrency) =>
-      valueWithCurrency.currency === activeCurrency,
+function resolve(
+  monetaryValues: MonetaryValues,
+  currency: string = store.getState().wallet.currency,
+): number {
+  const valueWithCurrency = monetaryValues.find(
+    (value: MonetaryValue) => value.currency === currency,
   );
+
   if (valueWithCurrency) {
     return valueWithCurrency.value;
   }
 
-  return null;
+  throw new Error(`Currency ${currency} not found`);
 }
 
 export default { resolve };

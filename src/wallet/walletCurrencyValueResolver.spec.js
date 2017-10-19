@@ -1,7 +1,6 @@
 // @flow
 
-// import { store } from '../reduxStore';
-import type { Value } from './walletState';
+import type { MonetaryValues } from './walletState';
 
 const mockStore = {};
 jest.mock('../reduxStore', () => mockStore);
@@ -9,7 +8,7 @@ jest.mock('../reduxStore', () => mockStore);
 const walletCurrencyResolver = require('./walletCurrencyValueResolver').default;
 
 describe('wallet currency resolver', () => {
-  it('resolve', () => {
+  it('resolves store wallet currency by default', () => {
     const eurValue = 500;
 
     mockStore.getState = jest.fn(() => ({
@@ -18,7 +17,7 @@ describe('wallet currency resolver', () => {
       },
     }));
 
-    const sampleValue: Value = [
+    const sampleValues: MonetaryValues = [
       {
         currency: 'EUR',
         value: eurValue,
@@ -29,7 +28,46 @@ describe('wallet currency resolver', () => {
       },
     ];
 
-    const resolvedValue = walletCurrencyResolver.resolve(sampleValue);
+    const resolvedValue = walletCurrencyResolver.resolve(sampleValues);
     expect(resolvedValue).toEqual(eurValue);
+  });
+
+  it('can also resolve the original currency', () => {
+    const ethValue = 1;
+    const ethereum = 'ETH';
+
+    const sampleValues: MonetaryValues = [
+      {
+        currency: 'EUR',
+        value: 500,
+      },
+      {
+        currency: ethereum,
+        value: ethValue,
+      },
+    ];
+
+    const resolvedValue = walletCurrencyResolver.resolve(
+      sampleValues,
+      ethereum,
+    );
+    expect(resolvedValue).toEqual(ethValue);
+  });
+
+  it('throws an error when no currency found', () => {
+    const sampleValues: MonetaryValues = [
+      {
+        currency: 'EUR',
+        value: 500,
+      },
+      {
+        currency: 'ETH',
+        value: 1,
+      },
+    ];
+
+    expect(() =>
+      walletCurrencyResolver.resolve(sampleValues, 's**tcoin'),
+    ).toThrow();
   });
 });

@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Chart } from 'react-chartjs-2';
 import walletActions from './walletActions';
 import walletCurrencyValueResolver from './walletCurrencyValueResolver';
-// import type { WalletFetchRequest } from './walletActionTypes';
 import './Wallet.css';
 
 import type { Wallet as WalletType } from './walletState';
@@ -17,6 +16,32 @@ type Props = {
   fetchWallet: () => void,
 };
 
+const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
+Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
+  draw(args) {
+    originalDoughnutDraw.apply(this, ...args);
+
+    const { width, height, ctx } = this.chart.chart;
+    const { datasets } = this.chart.config.data;
+
+    const fontSize = Math.floor(height / 114);
+    ctx.font = `${fontSize}em Roboto`;
+    ctx.textBaseline = 'middle';
+
+    const sum = datasets[0].data.reduce((a, b) => a + b, 0);
+
+    // TODO make currency & formatting dynamic
+    const text = sum.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'EUR',
+    });
+    const textX = Math.round((width - ctx.measureText(text).width) / 2);
+    const textY = height / 2;
+
+    ctx.fillText(text, textX, textY);
+  },
+});
+
 export class Wallet extends Component<Props> {
   componentDidMount() {
     const { fetchWallet } = this.props;
@@ -25,31 +50,47 @@ export class Wallet extends Component<Props> {
     }
   }
 
-  getDataSet() {
+  getData() {
+    const { wallets } = this.props;
+
     return {
       datasets: [
         {
-          data: this.props.wallets.map((wallet: WalletType) =>
+          data: wallets.map((wallet: WalletType) =>
             walletCurrencyValueResolver.resolve(wallet.balance),
           ),
           backgroundColor: ['#19c3ed', '#47d6e2', '#62dfd9'],
           borderWidth: [0, 0, 0],
         },
       ],
-      labels: this.props.wallets.map((wallet: WalletType) => wallet.currency),
+      labels: wallets.map((wallet: WalletType) => wallet.currency),
+      wallets,
     };
   }
 
   options = {
-    circumference: 10 / 6 * Math.PI,
-    rotation: 1 / 6 * Math.PI,
+    circumference: 21 / 12 * Math.PI,
+    rotation: 3 / 24 * Math.PI,
+    cutoutPercentage: 60,
     legend: {
       display: false,
+    },
+    tooltips: {
+      callbacks: {
+        label(tooltipItem: Object, data: Object) {
+          const wallet: WalletType = data.wallets[tooltipItem.index];
+          const walletValue = walletCurrencyValueResolver.resolve(
+            wallet.balance,
+            wallet.currency,
+          );
+          return `${walletValue} ${wallet.currency}`;
+        },
+      },
     },
   };
 
   render() {
-    const data = this.getDataSet();
+    const data = this.getData();
     return (
       <div>
         <Row className="justify-content-md-center">

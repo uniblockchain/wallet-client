@@ -11,21 +11,16 @@ const walletApi = require('./walletApi').default;
 describe('wallet api', () => {
   const apiUrl = 'sample-api-url';
 
-  const walletsResponse: Array<{
-    id: number,
-    address: string,
-    coin: string,
-  }> = [
-    {
-      id: 1,
-      address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
-      coin: 'ETH',
-      balance: null,
-      transactions: null,
-    },
-  ];
+  const wallet: Wallet = {
+    id: 1,
+    address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
+    currency: 'ETH',
+    balance: [],
+    transactions: [],
+  };
 
-  const error = 'whoops';
+  const walletsResponse: Array<Wallet> = [wallet];
+
   const balance = [
     { currency: 'ETH', value: 0.9 },
     { currency: 'EUR', value: 227.9376254547 },
@@ -112,14 +107,14 @@ describe('wallet api', () => {
       .mockReturnValueOnce(Promise.resolve(transactions));
 
     return walletApi.fetchWallet().then(response => {
-      var firstWallet = response.wallets[0];
+      const firstWallet = response.wallets[0];
 
       expect(firstWallet.balance).toEqual(balance);
       expect(firstWallet.transactions).toEqual(transactions);
 
-      expect(firstWallet.id).toEqual(walletsResponse[0].id);
-      expect(firstWallet.address).toEqual(walletsResponse[0].address);
-      expect(firstWallet.coin).toEqual(walletsResponse[0].coin);
+      expect(firstWallet.id).toEqual(wallet.id);
+      expect(firstWallet.address).toEqual(wallet.address);
+      expect(firstWallet.currency).toEqual(wallet.currency);
     });
   });
 });
