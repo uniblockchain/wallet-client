@@ -20,7 +20,15 @@ type Props = {
   +createUser: (string, string) => UserCreationRequest,
 };
 
-export class Signup extends Component<Props> {
+type State = {
+  emailProvided: boolean,
+};
+
+export class Signup extends Component<Props, State> {
+  state = {
+    emailProvided: false,
+  };
+
   componentWillReceiveProps = (nextProps: Props) => {
     if (nextProps.user && nextProps.user.id) {
       nextProps.openWallet();
@@ -33,6 +41,9 @@ export class Signup extends Component<Props> {
     this.props.passwordValidity && this.props.passwordValidity.valid;
 
   handleNext = () => {
+    if (this.emailValid()) {
+      this.setState({ emailProvided: true });
+    }
     if (this.emailValid() && this.passwordValid()) {
       this.props.createUser(this.props.email, this.props.password);
     }
@@ -43,7 +54,11 @@ export class Signup extends Component<Props> {
       <div>
         <Row className="justify-content-md-center">
           <Col className="signup col-lg-4">
-            {this.emailValid() ? <PasswordPage /> : <EmailPage />}
+            {this.emailValid() && this.state.emailProvided ? (
+              <PasswordPage />
+            ) : (
+              <EmailPage />
+            )}
             <div className="bottom">
               <Button color="primary" block onClick={this.handleNext}>
                 Next
