@@ -16,8 +16,8 @@ export const EmailPage = (props: Props) => {
   };
   return (
     <div className="top">
-      <h1>Welcome.</h1>
-      <h1>Let&apos;s get started.</h1>
+      <h1>Good day.</h1>
+      <h1>Let&apos;s set up your account.</h1>
       <Form>
         <FormGroup>
           <Label for="emailAddress">Email address</Label>

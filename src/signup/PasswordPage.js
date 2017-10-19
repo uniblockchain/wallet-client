@@ -16,7 +16,7 @@ export const PasswordPage = (props: Props) => {
   };
   return (
     <div className="top">
-      <h1>Final step.</h1>
+      <h1>One more thing.</h1>
       <h1>Create your password.</h1>
       <Form>
         <FormGroup>
