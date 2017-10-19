@@ -25,7 +25,6 @@ export const EmailPage = (props: Props) => {
             type="email"
             id="emailAddress"
             value={props.email}
-            autoFocus
             placeholder="Type your email here..."
             onChange={handleChange}
           />
