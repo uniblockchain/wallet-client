@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 // @flow
 
 import React, { Component } from 'react';
@@ -21,12 +22,13 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
   draw(args) {
     originalDoughnutDraw.apply(this, ...args);
 
-    const { width, height, ctx } = this.chart.chart;
+    const { width, outerRadius, ctx } = this.chart;
     const { datasets } = this.chart.config.data;
 
-    const fontSize = Math.floor(height / 114);
+    const fontSize = Math.floor(outerRadius / 57); // magic number :o
     ctx.font = `${fontSize}em Roboto`;
     ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.54)';
 
     const sum = datasets[0].data.reduce((a, b) => a + b, 0);
 
@@ -36,9 +38,10 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
       currency: 'EUR',
     });
     const textX = Math.round((width - ctx.measureText(text).width) / 2);
-    const textY = height / 2;
+    const textY = outerRadius;
 
-    ctx.fillText(text, textX, textY);
+    ctx.fillText(text, textX, textY * 1.12);
+    ctx.fillText('Balance', textX, textY * 0.88);
   },
 });
 
@@ -74,6 +77,7 @@ export class Wallet extends Component<Props> {
     cutoutPercentage: 60,
     legend: {
       display: false,
+      position: 'bottom',
     },
     tooltips: {
       callbacks: {
@@ -87,7 +91,13 @@ export class Wallet extends Component<Props> {
         },
       },
     },
+    onClick: () => {
+      this.chart.chart_instance.options.legend.display ^= 1; // toggle boolean
+      this.chart.chart_instance.update();
+    },
   };
+
+  chart = null;
 
   render() {
     const data = this.getData();
@@ -101,7 +111,13 @@ export class Wallet extends Component<Props> {
                   <i className="material-icons">more_horiz</i>
                 </button>
               </div>
-              <Doughnut data={data} options={this.options} />
+              <Doughnut
+                data={data}
+                options={this.options}
+                ref={chart => {
+                  this.chart = chart;
+                }}
+              />
             </div>
           </Col>
         </Row>
