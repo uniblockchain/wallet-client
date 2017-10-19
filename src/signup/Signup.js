@@ -60,7 +60,7 @@ export class Signup extends Component<Props, State> {
               <EmailPage />
             )}
             <div className="bottom">
-              <Button color="primary" block onClick={this.handleNext}>
+              <Button color="primary" block size="lg" onClick={this.handleNext}>
                 Next
               </Button>
             </div>

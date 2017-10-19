@@ -12,6 +12,7 @@ import { history, store } from './reduxStore';
 import App from './App';
 import { Wallet } from './wallet';
 import { Signup } from './signup';
+import { Login } from './login';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -28,6 +29,7 @@ render(
         <Route exact path="/" component={App} />
         <Route path="/wallet" component={Wallet} />
         <Route path="/signup" component={Signup} />
+        <Route path="/login" component={Login} />
       </div>
     </ConnectedRouter>
   </ReduxProvider>,

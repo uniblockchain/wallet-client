@@ -2,6 +2,7 @@
 
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 import createHistory from 'history/createBrowserHistory';
 import createSagaMiddleware from 'redux-saga';
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   wallet: walletReducer,
   signup: signupReducer,
+  form: formReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

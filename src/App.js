@@ -17,7 +17,7 @@ const App = () => (
               Sign up
             </Button>
           </Link>
-          <Link to="/wallet">
+          <Link to="/login">
             <Button size="lg" block>
               Log in
             </Button>
