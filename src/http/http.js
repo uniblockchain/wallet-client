@@ -61,9 +61,10 @@ function paramsToBody(params: any): any {
 }
 
 function bearerTokenHeader(): any {
-  const { oauthToken } = store.getState().login;
-  if (oauthToken) {
-    return { Authorization: `Bearer ${oauthToken.access_token}` };
+  const { token } = store.getState().login;
+  debugger;
+  if (token) {
+    return { Authorization: `Bearer ${token}` };
   }
   return {};
 }

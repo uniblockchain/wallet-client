@@ -2,17 +2,37 @@
 
 import loginAction from './loginActionTypes';
 import type { LoginAction } from './loginActionTypes';
-import type { OauthToken } from './loginApi';
+
+const TOKEN_STORAGE_KEY = 'accessToken';
+
+// get saved token if it's there
+const token: ?string =
+  (window.localStorage && localStorage.getItem(TOKEN_STORAGE_KEY)) || null;
+
+type LoginState = {
+  token: ?string,
+};
+
+const defaultState: LoginState = {
+  token,
+};
+
+function updateLocalStorage(action) {
+  if (window.localStorage) {
+    localStorage.setItem(TOKEN_STORAGE_KEY, action.oauthToken.access_token);
+  }
+}
 
 const loginReducer = (
-  state: OauthToken = {},
+  state: LoginState = defaultState,
   action: LoginAction,
-): OauthToken => {
+): LoginState => {
   switch (action.type) {
     case loginAction.LOGIN_SUCCESSFUL:
+      updateLocalStorage(action);
       return {
         ...state,
-        oauthToken: action.oauthToken,
+        token: action.oauthToken.access_token,
       };
 
     default:
