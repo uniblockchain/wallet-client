@@ -5,10 +5,10 @@ import { withStyles } from 'material-ui/styles';
 import BottomNavigation, {
   BottomNavigationButton,
 } from 'material-ui/BottomNavigation';
-import HomeIcon from 'material-ui-icons/Home';
-import AccountBalanceIcon from 'material-ui-icons/AccountBalance';
-import CreditCardIcon from 'material-ui-icons/CreditCard';
-import AppsIcon from 'material-ui-icons/Apps';
+import OverviewIcon from './icon/OverviewIcon';
+import WalletIcon from './icon/WalletIcon';
+import CardIcon from './icon/CardIcon';
+import MarketplaceIcon from './icon/MarketplaceIcon';
 
 const styles = {
   root: {
@@ -44,10 +44,13 @@ class SimpleBottomNavigation extends Component<Props, State> {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationButton label="Overview" icon={<HomeIcon />} />
-        <BottomNavigationButton label="Wallet" icon={<AccountBalanceIcon />} />
-        <BottomNavigationButton label="Card" icon={<CreditCardIcon />} />
-        <BottomNavigationButton label="Marketplace" icon={<AppsIcon />} />
+        <BottomNavigationButton label="Overview" icon={<OverviewIcon />} />
+        <BottomNavigationButton label="Wallet" icon={<WalletIcon />} />
+        <BottomNavigationButton label="Card" icon={<CardIcon />} />
+        <BottomNavigationButton
+          label="Marketplace"
+          icon={<MarketplaceIcon />}
+        />
       </BottomNavigation>
     );
   }
