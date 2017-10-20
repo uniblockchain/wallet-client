@@ -1,8 +1,10 @@
+// @flow
+
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
+import { Card, List } from 'material-ui';
 import type { Transaction as TransactionType, Wallet } from '../walletState';
-import { List, Paper } from 'material-ui';
 import Transaction from './transaction';
 
 const styles = theme => ({
@@ -26,17 +28,15 @@ export class Transactions extends Component<Props, State> {
 
     return (
       <div className={classes.root}>
-        <Paper>
+        <Card>
           <List>
-            {wallets.map(function(wallet, i) {
-              return wallet.transactions.map(
-                (transaction: TransactionType, i) => (
-                  <Transaction key={transaction.id} transaction={transaction} />
-                ),
-              );
-            })}
+            {wallets.map((wallet: Wallet) =>
+              wallet.transactions.map((transaction: TransactionType) => (
+                <Transaction key={transaction.id} transaction={transaction} />
+              )),
+            )}
           </List>
-        </Paper>
+        </Card>
       </div>
     );
   }

@@ -5,10 +5,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { Doughnut, Chart } from 'react-chartjs-2';
+import { Card } from 'material-ui';
+
 import walletActions from './walletActions';
 import walletCurrencyValueResolver from './walletCurrencyValueResolver';
 import './Wallet.css';
-
 import type { Wallet as WalletType } from './walletState';
 import BottomNavigation from '../bottomNavigation';
 import Transactions from './transactions';
@@ -106,7 +107,7 @@ export class Wallet extends Component<Props> {
       <div>
         <Row className="justify-content-md-center">
           <Col className="wallet col-lg-4">
-            <div className="top">
+            <Card className="top">
               <div className="text-right">
                 <button type="button" className="btn btn-primary bmd-btn-icon">
                   <i className="material-icons">more_horiz</i>
@@ -119,7 +120,7 @@ export class Wallet extends Component<Props> {
                   this.chart = chart;
                 }}
               />
-            </div>
+            </Card>
             <div>
               <Transactions />
             </div>

@@ -13,7 +13,7 @@ import DateDisplay from './dateDisplay';
 const styles = theme => ({
   root: {
     backgroundColor: '#ffffff',
-    fontFamily: 'Favorit',
+    // fontFamily: 'Favorit',
   },
   address: {
     fontSize: 14,
@@ -71,28 +71,25 @@ export class Transaction extends Component<Props> {
     const transaction: TransactionType = this.props.transaction;
     const self = this;
 
+    const { address } = self.getExternalPartyTransactionEntry(
+      transaction.entries,
+    );
+    const amount = walletCurrencyValueResolver.resolve(
+      self.getCurrentWalletTransactionEntry(transaction.entries).value,
+    );
+
     return (
       <div className={classes.root}>
         <ListItem button key={transaction.id}>
           <Grid item xs={6} sm={6}>
-            <div className={classes.address}>
-              {
-                self.getExternalPartyTransactionEntry(transaction.entries)
-                  .address
-              }
-            </div>
+            <div className={classes.address}>{address}</div>
             <div className={classes.date}>
               <DateDisplay date={transaction.date} />
             </div>
           </Grid>
           <Grid item xs={6} sm={6}>
             <div className={classes.amount}>
-              <FiatValue
-                value={walletCurrencyValueResolver.resolve(
-                  self.getCurrentWalletTransactionEntry(transaction.entries)
-                    .value,
-                )}
-              />
+              <FiatValue value={amount} />
             </div>
             <div className={classes.status}>complete</div>
           </Grid>
