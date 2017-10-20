@@ -7,6 +7,8 @@ import walletCurrencyValueResolver from '../../walletCurrencyValueResolver';
 import { Grid, ListItem } from 'material-ui';
 import * as React from 'react';
 import { withStyles } from 'material-ui/styles/index';
+import FiatValue from './fiatValue';
+import DateDisplay from './dateDisplay';
 
 const styles = theme => ({
   root: {
@@ -74,14 +76,18 @@ export class Transaction extends Component<Props> {
                   .address
               }
             </div>
-            <div className={classes.date}>{transaction.date.toString()}</div>
+            <div className={classes.date}>
+              <DateDisplay date={transaction.date} />
+            </div>
           </Grid>
           <Grid item xs={6} sm={6}>
             <div className={classes.amount}>
-              {walletCurrencyValueResolver.resolve(
-                self.getCurrentWalletTransactionEntry(transaction.entries)
-                  .value,
-              )}
+              <FiatValue
+                value={walletCurrencyValueResolver.resolve(
+                  self.getCurrentWalletTransactionEntry(transaction.entries)
+                    .value,
+                )}
+              />
             </div>
             <div className={classes.status}>complete</div>
           </Grid>

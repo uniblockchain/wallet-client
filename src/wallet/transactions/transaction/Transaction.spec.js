@@ -4,6 +4,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Transaction } from './Transaction';
+import FiatValue from './fiatValue';
+import DateDisplay from './dateDisplay';
+
 import type {
   Transaction as TransactionType,
   TransactionEntry,
@@ -63,8 +66,10 @@ describe('Transaction component', () => {
     expect(component.contains(outsidePartyWalletTransactionEntry.address)).toBe(
       true,
     );
-    expect(component.contains(sampleTransaction.date.toString())).toBe(true);
-    expect(component.contains(sampleValue)).toBe(true);
+    expect(
+      component.contains(<DateDisplay date={sampleTransaction.date} />),
+    ).toBe(true);
+    expect(component.contains(<FiatValue value={sampleValue} />)).toBe(true);
     expect(component.contains('complete')).toBe(true);
   });
 });

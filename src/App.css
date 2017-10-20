@@ -1,0 +1,38 @@
+.app {
+  background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
+  padding: 40px;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+}
+.app h1 {
+  font-size: 46px;
+  font-weight: bold;
+  line-height: 1.04;
+  letter-spacing: -1.9px;
+  color: #ffffff;
+}
+.app h2 {
+  font-size: 28px;
+  line-height: 1.21;
+  letter-spacing: -0.9px;
+  color: #00346b;
+}
+.app .bottom {
+  margin-top: auto;
+}
+.app .bottom .btn {
+  height: 44px;
+  border-radius: 49px;
+  background-color: #ffffff;
+  color: #02bda5;
+}
+.app .bottom .btn-primary {
+  color: white;
+  background-color: #00346b;
+}
