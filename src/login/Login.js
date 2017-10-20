@@ -12,7 +12,6 @@ type Props = {
 
 export const Login = (props: Props) => {
   const handleSubmit = values => {
-    debugger;
     props.login(values.emailAddress, values.password);
   };
   return <LoginForm onSubmit={handleSubmit} />;
