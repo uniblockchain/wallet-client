@@ -1,6 +1,6 @@
 // @flow
-
 import 'isomorphic-fetch';
+import store from '../reduxStore';
 
 function transformResponse(response) {
   if (response.ok && response.status < 400) {
@@ -28,6 +28,7 @@ export function get(url: string, params: any = {}, headers: any = {}) {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
+      ...bearerTokenHeader(),
       ...headers,
     },
     mode: 'cors',
@@ -41,6 +42,7 @@ export function post(url: string, params: any = {}, headers: any = {}) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
+      ...bearerTokenHeader(),
       ...headers,
     },
     body: paramsToBody(params),
@@ -56,6 +58,14 @@ function paramsToBody(params: any): any {
     return params;
   }
   return JSON.stringify(params);
+}
+
+function bearerTokenHeader(): any {
+  const { oauthToken } = store.getState().login;
+  if (oauthToken) {
+    return { Authorization: `Bearer ${oauthToken.access_token}` };
+  }
+  return {};
 }
 
 export default { get, post };
