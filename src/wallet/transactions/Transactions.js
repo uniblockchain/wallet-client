@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
-import type { Transaction as TransactionType } from '../walletState';
+import type { Transaction as TransactionType, Wallet } from '../walletState';
 import { List, Paper } from 'material-ui';
 import Transaction from './transaction';
 
@@ -16,7 +16,7 @@ type Props = {
 };
 
 type State = {
-  value: number,
+  wallets: Array<Wallet>,
 };
 
 export class Transactions extends Component<Props, State> {

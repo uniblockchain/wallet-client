@@ -44,6 +44,11 @@ const styles = theme => ({
   },
 });
 
+type Props = {
+  classes?: Object,
+  transaction: TransactionType,
+};
+
 export class Transaction extends Component<Props> {
   getCurrentWalletTransactionEntry(
     transactionEntries: Array<TransactionEntry>,
