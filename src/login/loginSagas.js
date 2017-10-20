@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import loginApi from './loginApi';
 import loginActions from './loginActions';
 import loginActionTypes from './loginActionTypes';
@@ -11,6 +12,7 @@ function* fetchToken(action) {
       action.password,
     );
     yield put(loginActions.loginSuccessful(oauthToken));
+    yield put(push('/wallet'));
   } catch (e) {
     yield put(loginActions.loginFailed(e.message));
     throw e;
