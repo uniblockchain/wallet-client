@@ -62,7 +62,6 @@ function paramsToBody(params: any): any {
 
 function bearerTokenHeader(): any {
   const { token } = store.getState().login;
-  debugger;
   if (token) {
     return { Authorization: `Bearer ${token}` };
   }
