@@ -16,6 +16,7 @@ import { Login } from './login';
 import registerServiceWorker from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
+import requireAuthentication from './requireAuthentication';
 import './index.css';
 
 configuration.initialize();
@@ -27,7 +28,7 @@ render(
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={App} />
-        <Route path="/wallet" component={Wallet} />
+        <Route path="/wallet" component={requireAuthentication(Wallet)} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
       </div>
