@@ -6,15 +6,15 @@ import { get } from '../http';
 import type { WalletState } from './walletState';
 
 function fetchWalletBalance(walletId: number): Promise<number> {
-  return get(`${config.get('apiUrl')}/wallet/${walletId}/balance`);
+  return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/balance`);
 }
 
 function fetchWalletTransactions(walletId: number): Promise<number> {
-  return get(`${config.get('apiUrl')}/wallet/${walletId}/transaction`);
+  return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/transaction`);
 }
 
 function fetchWallet(): Promise<WalletState> {
-  return get(`${config.get('apiUrl')}/wallet`).then(wallets =>
+  return get(`${config.get('apiUrl')}/v1/wallet`).then(wallets =>
     Promise.all(
       wallets.map(wallet =>
         fetchWalletBalance(wallet.id)

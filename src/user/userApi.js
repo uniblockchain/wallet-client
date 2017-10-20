@@ -6,11 +6,11 @@ import { get, post } from '../http';
 import type { UserState } from './userState';
 
 function fetchUser(): Promise<UserState> {
-  return get(`${config.get('apiUrl')}/me`);
+  return get(`${config.get('apiUrl')}/v1/me`);
 }
 
 function createUser(email: string, password: string): Promise<UserState> {
-  return post(`${config.get('apiUrl')}/users`, {
+  return post(`${config.get('apiUrl')}/v1/users`, {
     email,
     password,
   });

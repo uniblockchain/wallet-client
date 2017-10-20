@@ -3,11 +3,15 @@
 import config from 'react-global-configuration';
 
 const DEFAULT_CONF_DEV = {
-  apiUrl: 'http://localhost:8080/v1',
+  apiUrl: 'http://localhost:8080',
+  oauth2ClientId: 'wallet-client',
+  oauth2Secret: 'WalletClientSecret',
 };
 
 const DEFAULT_CONF_PRODUCTION = {
-  apiUrl: 'https://change-wallet-service.producement.com/v1',
+  apiUrl: 'https://change-wallet-service.producement.com',
+  oauth2ClientId: 'wallet-client',
+  oauth2Secret: 'WalletClientSecret',
 };
 
 export default function initialize(): void {
