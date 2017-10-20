@@ -2,13 +2,11 @@
 
 import 'isomorphic-fetch';
 
-const authHash = () => btoa('test@example.com:test');
-
 function transformResponse(response) {
   if (response.ok && response.status < 400) {
     return response.json();
   } else if (response.status >= 400) {
-    return response.json().then(data => {
+    return response.json().then((data: any) => {
       const error = {};
       error.status = response.status;
       error.body = data;
@@ -24,13 +22,12 @@ function urlEncodeParameters(params) {
     .join('&');
 }
 
-export function get(url: string, params = {}, headers = {}) {
+export function get(url: string, params: any = {}, headers: any = {}) {
   const urlParameters = urlEncodeParameters(params);
   return fetch(`${url}${urlParameters ? `?${urlParameters}` : ''}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      Authorization: `Basic ${authHash()}`,
       ...headers,
     },
     mode: 'cors',
@@ -39,19 +36,26 @@ export function get(url: string, params = {}, headers = {}) {
   }).then(transformResponse);
 }
 
-export function post(url, params = {}, headers = {}) {
+export function post(url: string, params: any = {}, headers: any = {}) {
   return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      Authorization: `Basic ${authHash()}`,
       ...headers,
     },
-    body: JSON.stringify(params),
+    body: paramsToBody(params),
     credentials: 'include',
     mode: 'cors',
     cache: 'default',
   }).then(transformResponse);
+}
+
+function paramsToBody(params: any): any {
+  const paramsType = typeof params;
+  if (paramsType === 'string' || paramsType === 'FormData') {
+    return params;
+  }
+  return JSON.stringify(params);
 }
 
 export default { get, post };
