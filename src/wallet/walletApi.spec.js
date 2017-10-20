@@ -110,7 +110,12 @@ describe('wallet api', () => {
       const firstWallet = response.wallets[0];
 
       expect(firstWallet.balance).toEqual(balance);
-      expect(firstWallet.transactions).toEqual(transactions);
+
+      const firstTransaction = response.wallets[0].transactions[0];
+      expect(firstTransaction).toEqual({
+        ...firstTransaction,
+        date: new Date(transactions[0].date),
+      });
 
       expect(firstWallet.id).toEqual(wallet.id);
       expect(firstWallet.address).toEqual(wallet.address);

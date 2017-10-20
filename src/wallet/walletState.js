@@ -10,6 +10,7 @@ export type MonetaryValues = Array<MonetaryValue>;
 export type TransactionEntry = {
   +address: string,
   +value: MonetaryValues,
+  +currentWallet: boolean,
 };
 
 export type Transaction = {

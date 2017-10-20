@@ -25,7 +25,11 @@ function fetchWallet(): Promise<WalletState> {
           .then(wallet =>
             fetchWalletTransactions(wallet.id).then(transactions => ({
               ...wallet,
-              transactions,
+              // $FlowFixMe
+              transactions: transactions.map(transaction => ({
+                ...transaction,
+                date: new Date(transaction.date),
+              })),
             })),
           ),
       ),

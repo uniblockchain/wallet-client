@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Signup } from './Signup';
+import { Login } from './Login';
 
 describe('Login component', () => {
   let component;

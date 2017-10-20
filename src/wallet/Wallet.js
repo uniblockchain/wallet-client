@@ -11,6 +11,7 @@ import './Wallet.css';
 
 import type { Wallet as WalletType } from './walletState';
 import BottomNavigation from '../bottomNavigation';
+import Transactions from './transactions';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -118,6 +119,9 @@ export class Wallet extends Component<Props> {
                   this.chart = chart;
                 }}
               />
+            </div>
+            <div>
+              <Transactions />
             </div>
           </Col>
         </Row>
