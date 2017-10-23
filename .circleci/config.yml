@@ -48,6 +48,8 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               aws s3 sync build/ s3://aws-website-wallet-client-hip4q --delete
+              aws configure set preview.cloudfront true
+              aws cloudfront create-invalidation --distribution-id E1IGDSJ2O1604X --paths "/*"
             else
               echo "Not master branch so not deploying"
             fi
