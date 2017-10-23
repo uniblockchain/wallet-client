@@ -13,7 +13,7 @@ import App from './App';
 import { Wallet } from './wallet';
 import { Signup } from './signup';
 import { Login } from './login';
-import registerServiceWorker from './registerServiceWorker';
+import unregister from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
@@ -27,7 +27,7 @@ render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={requireAuthentication(App, false)} />
         <Route path="/wallet" component={requireAuthentication(Wallet)} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
@@ -37,4 +37,4 @@ render(
   document.getElementById('root'),
 );
 
-registerServiceWorker();
+unregister();
