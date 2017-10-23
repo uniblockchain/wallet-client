@@ -38,10 +38,8 @@ jobs:
 
       - run: yarn build
 
-      - run:
-          name: Install awscli
-          working_directory: /
-          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run: 'sudo apt install python-pip python-dev'
+      - run: 'sudo pip install awsebcli'
 
       - deploy:
           name: Deploy to S3 if tests pass and branch is Master
