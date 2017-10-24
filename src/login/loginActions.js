@@ -5,6 +5,7 @@ import type {
   LoginFailed,
   LoginInitiated,
   LoginSuccessful,
+  Logout,
 } from './loginActionTypes';
 import type { OauthToken } from './loginApi';
 
@@ -24,4 +25,13 @@ const loginFailed = (error: string): LoginFailed => ({
   error,
 });
 
-export default { login, loginSuccessful, loginFailed };
+const logout = (): Logout => ({
+  type: loginActionTypes.LOGOUT,
+});
+
+export default {
+  login,
+  loginSuccessful,
+  loginFailed,
+  logout,
+};
