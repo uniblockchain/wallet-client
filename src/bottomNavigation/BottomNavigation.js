@@ -1,14 +1,17 @@
 // @flow
-
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import BottomNavigation, {
   BottomNavigationButton,
 } from 'material-ui/BottomNavigation';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import OverviewIcon from './icon/OverviewIcon';
 import WalletIcon from './icon/WalletIcon';
 import CardIcon from './icon/CardIcon';
 import MarketplaceIcon from './icon/MarketplaceIcon';
+import type { Menu } from '../menu/index';
 
 const styles = {
   root: {
@@ -17,43 +20,68 @@ const styles = {
 };
 
 type Props = {
-  classes?: Object,
+  +menu: Menu,
+  +value: string,
+  +to: string => void,
+  +classes: ?Object,
 };
 
-type State = {
-  value: number,
+type IconProps = {
+  item: string,
 };
 
-class SimpleBottomNavigation extends Component<Props, State> {
-  state = {
-    value: 0,
-  };
-
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-      <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        showLabels
-        className={classes.root}
-      >
-        <BottomNavigationButton label="Overview" icon={<OverviewIcon />} />
-        <BottomNavigationButton label="Wallet" icon={<WalletIcon />} />
-        <BottomNavigationButton label="Card" icon={<CardIcon />} />
-        <BottomNavigationButton
-          label="Marketplace"
-          icon={<MarketplaceIcon />}
-        />
-      </BottomNavigation>
-    );
+const Icon = ({ item }: IconProps): any => {
+  switch (item) {
+    case '/overview':
+      return <OverviewIcon />;
+    case '/wallet':
+      return <WalletIcon />;
+    case '/card':
+      return <CardIcon />;
+    case '/marketplace':
+      return <MarketplaceIcon />;
+    default:
+      return null;
   }
-}
+};
 
-export default withStyles(styles)(SimpleBottomNavigation);
+export const SimpleBottomNavigation = (props: Props) => {
+  const { menu, classes, value, to } = props;
+  const handleChange = (event, v) => {
+    to(v);
+  };
+  return (
+    <BottomNavigation
+      value={value}
+      onChange={handleChange}
+      showLabels
+      className={classes.root}
+    >
+      {menu.map(it => (
+        <BottomNavigationButton
+          key={it.link}
+          label={it.name}
+          value={it.link}
+          icon={<Icon item={it.link} />}
+        />
+      ))}
+    </BottomNavigation>
+  );
+};
+
+const mapStateToProps = state => ({
+  value: state.router.location.pathname,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      to: (link: string) => push(link),
+    },
+    dispatch,
+  );
+
+const Connected = connect(mapStateToProps, mapDispatchToProps)(
+  SimpleBottomNavigation,
+);
+export default withStyles(styles)(Connected);

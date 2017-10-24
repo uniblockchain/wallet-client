@@ -7,6 +7,7 @@ import { Col, Row } from 'reactstrap';
 import { Doughnut, Chart } from 'react-chartjs-2';
 import { Card } from 'material-ui';
 import Sidebar from './sidebar';
+import menu from '../menu';
 
 import walletActions from './walletActions';
 import walletCurrencyValueResolver from './walletCurrencyValueResolver';
@@ -110,7 +111,7 @@ export class Wallet extends Component<Props> {
           <Col className="wallet col-lg-4">
             <Card className="top">
               <div className="text-right">
-                <Sidebar />
+                <Sidebar menu={menu} />
               </div>
               <Doughnut
                 data={data}
@@ -126,7 +127,7 @@ export class Wallet extends Component<Props> {
           </Col>
         </Row>
         <div className="bottom-navigation">
-          <BottomNavigation />
+          <BottomNavigation menu={menu} />
         </div>
       </div>
     );

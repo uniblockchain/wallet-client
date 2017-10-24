@@ -5,18 +5,33 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import loginActions from '../../login/loginActions';
 import { openSidebar } from './sidebarActions';
+import { type Menu } from '../../menu';
 import './Sidebar.css';
 
 type Props = {
+  +menu: Menu,
   +open: boolean,
   +updateState: boolean => void,
   +logout: () => void,
+};
+
+type ListItemProps = {
+  +link: string,
+  +text: string,
 };
 
 export const Sidebar = (props: Props) => {
   const setSidebarState = (open: boolean) => {
     props.updateState(open);
   };
+  const ListItem = ({ link, text }: ListItemProps) => (
+    <li>
+      <Link to={link} onClick={() => setSidebarState(false)}>
+        {text}
+      </Link>
+    </li>
+  );
+
   return (
     <div>
       <button
@@ -33,38 +48,13 @@ export const Sidebar = (props: Props) => {
             : ''}`}
         >
           <ul className="navigation">
-            <li>
-              <Link to="/overview" onClick={() => setSidebarState(false)}>
-                Overview
-              </Link>
-            </li>
-            <li>
-              <Link to="/wallet" onClick={() => setSidebarState(false)}>
-                Wallet
-              </Link>
-            </li>
-            <li>
-              <Link to="/card" onClick={() => setSidebarState(false)}>
-                Card
-              </Link>
-            </li>
-            <li>
-              <Link to="/marketplace" onClick={() => setSidebarState(false)}>
-                Marketplace
-              </Link>
-            </li>
+            {props.menu.map(it => (
+              <ListItem key={it.link} link={it.link} text={it.name} />
+            ))}
           </ul>
           <ul className="menu">
-            <li>
-              <Link to="/settings" onClick={() => setSidebarState(false)}>
-                My account
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" onClick={() => setSidebarState(false)}>
-                Contact
-              </Link>
-            </li>
+            <ListItem link="/settings" text="My account" />
+            <ListItem link="/contact" text="Contact" />
             <li>
               <button onClick={props.logout}>Log out</button>
             </li>

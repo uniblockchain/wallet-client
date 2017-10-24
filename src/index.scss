@@ -1,3 +1,9 @@
+@font-face {
+  font-family: CircularStd;
+  src: url('fonts/circularstd-book-webfont.woff2') format('woff2');
+}
+
 body {
+  font-family: 'CircularStd', Fallback, sans-serif;
   background-color: #f2f2f2;
 }
