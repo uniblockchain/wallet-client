@@ -36,7 +36,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "test:ci": "react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
+    "test:ci": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
     "flow": "flow",
     "eject": "react-scripts eject"
   },
