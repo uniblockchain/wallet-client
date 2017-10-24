@@ -1,0 +1,73 @@
+@font-face {
+  font-family: CircularStd;
+  src: url('../../fonts/circularstd-book-webfont.woff2') format('woff2');
+}
+
+.sideBarContent {
+  background-color: #0b2b5c;
+  font-family: 'CircularStd', Fallback, sans-serif;
+  color: white;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  position: absolute;
+  top: 0;
+  left: 105vw;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  transition: left 300ms;
+
+  ul {
+    list-style: none;
+    text-align: left;
+  }
+
+  button {
+    background-color: inherit;
+    padding: 0;
+    border: 0;
+  }
+
+  .navigation {
+    margin-top: 92px;
+    margin-bottom: 0;
+    padding-left: 32px;
+    font-size: 36px;
+    letter-spacing: -1px;
+    line-height: 1.8;
+
+    a {
+      color: white;
+    }
+  }
+
+  .menu {
+    margin-top: 51px;
+    color: #c6f3ff;
+    font-size: 24px;
+    letter-spacing: -0.7px;
+    padding-left: 32px;
+    line-height: 2;
+
+    a,
+    button {
+      color: #c6f3ff;
+    }
+  }
+}
+
+.sideBarContent-enter {
+  left: 105vw;
+  transition: left 300ms;
+  .sideBarContent-enter-active {
+    left: 0;
+  }
+}
+
+.sideBarContent-visible {
+  left: 0;
+}

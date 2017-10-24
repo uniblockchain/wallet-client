@@ -10,6 +10,7 @@ import { userReducer, userSagas } from './user';
 import { signupReducer } from './signup';
 import { loginReducer, loginSagas } from './login';
 import { walletReducer, walletSagas } from './wallet';
+import { sidebarReducer } from './wallet/sidebar/sidebarReducer';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   signup: signupReducer,
   login: loginReducer,
   form: formReducer,
+  sidebar: sidebarReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
