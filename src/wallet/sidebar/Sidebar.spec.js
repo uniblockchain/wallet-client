@@ -9,6 +9,7 @@ describe('Sidebar component', () => {
   let component;
 
   const props = {
+    menu: [],
     open: false,
     updateState: jest.fn(),
     logout: jest.fn(),
