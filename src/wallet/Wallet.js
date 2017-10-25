@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
-import Sidebar from '../sidebar';
 import menu from '../menu';
 import { Content, Top, Card } from '../ui';
 
