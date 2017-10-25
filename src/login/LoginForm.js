@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { Field, reduxForm, type FormProps } from 'redux-form';
+import { Link } from 'react-router-dom';
 import {
   WrappedContent,
   Top,
@@ -14,6 +15,24 @@ import {
   FormGroup,
 } from '../ui';
 
+const EmailAddress = ({ input }: any) => (
+  <Input
+    {...input}
+    type="email"
+    placeholder="Type your email here..."
+    className="form-control"
+  />
+);
+
+const Password = ({ input }: any) => (
+  <Input
+    {...input}
+    type="password"
+    placeholder="Type your password here..."
+    className="form-control"
+  />
+);
+
 export const LoginForm = (props: FormProps) => {
   const { handleSubmit } = props;
   return (
@@ -24,23 +43,11 @@ export const LoginForm = (props: FormProps) => {
         <Form id="loginForm" onSubmit={handleSubmit}>
           <FormGroup>
             <Label htmlFor="emailAddress">Email address</Label>
-            <Field
-              name="emailAddress"
-              className="form-control"
-              component={Input}
-              type="email"
-              placeholder="Type your email here..."
-            />
+            <Field name="emailAddress" component={EmailAddress} />
           </FormGroup>
           <FormGroup>
             <Label htmlFor="password">Password</Label>
-            <Field
-              name="password"
-              className="form-control"
-              component={Input}
-              type="password"
-              placeholder="Type your password here..."
-            />
+            <Field name="password" component={Password} />
           </FormGroup>
         </Form>
       </Top>
@@ -48,7 +55,9 @@ export const LoginForm = (props: FormProps) => {
         <PrimaryButton type="submit" form="loginForm">
           Log In
         </PrimaryButton>
-        <Button>Cancel</Button>
+        <Link to="/">
+          <Button>Cancel</Button>
+        </Link>
       </Bottom>
     </WrappedContent>
   );

@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { WrappedContent, Top, Bottom, PrimaryButton } from '../ui';
+import { Link } from 'react-router-dom';
+import { WrappedContent, Top, Bottom, PrimaryButton, Button } from '../ui';
 import userActions from '../user/userActions';
 import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';
@@ -60,6 +61,9 @@ export class Signup extends Component<Props, State> {
         </Top>
         <Bottom>
           <PrimaryButton onClick={this.handleNext}>Next</PrimaryButton>
+          <Link to="/">
+            <Button>Cancel</Button>
+          </Link>
         </Bottom>
       </WrappedContent>
     );
