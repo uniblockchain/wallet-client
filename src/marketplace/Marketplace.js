@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Content, Header, SubHeader } from '../ui';
+import { Content, Header, SubHeader, Button } from '../ui';
 import menu from '../menu';
 import BottomNavigation from '../bottomNavigation';
 import TopBar from '../topBar';
@@ -44,7 +44,7 @@ const StyledListItem = styled.li`
   border-bottom: 1px solid #f2f2f2;
 `;
 
-const Link = styled.button`
+const Link = Button.extend`
   font-size: 14px;
   text-align: center;
   color: #cccccc;
