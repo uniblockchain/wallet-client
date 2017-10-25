@@ -40,9 +40,15 @@
     "test": "npm run build-css && flow && react-scripts test --env=jsdom",
     "test:ci": "npm run build-css && flow && react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
     "flow": "flow",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
+    "@storybook/addon-knobs": "^3.2.13",
+    "@storybook/addon-actions": "^3.2.13",
+    "@storybook/addon-links": "^3.2.13",
+    "@storybook/react": "^3.2.13",
     "babel-eslint": "^8.0.1",
     "empty": "^0.10.1",
     "enzyme": "^3.1.0",
