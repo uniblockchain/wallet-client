@@ -3,9 +3,9 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import loginActions from '../../login/loginActions';
+import loginActions from '../login/loginActions';
 import { openSidebar } from './sidebarActions';
-import { type Menu } from '../../menu';
+import { type Menu } from '../menu/index';
 import './Sidebar.css';
 
 type Props = {
