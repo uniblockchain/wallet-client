@@ -3,15 +3,14 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Col, Row } from 'reactstrap';
 import { Doughnut, Chart } from 'react-chartjs-2';
-import { Card } from 'material-ui';
+import styled from 'styled-components';
 import Sidebar from './sidebar';
 import menu from '../menu';
+import { Content, Top, Card } from '../ui';
 
 import walletActions from './walletActions';
 import walletCurrencyValueResolver from './walletCurrencyValueResolver';
-import './Wallet.css';
 import type { Wallet as WalletType } from './walletState';
 import BottomNavigation from '../bottomNavigation';
 import Transactions from './transactions';
@@ -48,6 +47,12 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     ctx.fillText('Balance', textX, textY * 0.88);
   },
 });
+
+const FixedBottomNavigation = styled(BottomNavigation)`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+`;
 
 export class Wallet extends Component<Props> {
   componentDidMount() {
@@ -106,30 +111,26 @@ export class Wallet extends Component<Props> {
   render() {
     const data = this.getData();
     return (
-      <div>
-        <Row className="justify-content-md-center">
-          <Col className="wallet col-lg-4">
-            <Card className="top">
-              <div className="text-right">
-                <Sidebar menu={menu} />
-              </div>
-              <Doughnut
-                data={data}
-                options={this.options}
-                ref={chart => {
-                  this.chart = chart;
-                }}
-              />
-            </Card>
-            <div>
-              <Transactions />
+      <Content>
+        <Top>
+          <Card className="top">
+            <div className="text-right">
+              <Sidebar menu={menu} />
             </div>
-          </Col>
-        </Row>
-        <div className="bottom-navigation">
-          <BottomNavigation menu={menu} />
-        </div>
-      </div>
+            <Doughnut
+              data={data}
+              options={this.options}
+              ref={chart => {
+                this.chart = chart;
+              }}
+            />
+          </Card>
+          <div>
+            <Transactions />
+          </div>
+        </Top>
+        <FixedBottomNavigation menu={menu} />
+      </Content>
     );
   }
 }

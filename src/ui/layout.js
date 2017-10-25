@@ -1,11 +1,16 @@
 // @flow
 import styled from 'styled-components';
+import { Card as MaterialCard } from 'material-ui';
 
 export const Content = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+`;
+
+export const WrappedContent = Content.extend`
   padding: 40px;
 `;
 
@@ -23,4 +28,6 @@ export const Bottom = styled.div`
   justify-content: flex-end;
 `;
 
-export default { Content, Top, Bottom };
+export const Card = styled(MaterialCard)``;
+
+export default { Content, WrappedContent, Top, Bottom, Card };

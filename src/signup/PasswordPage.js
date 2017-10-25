@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Header, Label, Input, Form, FormGroup } from '../ui';
 import signupActions from './signupActions';
 import type { SignupPasswordUpdate } from './signupActionTypes';
 
@@ -16,8 +16,8 @@ export const PasswordPage = (props: Props) => {
   };
   return (
     <div className="top">
-      <h1>One more thing.</h1>
-      <h1>Create your password.</h1>
+      <Header>One more thing.</Header>
+      <Header>Create your password.</Header>
       <Form>
         <FormGroup>
           <Label for="password">Password</Label>
@@ -25,6 +25,7 @@ export const PasswordPage = (props: Props) => {
             id="password"
             type="password"
             autoFocus
+            className="form-control"
             value={props.password}
             placeholder="Type your password here..."
             onChange={handleChange}

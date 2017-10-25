@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import loginActions from './loginActions';
-import './LoginForm.css';
 import type { LoginInitiated } from './loginActionTypes';
 
 type Props = {

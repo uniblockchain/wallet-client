@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Header, Label, Input, Form, FormGroup } from '../ui';
 import signupActions from './signupActions';
 import type { SignupEmailUpdate } from './signupActionTypes';
 
@@ -15,15 +15,16 @@ export const EmailPage = (props: Props) => {
     props.updateEmail(e.currentTarget.value, e.currentTarget.validity);
   };
   return (
-    <div className="top">
-      <h1>Good day.</h1>
-      <h1>Let&apos;s set up your account.</h1>
+    <div>
+      <Header>Good day.</Header>
+      <Header>Let&apos;s set up your account.</Header>
       <Form>
         <FormGroup>
           <Label for="emailAddress">Email address</Label>
           <Input
             type="email"
             id="emailAddress"
+            className="form-control"
             value={props.email}
             placeholder="Type your email here..."
             onChange={handleChange}

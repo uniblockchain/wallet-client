@@ -1,13 +1,12 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Button } from 'reactstrap';
 import { push } from 'react-router-redux';
+import { WrappedContent, Top, Bottom, PrimaryButton } from '../ui';
 import userActions from '../user/userActions';
 import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';
-import './Signup.css';
 import type { UserState } from '../user/userState';
 
 type Props = {
@@ -51,22 +50,18 @@ export class Signup extends Component<Props, State> {
 
   render() {
     return (
-      <div>
-        <Row className="justify-content-md-center">
-          <Col className="signup col-lg-4">
-            {this.emailValid() && this.state.emailProvided ? (
-              <PasswordPage />
-            ) : (
-              <EmailPage />
-            )}
-            <div className="bottom">
-              <Button color="primary" block size="lg" onClick={this.handleNext}>
-                Next
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
+      <WrappedContent>
+        <Top>
+          {this.emailValid() && this.state.emailProvided ? (
+            <PasswordPage />
+          ) : (
+            <EmailPage />
+          )}
+        </Top>
+        <Bottom>
+          <PrimaryButton onClick={this.handleNext}>Next</PrimaryButton>
+        </Bottom>
+      </WrappedContent>
     );
   }
 }

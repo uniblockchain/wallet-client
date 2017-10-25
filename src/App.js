@@ -3,9 +3,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Content, Top, Bottom, Button, PrimaryButton } from './ui';
+import { WrappedContent, Top, Bottom, Button, PrimaryButton } from './ui';
 
-const StyledContent = Content.extend`
+const StyledContent = WrappedContent.extend`
   background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
 `;
 
@@ -17,7 +17,7 @@ const Header = styled.h1`
   color: white;
 `;
 
-const Subheader = styled.h2`
+const SubHeader = styled.h2`
   font-size: 24px;
   font-weight: 300;
   line-height: 1.25;
@@ -25,18 +25,27 @@ const Subheader = styled.h2`
   color: #00346b;
 `;
 
+const LoginButton = styled(Button)`
+  color: #02bda5;
+  text-transform: uppercase;
+`;
+
+const SignupButton = styled(PrimaryButton)`
+  background-color: #00346b;
+`;
+
 const App = () => (
   <StyledContent>
     <Top>
       <Header>Change is a free digital wallet.</Header>
-      <Subheader>Send money and buy things. Safely.</Subheader>
+      <SubHeader>Send money and buy things. Safely.</SubHeader>
     </Top>
     <Bottom>
       <Link to="/signup">
-        <PrimaryButton>Sign up</PrimaryButton>
+        <SignupButton>Sign up</SignupButton>
       </Link>
       <Link to="/login">
-        <Button>Log in</Button>
+        <LoginButton>Log in</LoginButton>
       </Link>
     </Bottom>
   </StyledContent>
