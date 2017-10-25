@@ -50,7 +50,7 @@ const TopBarStyled = styled(TopBar)`
   flex-direction: row;
   position: absolute;
   width: 100%;
-  color: #54ccde;
+  color: ${props => (props.light ? '#ffffff' : '#54ccde')};
   padding: 30px 10px 0px 10px;
 `;
 
