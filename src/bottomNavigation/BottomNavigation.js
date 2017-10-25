@@ -1,29 +1,22 @@
 // @flow
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
 import BottomNavigation, {
   BottomNavigationButton,
 } from 'material-ui/BottomNavigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import styled from 'styled-components';
 import OverviewIcon from './icon/OverviewIcon';
 import WalletIcon from './icon/WalletIcon';
 import CardIcon from './icon/CardIcon';
 import MarketplaceIcon from './icon/MarketplaceIcon';
 import type { Menu } from '../menu/index';
 
-const styles = {
-  root: {
-    width: '100%',
-  },
-};
-
 type Props = {
   +menu: Menu,
   +value: string,
   +to: string => void,
-  +classes: ?Object,
 };
 
 type IconProps = {
@@ -45,18 +38,19 @@ const Icon = ({ item }: IconProps): any => {
   }
 };
 
+const StyledBottomNavigation = styled(BottomNavigation)`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+`;
+
 export const SimpleBottomNavigation = (props: Props) => {
-  const { menu, classes, value, to } = props;
+  const { menu, value, to } = props;
   const handleChange = (event, v) => {
     to(v);
   };
   return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      showLabels
-      className={classes.root}
-    >
+    <StyledBottomNavigation value={value} onChange={handleChange} showLabels>
       {menu.map(it => (
         <BottomNavigationButton
           key={it.link}
@@ -65,7 +59,7 @@ export const SimpleBottomNavigation = (props: Props) => {
           icon={<Icon item={it.link} />}
         />
       ))}
-    </BottomNavigation>
+    </StyledBottomNavigation>
   );
 };
 
@@ -81,7 +75,6 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
-const Connected = connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   SimpleBottomNavigation,
 );
-export default withStyles(styles)(Connected);

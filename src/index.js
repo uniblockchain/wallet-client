@@ -13,6 +13,9 @@ import App from './App';
 import { Wallet } from './wallet';
 import { Signup } from './signup';
 import { Login } from './login';
+import { Overview } from './overview';
+import { Card } from './card';
+import { Marketplace } from './marketplace';
 import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -28,7 +31,13 @@ render(
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={App} />
+        <Route path="/overview" component={requireAuthentication(Overview)} />
         <Route path="/wallet" component={requireAuthentication(Wallet)} />
+        <Route path="/card" component={requireAuthentication(Card)} />
+        <Route
+          path="/marketplace"
+          component={requireAuthentication(Marketplace)}
+        />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
       </div>

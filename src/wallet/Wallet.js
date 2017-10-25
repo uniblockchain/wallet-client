@@ -4,8 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
-import styled from 'styled-components';
-import Sidebar from './sidebar';
+import Sidebar from '../sidebar';
 import menu from '../menu';
 import { Content, Top, Card } from '../ui';
 
@@ -47,12 +46,6 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     ctx.fillText('Balance', textX, textY * 0.88);
   },
 });
-
-const FixedBottomNavigation = styled(BottomNavigation)`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-`;
 
 export class Wallet extends Component<Props> {
   componentDidMount() {
@@ -129,7 +122,7 @@ export class Wallet extends Component<Props> {
             <Transactions />
           </div>
         </Top>
-        <FixedBottomNavigation menu={menu} />
+        <BottomNavigation menu={menu} />
       </Content>
     );
   }
