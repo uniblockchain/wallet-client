@@ -1,22 +1,19 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { WrappedContent, Top, Bottom, PrimaryButton, Button } from '../ui';
 import userActions from '../user/userActions';
 import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';
-import type { UserState } from '../user/userState';
 
 type Props = {
   email: string,
   emailValidity: ValidityState,
   password: string,
   passwordValidity: ValidityState,
-  user: UserState,
-  +openWallet: () => void,
+  authenticated: boolean,
   +createUser: (string, string) => UserCreationRequest,
 };
 
@@ -27,12 +24,6 @@ type State = {
 export class Signup extends Component<Props, State> {
   state = {
     emailProvided: false,
-  };
-
-  componentWillReceiveProps = (nextProps: Props) => {
-    if (nextProps.user && nextProps.user.id) {
-      nextProps.openWallet();
-    }
   };
 
   emailValid = () => this.props.emailValidity && this.props.emailValidity.valid;
@@ -50,6 +41,9 @@ export class Signup extends Component<Props, State> {
   };
 
   render() {
+    if (this.props.authenticated) {
+      return <Redirect to="/wallet" />;
+    }
     return (
       <WrappedContent>
         <Top>
@@ -75,12 +69,11 @@ const mapStateToProps = state => ({
   emailValidity: state.signup.emailValidity,
   password: state.signup.password,
   passwordValidity: state.signup.passwordValidity,
-  user: state.user,
+  authenticated: !!state.login.token,
 });
 
 const mapDispatchToProps = {
   createUser: userActions.userCreationRequested,
-  openWallet: () => push('/wallet'),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

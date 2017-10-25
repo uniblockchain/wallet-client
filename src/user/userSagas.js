@@ -2,6 +2,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 import userApi from './userApi';
 import userActions from './userActions';
 import userActionTypes from './userActionTypes';
+import loginActions from '../login/loginActions';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUser() {
@@ -18,6 +19,7 @@ function* createUser(action) {
   try {
     const user = yield call(userApi.createUser, action.email, action.password);
     yield put(userActions.userCreationSucceeded(user));
+    yield put(loginActions.login(action.email, action.password));
   } catch (e) {
     yield put(userActions.userCreationFailed(e.message));
     throw e;

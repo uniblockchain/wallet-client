@@ -12,7 +12,6 @@ describe('Signup component', () => {
     password: 'password',
     passwordValidity: jest.fn(),
     user: {},
-    openWallet: jest.fn(),
     createUser: jest.fn(),
   };
 
