@@ -1,7 +1,8 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { WrappedContent, Top, Bottom, Button, PrimaryButton } from './ui';
 
@@ -34,21 +35,34 @@ const SignupButton = styled(PrimaryButton)`
   background-color: #00346b;
 `;
 
-const App = () => (
-  <StyledContent>
-    <Top>
-      <Header>Change is a free digital wallet.</Header>
-      <SubHeader>Send money and buy things. Safely.</SubHeader>
-    </Top>
-    <Bottom>
-      <Link to="/signup">
-        <SignupButton>Sign up</SignupButton>
-      </Link>
-      <Link to="/login">
-        <LoginButton>Log in</LoginButton>
-      </Link>
-    </Bottom>
-  </StyledContent>
-);
+type Props = {
+  +authenticated: boolean,
+};
 
-export default App;
+export const App = ({ authenticated }: Props) => {
+  if (authenticated) {
+    return <Redirect to="/wallet" />;
+  }
+  return (
+    <StyledContent>
+      <Top>
+        <Header>Change is a free digital wallet.</Header>
+        <SubHeader>Send money and buy things. Safely.</SubHeader>
+      </Top>
+      <Bottom>
+        <Link to="/signup">
+          <SignupButton>Sign up</SignupButton>
+        </Link>
+        <Link to="/login">
+          <LoginButton>Log in</LoginButton>
+        </Link>
+      </Bottom>
+    </StyledContent>
+  );
+};
+
+const mapStateToProps = state => ({
+  authenticated: !!state.login.token,
+});
+
+export default connect(mapStateToProps)(App);
