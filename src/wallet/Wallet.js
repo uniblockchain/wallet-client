@@ -13,6 +13,7 @@ import walletCurrencyValueResolver from './walletCurrencyValueResolver';
 import type { Wallet as WalletType } from './walletState';
 import BottomNavigation from '../bottomNavigation';
 import Transactions from './transactions';
+import TopBar from '../topBar';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -105,11 +106,9 @@ export class Wallet extends Component<Props> {
     const data = this.getData();
     return (
       <Content>
+        <TopBar />
         <Top>
           <Card className="top">
-            <div className="text-right">
-              <Sidebar menu={menu} />
-            </div>
             <Doughnut
               data={data}
               options={this.options}

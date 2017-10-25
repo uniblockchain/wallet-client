@@ -34,13 +34,6 @@ export const Sidebar = (props: Props) => {
 
   return (
     <div>
-      <button
-        type="button"
-        className="btn btn-primary bmd-btn-icon"
-        onClick={() => setSidebarState(true)}
-      >
-        <i className="material-icons">more_horiz</i>
-      </button>
       <CSSTransition in={props.open} timeout={300} classNames="sideBarContent">
         <div
           className={`sideBarContent ${props.open
