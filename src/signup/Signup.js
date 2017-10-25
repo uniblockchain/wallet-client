@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button } from 'reactstrap';
 import { push } from 'react-router-redux';
-import { userActions } from '../user';
+import userActions from '../user/userActions';
 import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';

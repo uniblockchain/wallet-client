@@ -2,8 +2,9 @@
 
 import config from 'react-global-configuration';
 
-const mockHttp = jest.genMockFromModule('../http');
-jest.mock('../http', () => mockHttp);
+jest.mock('../http');
+
+const mockHttp = require('../http');
 
 const userApi = require('./userApi').default;
 

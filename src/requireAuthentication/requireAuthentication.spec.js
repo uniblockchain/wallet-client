@@ -5,7 +5,6 @@ import { createStore, combineReducers } from 'redux';
 import { push } from 'react-router-redux';
 
 import requireAuthentication from './requireAuthentication';
-import { actions as loginActions } from '../login';
 
 describe('requireAuthentication higher-order component', () => {
   let component;
@@ -20,7 +19,6 @@ describe('requireAuthentication higher-order component', () => {
     fakeStateGetter = () => ({});
     fakeReducer = jest.fn(() => fakeStateGetter()); // redirection so we can return a new object.
     store = createStore(combineReducers({ login: fakeReducer }));
-    loginActions.handleLoginCookies = null; // see usage in component
     component = mount(
       <Provider store={store}>
         <WrappedFakedComponent />
@@ -30,7 +28,7 @@ describe('requireAuthentication higher-order component', () => {
 
   it('does not render inner component if authentication is not given, redirecting instead', () => {
     expect(component.text()).not.toContain('I am FakeComponent');
-    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/login'));
+    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/'));
   });
 
   it('renders the inner component if authentication is given', () => {
@@ -38,15 +36,12 @@ describe('requireAuthentication higher-order component', () => {
     fakeReducer.mockClear();
     store.dispatch({ type: 'this type will not be used!' }); // trigger update from fakeState
     expect(component.text()).toContain('I am FakeComponent');
-    expect(fakeReducer).not.toHaveBeenCalledWith(
-      fakeStateGetter(),
-      push('/login'),
-    );
+    expect(fakeReducer).not.toHaveBeenCalledWith(fakeStateGetter(), push('/'));
 
     // now we remove auth
     fakeStateGetter = () => ({ token: null });
     store.dispatch({ type: 'this type will not be used!' }); // trigger update from fakeState
     expect(component.text()).not.toContain('I am FakeComponent');
-    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/login'));
+    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/'));
   });
 });

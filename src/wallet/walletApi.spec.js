@@ -3,8 +3,9 @@
 import config from 'react-global-configuration';
 import { type Wallet } from './walletState';
 
-const mockHttp = jest.genMockFromModule('../http');
-jest.mock('../http', () => mockHttp);
+jest.mock('../http');
+
+const mockHttp = require('../http');
 
 const walletApi = require('./walletApi').default;
 
