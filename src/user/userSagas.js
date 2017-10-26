@@ -21,7 +21,7 @@ function* createUser(action) {
     yield put(loginActions.login(action.email, action.password));
   } catch (error) {
     yield put(userActions.userCreationFailed(error.message));
-    console.log(error);
+    console.error(error);
   }
 }
 
