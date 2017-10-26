@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import menu from '../menu';
-import Sidebar from '../sidebar/Sidebar';
-import { openSidebar } from '../sidebar/sidebarActions';
+import menu from '../../menu';
+import Sidebar from '../../sidebar/Sidebar';
+import { openSidebar } from '../../sidebar/sidebarActions';
 
 type Props = {
   className: string,

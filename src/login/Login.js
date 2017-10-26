@@ -16,7 +16,7 @@ export const Login = (props: Props) => {
     props.login(values.emailAddress, values.password);
   };
   if (props.authenticated) {
-    return <Redirect to="/wallet" />;
+    return <Redirect to="/overview" />;
   }
   return <LoginForm onSubmit={handleSubmit} />;
 };

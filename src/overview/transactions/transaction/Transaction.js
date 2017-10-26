@@ -4,11 +4,11 @@ import { Component } from 'react';
 import {
   Transaction as TransactionType,
   TransactionEntry,
-} from '../../walletState';
-import walletCurrencyValueResolver from '../../walletCurrencyValueResolver';
+} from '../../../wallet/walletState';
+import walletCurrencyValueResolver from '../../../wallet/walletCurrencyValueResolver';
 import { Grid, ListItem } from 'material-ui';
 import * as React from 'react';
-import { withStyles } from 'material-ui/styles/index';
+import { withStyles } from 'material-ui/styles';
 import FiatValue from './fiatValue';
 import DateDisplay from './dateDisplay';
 

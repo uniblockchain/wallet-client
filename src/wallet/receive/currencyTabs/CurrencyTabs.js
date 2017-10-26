@@ -4,10 +4,10 @@ import { Component } from 'react';
 import * as React from 'react';
 import { Tabs, Tab } from 'material-ui';
 import { connect } from 'react-redux';
-import { withStyles } from 'material-ui/styles/index';
+import { withStyles } from 'material-ui/styles';
 import type { Wallet } from '../../walletState';
 import walletActions from '../../walletActions';
-import CurrencyNameResolver from './../CurrencyNameResolver';
+import CurrencyNameResolver from '../CurrencyNameResolver';
 
 const styles = theme => ({});
 

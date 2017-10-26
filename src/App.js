@@ -41,7 +41,7 @@ type Props = {
 
 export const App = ({ authenticated }: Props) => {
   if (authenticated) {
-    return <Redirect to="/wallet" />;
+    return <Redirect to="/overview" />;
   }
   return (
     <StyledContent>

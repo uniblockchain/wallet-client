@@ -9,8 +9,8 @@ import {
   PrimaryButton,
 } from '../ui';
 import menu from '../menu';
-import BottomNavigation from '../bottomNavigation';
-import TopBar from '../topBar';
+import BottomNavigation from '../ui/bottomNavigation';
+import TopBar from '../ui/topBar';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;

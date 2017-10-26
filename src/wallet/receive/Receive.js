@@ -3,7 +3,7 @@
 import { Component } from 'react';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from 'material-ui/styles/index';
+import { withStyles } from 'material-ui/styles';
 import walletActions from '../walletActions';
 import CurrencyTabs from './currencyTabs';
 import Top from './Top';

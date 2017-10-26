@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import loginActions from '../login/loginActions';
 import { openSidebar } from './sidebarActions';
-import { type Menu } from '../menu/index';
+import { type Menu } from '../menu';
 import './Sidebar.css';
 
 type Props = {

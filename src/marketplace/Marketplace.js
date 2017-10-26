@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Content, Header, SubHeader } from '../ui';
 import menu from '../menu';
-import BottomNavigation from '../bottomNavigation';
-import TopBar from '../topBar';
+import BottomNavigation from '../ui/bottomNavigation';
+import TopBar from '../ui/topBar';
 
 const DivWithGradient = styled.div`
   background-image: linear-gradient(to top, #ffffff, #c6f3ff);

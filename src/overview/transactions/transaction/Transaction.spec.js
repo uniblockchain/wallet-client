@@ -10,7 +10,7 @@ import DateDisplay from './dateDisplay';
 import type {
   Transaction as TransactionType,
   TransactionEntry,
-} from '../../walletState';
+} from '../../../wallet/walletState';
 
 describe('Transaction component', () => {
   let component;

@@ -42,7 +42,7 @@ export class Signup extends Component<Props, State> {
 
   render() {
     if (this.props.authenticated) {
-      return <Redirect to="/wallet" />;
+      return <Redirect to="/overview" />;
     }
     return (
       <WrappedContent>

@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 import { Transactions } from './Transactions';
 import Transaction from './transaction';
-import type { Wallet } from '../walletState';
+import type { Wallet } from '../../wallet/walletState';
 
 describe('Transactions component', () => {
   let component;

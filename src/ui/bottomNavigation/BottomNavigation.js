@@ -11,7 +11,7 @@ import OverviewIcon from './icon/OverviewIcon';
 import WalletIcon from './icon/WalletIcon';
 import CardIcon from './icon/CardIcon';
 import MarketplaceIcon from './icon/MarketplaceIcon';
-import type { Menu } from '../menu/index';
+import type { Menu } from '../../menu';
 
 type Props = {
   +menu: Menu,

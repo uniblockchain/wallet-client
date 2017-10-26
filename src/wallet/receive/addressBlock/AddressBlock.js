@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Component } from 'react';
-import { withStyles } from 'material-ui/styles/index';
+import { withStyles } from 'material-ui/styles';
 import { Button, LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';

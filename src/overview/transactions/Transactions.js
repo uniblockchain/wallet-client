@@ -4,7 +4,10 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { Card, List } from 'material-ui';
-import type { Transaction as TransactionType, Wallet } from '../walletState';
+import type {
+  Transaction as TransactionType,
+  Wallet,
+} from '../../wallet/walletState';
 import Transaction from './transaction';
 
 const styles = theme => ({
