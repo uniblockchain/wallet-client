@@ -10,7 +10,7 @@ import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 
 import { history, store } from './reduxStore';
 import App from './App';
-import { Wallet } from './wallet';
+import { Wallet, Receive } from './wallet';
 import { Signup } from './signup';
 import { Login } from './login';
 import { Overview } from './overview';
@@ -35,6 +35,7 @@ render(
         <Route exact path="/landing" component={Landing} />
         <Route path="/overview" component={requireAuthentication(Overview)} />
         <Route path="/wallet" component={requireAuthentication(Wallet)} />
+        <Route path="/receive" component={requireAuthentication(Receive)} />
         <Route path="/card" component={requireAuthentication(Card)} />
         <Route
           path="/marketplace"
@@ -45,6 +46,7 @@ render(
       </div>
     </ConnectedRouter>
   </ReduxProvider>,
+  // $FlowFixMe
   document.getElementById('root'),
 );
 

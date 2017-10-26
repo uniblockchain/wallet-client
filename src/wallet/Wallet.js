@@ -16,7 +16,7 @@ import TopBar from '../topBar';
 
 type Props = {
   wallets: Array<WalletType>,
-  fetchWallet: () => void,
+  fetchWallet: () => *,
 };
 
 const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
@@ -94,7 +94,9 @@ export class Wallet extends Component<Props> {
       },
     },
     onClick: () => {
+      // $FlowFixMe
       this.chart.chart_instance.options.legend.display ^= 1; // toggle boolean
+      // $FlowFixMe
       this.chart.chart_instance.update();
     },
   };

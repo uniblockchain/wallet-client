@@ -10,9 +10,6 @@ describe('Wallet component', () => {
   let component;
 
   const props = {
-    id: 1,
-    address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
-    coin: 'ETH',
     fetchWallet: () => walletActions.walletFetchRequested(),
     wallets: [],
   };

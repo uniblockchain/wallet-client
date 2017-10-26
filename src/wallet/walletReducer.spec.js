@@ -9,19 +9,21 @@ describe('wallet reducer', () => {
     wallets: [],
     currency: 'EUR',
     error: null,
+    activeId: null,
   };
   const wallet: WalletState = {
     wallets: [
       {
         id: 1,
         address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
-        coin: 'ETH',
+        currency: 'ETH',
         transactions: [],
         balance: [],
       },
     ],
     currency: 'EUR',
     error: null,
+    activeId: null,
   };
   const error = 'whoops';
 
@@ -36,12 +38,19 @@ describe('wallet reducer', () => {
     const newState = walletReducer(currentState, action);
     expect(newState.wallets[0].id).toEqual(wallet.wallets[0].id);
     expect(newState.wallets[0].address).toEqual(wallet.wallets[0].address);
-    expect(newState.wallets[0].coin).toEqual(wallet.wallets[0].coin);
+    expect(newState.wallets[0].currency).toEqual(wallet.wallets[0].currency);
   });
 
   it('handles wallet fetch fail', () => {
     const action = walletActions.walletFetchFailed(error);
     const newState = walletReducer(currentState, action);
     expect(newState.error).toEqual(error);
+  });
+
+  it('can set active wallet id', () => {
+    const id = 123;
+    const action = walletActions.walletSetActive(id);
+    const newState = walletReducer(currentState, action);
+    expect(newState.activeId).toEqual(id);
   });
 });

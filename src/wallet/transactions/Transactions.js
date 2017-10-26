@@ -14,7 +14,8 @@ const styles = theme => ({
 });
 
 type Props = {
-  classes?: Object,
+  classes: Object,
+  wallets: Array<Wallet>,
 };
 
 type State = {
@@ -48,4 +49,5 @@ const mapStateToProps = state => ({
 
 const componentWithStyles = withStyles(styles)(Transactions);
 
+// $FlowFixMe
 export default connect(mapStateToProps)(componentWithStyles);

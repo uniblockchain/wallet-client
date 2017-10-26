@@ -26,18 +26,21 @@ export type Wallet = {
   +currency: string,
   +balance: MonetaryValues,
   +transactions: Array<Transaction>,
+  +receiveAddress: string,
 };
 
 export type WalletState = {
   wallets: Array<Wallet>,
   currency: string,
   error: ?string,
+  activeId: ?number,
 };
 
 export const initialWalletState: WalletState = {
   wallets: [],
   currency: 'EUR',
   error: null,
+  activeId: null,
 };
 
 export default initialWalletState;

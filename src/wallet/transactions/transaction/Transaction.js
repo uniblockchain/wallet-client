@@ -1,3 +1,5 @@
+// @flow
+
 import { Component } from 'react';
 import {
   Transaction as TransactionType,
@@ -45,7 +47,7 @@ const styles = theme => ({
 });
 
 type Props = {
-  classes?: Object,
+  classes: Object,
   transaction: TransactionType,
 };
 

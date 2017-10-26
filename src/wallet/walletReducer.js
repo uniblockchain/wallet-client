@@ -25,6 +25,12 @@ const walletReducer = (
         error: action.error,
       };
 
+    case walletAction.WALLET_SET_ACTIVE:
+      return {
+        ...state,
+        activeId: action.id,
+      };
+
     default:
       return state;
   }

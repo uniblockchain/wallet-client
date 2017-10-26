@@ -4,6 +4,7 @@ import walletActionTypes, {
   type WalletFetchRequest,
   type WalletFetchFail,
   type WalletFetchSuccess,
+  type WalletSetActive,
 } from './walletActionTypes';
 import type { WalletState } from './walletState';
 
@@ -19,8 +20,14 @@ const walletFetchFailed = (error: string): WalletFetchFail => ({
   error,
 });
 
+const walletSetActive = (id: number): WalletSetActive => ({
+  type: walletActionTypes.WALLET_SET_ACTIVE,
+  id,
+});
+
 export default {
   walletFetchRequested,
   walletFetchSucceeded,
   walletFetchFailed,
+  walletSetActive,
 };
