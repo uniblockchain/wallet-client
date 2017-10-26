@@ -11,9 +11,9 @@ function* fetchToken(action) {
       action.password,
     );
     yield put(loginActions.loginSuccessful(oauthToken));
-  } catch (e) {
-    yield put(loginActions.loginFailed(e.message));
-    throw e;
+  } catch (error) {
+    yield put(loginActions.loginFailed(error.message));
+    console.error(error);
   }
 }
 

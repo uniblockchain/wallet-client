@@ -8,9 +8,9 @@ function* fetchWallet() {
   try {
     const wallet = yield call(walletApi.fetchWallet);
     yield put(walletActions.walletFetchSucceeded(wallet));
-  } catch (e) {
-    yield put(walletActions.walletFetchFailed(e.message));
-    throw e;
+  } catch (error) {
+    yield put(walletActions.walletFetchFailed(error.message));
+    console.error(error);
   }
 }
 

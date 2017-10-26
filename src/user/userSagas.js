@@ -8,9 +8,9 @@ function* fetchUser() {
   try {
     const user = yield call(userApi.fetchUser);
     yield put(userActions.userFetchSucceeded(user));
-  } catch (e) {
-    yield put(userActions.userFetchFailed(e.message));
-    throw e;
+  } catch (error) {
+    yield put(userActions.userFetchFailed(error.message));
+    console.error(error);
   }
 }
 
@@ -19,9 +19,9 @@ function* createUser(action) {
     const user = yield call(userApi.createUser, action.email, action.password);
     yield put(userActions.userCreationSucceeded(user));
     yield put(loginActions.login(action.email, action.password));
-  } catch (e) {
-    yield put(userActions.userCreationFailed(e.message));
-    throw e;
+  } catch (error) {
+    yield put(userActions.userCreationFailed(error.message));
+    console.log(error);
   }
 }
 
