@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
 import menu from '../menu';
-import { Content, Card, Divider } from '../ui';
+import { Content, Card } from '../ui';
 
 import walletActions from '../wallet/walletActions';
 import walletCurrencyValueResolver from '../wallet/walletCurrencyValueResolver';
