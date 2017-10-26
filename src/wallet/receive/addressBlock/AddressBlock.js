@@ -70,9 +70,9 @@ export class AddressBlock extends Component<Props> {
     const wallet: ?Wallet = getActiveWallet(activeId, wallets);
 
     if (!wallet) {
-      // $FlowFixMe
       return (
         <div>
+          {/* $FlowFixMe*/}
           <LinearProgress />
         </div>
       );
