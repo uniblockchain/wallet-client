@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { CurrencyTabs } from './CurrencyTabs';
-import type { Wallet } from '../../walletState';
+import type { Wallet } from '../walletState';
 import { Tabs, Tab } from 'material-ui';
 
 describe('CurrencyTabs component', () => {

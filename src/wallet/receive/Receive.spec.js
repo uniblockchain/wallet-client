@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Receive } from './Receive';
-import CurrencyTabs from './currencyTabs';
+import CurrencyTabs from '../currencyTabs';
 import TopBar from '../../ui/topBar';
 import AddressBlock from './addressBlock';
 
