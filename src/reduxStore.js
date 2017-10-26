@@ -11,6 +11,7 @@ import { signupReducer } from './signup';
 import { loginReducer, loginSagas } from './login';
 import { walletReducer, walletSagas } from './wallet';
 import { sidebarReducer } from './sidebar/sidebarReducer';
+import { sendSagas } from './send';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -39,8 +40,6 @@ const storeEnhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const store = createStore(rootReducer, storeEnhancer);
 
-sagaMiddleware.run(userSagas);
-sagaMiddleware.run(loginSagas);
-sagaMiddleware.run(walletSagas);
+[userSagas, loginSagas, walletSagas, sendSagas].map(sagaMiddleware.run);
 
 export default store;

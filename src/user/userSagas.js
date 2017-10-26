@@ -4,7 +4,6 @@ import userActions from './userActions';
 import userActionTypes from './userActionTypes';
 import loginActions from '../login/loginActions';
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchUser() {
   try {
     const user = yield call(userApi.fetchUser);
