@@ -7,6 +7,7 @@
 .*/node_modules/graphql
 .*/node_modules/kefir
 .*/node_modules/react-event-listener/src
+.*/node_modules/styled-components/.*
 
 ; Comment this line if you do not use enzyme.
 .*/node_modules/material-ui/test-utils
@@ -30,7 +31,7 @@ esproposal.decorators=ignore
 
 unsafe.enable_getters_and_setters=true
 
-module.name_mapper='^flow-example-material-ui\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^wallet-client\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
 suppress_type=$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
