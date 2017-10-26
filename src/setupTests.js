@@ -12,3 +12,11 @@ configure({ adapter: new Adapter() });
 global.requestAnimationFrame = callback => {
   setTimeout(callback, 0);
 };
+
+window.matchMedia =
+  window.matchMedia ||
+  (() => ({
+    matches: false,
+    addListener() {},
+    removeListener() {},
+  }));
