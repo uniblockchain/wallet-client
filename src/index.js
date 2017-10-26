@@ -5,6 +5,7 @@ import { render } from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+import { ThemeProvider } from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 
@@ -22,6 +23,7 @@ import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
+import { GreenTheme } from './ui';
 import './index.css';
 
 configuration.initialize();
@@ -31,21 +33,23 @@ tracker.initialize();
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
-      <div>
-        <Route exact path="/" component={App} />
-        <Route exact path="/landing" component={Landing} />
-        <Route path="/overview" component={requireAuthentication(Overview)} />
-        <Route path="/wallet" component={requireAuthentication(Wallet)} />
-        <Route path="/receive" component={requireAuthentication(Receive)} />
-        <Route path="/card" component={requireAuthentication(Card)} />
-        <Route
-          path="/marketplace"
-          component={requireAuthentication(Marketplace)}
-        />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/settings" component={Settings} />
-      </div>
+      <ThemeProvider theme={GreenTheme}>
+        <div>
+          <Route exact path="/" component={App} />
+          <Route exact path="/landing" component={Landing} />
+          <Route path="/overview" component={requireAuthentication(Overview)} />
+          <Route path="/wallet" component={requireAuthentication(Wallet)} />
+          <Route path="/receive" component={requireAuthentication(Receive)} />
+          <Route path="/card" component={requireAuthentication(Card)} />
+          <Route
+            path="/marketplace"
+            component={requireAuthentication(Marketplace)}
+          />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/settings" component={Settings} />
+        </div>
+      </ThemeProvider>
     </ConnectedRouter>
   </ReduxProvider>,
   document.getElementById('root'),

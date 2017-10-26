@@ -5,6 +5,7 @@ import SlickSlider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { PrimaryButton } from '../buttons';
+import { BlueTheme } from '../theme';
 
 const settings = {
   dots: true,
@@ -12,21 +13,6 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
-};
-
-type SlideTheme = {
-  background: string,
-  text: string,
-};
-
-const blueTheme: SlideTheme = {
-  background: '#c6f3ff',
-  text: '#083b70',
-};
-
-const greenTheme: SlideTheme = {
-  background: '#e5f9f3',
-  text: '#02bda5',
 };
 
 const Slide = styled.div`
@@ -71,16 +57,14 @@ const SliderWithStyles = styled(SlickSlider)`
 export default () => (
   <SliderWithStyles {...settings}>
     <div>
-      <ThemeProvider theme={greenTheme}>
-        <Slide>
-          <Heading>Congratulations</Heading>
-          <Paragraph>Your account is now ready</Paragraph>
-          <ActionButton>Cool, what next</ActionButton>
-        </Slide>
-      </ThemeProvider>
+      <Slide>
+        <Heading>Congratulations</Heading>
+        <Paragraph>Your account is now ready</Paragraph>
+        <ActionButton>Cool, what next</ActionButton>
+      </Slide>
     </div>
     <div>
-      <ThemeProvider theme={blueTheme}>
+      <ThemeProvider theme={BlueTheme}>
         <Slide>
           <Heading>Order your card</Heading>
           <Paragraph>
@@ -91,13 +75,11 @@ export default () => (
       </ThemeProvider>
     </div>
     <div>
-      <ThemeProvider theme={greenTheme}>
-        <Slide>
-          <Heading>Deposit funds</Heading>
-          <Paragraph>Start by depositing Bitcoin to your account</Paragraph>
-          <ActionButton>Learn more</ActionButton>
-        </Slide>
-      </ThemeProvider>
+      <Slide>
+        <Heading>Deposit funds</Heading>
+        <Paragraph>Start by depositing Bitcoin to your account</Paragraph>
+        <ActionButton>Learn more</ActionButton>
+      </Slide>
     </div>
   </SliderWithStyles>
 );
