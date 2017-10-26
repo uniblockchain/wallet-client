@@ -13,6 +13,7 @@ import type { Wallet as WalletType } from '../wallet/walletState';
 import BottomNavigation from '../ui/bottomNavigation';
 import Transactions from './transactions';
 import TopBar from '../ui/topBar';
+import Slider from '../ui/slider';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -117,7 +118,7 @@ export class Overview extends Component<Props> {
             }}
           />
         </Card>
-        <Divider />
+        <Slider />
         <Card title="Activity">
           <Transactions />
         </Card>
