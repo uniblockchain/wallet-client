@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
-import { Card, List } from 'material-ui';
+import { List } from 'material-ui';
 import type {
   Transaction as TransactionType,
   Wallet,
