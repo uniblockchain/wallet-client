@@ -1,19 +1,16 @@
 // @flow
 
-import { Component } from 'react';
-import * as React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import walletActions from '../walletActions';
-import CurrencyTabs from './currencyTabs';
-import AddressBlock from './addressBlock';
+import CurrencyTabs from '../currencyTabs';
 import TopBar from '../../ui/topBar';
+import BottomNavigation from '../../ui/bottomNavigation';
+import AddressBlock from './addressBlock';
+import menu from '../../menu';
 
-const styles = theme => ({
-  top: {
-    paddingBottom: 40,
-  },
-});
+const styles = theme => ({});
 
 type Props = {
   classes: Object,
@@ -33,11 +30,10 @@ export class Receive extends Component<Props> {
 
     return (
       <div className={classes.root}>
-        <div className={classes.top}>
-          <TopBar />
-        </div>
+        <TopBar />
         <CurrencyTabs />
         <AddressBlock />
+        <BottomNavigation menu={menu} />
       </div>
     );
   }
