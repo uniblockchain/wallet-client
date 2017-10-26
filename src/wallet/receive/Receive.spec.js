@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 import { Receive } from './Receive';
 import CurrencyTabs from './currencyTabs';
-import Top from './Top';
+import TopBar from '../../ui/topBar';
 import AddressBlock from './addressBlock';
 
 describe('Receive component', () => {
@@ -25,7 +25,7 @@ describe('Receive component', () => {
   });
 
   it('renders Top', () => {
-    expect(component.contains(<Top />)).toBe(true);
+    expect(component.contains(<TopBar />)).toBe(true);
   });
 
   it('renders Address blocks', () => {

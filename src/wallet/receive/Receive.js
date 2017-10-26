@@ -6,10 +6,14 @@ import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import walletActions from '../walletActions';
 import CurrencyTabs from './currencyTabs';
-import Top from './Top';
 import AddressBlock from './addressBlock';
+import TopBar from '../../ui/topBar';
 
-const styles = theme => ({});
+const styles = theme => ({
+  top: {
+    paddingBottom: 40,
+  },
+});
 
 type Props = {
   classes: Object,
@@ -18,7 +22,6 @@ type Props = {
 
 export class Receive extends Component<Props> {
   componentDidMount() {
-    console.log('Receive.mount');
     const { fetchWallet } = this.props;
     if (fetchWallet) {
       fetchWallet();
@@ -30,7 +33,9 @@ export class Receive extends Component<Props> {
 
     return (
       <div className={classes.root}>
-        <Top />
+        <div className={classes.top}>
+          <TopBar />
+        </div>
         <CurrencyTabs />
         <AddressBlock />
       </div>
