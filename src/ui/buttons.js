@@ -12,11 +12,19 @@ export const Button = styled.button`
   margin-bottom: 0.3125rem;
   font-size: 16px;
   font-weight: bold;
+
+  a {
+    color: #a1a1a1;
+  }
 `;
 export const PrimaryButton = Button.extend`
   color: white;
   background-color: #02bda5;
   text-transform: uppercase;
+
+  a {
+    color: white;
+  }
 `;
 
 export default { Button, PrimaryButton };
