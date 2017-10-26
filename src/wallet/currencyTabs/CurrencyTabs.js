@@ -16,6 +16,7 @@ const styles = {
 };
 
 type Props = {
+  classes: Object,
   wallets: Array<Wallet>,
   setActiveWallet: number => void,
   activeWalletId: ?number,
@@ -54,7 +55,7 @@ export class CurrencyTabs extends Component<Props> {
           value={tabIndex}
           onChange={this.handleChange}
           indicatorColor="#02bda5"
-          textColor="#02bda5"
+          textColor="inherit"
         >
           {wallets.map((wallet: Wallet) => (
             <Tab
