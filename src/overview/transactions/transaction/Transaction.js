@@ -82,7 +82,7 @@ export class Transaction extends Component<Props> {
 
     return (
       <div className={classes.root}>
-        <ListItem button key={transaction.id}>
+        <ListItem button key={transaction.id} disableGutters>
           <Grid item xs={6} sm={6}>
             <div className={classes.address}>{address}</div>
             <div className={classes.date}>

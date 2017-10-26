@@ -1,6 +1,6 @@
 // @flow
+import React from 'react';
 import styled from 'styled-components';
-import { Card as MaterialCard } from 'material-ui';
 
 export const Content = styled.div`
   background-color: white;
@@ -28,6 +28,30 @@ export const Bottom = styled.div`
   justify-content: flex-end;
 `;
 
-export const Card = styled(MaterialCard)``;
+const CardWithTitle = props => (
+  <div className={props.className}>
+    <span className="title">{props.title}</span>
+    <div className="content">{props.children}</div>
+  </div>
+);
 
-export default { Content, WrappedContent, Top, Bottom, Card };
+export const Card = styled(CardWithTitle)`
+  padding: 10px 20px 10px 20px;
+  .title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    color: #00346b;
+  }
+`;
+
+const EmptyDiv = ({ className }: any) => (
+  <div className={className}>&nbsp;</div>
+);
+
+export const Divider = styled(EmptyDiv)`
+  height: 6px;
+  background-color: #f2f2f2;
+`;
+
+export default { Content, WrappedContent, Top, Bottom, Card, Divider };

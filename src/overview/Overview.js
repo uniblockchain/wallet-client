@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
 import menu from '../menu';
-import { Content, Top, Card } from '../ui';
+import { Content, Card, Divider } from '../ui';
 
 import walletActions from '../wallet/walletActions';
 import walletCurrencyValueResolver from '../wallet/walletCurrencyValueResolver';
@@ -43,7 +43,7 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     const textY = outerRadius;
 
     ctx.fillText(text, textX, textY * 1.12);
-    ctx.fillText('Balance', textX, textY * 0.88);
+    ctx.fillText('BALANCE', textX, textY * 0.88);
   },
 });
 
@@ -108,20 +108,19 @@ export class Overview extends Component<Props> {
     return (
       <Content>
         <TopBar />
-        <Top>
-          <Card className="top">
-            <Doughnut
-              data={data}
-              options={this.options}
-              ref={chart => {
-                this.chart = chart;
-              }}
-            />
-          </Card>
-          <div>
-            <Transactions />
-          </div>
-        </Top>
+        <Card>
+          <Doughnut
+            data={data}
+            options={this.options}
+            ref={chart => {
+              this.chart = chart;
+            }}
+          />
+        </Card>
+        <Divider />
+        <Card title="Activity">
+          <Transactions />
+        </Card>
         <BottomNavigation menu={menu} />
       </Content>
     );

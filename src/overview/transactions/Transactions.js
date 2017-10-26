@@ -32,15 +32,13 @@ export class Transactions extends Component<Props, State> {
 
     return (
       <div className={classes.root}>
-        <Card>
-          <List>
-            {wallets.map((wallet: Wallet) =>
-              wallet.transactions.map((transaction: TransactionType) => (
-                <Transaction key={transaction.id} transaction={transaction} />
-              )),
-            )}
-          </List>
-        </Card>
+        <List>
+          {wallets.map((wallet: Wallet) =>
+            wallet.transactions.map((transaction: TransactionType) => (
+              <Transaction key={transaction.id} transaction={transaction} />
+            )),
+          )}
+        </List>
       </div>
     );
   }
