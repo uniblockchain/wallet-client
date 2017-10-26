@@ -5,11 +5,6 @@ import { get } from '../http';
 
 import type { WalletState } from './walletState';
 
-// TODO: add proper Balance type instead of *
-function fetchWalletBalance(walletId: number): Promise<*> {
-  return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/balance`);
-}
-
 // TODO: add proper Array<Transaction> type instead of *
 function fetchWalletTransactions(walletId: number): Promise<*> {
   return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/transaction`);
@@ -19,20 +14,13 @@ function fetchWallet(): Promise<WalletState> {
   return get(`${config.get('apiUrl')}/v1/wallet`).then(wallets =>
     Promise.all(
       wallets.map(wallet =>
-        fetchWalletBalance(wallet.id)
-          .then(balance => ({
-            ...wallet,
-            balance,
-          }))
-          .then(wallet =>
-            fetchWalletTransactions(wallet.id).then(transactions => ({
-              ...wallet,
-              transactions: transactions.map(transaction => ({
-                ...transaction,
-                date: new Date(transaction.date),
-              })),
-            })),
-          ),
+        fetchWalletTransactions(wallet.id).then(transactions => ({
+          ...wallet,
+          transactions: transactions.map(transaction => ({
+            ...transaction,
+            date: new Date(transaction.date),
+          })),
+        })),
       ),
     ).then(wallets => ({
       wallets,

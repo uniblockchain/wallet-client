@@ -12,21 +12,21 @@ const walletApi = require('./walletApi').default;
 describe('wallet api', () => {
   const apiUrl = 'sample-api-url';
 
+  const balance = [
+    { currency: 'ETH', value: 0.9 },
+    { currency: 'EUR', value: 227.9376254547 },
+  ];
+
   const wallet: Wallet = {
     id: 1,
     address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
     currency: 'ETH',
-    balance: [],
+    balance,
     transactions: [],
     receiveAddress: '0xlolwat',
   };
 
   const walletsResponse: Array<Wallet> = [wallet];
-
-  const balance = [
-    { currency: 'ETH', value: 0.9 },
-    { currency: 'EUR', value: 227.9376254547 },
-  ];
 
   const transactions = [
     {
@@ -105,7 +105,6 @@ describe('wallet api', () => {
     mockHttp.get = jest.fn();
     mockHttp.get
       .mockReturnValueOnce(Promise.resolve(walletsResponse))
-      .mockReturnValueOnce(Promise.resolve(balance))
       .mockReturnValueOnce(Promise.resolve(transactions));
 
     return walletApi.fetchWallet().then(response => {
