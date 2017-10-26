@@ -95,14 +95,12 @@ export class Overview extends Component<Props> {
       },
     },
     onClick: () => {
-      // $FlowFixMe
-      this.chart.chart_instance.options.legend.display ^= 1; // toggle boolean
-      // $FlowFixMe
-      this.chart.chart_instance.update();
+      (this.chart || {}).chart_instance.options.legend.display ^= 1; // toggle boolean
+      (this.chart || {}).chart_instance.update();
     },
   };
 
-  chart = null;
+  chart = {};
 
   render() {
     const data = this.getData();

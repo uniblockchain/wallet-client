@@ -11,7 +11,6 @@ const styles = theme => ({
   },
 });
 
-// $FlowFixMe
 type Props = {
   classes: Object,
 };

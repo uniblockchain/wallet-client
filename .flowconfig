@@ -20,7 +20,7 @@
 
 [libs]
 # local/custom libdefs
-./flow
+;./flow
 ;./node_modules/jss/flow-typed
 
 [options]
@@ -33,5 +33,7 @@ unsafe.enable_getters_and_setters=true
 
 module.name_mapper='^wallet-client\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 module.name_mapper.extension='css' -> 'empty/object'
-suppress_type=$FlowFixMe
-suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+# do not use FlowFixMe!
+;suppress_type=$FlowFixMe
+;suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

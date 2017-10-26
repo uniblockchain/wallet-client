@@ -46,7 +46,6 @@ render(
       </div>
     </ConnectedRouter>
   </ReduxProvider>,
-  // $FlowFixMe
   document.getElementById('root'),
 );
 

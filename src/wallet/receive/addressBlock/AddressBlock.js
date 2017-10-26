@@ -1,7 +1,7 @@
 // @flow
 
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
+import type { MapStateToProps } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import { Button, LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
@@ -44,7 +44,6 @@ const styles = theme => ({
   },
 });
 
-// $FlowFixMe
 type Props = {
   classes: Object,
   wallets: Array<Wallet>,
@@ -55,9 +54,8 @@ function getActiveWallet(activeId: ?number, wallets: Array<Wallet>): ?Wallet {
   if (wallets.length) {
     if (activeId) {
       return wallets.find(wallet => wallet.id === activeId);
-    } else {
-      return wallets[0];
     }
+    return wallets[0];
   }
 }
 
@@ -72,7 +70,6 @@ export class AddressBlock extends Component<Props> {
     if (!wallet) {
       return (
         <div>
-          {/* $FlowFixMe*/}
           <LinearProgress />
         </div>
       );
@@ -91,7 +88,6 @@ export class AddressBlock extends Component<Props> {
           </div>
           <div className={classes.address}>{wallet.receiveAddress}</div>
           <div className={classes.tapToCopyRow}>
-            {/* // $FlowFixMe */}
             <Button raised>TAP TO COPY</Button>
           </div>
         </div>
@@ -100,13 +96,12 @@ export class AddressBlock extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
   activeWalletId: state.wallet.activeId,
 });
 
 const componentWithStyles = withStyles(styles)(AddressBlock);
 
-// $FlowFixMe
 const reduxComponent = connect(mapStateToProps);
 export default reduxComponent(componentWithStyles);

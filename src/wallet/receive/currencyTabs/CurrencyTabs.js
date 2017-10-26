@@ -47,7 +47,6 @@ export class CurrencyTabs extends Component<Props> {
             // scrollButtons="auto"
           >
             {wallets.map((wallet: Wallet) => (
-              // $FlowFixMe
               <Tab
                 key={wallet.id}
                 label={CurrencyNameResolver.resolve(wallet.currency)}

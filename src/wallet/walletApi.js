@@ -5,11 +5,13 @@ import { get } from '../http';
 
 import type { WalletState } from './walletState';
 
-function fetchWalletBalance(walletId: number): Promise<number> {
+// TODO: add proper Balance type instead of *
+function fetchWalletBalance(walletId: number): Promise<*> {
   return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/balance`);
 }
 
-function fetchWalletTransactions(walletId: number): Promise<number> {
+// TODO: add proper Array<Transaction> type instead of *
+function fetchWalletTransactions(walletId: number): Promise<*> {
   return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/transaction`);
 }
 
@@ -25,7 +27,6 @@ function fetchWallet(): Promise<WalletState> {
           .then(wallet =>
             fetchWalletTransactions(wallet.id).then(transactions => ({
               ...wallet,
-              // $FlowFixMe
               transactions: transactions.map(transaction => ({
                 ...transaction,
                 date: new Date(transaction.date),

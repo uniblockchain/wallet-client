@@ -51,15 +51,11 @@ describe('Address block', () => {
   });
 
   it('renders copying button', () => {
-    expect(
-      // $FlowFixMe
-      component.contains(<Button raised>TAP TO COPY</Button>),
-    ).toBe(true);
+    expect(component.contains(<Button raised>TAP TO COPY</Button>)).toBe(true);
   });
 
   it('renders loading when active wallet not present', () => {
     component.setProps({ wallets: [] });
-    // $FlowFixMe
     expect(component.contains(<LinearProgress />)).toBe(true);
   });
 });

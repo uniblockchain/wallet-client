@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { List } from 'material-ui';
+import type { MapStateToProps } from 'react-redux';
 import type {
   Transaction as TransactionType,
   Wallet,
@@ -44,11 +45,10 @@ export class Transactions extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
 });
 
 const componentWithStyles = withStyles(styles)(Transactions);
 
-// $FlowFixMe
 export default connect(mapStateToProps)(componentWithStyles);
