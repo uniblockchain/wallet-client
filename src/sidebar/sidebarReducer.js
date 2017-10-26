@@ -15,6 +15,7 @@ export const sidebarReducer = (
       return {
         ...state,
         open: action.open,
+        path: action.path,
       };
 
     default:
