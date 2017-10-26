@@ -31,6 +31,7 @@ describe('CurrencyTabs component', () => {
     classes: {},
     setActiveWallet: jest.fn(),
     activeWalletId: 0,
+    fetchWallet: jest.fn(),
   };
 
   beforeEach(() => {
