@@ -1,12 +1,14 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import { Button, LinearProgress } from 'material-ui';
 import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';
 import CurrencyNameResolver from '../CurrencyNameResolver';
+import copy from 'copy-to-clipboard';
 
 const styles = theme => ({
   addressContainer: {
@@ -48,14 +50,16 @@ type Props = {
   classes: Object,
   wallets: Array<Wallet>,
   activeWalletId: ?number,
+  onCopy: string => void,
 };
 
 function getActiveWallet(activeId: ?number, wallets: Array<Wallet>): ?Wallet {
   if (wallets.length) {
     if (activeId) {
       return wallets.find(wallet => wallet.id === activeId);
+    } else {
+      return wallets[0];
     }
-    return wallets[0];
   }
 }
 
@@ -64,6 +68,7 @@ export class AddressBlock extends Component<Props> {
     const { classes } = this.props;
     const activeId: ?number = this.props.activeWalletId;
     const wallets: Array<Wallet> = this.props.wallets;
+    const onCopy = this.props.onCopy;
 
     const wallet: ?Wallet = getActiveWallet(activeId, wallets);
 
@@ -88,7 +93,14 @@ export class AddressBlock extends Component<Props> {
           </div>
           <div className={classes.address}>{wallet.receiveAddress}</div>
           <div className={classes.tapToCopyRow}>
-            <Button raised>TAP TO COPY</Button>
+            <Button
+              onClick={() => {
+                onCopy(wallet.receiveAddress);
+              }}
+              raised
+            >
+              TAP TO COPY
+            </Button>
           </div>
         </div>
       </div>
@@ -99,9 +111,9 @@ export class AddressBlock extends Component<Props> {
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
   activeWalletId: state.wallet.activeId,
+  onCopy: copy,
 });
 
 const componentWithStyles = withStyles(styles)(AddressBlock);
-
 const reduxComponent = connect(mapStateToProps);
 export default reduxComponent(componentWithStyles);

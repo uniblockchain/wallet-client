@@ -2,9 +2,6 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-
-// import { Transactions } from './Transactions';
-// import Transaction from './transaction';
 import { AddressBlock } from './AddressBlock';
 import type { Wallet } from '../../walletState';
 import { Button, LinearProgress } from 'material-ui';
@@ -32,6 +29,7 @@ describe('Address block', () => {
     classes: {},
     wallets: [sampleWallet],
     activeWalletId: 1,
+    onCopy: jest.fn(),
   };
 
   beforeEach(() => {
@@ -51,7 +49,9 @@ describe('Address block', () => {
   });
 
   it('renders copying button', () => {
-    expect(component.contains(<Button raised>TAP TO COPY</Button>)).toBe(true);
+    expect(props.onCopy).not.toHaveBeenCalled();
+    component.find(Button).simulate('click');
+    expect(props.onCopy).toHaveBeenCalledTimes(1);
   });
 
   it('renders loading when active wallet not present', () => {
