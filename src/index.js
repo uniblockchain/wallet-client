@@ -17,6 +17,7 @@ import { Overview } from './overview';
 import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
+import { Settings } from './settings';
 import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -43,6 +44,7 @@ render(
         />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
+        <Route path="/settings" component={Settings} />
       </div>
     </ConnectedRouter>
   </ReduxProvider>,
