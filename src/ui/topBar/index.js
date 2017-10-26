@@ -14,6 +14,7 @@ type Props = {
 
 const Left = styled.div`
   width: 100%;
+  color: ${props => (props.light ? '#ffffff' : '#e5f9f3')};
 `;
 
 const Right = styled.div`
@@ -26,11 +27,7 @@ const Right = styled.div`
 const TopBar = ({ className, updateSidebarState, sidebarOpen }: Props) => {
   return (
     <div className={className}>
-      <Left>
-        <button type="button" className="btn btn-primary bmd-btn-icon">
-          <i className="material-icons">copyright</i>
-        </button>
-      </Left>
+      <Left>C</Left>
       <Right>
         <button
           type="button"
