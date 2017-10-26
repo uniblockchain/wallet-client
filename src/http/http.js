@@ -16,13 +16,29 @@ function transformResponse(response) {
   throw response;
 }
 
+function bearerTokenHeader(): * {
+  const { token } = store.getState().login;
+  if (token) {
+    return { Authorization: `Bearer ${token}` };
+  }
+  return {};
+}
+
+function paramsToBody(params: any): * {
+  const paramsType = typeof params;
+  if (paramsType === 'string' || paramsType === 'FormData') {
+    return params;
+  }
+  return JSON.stringify(params);
+}
+
 function urlEncodeParameters(params) {
   return Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
 }
 
-export function get(url: string, params: any = {}, headers: any = {}) {
+export function get(url: string, params: * = {}, headers: * = {}): * {
   const urlParameters = urlEncodeParameters(params);
   return fetch(`${url}${urlParameters ? `?${urlParameters}` : ''}`, {
     method: 'GET',
@@ -37,7 +53,7 @@ export function get(url: string, params: any = {}, headers: any = {}) {
   }).then(transformResponse);
 }
 
-export function post(url: string, params: any = {}, headers: any = {}) {
+export function post(url: string, params: * = {}, headers: * = {}): * {
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -50,22 +66,6 @@ export function post(url: string, params: any = {}, headers: any = {}) {
     mode: 'cors',
     cache: 'default',
   }).then(transformResponse);
-}
-
-function paramsToBody(params: any): any {
-  const paramsType = typeof params;
-  if (paramsType === 'string' || paramsType === 'FormData') {
-    return params;
-  }
-  return JSON.stringify(params);
-}
-
-function bearerTokenHeader(): any {
-  const { token } = store.getState().login;
-  if (token) {
-    return { Authorization: `Bearer ${token}` };
-  }
-  return {};
 }
 
 export default { get, post };

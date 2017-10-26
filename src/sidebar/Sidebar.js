@@ -8,7 +8,7 @@ import { openSidebar } from './sidebarActions';
 import { type Menu } from '../menu';
 import './Sidebar.css';
 
-type Props = {
+export type Props = {
   +menu: Menu,
   +open: boolean,
   +path: string,

@@ -2,17 +2,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Signup } from './Signup';
+import type { Props } from './Signup';
 
 describe('Signup component', () => {
   let component;
 
-  const props = {
+  const mockFn: any = jest.fn();
+
+  const props: Props = {
     email: 'test@example.com',
-    emailValidity: jest.fn(),
+    emailValidity: mockFn,
     password: 'password',
-    passwordValidity: jest.fn(),
-    user: {},
-    createUser: jest.fn(),
+    passwordValidity: mockFn,
+    authenticated: false,
+    createUser: mockFn,
   };
 
   beforeEach(() => {

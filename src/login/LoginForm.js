@@ -15,7 +15,7 @@ import {
   FormGroup,
 } from '../ui';
 
-const EmailAddress = ({ input }: any) => (
+const EmailAddress = ({ input }: any): Input => (
   <Input
     {...input}
     type="email"
@@ -24,7 +24,7 @@ const EmailAddress = ({ input }: any) => (
   />
 );
 
-const Password = ({ input }: any) => (
+const Password = ({ input }: any): Input => (
   <Input
     {...input}
     type="password"

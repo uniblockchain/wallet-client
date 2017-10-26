@@ -8,7 +8,7 @@ import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';
 
-type Props = {
+export type Props = {
   email: string,
   emailValidity: ValidityState,
   password: string,

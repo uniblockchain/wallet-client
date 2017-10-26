@@ -1,6 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
+import type { UserState } from './userState';
 
 jest.mock('../http');
 
@@ -10,9 +11,7 @@ const userApi = require('./userApi').default;
 
 describe('user api', () => {
   const email = 'test@example.com';
-  const currentState: UserState = { id: 0, email: '' };
-  const user: UserState = { id: 1, email };
-  const error = 'whoops';
+  const user: UserState = { id: 1, email, error: null };
 
   const apiUrl = 'sample-api-url';
 

@@ -1,6 +1,6 @@
 // @flow
 
-import type { LoginAction } from './loginActionTypes';
+import type { LoginAction, LoginSuccessful } from './loginActionTypes';
 import loginAction from './loginActionTypes';
 
 const TOKEN_STORAGE_KEY = 'accessToken';
@@ -17,13 +17,15 @@ const defaultState: LoginState = {
   token,
 };
 
-function updateLocalStorage(action) {
+function addToLocalStorage(action: LoginSuccessful) {
   if (window.localStorage) {
-    if (action.oauthToken) {
-      localStorage.setItem(TOKEN_STORAGE_KEY, action.oauthToken.access_token);
-    } else {
-      localStorage.removeItem(TOKEN_STORAGE_KEY);
-    }
+    localStorage.setItem(TOKEN_STORAGE_KEY, action.oauthToken.access_token);
+  }
+}
+
+function removeFromLocalStorage() {
+  if (window.localStorage) {
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
   }
 }
 
@@ -33,13 +35,13 @@ const loginReducer = (
 ): LoginState => {
   switch (action.type) {
     case loginAction.LOGIN_SUCCESSFUL:
-      updateLocalStorage(action);
+      addToLocalStorage(action);
       return {
         ...state,
         token: action.oauthToken.access_token,
       };
     case loginAction.LOGOUT:
-      updateLocalStorage(action);
+      removeFromLocalStorage();
       return {
         ...state,
         token: null,

@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import { App } from './App';
 
 it('renders without crashing', () => {
-  const component = shallow(<App />);
+  const props = { authenticated: false };
+  const component = shallow(<App {...props} />);
   expect(component);
 });

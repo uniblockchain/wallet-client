@@ -1,14 +1,13 @@
 // @flow
 
-import { Component } from 'react';
-import {
+import React, { Component } from 'react';
+import { Grid, ListItem } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
+import type {
   Transaction as TransactionType,
   TransactionEntry,
 } from '../../../wallet/walletState';
 import walletCurrencyValueResolver from '../../../wallet/walletCurrencyValueResolver';
-import { Grid, ListItem } from 'material-ui';
-import * as React from 'react';
-import { withStyles } from 'material-ui/styles';
 import FiatValue from './fiatValue';
 import DateDisplay from './dateDisplay';
 
@@ -54,7 +53,7 @@ type Props = {
 export class Transaction extends Component<Props> {
   getCurrentWalletTransactionEntry(
     transactionEntries: Array<TransactionEntry>,
-  ): TransactionEntry {
+  ): ?TransactionEntry {
     return transactionEntries.find(
       (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
     );
@@ -62,22 +61,22 @@ export class Transaction extends Component<Props> {
 
   getExternalPartyTransactionEntry(
     transactionEntries: Array<TransactionEntry>,
-  ): TransactionEntry {
+  ): ?TransactionEntry {
     return transactionEntries.find(
       (transactionEntry: TransactionEntry) => !transactionEntry.currentWallet,
     );
   }
 
   render() {
-    const { classes } = this.props;
-    const transaction: TransactionType = this.props.transaction;
+    const { classes, transaction } = this.props;
     const self = this;
 
-    const { address } = self.getExternalPartyTransactionEntry(
-      transaction.entries,
-    );
+    const { address } =
+      self.getExternalPartyTransactionEntry(transaction.entries) || {};
+    const currentWalletTransactionEntry =
+      self.getCurrentWalletTransactionEntry(transaction.entries) || {};
     const amount = walletCurrencyValueResolver.resolve(
-      self.getCurrentWalletTransactionEntry(transaction.entries).value,
+      currentWalletTransactionEntry.value,
     );
 
     return (

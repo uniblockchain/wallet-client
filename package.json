@@ -11,7 +11,6 @@
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
-    "prop-types": "^15.6.0",
     "raven-js": "^3.19.1",
     "react": "^16.0.0",
     "react-chartjs-2": "^2.6.4",
@@ -37,13 +36,14 @@
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "test:ci": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
+    "test": "npm run build-css && flow && react-scripts test --env=jsdom",
+    "test:ci": "npm run build-css && flow && react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
     "flow": "flow",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
+    "empty": "^0.10.1",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "eslint": "^4.8.0",
@@ -70,5 +70,8 @@
       "prettier --single-quote --trailing-comma all --write",
       "git add"
     ]
+  },
+  "jest-junit": {
+    "output": "reports/junit/js-test-results.xml"
   }
 }

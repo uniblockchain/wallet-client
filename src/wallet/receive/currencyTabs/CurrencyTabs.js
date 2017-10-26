@@ -36,13 +36,13 @@ export class CurrencyTabs extends Component<Props> {
 
     return (
       <div className={classes.root}>
-        <div position="static" color="default">
+        <div>
           <Tabs
-            centered={true}
+            centered
             value={tabIndex}
             onChange={this.handleChange}
-            indicatorColor="#02bda5"
-            textColor="#02bda5"
+            indicatorColor="primary"
+            textColor="primary"
             // scrollable
             // scrollButtons="auto"
           >

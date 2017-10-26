@@ -5,7 +5,7 @@ import userActions from './userActions';
 import { type UserState, initialUserState } from './userState';
 
 describe('user reducer', () => {
-  const user: UserState = { id: 1, email: 'erko@risthein.ee' };
+  const user: UserState = { id: 1, email: 'erko@risthein.ee', error: null };
   const error = 'whoops';
 
   describe('handles user fetch', () => {
@@ -31,7 +31,9 @@ describe('user reducer', () => {
 
   describe('handles user creation', () => {
     it('request', () => {
-      const action = userActions.userCreationRequested();
+      const email = 'test@example.com';
+      const password = 'test';
+      const action = userActions.userCreationRequested(email, password);
       const newState = userReducer(initialUserState, action);
       expect(newState).toEqual(initialUserState);
     });

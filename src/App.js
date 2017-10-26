@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import type { MapStateToProps } from 'react-redux';
 import { WrappedContent, Top, Bottom, Button, PrimaryButton } from './ui';
 
 const StyledContent = WrappedContent.extend`
@@ -61,7 +62,7 @@ export const App = ({ authenticated }: Props) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   authenticated: !!state.login.token,
 });
 

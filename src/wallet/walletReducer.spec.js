@@ -19,12 +19,14 @@ describe('wallet reducer', () => {
         currency: 'ETH',
         transactions: [],
         balance: [],
+        receiveAddress: '0xlolwat',
       },
     ],
     currency: 'EUR',
     error: null,
     activeId: null,
   };
+
   const error = 'whoops';
 
   it('handles wallet fetch request', () => {

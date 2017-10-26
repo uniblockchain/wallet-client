@@ -18,6 +18,7 @@ describe('wallet api', () => {
     currency: 'ETH',
     balance: [],
     transactions: [],
+    receiveAddress: '0xlolwat',
   };
 
   const walletsResponse: Array<Wallet> = [wallet];

@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import loginActions from './loginActions';
 import type { LoginInitiated } from './loginActionTypes';
 
-type Props = {
+export type Props = {
   authenticated: boolean,
   login: (string, string) => LoginInitiated,
 };
