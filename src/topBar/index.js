@@ -51,7 +51,7 @@ const TopBarStyled = styled(TopBar)`
   position: absolute;
   width: 100%;
   color: ${props => (props.light ? '#ffffff' : '#54ccde')};
-  padding: 30px 10px 0px 10px;
+  padding: 15px 10px 0px 10px;
 `;
 
 const mapStateToProps = state => ({

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Content, Header, SubHeader, Button } from '../ui';
+import { Content, Header, SubHeader } from '../ui';
 import menu from '../menu';
 import BottomNavigation from '../bottomNavigation';
 import TopBar from '../topBar';
@@ -18,7 +18,6 @@ const StyledHeader = styled(Header)`
   letter-spacing: -0.9px;
   text-align: center;
   color: #00346b;
-  padding-top: 20px;
 `;
 
 const StyledSubHeader = styled(SubHeader)`
@@ -44,7 +43,7 @@ const StyledListItem = styled.li`
   border-bottom: 1px solid #f2f2f2;
 `;
 
-const Link = Button.extend`
+const MoreLink = styled.p`
   font-size: 14px;
   text-align: center;
   color: #cccccc;
@@ -66,7 +65,7 @@ export const Marketplace = () => (
       <StyledListItem>Crowdfunded Real Estate</StyledListItem>
       <StyledListItem>Insurance</StyledListItem>
     </StyledList>
-    <Link>And more</Link>
+    <MoreLink>And more</MoreLink>
     <BottomNavigation menu={menu} />
   </Content>
 );
