@@ -52,6 +52,12 @@
   dependencies:
     "@storybook/addons" "^3.2.13"
 
+"@storybook/addon-options@^3.2.13":
+  version "3.2.13"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.2.13.tgz#d605c50f4ff60d7470b36b4fb55d15bf1450f078"
+  dependencies:
+    "@storybook/addons" "^3.2.13"
+
 "@storybook/addon-viewport@^3.3.0-alpha.0":
   version "3.3.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-3.3.0-alpha.0.tgz#266faac372aa78d2956079dd872a305877a58e67"

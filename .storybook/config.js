@@ -1,12 +1,17 @@
-
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import centered from '@storybook/addon-centered';
 import { withKnobs } from '@storybook/addon-knobs';
 import backgrounds from '@storybook/addon-backgrounds';
 import { select } from '@storybook/addon-knobs';
+import { setOptions } from '@storybook/addon-options';
 import { ThemeProvider } from 'styled-components';
 import { GreenTheme, BlueTheme } from '../src/ui';
+
+setOptions({
+  name: 'Change',
+  downPanelInRight: true,
+});
 
 addDecorator(withKnobs);
 addDecorator(centered);
