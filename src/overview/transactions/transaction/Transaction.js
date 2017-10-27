@@ -11,7 +11,7 @@ import walletCurrencyValueResolver from '../../../wallet/walletCurrencyValueReso
 import FiatValue from './fiatValue';
 import DateDisplay from './dateDisplay';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     backgroundColor: '#ffffff',
     // fontFamily: 'Favorit',

@@ -14,6 +14,7 @@ describe('Fiat value component', () => {
   const props = {
     value,
     currency,
+    classes: {},
   };
 
   beforeEach(() => {

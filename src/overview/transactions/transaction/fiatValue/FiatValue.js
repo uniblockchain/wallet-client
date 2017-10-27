@@ -1,40 +1,31 @@
-import { Component } from 'react';
+// @flow
+
 import * as React from 'react';
+import type { MapStateToProps } from 'react-redux';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 
-const styles = theme => ({
+const styles = () => ({
   expense: {
     color: '#ee583c',
   },
 });
 
 type Props = {
-  classes?: Object,
+  classes: Object,
   value: number,
-};
-
-type State = {
   currency: string,
 };
 
-export class FiatValue extends Component<Props, State> {
-  render() {
-    const value: number = this.props.value;
-    const currency: string = this.props.currency;
-    const { classes } = this.props;
+export const FiatValue = ({ value, currency, classes }: Props) => (
+  <div className={value < 0 ? classes.expense : ''}>
+    {getSymbolFromCurrency(currency)}
+    {Math.round(value * 100) / 100}
+  </div>
+);
 
-    return (
-      <div className={value < 0 ? classes.expense : ''}>
-        {getSymbolFromCurrency(currency)}
-        {Math.round(value * 100) / 100}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   currency: state.wallet.currency,
 });
 const componentWithStyles = withStyles(styles)(FiatValue);

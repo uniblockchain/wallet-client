@@ -13,7 +13,7 @@ describe('CurrencyTabs component', () => {
   const sampleWallet: Wallet = {
     id: 1,
     address: 'sampleAddress',
-    currency: 'EUR',
+    currency: 'ETH',
     balance: [],
     receiveAddress: 'sampleReceiveAddress',
     transactions: [

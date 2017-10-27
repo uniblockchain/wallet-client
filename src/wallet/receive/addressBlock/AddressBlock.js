@@ -11,7 +11,7 @@ import type { Wallet } from '../../walletState';
 import CurrencyNameResolver from '../CurrencyNameResolver';
 import withWallet from '../../withWallet';
 
-const styles = theme => ({
+const styles = () => ({
   addressContainer: {
     backgroundColor: '#f2f2f2',
   },

@@ -9,10 +9,8 @@ const resolve = (currency: string): string => {
     return 'Ripple';
   } else if (currency === 'LTC') {
     return 'Litecoin';
-  } else {
-    new Error('Unrecognized currency');
-    return '';
   }
+  throw new Error('Unrecognized currency');
 };
 
 export default { resolve };

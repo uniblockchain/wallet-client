@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { List } from 'material-ui';
@@ -11,7 +11,7 @@ import type {
 } from '../../wallet/walletState';
 import Transaction from './transaction';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     backgroundColor: '#ffffff',
   },
@@ -22,28 +22,17 @@ type Props = {
   wallets: Array<Wallet>,
 };
 
-type State = {
-  wallets: Array<Wallet>,
-};
-
-export class Transactions extends Component<Props, State> {
-  render() {
-    const { classes } = this.props;
-    const { wallets } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <List>
-          {wallets.map((wallet: Wallet) =>
-            wallet.transactions.map((transaction: TransactionType) => (
-              <Transaction key={transaction.id} transaction={transaction} />
-            )),
-          )}
-        </List>
-      </div>
-    );
-  }
-}
+export const Transactions = ({ classes, wallets }: Props) => (
+  <div className={classes.root}>
+    <List>
+      {wallets.map((wallet: Wallet) =>
+        wallet.transactions.map((transaction: TransactionType) => (
+          <Transaction key={transaction.id} transaction={transaction} />
+        )),
+      )}
+    </List>
+  </div>
+);
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
