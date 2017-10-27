@@ -55,37 +55,22 @@ storiesOf('Button', module)
 
 storiesOf('Structure', module)
   .addDecorator(themeDecorator)
-  .add('Sidebar', () => {
-    let sidebarOpen = false;
-    let sidebarPath = '/test';
-    const setSidebarState = (state: boolean, path: string) => {
-      sidebarOpen = state;
-      sidebarPath = path;
-    };
-    return (
-      <div>
-        <PrimaryButton onClick={() => setSidebarState(true, '/test')}>
-          Open sidebar
-        </PrimaryButton>
-        <Sidebar
-          menu={menu}
-          open={sidebarOpen}
-          path={sidebarPath}
-          onNavigation={action('navigation')}
-          updateState={setSidebarState}
-        />
-      </div>
-    );
-  })
-  .add('Bottom Navigation', () => {
-    let path = '/wallet';
-    const onNavigation = (newPath: string) => {
-      path = newPath;
-    };
-    return (
-      <BottomNavigation menu={menu} onNavigation={onNavigation} value={path} />
-    );
-  });
+  .add('Sidebar', () => (
+    <Sidebar
+      menu={menu}
+      open
+      path="/wallet"
+      onNavigation={action('navigation')}
+      updateState={action('state updated')}
+    />
+  ))
+  .add('Bottom Navigation', () => (
+    <BottomNavigation
+      menu={menu}
+      onNavigation={action('navigation')}
+      value="/wallet"
+    />
+  ));
 
 storiesOf('Text', module)
   .add('Header', () => <Header>Header</Header>)
