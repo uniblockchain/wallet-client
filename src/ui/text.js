@@ -13,4 +13,8 @@ export const SubHeader = styled.h2`
   color: ${props => props.theme.altText};
 `;
 
-export default { Header, SubHeader };
+export const Paragraph = styled.p`
+  color: ${props => props.theme.text};
+`;
+
+export default { Header, SubHeader, Paragraph };
