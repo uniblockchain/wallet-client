@@ -38,15 +38,18 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     const sum = datasets[0].data.reduce((a, b) => a + b, 0);
 
     // TODO make currency & formatting dynamic
-    const text = sum.toLocaleString('en-US', {
+    let text = sum.toLocaleString('en-US', {
       style: 'currency',
       currency: 'EUR',
     });
-    const textX = Math.round((width - ctx.measureText(text).width) / 2);
+    let textX = Math.round((width - ctx.measureText(text).width) / 2);
     const textY = outerRadius;
 
     ctx.fillText(text, textX, textY * 1.12);
-    ctx.fillText('BALANCE', textX, textY * 0.88);
+
+    text = 'Balance';
+    textX = Math.round((width - ctx.measureText(text).width) / 2);
+    ctx.fillText(text, textX, textY * 0.88);
   },
 });
 

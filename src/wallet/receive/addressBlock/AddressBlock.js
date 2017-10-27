@@ -8,7 +8,7 @@ import { Button, LinearProgress } from 'material-ui';
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';
-import CurrencyNameResolver from '../CurrencyNameResolver';
+import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
 
 const styles = () => ({
@@ -79,7 +79,7 @@ export class AddressBlock extends React.Component<Props> {
       );
     }
 
-    const currencyName: string = CurrencyNameResolver.resolve(
+    const currencyName: string = CurrencyName.get(
       wallet.currency,
     ).toUpperCase();
 

@@ -17,6 +17,9 @@ const walletReducer = (
       return {
         ...state,
         ...action.wallet,
+        activeId:
+          state.activeId ||
+          (action.wallet.wallets && action.wallet.wallets[0].id),
       };
 
     case walletAction.WALLET_FETCH_FAILED:

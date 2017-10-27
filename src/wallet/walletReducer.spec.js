@@ -41,6 +41,14 @@ describe('wallet reducer', () => {
     expect(newState.wallets[0].id).toEqual(wallet.wallets[0].id);
     expect(newState.wallets[0].address).toEqual(wallet.wallets[0].address);
     expect(newState.wallets[0].currency).toEqual(wallet.wallets[0].currency);
+    expect(newState.activeId).toEqual(newState.wallets[0].id);
+  });
+
+  it('wallet fetch success does not overwrite activeId if it exists', () => {
+    const activeId = 7;
+    const action = walletActions.walletFetchSucceeded(wallet);
+    const newState = walletReducer({ ...currentState, activeId }, action);
+    expect(newState.activeId).toEqual(activeId);
   });
 
   it('handles wallet fetch fail', () => {

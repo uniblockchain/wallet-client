@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import type { Wallet } from '../walletState';
 import walletActions from '../walletActions';
-import CurrencyNameResolver from '../receive/CurrencyNameResolver';
+import CurrencyName from '../CurrencyName';
 import { Card } from '../../ui';
 
 const styles = {
@@ -61,7 +61,7 @@ export class CurrencyTabs extends Component<Props> {
             <Tab
               classes={{ label: this.props.classes.label }}
               key={wallet.id}
-              label={CurrencyNameResolver.resolve(wallet.currency)}
+              label={CurrencyName.get(wallet.currency)}
             />
           ))}
         </Tabs>

@@ -23,4 +23,15 @@ export const FormGroup = (props: any) => (
   <div className="form-group" {...props} />
 );
 
-export default { Label, Input, Form, FormGroup };
+export const FormRow = (props: any) => <div className="form-row" {...props} />;
+
+export const Col = (props: any) => <div className="col" {...props} />;
+
+export default {
+  Label,
+  Input,
+  Form,
+  FormGroup,
+  FormRow,
+  Col,
+};
