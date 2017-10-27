@@ -5,7 +5,7 @@ import type { SendTransactionResponse } from './sendApi';
 
 jest.mock('../http');
 
-const mockHttp = require('../http');
+const mockHttp = require('../../http/index');
 
 const sendApi = require('./sendApi').default;
 

@@ -2,10 +2,17 @@
 import 'isomorphic-fetch';
 import store from '../reduxStore';
 
+const TOKEN_STORAGE_KEY = 'accessToken';
+
 function transformResponse(response) {
   if (response.ok && response.status < 400) {
     return response.json();
   } else if (response.status >= 400) {
+    // hax
+    if (response.status === 401 && window.localStorage && window.location) {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+      window.location.reload();
+    }
     return response.json().then((data: any) => {
       const error = {};
       error.status = response.status;

@@ -11,7 +11,7 @@ import { signupReducer } from './signup';
 import { loginReducer, loginSagas } from './login';
 import { walletReducer, walletSagas } from './wallet';
 import { sidebarReducer } from './sidebar/sidebarReducer';
-import { sendSagas } from './send';
+import { sendSagas } from './wallet/send';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

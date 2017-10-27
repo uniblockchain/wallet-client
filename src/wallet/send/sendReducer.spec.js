@@ -19,19 +19,21 @@ describe('send reducer', () => {
         walletId,
       );
       const newState = sendReducer(initialSendState, action);
-      expect(newState).toEqual(initialSendState);
+      expect(newState).toEqual({ ...initialSendState, isLoading: true });
     });
 
     it('success', () => {
       const action = sendActions.sendTransactionSucceeded(response);
       const newState = sendReducer(initialSendState, action);
       expect(newState.transactionStatus).toEqual(response.transactionStatus);
+      expect(newState.isLoading).toEqual(false);
     });
 
     it('fail', () => {
       const action = sendActions.sendTransactionFailed(error);
       const newState = sendReducer(initialSendState, action);
       expect(newState.error).toEqual(error);
+      expect(newState.isLoading).toEqual(false);
     });
   });
 });

@@ -1,7 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { post } from '../http';
+import { post } from '../../http/index';
 
 export type SendTransactionResponse = {
   transactionStatus: string,
