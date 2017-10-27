@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { LinearProgress } from 'material-ui';
 
 import { Overview } from './Overview';
 import walletActions from '../wallet/walletActions';
-import { LinearProgress } from 'material-ui';
 import TopBar from '../ui/topBar';
-import Slider from '../ui/slider';
+import { Slider } from '../ui/slider';
 import Transactions from './transactions';
 
 describe('Overview component', () => {
