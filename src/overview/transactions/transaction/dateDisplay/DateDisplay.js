@@ -1,9 +1,8 @@
-import { Component } from 'react';
 import * as React from 'react';
 
-export class DateDisplay extends Component<Props> {
+export class DateDisplay extends React.Component<Props> {
   render() {
-    const date: Date = this.props.date;
+    const { date } = this.props;
 
     return (
       <div>

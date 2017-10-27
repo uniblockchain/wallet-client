@@ -7,6 +7,7 @@ import menu from '../menu';
 import BottomNavigation from '../ui/bottomNavigation';
 import TopBar from '../ui/topBar';
 import CurrencyTabs from './currencyTabs';
+import withWallet from './withWallet';
 
 const MainContent = styled.div`
   display: flex;
@@ -65,4 +66,4 @@ export const Wallet = () => (
   </Content>
 );
 
-export default Wallet;
+export default withWallet(Wallet);

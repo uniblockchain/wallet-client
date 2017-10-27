@@ -1,14 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { Component } from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import { Button, LinearProgress } from 'material-ui';
+
+import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';
 import CurrencyNameResolver from '../CurrencyNameResolver';
-import copy from 'copy-to-clipboard';
+import withWallet from '../../withWallet';
 
 const styles = theme => ({
   addressContainer: {
@@ -57,18 +58,16 @@ function getActiveWallet(activeId: ?number, wallets: Array<Wallet>): ?Wallet {
   if (wallets.length) {
     if (activeId) {
       return wallets.find(wallet => wallet.id === activeId);
-    } else {
-      return wallets[0];
     }
+    return wallets[0];
   }
+  return null;
 }
 
-export class AddressBlock extends Component<Props> {
+export class AddressBlock extends React.Component<Props> {
   render() {
-    const { classes } = this.props;
     const activeId: ?number = this.props.activeWalletId;
-    const wallets: Array<Wallet> = this.props.wallets;
-    const onCopy = this.props.onCopy;
+    const { onCopy, classes, wallets } = this.props;
 
     const wallet: ?Wallet = getActiveWallet(activeId, wallets);
 
@@ -116,4 +115,4 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
 
 const componentWithStyles = withStyles(styles)(AddressBlock);
 const reduxComponent = connect(mapStateToProps);
-export default reduxComponent(componentWithStyles);
+export default withWallet(reduxComponent(componentWithStyles));

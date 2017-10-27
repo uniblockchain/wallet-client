@@ -50,31 +50,30 @@ type Props = {
   transaction: TransactionType,
 };
 
+function getCurrentWalletTransactionEntry(
+  transactionEntries: Array<TransactionEntry>,
+): ?TransactionEntry {
+  return transactionEntries.find(
+    (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
+  );
+}
+
+function getExternalPartyTransactionEntry(
+  transactionEntries: Array<TransactionEntry>,
+): ?TransactionEntry {
+  return transactionEntries.find(
+    (transactionEntry: TransactionEntry) => !transactionEntry.currentWallet,
+  );
+}
+
 export class Transaction extends Component<Props> {
-  getCurrentWalletTransactionEntry(
-    transactionEntries: Array<TransactionEntry>,
-  ): ?TransactionEntry {
-    return transactionEntries.find(
-      (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
-    );
-  }
-
-  getExternalPartyTransactionEntry(
-    transactionEntries: Array<TransactionEntry>,
-  ): ?TransactionEntry {
-    return transactionEntries.find(
-      (transactionEntry: TransactionEntry) => !transactionEntry.currentWallet,
-    );
-  }
-
   render() {
     const { classes, transaction } = this.props;
-    const self = this;
 
     const { address } =
-      self.getExternalPartyTransactionEntry(transaction.entries) || {};
+      getExternalPartyTransactionEntry(transaction.entries) || {};
     const currentWalletTransactionEntry =
-      self.getCurrentWalletTransactionEntry(transaction.entries) || {};
+      getCurrentWalletTransactionEntry(transaction.entries) || {};
     const amount = walletCurrencyValueResolver.resolve(
       currentWalletTransactionEntry.value,
     );

@@ -7,13 +7,15 @@ import { Doughnut, Chart } from 'react-chartjs-2';
 import menu from '../menu';
 import { Content, Card } from '../ui';
 
-import walletActions from '../wallet/walletActions';
+import type { MapStateToProps } from 'react-redux';
 import walletCurrencyValueResolver from '../wallet/walletCurrencyValueResolver';
 import type { Wallet as WalletType } from '../wallet/walletState';
 import BottomNavigation from '../ui/bottomNavigation';
 import Transactions from './transactions';
 import TopBar from '../ui/topBar';
 import Slider from '../ui/slider';
+import withWallet from '../wallet/withWallet';
+import { LinearProgress } from 'material-ui';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -49,13 +51,6 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 });
 
 export class Overview extends Component<Props> {
-  componentDidMount() {
-    const { fetchWallet } = this.props;
-    if (fetchWallet) {
-      fetchWallet();
-    }
-  }
-
   getData() {
     const { wallets } = this.props;
 
@@ -103,6 +98,8 @@ export class Overview extends Component<Props> {
   chart = {};
 
   render() {
+    const { wallets } = this.props;
+
     const data = this.getData();
     return (
       <Content>
@@ -116,6 +113,7 @@ export class Overview extends Component<Props> {
             }}
           />
         </Card>
+        {wallets.length === 0 ? <LinearProgress /> : ''}
         <Slider />
         <Card title="Activity">
           <Transactions />
@@ -126,12 +124,8 @@ export class Overview extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
 });
 
-const mapDispatchToProps = {
-  fetchWallet: walletActions.walletFetchRequested,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Overview);
+export default withWallet(connect(mapStateToProps)(Overview));
