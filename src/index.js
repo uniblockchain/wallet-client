@@ -13,7 +13,7 @@ import { history, store } from './reduxStore';
 import App from './App';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';
-import { Login } from './login';
+import { Login, Logout } from './login';
 import { Overview } from './overview';
 import { Card } from './card';
 import { Marketplace } from './marketplace';
@@ -48,6 +48,7 @@ render(
           />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
           <Route path="/settings" component={Settings} />
         </div>
       </ThemeProvider>
