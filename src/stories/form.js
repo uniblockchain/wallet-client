@@ -24,11 +24,11 @@ storiesOf('Form', module)
     <Form onSubmit={action('submit')}>
       <FormGroup>
         <Label htmlFor="emailAddress">Email address</Label>
-        <Input name="emailAddress" type="email" />
+        <Input name="emailAddress" type="email" className="form-control" />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="password">Password</Label>
-        <Input name="password" type="password" />
+        <Input name="password" type="password" className="form-control" />
       </FormGroup>
     </Form>
   ))
