@@ -13,9 +13,8 @@ describe('Sidebar component', () => {
     menu: [],
     open: false,
     path: '/',
-    goto: jest.fn(),
+    onNavigation: jest.fn(),
     updateState: jest.fn(),
-    logout: jest.fn(),
   };
 
   beforeEach(() => {

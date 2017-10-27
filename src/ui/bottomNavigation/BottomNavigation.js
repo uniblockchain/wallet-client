@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import BottomNavigation, {
+import MaterialBottomNavigation, {
   BottomNavigationButton,
 } from 'material-ui/BottomNavigation';
 import { bindActionCreators } from 'redux';
@@ -16,7 +16,7 @@ import type { Menu } from '../../menu';
 type Props = {
   +menu: Menu,
   +value: string,
-  +to: string => void,
+  +onNavigation: string => void,
 };
 
 type IconProps = {
@@ -38,7 +38,7 @@ const Icon = ({ item }: IconProps): any => {
   }
 };
 
-const StyledBottomNavigation = styled(BottomNavigation)`
+const StyledBottomNavigation = styled(MaterialBottomNavigation)`
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -46,10 +46,10 @@ const StyledBottomNavigation = styled(BottomNavigation)`
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
-export const SimpleBottomNavigation = (props: Props) => {
-  const { menu, value, to } = props;
+export const BottomNavigation = (props: Props) => {
+  const { menu, value, onNavigation } = props;
   const handleChange = (event, v) => {
-    to(v);
+    onNavigation(v);
   };
   return (
     <StyledBottomNavigation value={value} onChange={handleChange} showLabels>
@@ -72,11 +72,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      to: (link: string) => push(link),
+      onNavigation: (link: string) => push(link),
     },
     dispatch,
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SimpleBottomNavigation,
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BottomNavigation);

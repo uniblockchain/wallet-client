@@ -2,9 +2,10 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  display: block;
+  display: ${props => (props.inline ? 'inline' : 'block')};
+  width: ${props => (props.inline ? 'fit-content' : '100%')};
+  padding: ${props => (props.inline ? '0 33px 0 33px' : '0')};
   height: 44px;
-  width: 100%;
   border-radius: 49px;
   background-color: #ffffff;
   color: #a1a1a1;
@@ -17,9 +18,10 @@ export const Button = styled.button`
     color: #a1a1a1;
   }
 `;
+
 export const PrimaryButton = Button.extend`
   color: white;
-  background-color: #02bda5;
+  background-color: ${props => props.theme.text};
   text-transform: uppercase;
 
   a {

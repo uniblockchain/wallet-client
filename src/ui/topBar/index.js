@@ -24,7 +24,11 @@ const Right = styled.div`
   margin: auto;
 `;
 
-const TopBar = ({ className, updateSidebarState, sidebarOpen }: Props) => {
+const TopBarWithoutStyles = ({
+  className,
+  updateSidebarState,
+  sidebarOpen,
+}: Props) => {
   return (
     <div className={className}>
       <Left>C</Left>
@@ -42,7 +46,7 @@ const TopBar = ({ className, updateSidebarState, sidebarOpen }: Props) => {
   );
 };
 
-const TopBarStyled = styled(TopBar)`
+export const TopBar = styled(TopBarWithoutStyles)`
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -59,4 +63,4 @@ const mapDispatchToProps = {
   updateSidebarState: openSidebar,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBarStyled);
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

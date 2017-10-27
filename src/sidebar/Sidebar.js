@@ -3,7 +3,6 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import loginActions from '../login/loginActions';
 import { openSidebar } from './sidebarActions';
 import { type Menu } from '../menu';
 import './Sidebar.css';
@@ -12,9 +11,8 @@ export type Props = {
   +menu: Menu,
   +open: boolean,
   +path: string,
-  +goto: string => void,
+  +onNavigation: string => void,
   +updateState: (boolean, string) => void,
-  +logout: () => void,
 };
 
 type ListItemProps = {
@@ -27,7 +25,7 @@ export const Sidebar = (props: Props) => {
     props.updateState(open, path);
   };
   const onExited = () => {
-    props.goto(props.path);
+    props.onNavigation(props.path);
   };
   const ListItem = ({ link, text }: ListItemProps) => (
     <li key={link}>
@@ -56,9 +54,7 @@ export const Sidebar = (props: Props) => {
           <ul className="menu">
             <ListItem link="/settings" text="My account" />
             <ListItem link="/contact" text="Contact" />
-            <li>
-              <button onClick={props.logout}>Log out</button>
-            </li>
+            <ListItem link="/logout" text="Log out" />
           </ul>
         </div>
       </CSSTransition>
@@ -73,8 +69,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   updateState: openSidebar,
-  goto: path => push(path),
-  logout: loginActions.logout,
+  onNavigation: path => push(path),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
