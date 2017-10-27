@@ -4,18 +4,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
-import menu from '../menu';
-import { Content, Card } from '../ui';
-
 import type { MapStateToProps } from 'react-redux';
+import { LinearProgress } from 'material-ui';
+import { ThemeProvider } from 'styled-components';
+import menu from '../menu';
+import { Content, Card, Header, PrimaryButton, BlueTheme } from '../ui';
+
 import walletCurrencyValueResolver from '../wallet/walletCurrencyValueResolver';
 import type { Wallet as WalletType } from '../wallet/walletState';
 import BottomNavigation from '../ui/bottomNavigation';
 import Transactions from './transactions';
 import TopBar from '../ui/topBar';
-import Slider from '../ui/slider';
+import { Slider, Slide } from '../ui/slider';
 import withWallet from '../wallet/withWallet';
-import { LinearProgress } from 'material-ui';
 
 type Props = {
   wallets: Array<WalletType>,
@@ -117,7 +118,34 @@ export class Overview extends Component<Props> {
           />
         </Card>
         {wallets.length === 0 ? <LinearProgress /> : ''}
-        <Slider />
+        <Slider>
+          <div>
+            <Slide>
+              <Header>Congratulations</Header>
+              <p>Your account is now ready</p>
+              <PrimaryButton>Cool, what next</PrimaryButton>
+            </Slide>
+          </div>
+          <div>
+            <ThemeProvider theme={BlueTheme}>
+              <Slide>
+                <Header>Order your card</Header>
+                <p>
+                  Make everyday purchases with Bitcoin and other
+                  cryptocurrencies
+                </p>
+                <PrimaryButton>Order here</PrimaryButton>
+              </Slide>
+            </ThemeProvider>
+          </div>
+          <div>
+            <Slide>
+              <Header>Deposit funds</Header>
+              <p>Start by depositing Bitcoin to your account</p>
+              <PrimaryButton>Learn more</PrimaryButton>
+            </Slide>
+          </div>
+        </Slider>
         <Card title="Activity">
           <Transactions />
         </Card>
