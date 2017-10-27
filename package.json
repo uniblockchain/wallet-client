@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-backgrounds": "^3.0.0",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-material-design": "^4.0.0-beta.4",
     "chart.js": "^2.7.0",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.13",
+    "@storybook/addon-centered": "^3.2.13",
     "@storybook/addon-knobs": "^3.2.13",
     "@storybook/addon-links": "^3.2.13",
     "@storybook/addon-viewport": "^3.3.0-alpha.0",

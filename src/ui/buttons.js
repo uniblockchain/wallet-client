@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Button = styled.button`
   display: ${props => (props.inline ? 'inline' : 'block')};
   width: ${props => (props.inline ? 'fit-content' : '100%')};
-  padding: ${props => (props.inline ? '0 33px 0 33px' : '0')};
+  padding: 0 2em 0 2em;
   height: 44px;
   border-radius: 49px;
   background-color: #ffffff;
