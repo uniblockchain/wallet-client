@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withStyles } from 'material-ui/styles';
 import CurrencyTabs from '../currencyTabs';
 import TopBar from '../../ui/topBar';
@@ -14,13 +14,13 @@ type Props = {
   classes: Object,
 };
 
-export const Receive = ( { classes } : Props) => (
-      <div className={classes.root}>
-        <TopBar />
-        <CurrencyTabs />
-        <AddressBlock /><BottomNavigation menu={menu} />
-      </div>
-    );
+export const Receive = ({ classes }: Props) => (
+  <div className={classes.root}>
+    <TopBar />
+    <CurrencyTabs />
+    <AddressBlock /><BottomNavigation menu={menu} />
+  </div>
+);
 
 
 const componentWithStyles = withStyles(styles)(Receive);
