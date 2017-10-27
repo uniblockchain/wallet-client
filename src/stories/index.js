@@ -1,12 +1,13 @@
 // @flow
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import React from 'react';
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 import '../index.css';
+import themeDecorator from './themeDecorator';
 
 import {
   Button,
@@ -41,10 +42,12 @@ storiesOf('Structure', module)
   ));
 
 storiesOf('Text', module)
+  .addDecorator(themeDecorator)
   .add('Header', () => <Header>Header</Header>)
   .add('SubHeader', () => <SubHeader>SubHeader</SubHeader>);
 
 storiesOf('Form', module)
+  .addDecorator(themeDecorator)
   .add('Inputs', () => (
     <Form onSubmit={action('submit')}>
       <FormGroup>
