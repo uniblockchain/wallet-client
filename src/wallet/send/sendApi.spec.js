@@ -3,9 +3,9 @@
 import config from 'react-global-configuration';
 import type { SendTransactionResponse } from './sendApi';
 
-jest.mock('../http');
+jest.mock('../../http');
 
-const mockHttp = require('../../http/index');
+const mockHttp = require('../../http');
 
 const sendApi = require('./sendApi').default;
 
