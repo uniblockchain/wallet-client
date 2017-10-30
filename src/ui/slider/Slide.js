@@ -1,10 +1,5 @@
 // @flow
-import React from 'react';
 import styled from 'styled-components';
-
-type Props = {
-  children: any,
-};
 
 const Slide = styled.div`
   padding: 1em;
@@ -17,4 +12,4 @@ const Slide = styled.div`
   align-items: center;
 `;
 
-export default ({ children }: Props) => <Slide>{children}</Slide>;
+export default Slide;

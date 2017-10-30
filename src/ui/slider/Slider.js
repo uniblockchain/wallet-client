@@ -1,13 +1,8 @@
 // @flow
-import React from 'react';
 import styled from 'styled-components';
 import SlickSlider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-type Props = {
-  children?: any,
-};
 
 const settings = {
   dots: true,
@@ -17,12 +12,8 @@ const settings = {
   arrows: false,
 };
 
-const SliderWithStyles = styled(SlickSlider)`
+export default styled(SlickSlider).attrs(settings)`
   .slick-dots {
     bottom: 0;
   }
 `;
-
-export default ({ children }: Props) => (
-  <SliderWithStyles {...settings}>{children}</SliderWithStyles>
-);

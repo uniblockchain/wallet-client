@@ -9,6 +9,8 @@ import walletActions from '../wallet/walletActions';
 import TopBar from '../ui/topBar';
 import { Slider } from '../ui/slider';
 import Transactions from './transactions';
+import BottomNavigation from '../ui/bottomNavigation';
+import menu from '../menu';
 
 describe('Overview component', () => {
   let component;
@@ -30,8 +32,12 @@ describe('Overview component', () => {
     expect(component.contains(<TopBar />)).toBe(true);
   });
 
+  it('renders bottom navigation with menu', () => {
+    expect(component.contains(<BottomNavigation menu={menu} />)).toBe(true);
+  });
+
   it('renders slider', () => {
-    expect(component.contains(<Slider />)).toBe(true);
+    expect(component.find(Slider).length).toEqual(1);
   });
 
   it('renders transactions', () => {
