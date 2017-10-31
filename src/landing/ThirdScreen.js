@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { PrimaryButton } from '../ui';
+import plastic from './img/plastic.png';
 
 const WrappedContent = styled.div`
   padding: 3em;
@@ -10,7 +11,7 @@ const WrappedContent = styled.div`
 `;
 
 const Content = styled.div`
-  height: 90vh;
+  height: 83vh;
   background-color: #f2f2f2;
   display: flex;
   flex-direction: column;
@@ -44,9 +45,15 @@ const ListItem = styled.li`
   padding-top: 1vh;
 `;
 
+const Plastic = styled.img`
+  width: 340px;
+  margin-bottom: 30px;
+`;
+
 export const ThirdScreen = () => (
   <Content>
     <WrappedContent>
+      <Plastic src={plastic} alt="Plastic Card" />
       <Heading>How to get started</Heading>
       <List>
         <ListItem>Sign up for free</ListItem>

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { PrimaryButton } from '../ui';
+import screenshot from './img/screenshot.png';
 
 const WrappedContent = styled.div`
   padding: 2em;
@@ -51,6 +52,12 @@ const SwipeDown = styled.div`
   color: #ffffff;
 `;
 
+const Screenshot = styled.img`
+  width: 319px;
+  height: 648px;
+  position: relative;
+`;
+
 export const FirstScreen = () => (
   <Content>
     <WrappedContent>
@@ -65,6 +72,7 @@ export const FirstScreen = () => (
           <i className="material-icons">arrow_downward</i>
         </p>
       </SwipeDown>
+      <Screenshot src={screenshot} alt="Screenshot" />
     </WrappedContent>
   </Content>
 );
