@@ -1,13 +1,41 @@
 @font-face {
-  font-family: CircularStd;
-  src: url('fonts/circularstd-book-webfont.woff2') format('woff2');
+  font-family: CircularPro;
+  src: url('fonts/lineto-circular-pro-book.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: CircularStdBold;
-  src: url('fonts/circularstd-bold-webfont.woff2') format('woff2');
+  font-family: CircularProBold;
+  font-weight: bold;
+  src: url('fonts/lineto-circular-pro-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Usual;
+  src: url('fonts/Usual-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Favorit;
+  src: url('fonts/favorit-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: FavoritBold;
+  font-weight: bold;
+  src: url('fonts/favorit-bold.woff') format('woff');
 }
 
 body {
-  font-family: 'CircularStd', Fallback, sans-serif;
+  font-family: Usual, Fallback, sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: CircularProBold, Fallback, sans-serif;
+  font-size: 30px;
+}
+
+h2 {
+  font-family: Favorit, Fallback, sans-serif;
+  font-size: 16px;
 }
