@@ -8,8 +8,14 @@ const DEFAULT_CONF_DEV = {
   oauth2Secret: 'WalletClientSecret',
 };
 
-const DEFAULT_CONF_PRODUCTION = {
+const DEFAULT_CONF_STAGING = {
   apiUrl: 'https://change-wallet-service.producement.com',
+  oauth2ClientId: 'wallet-client',
+  oauth2Secret: 'WalletClientSecret',
+};
+
+const DEFAULT_CONF_PRODUCTION = {
+  apiUrl: 'https://wallet-service.getchange.com',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
 };
@@ -17,9 +23,9 @@ const DEFAULT_CONF_PRODUCTION = {
 export default function initialize(): void {
   if (process.env.NODE_ENV === 'development') {
     config.set(DEFAULT_CONF_DEV, { freeze: false });
-  }
-
-  if (process.env.NODE_ENV === 'production') {
+  } else if (process.env.NODE_ENV === 'staging') {
+    config.set(DEFAULT_CONF_STAGING, { freeze: false });
+  } else if (process.env.NODE_ENV === 'production') {
     config.set(DEFAULT_CONF_PRODUCTION, { freeze: false });
   }
 }
