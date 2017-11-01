@@ -5,8 +5,6 @@
 version: 2
 jobs:
   build:
-    environment:
-      - NODE_ENV: staging
     docker:
       # specify the version you desire here
       - image: circleci/node:8
@@ -43,7 +41,7 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-      - run: yarn build
+      - run: NODE_ENV=staging yarn build
 
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
