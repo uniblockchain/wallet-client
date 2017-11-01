@@ -6,7 +6,7 @@ import { PrimaryButton } from '../ui';
 import plastic from './img/plastic.png';
 
 const WrappedContent = styled.div`
-  padding: 3em;
+  padding: 10vw;
   margin-bottom: 10vh;
 `;
 
@@ -33,9 +33,6 @@ const ButtonWithLink = PrimaryButton.extend`
 
 const List = styled.ul`
   font-size: 16px;
-  font-weight: 300;
-  line-height: 1.31;
-  text-align: left;
   color: #4a4a4a;
   padding-top: 1vh;
   padding-left: 4vw;
@@ -46,8 +43,8 @@ const ListItem = styled.li`
 `;
 
 const Plastic = styled.img`
-  width: 340px;
-  margin-bottom: 30px;
+  width: 90vw;
+  margin-bottom: 3vh;
 `;
 
 export const ThirdScreen = () => (

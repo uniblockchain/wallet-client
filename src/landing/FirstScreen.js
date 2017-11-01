@@ -6,7 +6,10 @@ import { PrimaryButton } from '../ui';
 import screenshot from './img/screenshot.png';
 
 const WrappedContent = styled.div`
-  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 9vh 8vw 0 8vw;
 `;
 
 const Content = styled.div`
@@ -17,21 +20,13 @@ const Content = styled.div`
 const Heading = styled.h1`
   font-size: 42px;
   font-weight: bold;
-  line-height: 1.05;
-  letter-spacing: -0.9px;
-  text-align: left;
   color: #ffffff;
 `;
 
-const SubHeading = styled.h2`
-  margin-top: 15px;
+const SubHeading = styled.p`
   font-size: 24px;
-  font-weight: 300;
-  line-height: 1.25;
-  letter-spacing: -0.5px;
-  text-align: left;
+  margin-top: 10px;
   color: #00346b;
-  width: 50vw;
 `;
 
 const BlueButton = PrimaryButton.extend`
@@ -46,22 +41,25 @@ const SwipeDown = styled.div`
   margin-top: 33px;
   font-size: 20px;
   font-weight: 300;
-  line-height: 1.5;
-  letter-spacing: -0.4px;
   text-align: center;
   color: #ffffff;
 `;
 
-const Screenshot = styled.img`
-  width: 319px;
-  height: 648px;
-  position: relative;
+const Screenshot = styled.div`
+  margin-top: -25px;
+  img {
+    display: block;
+    position: relative;
+    max-width: 82vw;
+    max-height: 90vh;
+    margin: auto;
+  }
 `;
 
 export const FirstScreen = () => (
   <Content>
     <WrappedContent>
-      <Heading>Change is a free digital wallet</Heading>
+      <Heading>Change is a free digital wallet.</Heading>
       <SubHeading>Send money and buy things. Safely.</SubHeading>
       <BlueButton>
         <Link to="/">Get Started</Link>
@@ -72,7 +70,9 @@ export const FirstScreen = () => (
           <i className="material-icons">arrow_downward</i>
         </p>
       </SwipeDown>
-      <Screenshot src={screenshot} alt="Screenshot" />
+      <Screenshot>
+        <img src={screenshot} alt="Screenshot" />
+      </Screenshot>
     </WrappedContent>
   </Content>
 );
