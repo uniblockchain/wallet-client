@@ -5,6 +5,7 @@ import { Content, Header, SubHeader } from '../ui';
 import menu from '../menu';
 import BottomNavigation from '../ui/bottomNavigation';
 import TopBar from '../ui/topBar';
+import skyline from './img/skyline.png';
 
 const DivWithGradient = styled.div`
   background-image: linear-gradient(to top, #ffffff, #c6f3ff);
@@ -44,9 +45,18 @@ const StyledListItem = styled.li`
 `;
 
 const MoreLink = styled.p`
+  margin: auto;
   font-size: 14px;
   text-align: center;
   color: #cccccc;
+`;
+
+const Skyline = styled.img.attrs({
+  src: skyline,
+  alt: 'Skyline',
+})`
+  width: 100vw;
+  height: ;
 `;
 
 export const Marketplace = () => (
@@ -66,6 +76,9 @@ export const Marketplace = () => (
       <StyledListItem>Insurance</StyledListItem>
     </StyledList>
     <MoreLink>And more</MoreLink>
+    <div>
+      <Skyline />
+    </div>
     <BottomNavigation menu={menu} />
   </Content>
 );
