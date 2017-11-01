@@ -11,6 +11,7 @@ import {
 import menu from '../menu';
 import BottomNavigation from '../ui/bottomNavigation';
 import TopBar from '../ui/topBar';
+import plastic from './img/plastic.png';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;
@@ -18,15 +19,11 @@ const StyledContent = styled(WrappedContent)`
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  text-align: left;
   color: #02bda5;
 `;
 
 const StyledSubHeader = styled(SubHeader)`
   font-size: 16px;
-  line-height: 1.38;
   color: #02bda5;
   padding-top: 25px;
 `;
@@ -38,6 +35,14 @@ const OrderButton = styled(PrimaryButton)`
   margin-top: 25px;
 `;
 
+const Plastic = styled.img.attrs({
+  src: plastic,
+  alt: 'Plastic',
+})`
+  width: 90vw;
+  margin-bottom: 3vh;
+`;
+
 export const Card = () => (
   <Content>
     <TopBar light />
@@ -47,6 +52,7 @@ export const Card = () => (
         Start spending your Bitcoin & other cryptocurrencies.
       </StyledSubHeader>
       <OrderButton>Order Card</OrderButton>
+      <Plastic />
     </StyledContent>
     <BottomNavigation menu={menu} />
   </Content>
