@@ -4,11 +4,13 @@ import * as layout from './layout';
 import * as text from './text';
 import * as form from './form';
 import * as theme from './theme';
+import * as tabs from './tabs';
 
 export * from './buttons';
 export * from './layout';
 export * from './text';
 export * from './form';
 export * from './theme';
+export * from './tabs';
 
-export default { ...buttons, ...layout, ...text, ...form, ...theme };
+export default { ...buttons, ...layout, ...text, ...form, ...theme, ...tabs };

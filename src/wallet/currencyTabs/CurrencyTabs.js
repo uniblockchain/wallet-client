@@ -1,32 +1,18 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Tabs, Tab } from 'material-ui';
 import { connect } from 'react-redux';
-import { withStyles } from 'material-ui/styles';
 import type { Wallet } from '../walletState';
 import walletActions from '../walletActions';
 import CurrencyName from '../CurrencyName';
-import { Card } from '../../ui';
-
-const styles = {
-  label: {
-    textTransform: 'none',
-  },
-};
+import { Tabs, Tab } from '../../ui';
 
 type Props = {
-  classes: Object,
   wallets: Array<Wallet>,
   setActiveWallet: number => void,
   activeWalletId: ?number,
   fetchWallet: () => *,
 };
-
-const CurrencyTabsCard = Card.extend`
-  background-color: ${props => props.theme.background};
-  padding-bottom: 0;
-`;
 
 export class CurrencyTabs extends Component<Props> {
   componentDidMount() {
@@ -35,37 +21,23 @@ export class CurrencyTabs extends Component<Props> {
       fetchWallet();
     }
   }
-  handleChange = (event: Object, value: number) => {
-    const wallet = this.props.wallets[value];
-    this.props.setActiveWallet(wallet.id);
+  handleChange = (value: string) => {
+    this.props.setActiveWallet(Number(value));
   };
 
   render() {
     const { wallets, activeWalletId } = this.props;
 
-    let tabIndex = 0;
-    if (activeWalletId && wallets.length) {
-      tabIndex = wallets.findIndex(wallet => wallet.id === activeWalletId);
-    }
+    const value = activeWalletId ? activeWalletId.toString() : undefined;
 
     return (
-      <CurrencyTabsCard>
-        <Tabs
-          centered
-          value={tabIndex}
-          onChange={this.handleChange}
-          indicatorColor="#02bda5"
-          textColor="inherit"
-        >
-          {wallets.map((wallet: Wallet) => (
-            <Tab
-              classes={{ label: this.props.classes.label }}
-              key={wallet.id}
-              label={CurrencyName.get(wallet.currency)}
-            />
-          ))}
-        </Tabs>
-      </CurrencyTabsCard>
+      <Tabs value={value} onSelect={this.handleChange}>
+        {wallets.map((wallet: Wallet) => (
+          <Tab key={wallet.id} value={wallet.id.toString()}>
+            {CurrencyName.get(wallet.currency)}
+          </Tab>
+        ))}
+      </Tabs>
     );
   }
 }
@@ -79,11 +51,9 @@ const mapDispatchToProps = {
   setActiveWallet: walletActions.walletSetActive,
 };
 
-const componentWithStyles = withStyles(styles)(CurrencyTabs);
-
 const reduxComponent: Object => * = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
 
-export default reduxComponent(componentWithStyles);
+export default reduxComponent(CurrencyTabs);

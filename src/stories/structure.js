@@ -3,6 +3,7 @@ import React from 'react';
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { select } from '@storybook/addon-knobs';
 import { ThemeProvider } from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
@@ -18,6 +19,8 @@ import {
   GreenTheme,
   Content,
   Paragraph,
+  Tabs,
+  Tab,
 } from '../ui';
 
 storiesOf('Structure', module)
@@ -60,4 +63,18 @@ storiesOf('Structure', module)
         </div>
       </Slider>
     </Content>
-  ));
+  ))
+  .add('Tabs', () => {
+    const options = {
+      btc: 'Bitcoin',
+      eth: 'Ether',
+      ltc: 'Litecoin',
+    };
+    return (
+      <Tabs value={select('Value', options, 'eth')} onSelect={action('select')}>
+        <Tab value="btc">Bitcoin</Tab>
+        <Tab value="eth">Ether</Tab>
+        <Tab value="ltc">Litecoin</Tab>
+      </Tabs>
+    );
+  });

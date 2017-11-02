@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 import { CurrencyTabs } from './CurrencyTabs';
 import type { Wallet } from '../walletState';
-import { Tabs, Tab } from 'material-ui';
+import { Tabs, Tab } from '../../ui';
 
 describe('CurrencyTabs component', () => {
   let component;
