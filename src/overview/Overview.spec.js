@@ -6,11 +6,8 @@ import { LinearProgress } from 'material-ui';
 
 import { Overview } from './Overview';
 import walletActions from '../wallet/walletActions';
-import TopBar from '../ui/topBar';
 import { Slider } from '../ui/slider';
 import Transactions from './transactions';
-import BottomNavigation from '../ui/bottomNavigation';
-import menu from '../menu';
 
 describe('Overview component', () => {
   let component;
@@ -26,14 +23,6 @@ describe('Overview component', () => {
 
   it('renders the component', () => {
     expect(component);
-  });
-
-  it('renders top bar', () => {
-    expect(component.contains(<TopBar />)).toBe(true);
-  });
-
-  it('renders bottom navigation with menu', () => {
-    expect(component.contains(<BottomNavigation menu={menu} />)).toBe(true);
   });
 
   it('renders slider', () => {

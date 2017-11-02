@@ -1,10 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Content, Header, SubHeader } from '../ui';
-import menu from '../menu';
-import BottomNavigation from '../ui/bottomNavigation';
-import TopBar from '../ui/topBar';
+import { Header, SubHeader } from '../ui';
 import skyline from './img/skyline.png';
 
 const DivWithGradient = styled.div`
@@ -60,8 +57,7 @@ const Skyline = styled.img.attrs({
 `;
 
 export const Marketplace = () => (
-  <Content>
-    <TopBar />
+  <div>
     <DivWithGradient>
       <StyledHeader>Marketplace</StyledHeader>
       <StyledSubHeader>
@@ -79,8 +75,7 @@ export const Marketplace = () => (
     <div>
       <Skyline />
     </div>
-    <BottomNavigation menu={menu} />
-  </Content>
+  </div>
 );
 
 export default Marketplace;

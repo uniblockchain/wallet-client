@@ -1,16 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Content,
-  WrappedContent,
-  Header,
-  SubHeader,
-  PrimaryButton,
-} from '../ui';
-import menu from '../menu';
-import BottomNavigation from '../ui/bottomNavigation';
-import TopBar from '../ui/topBar';
+import { WrappedContent, Header, SubHeader, PrimaryButton } from '../ui';
 import plastic from './img/plastic.png';
 
 const StyledContent = styled(WrappedContent)`
@@ -44,8 +35,7 @@ const Plastic = styled.img.attrs({
 `;
 
 export const Card = () => (
-  <Content>
-    <TopBar light />
+  <div>
     <StyledContent>
       <StyledHeader>Get your Change card.</StyledHeader>
       <StyledSubHeader>
@@ -54,8 +44,7 @@ export const Card = () => (
       <OrderButton>Order Card</OrderButton>
       <Plastic />
     </StyledContent>
-    <BottomNavigation menu={menu} />
-  </Content>
+  </div>
 );
 
 export default Card;

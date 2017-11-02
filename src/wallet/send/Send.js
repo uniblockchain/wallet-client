@@ -2,9 +2,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import menu from '../../menu';
-import BottomNavigation from '../../ui/bottomNavigation';
-import TopBar from '../../ui/topBar';
 import CurrencyTabs from '../currencyTabs';
 import sendActions from './sendActions';
 import type { SendTransactionRequest } from './sendActionTypes';
@@ -21,13 +18,11 @@ type Props = {
 
 export const Send = ({ walletId, sendTransaction }: Props) => (
   <div>
-    <TopBar />
     <CurrencyTabs />
     <SendForm
       onSubmit={values =>
         sendTransaction(values.sendToAddress, values.amountInCrypto, walletId)}
     />
-    <BottomNavigation menu={menu} />
   </div>
 );
 

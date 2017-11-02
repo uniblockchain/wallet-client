@@ -25,7 +25,10 @@ import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
-import { GreenTheme } from './ui';
+import { GreenTheme, Content } from './ui';
+import TopBar from './ui/topBar';
+import BottomNavigation from './ui/bottomNavigation';
+import menu from './menu';
 import './index.css';
 
 configuration.initialize();
@@ -40,7 +43,7 @@ const Styled = styled.div`
   }
 `;
 
-const AnimatedContent = withRouter(({ location, children }) => (
+const PublicContent = withRouter(({ location, children }) => (
   <TransitionGroup>
     <CSSTransition key={location.key} classNames="slide" timeout={200}>
       <Switch location={location}>
@@ -50,28 +53,37 @@ const AnimatedContent = withRouter(({ location, children }) => (
   </TransitionGroup>
 ));
 
+const pageTemplate = WrappedComponent => props => (
+  <Content>
+    <TopBar />
+    <WrappedComponent {...props} />
+    <BottomNavigation menu={menu} />
+  </Content>
+);
+
+const page = component => requireAuthentication(pageTemplate(component));
+
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={GreenTheme}>
         <div>
-          <AnimatedContent>
+          <PublicContent>
             <Route exact path="/" component={App} />
             <Route path="/landing" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/signup" component={Signup} />
-          </AnimatedContent>
-          <Route path="/overview" component={requireAuthentication(Overview)} />
-          <Route path="/wallet" component={requireAuthentication(Wallet)} />
-          <Route path="/send" component={requireAuthentication(Send)} />
-          <Route path="/receive" component={requireAuthentication(Receive)} />
-          <Route path="/card" component={requireAuthentication(Card)} />
-          <Route
-            path="/marketplace"
-            component={requireAuthentication(Marketplace)}
-          />
-          <Route path="/settings" component={Settings} />
+          </PublicContent>
+          <Switch>
+            <Route path="/overview" component={page(Overview)} />
+            <Route path="/wallet" component={page(Wallet)} />
+            <Route path="/send" component={page(Send)} />
+            <Route path="/receive" component={page(Receive)} />
+            <Route path="/card" component={page(Card)} />
+            <Route path="/marketplace" component={page(Marketplace)} />
+            <Route path="/settings" component={page(Settings)} />
+          </Switch>
         </div>
       </ThemeProvider>
     </ConnectedRouter>

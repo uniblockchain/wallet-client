@@ -2,10 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Content, Card, PrimaryButton } from '../ui';
-import menu from '../menu';
-import BottomNavigation from '../ui/bottomNavigation';
-import TopBar from '../ui/topBar';
+import { Card, PrimaryButton } from '../ui';
 import CurrencyTabs from './currencyTabs';
 import withWallet from './withWallet';
 
@@ -45,8 +42,7 @@ const FiatBalance = styled.p`
 `;
 
 export const Wallet = () => (
-  <Content>
-    <TopBar />
+  <div>
     <CurrencyTabs />
     <Card>
       <MainContent>
@@ -62,8 +58,7 @@ export const Wallet = () => (
         </Buttons>
       </MainContent>
     </Card>
-    <BottomNavigation menu={menu} />
-  </Content>
+  </div>
 );
 
 export default withWallet(Wallet);

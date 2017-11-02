@@ -7,14 +7,11 @@ import { Doughnut, Chart } from 'react-chartjs-2';
 import type { MapStateToProps } from 'react-redux';
 import { LinearProgress } from 'material-ui';
 import { ThemeProvider } from 'styled-components';
-import menu from '../menu';
-import { Content, Card, Header, PrimaryButton, BlueTheme } from '../ui';
+import { Card, Header, PrimaryButton, BlueTheme } from '../ui';
 
 import walletCurrencyValueResolver from '../wallet/walletCurrencyValueResolver';
 import type { Wallet as WalletType } from '../wallet/walletState';
-import BottomNavigation from '../ui/bottomNavigation';
 import Transactions from './transactions';
-import TopBar from '../ui/topBar';
 import { Slider, Slide } from '../ui/slider';
 import withWallet from '../wallet/withWallet';
 
@@ -106,8 +103,7 @@ export class Overview extends Component<Props> {
 
     const data = this.getData();
     return (
-      <Content>
-        <TopBar />
+      <div>
         <Card>
           <Doughnut
             data={data}
@@ -149,8 +145,7 @@ export class Overview extends Component<Props> {
         <Card title="Activity">
           <Transactions />
         </Card>
-        <BottomNavigation menu={menu} />
-      </Content>
+      </div>
     );
   }
 }

@@ -24,10 +24,6 @@ describe('Receive component', () => {
     expect(component);
   });
 
-  it('renders Top', () => {
-    expect(component.contains(<TopBar />)).toBe(true);
-  });
-
   it('renders Address blocks', () => {
     expect(component.contains(<AddressBlock />)).toBe(true);
   });
