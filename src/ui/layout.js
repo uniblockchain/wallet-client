@@ -11,7 +11,7 @@ export const Content = styled.div`
 `;
 
 export const WrappedContent = Content.extend`
-  padding: 40px;
+  padding: 10vw;
 `;
 
 export const Top = styled.div`
