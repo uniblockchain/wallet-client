@@ -54,9 +54,14 @@ render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={GreenTheme}>
-        <AnimatedContent>
-          <Route exact path="/" component={App} />
-          <Route exact path="/landing" component={Landing} />
+        <div>
+          <AnimatedContent>
+            <Route exact path="/" component={App} />
+            <Route path="/landing" component={Landing} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/signup" component={Signup} />
+          </AnimatedContent>
           <Route path="/overview" component={requireAuthentication(Overview)} />
           <Route path="/wallet" component={requireAuthentication(Wallet)} />
           <Route path="/send" component={requireAuthentication(Send)} />
@@ -66,11 +71,8 @@ render(
             path="/marketplace"
             component={requireAuthentication(Marketplace)}
           />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
           <Route path="/settings" component={Settings} />
-        </AnimatedContent>
+        </div>
       </ThemeProvider>
     </ConnectedRouter>
   </ReduxProvider>,
