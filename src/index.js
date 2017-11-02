@@ -3,9 +3,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
-import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
-import { ThemeProvider } from 'styled-components';
+import styled, { keyframes, ThemeProvider } from 'styled-components';
+import { slideInRight } from 'react-animations';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Switch, Route, withRouter } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 
@@ -30,11 +32,29 @@ configuration.initialize();
 
 tracker.initialize();
 
+const animationEnter = keyframes`${slideInRight}`;
+
+const Styled = styled.div`
+  &.slide-enter {
+    animation: 200ms ${animationEnter};
+  }
+`;
+
+const AnimatedContent = withRouter(({ location, children }) => (
+  <TransitionGroup>
+    <CSSTransition key={location.key} classNames="slide" timeout={200}>
+      <Switch location={location}>
+        <Styled>{children}</Styled>
+      </Switch>
+    </CSSTransition>
+  </TransitionGroup>
+));
+
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={GreenTheme}>
-        <div>
+        <AnimatedContent>
           <Route exact path="/" component={App} />
           <Route exact path="/landing" component={Landing} />
           <Route path="/overview" component={requireAuthentication(Overview)} />
@@ -50,7 +70,7 @@ render(
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/settings" component={Settings} />
-        </div>
+        </AnimatedContent>
       </ThemeProvider>
     </ConnectedRouter>
   </ReduxProvider>,

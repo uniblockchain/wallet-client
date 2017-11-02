@@ -15,6 +15,7 @@
     "material-ui-icons": "^1.0.0-beta.17",
     "raven-js": "^3.19.1",
     "react": "^16.0.0",
+    "react-animations": "^1.0.0",
     "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.0.0",
     "react-global-configuration": "^1.2.0",
