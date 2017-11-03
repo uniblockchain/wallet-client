@@ -5,15 +5,15 @@ import { shallow } from 'enzyme';
 import { LinearProgress } from 'material-ui';
 
 import { Overview } from './Overview';
-import walletActions from '../wallet/walletActions';
-import { Slider } from '../ui/slider';
 import Transactions from './transactions';
+import BalanceDoughnut from './balance';
+import OverviewSlider from './slider';
+import type { Props } from './Overview';
 
 describe('Overview component', () => {
   let component;
 
-  const props = {
-    fetchWallet: () => walletActions.walletFetchRequested(),
+  const props: Props = {
     wallets: [],
   };
 
@@ -25,8 +25,12 @@ describe('Overview component', () => {
     expect(component);
   });
 
-  it('renders slider', () => {
-    expect(component.find(Slider).length).toEqual(1);
+  it('renders the balance doughnut', () => {
+    expect(component.find(BalanceDoughnut).length).toEqual(1);
+  });
+
+  it('renders the overview slider', () => {
+    expect(component.find(OverviewSlider).length).toEqual(1);
   });
 
   it('renders transactions', () => {
