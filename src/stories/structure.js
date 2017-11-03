@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { ThemeProvider } from 'styled-components';
+import StoryRouter from 'storybook-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
 import '../index.css';
@@ -24,6 +25,7 @@ import {
 } from '../ui';
 
 storiesOf('Structure', module)
+  .addDecorator(StoryRouter())
   .add('Sidebar', () => (
     <Sidebar
       menu={menu}

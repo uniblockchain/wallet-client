@@ -5,7 +5,6 @@ import { shallow } from 'enzyme';
 import { LinearProgress } from 'material-ui';
 import { AddressBlock } from './AddressBlock';
 import type { Wallet } from '../../walletState';
-import { PrimaryButton } from '../../../ui';
 
 describe('Address block', () => {
   let component;
