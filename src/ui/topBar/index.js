@@ -1,9 +1,7 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { openSidebar } from '../../sidebar/sidebarActions';
 
 type Props = {
   className: string,
@@ -45,12 +43,4 @@ export const TopBar = styled(TopBarWithoutStyles)`
   padding: 15px 10px 0px 10px;
 `;
 
-const mapStateToProps = state => ({
-  sidebarOpen: state.sidebar.open,
-});
-
-const mapDispatchToProps = {
-  updateSidebarState: openSidebar,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default TopBar;
