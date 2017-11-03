@@ -84,20 +84,18 @@ render(
             <Route path="/card" component={page(Card)} />
             <Route path="/marketplace" component={page(Marketplace)} />
             <Route path="/settings" component={page(Settings)} />
-            <Route path="/sidebar">
-              {({ match }) => (
-                <CSSTransition
-                  in={match && match.isExact}
-                  classNames="slide"
-                  timeout={300}
-                >
-                  <Styled>
-                    <Sidebar />
-                  </Styled>
-                </CSSTransition>
-              )}
-            </Route>
           </Switch>
+          <Route path="/sidebar">
+            {({ match }) => (
+              <CSSTransition
+                in={match && match.isExact}
+                classNames="slide"
+                timeout={300}
+              >
+                <Styled>{match && <Sidebar />}</Styled>
+              </CSSTransition>
+            )}
+          </Route>
         </div>
       </ThemeProvider>
     </ConnectedRouter>
