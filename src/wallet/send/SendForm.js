@@ -3,12 +3,13 @@ import React from 'react';
 import { connect, type MapStateToProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import type { WalletType } from '..';
 import {
   Button,
+  Col,
   Form,
   FormGroup,
   FormRow,
-  Col,
   Header,
   Input,
   Label,
@@ -16,8 +17,9 @@ import {
   Top,
   WrappedContent,
 } from '../../ui';
-import type { WalletType } from '../';
 import CurrencyName from '../CurrencyName';
+import quoteActions from './quote/quoteActions';
+import type { Quote } from './quote/quoteApi';
 
 const SendToAddress = ({ input, currencyName }: any): Input => (
   <Input
@@ -46,12 +48,14 @@ type Props = {
   handleSubmit: (eventOrSubmit: any) => void | Promise<*>,
   activeWallet: WalletType,
   fiatCurrencyCode: string,
+  getNewQuote: Quote => void,
 };
 
 export const SendForm = ({
   handleSubmit,
   activeWallet,
   fiatCurrencyCode,
+  getNewQuote,
 }: Props) => {
   const currencyName = CurrencyName.get(activeWallet.currency);
   const cryptoCurrencyCode = activeWallet.currency;
@@ -77,6 +81,12 @@ export const SendForm = ({
                   name="amountInCrypto"
                   currencyCode={cryptoCurrencyCode}
                   component={Amount}
+                  onChange={(event, fromValue) =>
+                    getNewQuote({
+                      fromValue,
+                      fromCurrency: cryptoCurrencyCode,
+                      toCurrency: fiatCurrencyCode,
+                    })}
                 />
               </Col>
               <Col>
@@ -84,8 +94,13 @@ export const SendForm = ({
                 <Field
                   name="amountInFiat"
                   currencyCode={fiatCurrencyCode}
-                  readOnly="readOnly"
                   component={Amount}
+                  onChange={(event, toValue) =>
+                    getNewQuote({
+                      fromCurrency: cryptoCurrencyCode,
+                      toValue,
+                      toCurrency: fiatCurrencyCode,
+                    })}
                 />
               </Col>
             </FormRow>
@@ -104,13 +119,20 @@ export const SendForm = ({
   );
 };
 
+const isActiveWallet = activeWalletId => wallet => wallet.id === activeWalletId;
+
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   activeWallet:
-    state.wallet.wallets.find(wallet => wallet.id === state.wallet.activeId) ||
-    {},
+    state.wallet.wallets.find(isActiveWallet(state.wallet.activeId)) || {},
   fiatCurrencyCode: state.wallet.currency,
 });
 
-const ConnectedSendForm = connect(mapStateToProps)(SendForm);
+const mapDispatchToProps = {
+  getNewQuote: quoteActions.getQuoteRequested,
+};
+
+const ConnectedSendForm = connect(mapStateToProps, mapDispatchToProps)(
+  SendForm,
+);
 
 export default reduxForm({ form: 'send' })(ConnectedSendForm);

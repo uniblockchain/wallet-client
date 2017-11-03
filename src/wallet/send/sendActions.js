@@ -1,8 +1,8 @@
 // @flow
 
 import sendActionTypes, {
-  type SendTransactionRequest,
   type SendTransactionFail,
+  type SendTransactionRequest,
   type SendTransactionSuccess,
 } from './sendActionTypes';
 import type { SendTransactionResponse } from './sendApi';

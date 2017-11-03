@@ -1,7 +1,8 @@
+// @flow
 import { call, put, takeLatest } from 'redux-saga/effects';
-import sendApi from './sendApi';
 import sendActions from './sendActions';
 import sendActionTypes from './sendActionTypes';
+import sendApi from './sendApi';
 
 function* sendTransaction(action) {
   try {
@@ -18,7 +19,7 @@ function* sendTransaction(action) {
   }
 }
 
-function* sendTransactionSaga() {
+function* sendTransactionSaga(): Generator<*, *, *> {
   yield takeLatest(sendActionTypes.SEND_TRANSACTION_REQUESTED, sendTransaction);
 }
 

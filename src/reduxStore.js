@@ -1,17 +1,17 @@
 // @flow
 
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { reducer as formReducer } from 'redux-form';
 import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
+import { loginReducer, loginSagas } from './login';
+import { sidebarReducer } from './sidebar/sidebarReducer';
+import { signupReducer } from './signup';
 
 import { userReducer, userSagas } from './user';
-import { signupReducer } from './signup';
-import { loginReducer, loginSagas } from './login';
 import { walletReducer, walletSagas } from './wallet';
-import { sidebarReducer } from './sidebar/sidebarReducer';
-import { sendSagas } from './wallet/send';
+import { quoteSagas, sendSagas } from './wallet/send';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -40,6 +40,8 @@ const storeEnhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const store = createStore(rootReducer, storeEnhancer);
 
-[userSagas, loginSagas, walletSagas, sendSagas].map(sagaMiddleware.run);
+[userSagas, loginSagas, walletSagas, sendSagas, quoteSagas].map(
+  sagaMiddleware.run,
+);
 
 export default store;
