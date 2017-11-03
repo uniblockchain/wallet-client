@@ -2,53 +2,17 @@
 
 import * as React from 'react';
 import type { MapStateToProps } from 'react-redux';
-import { withStyles } from 'material-ui/styles';
-import { Button, LinearProgress } from 'material-ui';
+import styled from 'styled-components';
+import { LinearProgress } from 'material-ui';
 
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';
 import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
-
-const styles = () => ({
-  addressContainer: {
-    backgroundColor: '#f2f2f2',
-  },
-  addressIntro: {
-    textAlign: 'center',
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#02bda5',
-    // fontFamily: 'Favorit',
-    margin: 16,
-  },
-  address: {
-    // fontFamily: 'Favorit',
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#686868',
-  },
-  tapToCopyRow: {
-    marginTop: 30,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  hero: {
-    paddingTop: 40,
-    paddingBottom: 40,
-    backgroundColor: '#ffffff',
-    // fontFamily: 'CircularStd',
-    fontSize: 36,
-    color: '#00346b',
-    fontWeight: 'bold',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-});
+import { PrimaryButton, Content } from '../../../ui';
 
 type Props = {
-  classes: Object,
   wallets: Array<Wallet>,
   activeWalletId: ?number,
   onCopy: string => void,
@@ -64,48 +28,76 @@ function getActiveWallet(activeId: ?number, wallets: Array<Wallet>): ?Wallet {
   return null;
 }
 
-export class AddressBlock extends React.Component<Props> {
-  render() {
-    const activeId: ?number = this.props.activeWalletId;
-    const { onCopy, classes, wallets } = this.props;
+const StyledContent = styled(Content)`
+  align-items: center;
+  padding: 0 18px 0 18px;
+  h1 {
+    color: ${props => props.theme.altText};
+    margin: 39px 0 36px 0;
+    font-size: 36px;
+  }
+`;
 
-    const wallet: ?Wallet = getActiveWallet(activeId, wallets);
+const AddressBox = styled.div`
+  background-color: ${props => props.theme.background};
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
 
-    if (!wallet) {
-      return (
-        <div>
-          <LinearProgress />
-        </div>
-      );
-    }
+const AddressHeader = styled.h2`
+  padding-top: 13px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #02bda5;
+`;
 
-    const currencyName: string = CurrencyName.get(
-      wallet.currency,
-    ).toUpperCase();
+const Address = styled.h2`
+  font-size: 12px;
+  background-color: white;
+  color: #686868;
+  padding: 10px;
+  border-radius: 6px;
+`;
 
+const CopyButton = styled(PrimaryButton)`
+  font-size: 14px;
+  height: 30px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+`;
+
+export const AddressBlock = ({ onCopy, wallets, activeWalletId }: Props) => {
+  const wallet: ?Wallet = getActiveWallet(activeWalletId, wallets);
+
+  if (!wallet) {
     return (
       <div>
-        <div className={classes.hero}>DEPOSIT {currencyName}</div>
-        <div className={classes.addressContainer}>
-          <div className={classes.addressIntro}>
-            YOUR {currencyName} ADDRESS
-          </div>
-          <div className={classes.address}>{wallet.receiveAddress}</div>
-          <div className={classes.tapToCopyRow}>
-            <Button
-              onClick={() => {
-                onCopy(wallet.receiveAddress);
-              }}
-              raised
-            >
-              TAP TO COPY
-            </Button>
-          </div>
-        </div>
+        <LinearProgress />
       </div>
     );
   }
-}
+
+  const currencyName: string = CurrencyName.get(wallet.currency);
+
+  return (
+    <StyledContent>
+      <h1>Receive {currencyName}</h1>
+      <AddressBox>
+        <AddressHeader>Your {currencyName} address</AddressHeader>
+        <Address>{wallet.receiveAddress}</Address>
+        <div>
+          <CopyButton onClick={() => onCopy(wallet.receiveAddress)}>
+            Tap to copy
+          </CopyButton>
+        </div>
+      </AddressBox>
+    </StyledContent>
+  );
+};
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
@@ -113,6 +105,5 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   onCopy: copy,
 });
 
-const componentWithStyles = withStyles(styles)(AddressBlock);
 const reduxComponent = connect(mapStateToProps);
-export default withWallet(reduxComponent(componentWithStyles));
+export default withWallet(reduxComponent(AddressBlock));
