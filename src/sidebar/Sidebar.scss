@@ -1,6 +1,7 @@
 .sideBarContent {
-  background-color: #0b2b5c;
-  color: white;
+  font-family: CircularPro, Fallback, sans-serif;
+  background-color: #ffffff;
+  color: #19c3ed;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -23,30 +24,47 @@
     border: 0;
   }
 
+  .close {
+    align-self: flex-end;
+    padding: 24px 24px 0 0;
+    i {
+      font-size: 36px;
+      color: #19c3ed;
+    }
+  }
+
   .navigation {
-    margin-top: 92px;
+    margin-top: 32px;
     margin-bottom: 0;
-    padding-left: 32px;
-    font-size: 36px;
-    letter-spacing: -1px;
-    line-height: 1.8;
+    font-size: 30px;
+    padding-left: 0;
+
+    li {
+      padding: 10px 0 10px 32px;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
 
     button {
-      color: white;
+      color: #19c3ed;
     }
   }
 
   .menu {
-    margin-top: 51px;
-    color: #c6f3ff;
+    margin-top: 30px;
     font-size: 24px;
-    letter-spacing: -0.7px;
     padding-left: 32px;
     line-height: 2;
 
+    li {
+      border-bottom: none;
+    }
+
     a,
     button {
-      color: #c6f3ff;
+      color: #a1a1a1;
     }
   }
 }

@@ -46,6 +46,12 @@ export const Sidebar = (props: Props) => {
             ? 'sideBarContent-visible'
             : ''}`}
         >
+          <button
+            className="close"
+            onClick={() => setSidebarState(false, props.path)}
+          >
+            <i className="material-icons">close</i>
+          </button>
           <ul className="navigation">
             {props.menu.map(it => (
               <ListItem key={it.link} link={it.link} text={it.name} />
