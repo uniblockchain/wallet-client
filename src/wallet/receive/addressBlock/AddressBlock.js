@@ -55,6 +55,8 @@ const AddressHeader = styled.h2`
   color: #02bda5;
 `;
 
+AddressHeader.displayName = 'AddressHeader';
+
 const Address = styled.h2`
   font-size: 12px;
   background-color: white;
@@ -63,12 +65,16 @@ const Address = styled.h2`
   border-radius: 6px;
 `;
 
+Address.displayName = 'Address';
+
 const CopyButton = styled(PrimaryButton)`
   font-size: 14px;
   height: 30px;
   margin-top: 4px;
   margin-bottom: 16px;
 `;
+
+CopyButton.displayName = 'CopyButton';
 
 export const AddressBlock = ({ onCopy, wallets, activeWalletId }: Props) => {
   const wallet: ?Wallet = getActiveWallet(activeWalletId, wallets);

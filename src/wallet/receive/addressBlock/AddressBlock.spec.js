@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import { LinearProgress } from 'material-ui';
 import { AddressBlock } from './AddressBlock';
 import type { Wallet } from '../../walletState';
-import { Button, LinearProgress } from 'material-ui';
+import { PrimaryButton } from '../../../ui';
 
 describe('Address block', () => {
   let component;
@@ -26,7 +27,6 @@ describe('Address block', () => {
   };
 
   const props = {
-    classes: {},
     wallets: [sampleWallet],
     activeWalletId: 1,
     onCopy: jest.fn(),
@@ -41,16 +41,17 @@ describe('Address block', () => {
   });
 
   it('renders deposit hero', () => {
-    expect(component.contains(<div>DEPOSIT BITCOIN</div>)).toBe(true);
+    expect(component).toContainReact(<h1>Receive Bitcoin</h1>);
   });
 
   it('renders deposit address intro', () => {
-    expect(component.contains(<div>YOUR BITCOIN ADDRESS</div>)).toBe(true);
+    const header = component.find('AddressHeader');
+    expect(header.render().text()).toBe('Your Bitcoin address');
   });
 
   it('renders copying button', () => {
     expect(props.onCopy).not.toHaveBeenCalled();
-    component.find(Button).simulate('click');
+    component.find('CopyButton').simulate('click');
     expect(props.onCopy).toHaveBeenCalledTimes(1);
   });
 
