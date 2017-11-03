@@ -6,7 +6,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import { loginReducer, loginSagas } from './login';
-import { sidebarReducer } from './sidebar/sidebarReducer';
 import { signupReducer } from './signup';
 
 import { userReducer, userSagas } from './user';
@@ -25,7 +24,6 @@ const rootReducer = combineReducers({
   signup: signupReducer,
   login: loginReducer,
   form: formReducer,
-  sidebar: sidebarReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

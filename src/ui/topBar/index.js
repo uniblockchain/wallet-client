@@ -1,15 +1,12 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import menu from '../../menu';
-import Sidebar from '../../sidebar/Sidebar';
 import { openSidebar } from '../../sidebar/sidebarActions';
 
 type Props = {
   className: string,
-  +sidebarOpen: boolean,
-  +updateSidebarState: boolean => void,
 };
 
 const Left = styled.div`
@@ -24,24 +21,17 @@ const Right = styled.div`
   margin: auto;
 `;
 
-const TopBarWithoutStyles = ({
-  className,
-  updateSidebarState,
-  sidebarOpen,
-}: Props) => {
+const TopBarWithoutStyles = ({ className }: Props) => {
   return (
     <div className={className}>
       <Left>C</Left>
       <Right>
-        <button
-          type="button"
-          className="btn btn-primary bmd-btn-icon"
-          onClick={() => updateSidebarState(true)}
-        >
-          <i className="material-icons">more_horiz</i>
-        </button>
+        <Link to="/sidebar">
+          <button type="button" className="btn btn-primary bmd-btn-icon">
+            <i className="material-icons">more_horiz</i>
+          </button>
+        </Link>
       </Right>
-      <Sidebar menu={menu} open={sidebarOpen} />
     </div>
   );
 };

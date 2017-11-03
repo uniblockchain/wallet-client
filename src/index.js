@@ -21,6 +21,7 @@ import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
 import { Settings } from './settings';
+import { Sidebar } from './sidebar';
 import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
@@ -39,13 +40,13 @@ const animationEnter = keyframes`${slideInRight}`;
 
 const Styled = styled.div`
   &.slide-enter {
-    animation: 200ms ${animationEnter};
+    animation: 300ms ${animationEnter};
   }
 `;
 
 const PublicContent = withRouter(({ location, children }) => (
   <TransitionGroup>
-    <CSSTransition key={location.key} classNames="slide" timeout={200}>
+    <CSSTransition key={location.key} classNames="slide" timeout={300}>
       <Switch location={location}>
         <Styled>{children}</Styled>
       </Switch>
@@ -83,6 +84,19 @@ render(
             <Route path="/card" component={page(Card)} />
             <Route path="/marketplace" component={page(Marketplace)} />
             <Route path="/settings" component={page(Settings)} />
+            <Route path="/sidebar">
+              {({ match }) => (
+                <CSSTransition
+                  in={match && match.isExact}
+                  classNames="slide"
+                  timeout={300}
+                >
+                  <Styled>
+                    <Sidebar />
+                  </Styled>
+                </CSSTransition>
+              )}
+            </Route>
           </Switch>
         </div>
       </ThemeProvider>

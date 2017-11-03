@@ -2,16 +2,10 @@
   font-family: CircularPro, Fallback, sans-serif;
   background-color: #ffffff;
   color: #19c3ed;
-  z-index: 3;
   display: flex;
   flex-direction: column;
-  position: absolute;
   height: 100vh;
-  top: 0;
-  left: 100vw;
-  right: 0;
-  overflow: hidden;
-  transition: left 300ms;
+  width: 100vw;
 
   ul {
     list-style: none;
@@ -62,21 +56,8 @@
       border-bottom: none;
     }
 
-    a,
     button {
       color: #a1a1a1;
     }
   }
-}
-
-.sideBarContent-enter {
-  left: 100vw;
-  transition: left 300ms;
-  .sideBarContent-enter-active {
-    left: 0;
-  }
-}
-
-.sideBarContent-visible {
-  left: 0;
 }
