@@ -41,7 +41,7 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-      - run: NODE_ENV=staging yarn build
+      - run: yarn build
 
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
