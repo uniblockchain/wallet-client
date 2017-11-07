@@ -25,10 +25,8 @@ import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
-import { GreenTheme, Content } from './ui';
-import TopBar from './ui/topBar';
-import BottomNavigation from './ui/bottomNavigation';
-import menu from './menu';
+import pageTemplate from './page';
+import { GreenTheme } from './ui';
 import './index.css';
 
 configuration.initialize();
@@ -52,14 +50,6 @@ const PublicContent = withRouter(({ location, children }) => (
     </CSSTransition>
   </TransitionGroup>
 ));
-
-const pageTemplate = WrappedComponent => props => (
-  <Content>
-    <TopBar />
-    <WrappedComponent {...props} />
-    <BottomNavigation menu={menu} />
-  </Content>
-);
 
 const page = component => requireAuthentication(pageTemplate(component));
 

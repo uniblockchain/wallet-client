@@ -13,6 +13,8 @@ export const Button = styled.button`
   border: 0;
   margin-bottom: 6px;
   font-size: 14px;
+  font-family: FavoritBold;
+  font-weight: bold;
 
   &:hover {
     cursor: pointer;

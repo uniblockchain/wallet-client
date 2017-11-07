@@ -22,9 +22,12 @@ import {
   Tabs,
   Tab,
 } from '../ui';
+import { Modal } from '../ui/modal/Modal';
+import themeDecorator from './themeDecorator';
 
 storiesOf('Structure', module)
   .addDecorator(StoryRouter())
+  .addDecorator(themeDecorator)
   .add('Sidebar', () => (
     <Sidebar
       menu={menu}
@@ -77,5 +80,23 @@ storiesOf('Structure', module)
         <Tab value="eth">Ether</Tab>
         <Tab value="ltc">Litecoin</Tab>
       </Tabs>
+    );
+  })
+  .add('Modal', () => {
+    const options = {
+      Confirmation: 'Confirmation',
+      Prompt: 'Prompt',
+    };
+    return (
+      <Modal
+        title="Primary Wallet"
+        visible
+        description="Set the cryptocurrency you want to use when making card payments"
+        type={select('Type', options)}
+        onConfirm={action('confirm')}
+        onCancel={action('cancel')}
+      >
+        Some content here
+      </Modal>
     );
   });
