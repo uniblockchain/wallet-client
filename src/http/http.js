@@ -6,7 +6,7 @@ const TOKEN_STORAGE_KEY = 'accessToken';
 
 function transformResponse(response) {
   if (response.ok && response.status < 400) {
-    return response.json();
+    return response.json().catch(() => Promise.resolve());
   } else if (response.status >= 400) {
     // hax
     if (response.status === 401 && window.localStorage && window.location) {

@@ -1,7 +1,10 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-import { WrappedContent, Header, SubHeader, PrimaryButton } from '../ui';
+import { connect } from 'react-redux';
+import { pageActions } from '../page';
+import { WrappedContent, Header, SubHeader, PrimaryButton, Modal } from '../ui';
+import cardInterestApi from './cardInterestApi';
 import plastic from './img/plastic.png';
 
 const StyledContent = styled(WrappedContent)`
@@ -34,17 +37,36 @@ const Plastic = styled.img.attrs({
   margin-bottom: 3vh;
 `;
 
-export const Card = () => (
-  <div>
-    <StyledContent>
-      <StyledHeader>Get your Change card.</StyledHeader>
-      <StyledSubHeader>
-        Start spending your Bitcoin & other cryptocurrencies.
-      </StyledSubHeader>
-      <OrderButton>Order Card</OrderButton>
-      <Plastic />
-    </StyledContent>
-  </div>
-);
+type Props = {
+  showModal: boolean => void,
+};
 
-export default Card;
+export const Card = (props: Props) => {
+  const handleClick = () => {
+    cardInterestApi.registerInterest().then(() => props.showModal(true));
+  };
+  const handleConfirm = () => {
+    props.showModal(false);
+  };
+  return (
+    <div>
+      <StyledContent>
+        <StyledHeader>Change Card is coming.</StyledHeader>
+        <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
+        <OrderButton onClick={handleClick}>Notify me</OrderButton>
+        <Plastic />
+      </StyledContent>
+      <Modal
+        title="Thanks!"
+        description="We will let you know when we open registration."
+        onConfirm={handleConfirm}
+      />
+    </div>
+  );
+};
+
+const mapDispatchToProps = {
+  showModal: pageActions.showModal,
+};
+
+export default connect(null, mapDispatchToProps)(Card);

@@ -6,7 +6,9 @@ import { Card } from './Card';
 describe('Card component', () => {
   let component;
 
-  const props = {};
+  const props = {
+    showModal: jest.fn(),
+  };
 
   beforeEach(() => {
     component = shallow(<Card {...props} />);
