@@ -1769,14 +1769,6 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap-material-design@^4.0.0-beta.4:
-  version "4.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/bootstrap-material-design/-/bootstrap-material-design-4.0.0-beta.4.tgz#2e55e59c2574839d6fa1ffc63244afc28f2578dc"
-
-bootstrap@^4.0.0-beta.2:
-  version "4.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-beta.2.tgz#4d67d2aa2219f062cd90bc1247e6747b9e8fd051"
-
 bowser@^1.0.0, bowser@^1.7.3:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.8.1.tgz#49785777e7302febadb1a5b71d9a646520ed310d"
@@ -2068,6 +2060,10 @@ chalk@^2.2.0:
     ansi-styles "^3.1.0"
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
+
+change-bootstrap@ChangeFinance/change-bootstrap:
+  version "4.0.0-beta.4"
+  resolved "https://codeload.github.com/ChangeFinance/change-bootstrap/tar.gz/1e5b99b16b8046d4625f9071a585b366b754c717"
 
 change-emitter@^0.1.2:
   version "0.1.6"

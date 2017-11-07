@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import type { MapStateToProps } from 'react-redux';
-import { WrappedContent, Top, Bottom, Button, PrimaryButton } from './ui';
+import { WrappedContent, Top, Bottom, Button, PrimaryButton, Link } from './ui';
 
 const StyledContent = WrappedContent.extend`
   background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
@@ -13,10 +13,10 @@ const StyledContent = WrappedContent.extend`
 
 const Header = styled.h1`
   font-size: 42px;
-  font-weight: bold;
   line-height: 1.05;
   letter-spacing: -0.9px;
   color: white;
+  margin-top: 10px;
 `;
 
 const SubHeader = styled.h2`
@@ -25,6 +25,7 @@ const SubHeader = styled.h2`
   line-height: 1.25;
   letter-spacing: -0.5px;
   color: #00346b;
+  margin-top: 20px;
 `;
 
 const LoginButton = styled(Button)`
@@ -48,7 +49,7 @@ export const App = ({ authenticated }: Props) => {
     <StyledContent>
       <Top>
         <Header>Change is a free digital wallet.</Header>
-        <SubHeader>Send money and buy things. Safely.</SubHeader>
+        <SubHeader>Get started with cryptocurrencies. Easily.</SubHeader>
       </Top>
       <Bottom>
         <Link to="/signup">

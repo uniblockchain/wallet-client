@@ -64,7 +64,7 @@ export const SendForm = ({
     <WrappedContent>
       <Top>
         <Header>Send {currencyName}</Header>
-        <Form id="sendForm" onSubmit={handleSubmit}>
+        <Form id="sendForm" onSubmit={handleSubmit} className="mt-5">
           <FormGroup>
             <Label htmlFor="sendToAddress">Send to</Label>
             <Field

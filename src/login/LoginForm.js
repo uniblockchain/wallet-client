@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import { Field, reduxForm, type FormProps } from 'redux-form';
-import { Link } from 'react-router-dom';
 import {
   WrappedContent,
   Top,
@@ -10,6 +9,7 @@ import {
   Label,
   Input,
   Button,
+  Link,
   PrimaryButton,
   Form,
   FormGroup,
@@ -38,9 +38,12 @@ export const LoginForm = (props: FormProps) => {
   return (
     <WrappedContent>
       <Top>
-        <Header>Welcome back.</Header>
-        <Header>Please log in.</Header>
-        <Form id="loginForm" onSubmit={handleSubmit}>
+        <Header>
+          Welcome back.
+          <br />
+          Please log in.
+        </Header>
+        <Form id="loginForm" onSubmit={handleSubmit} className="mt-5">
           <FormGroup>
             <Label htmlFor="emailAddress">Email address</Label>
             <Field name="emailAddress" component={EmailAddress} />

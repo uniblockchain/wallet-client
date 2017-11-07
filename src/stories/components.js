@@ -3,8 +3,7 @@ import React from 'react';
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
+import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 import '../index.css';
 import { AddressBlock } from '../wallet/receive/addressBlock/AddressBlock';
 import type { Wallet } from '../wallet/walletState';

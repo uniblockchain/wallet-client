@@ -26,7 +26,7 @@
 }
 
 body {
-  font-family: Usual, Fallback, sans-serif;
+  font-family: Favorit, Fallback, sans-serif;
   font-size: 16px;
 }
 
@@ -36,6 +36,8 @@ h1 {
 }
 
 h2 {
-  font-family: Favorit, Fallback, sans-serif;
+  font-family: Usual, Fallback, sans-serif; // should be UsualLight
   font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
 }

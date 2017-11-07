@@ -1,8 +1,15 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import { WrappedContent, Top, Bottom, PrimaryButton, Button } from '../ui';
+import { Redirect } from 'react-router-dom';
+import {
+  WrappedContent,
+  Top,
+  Bottom,
+  PrimaryButton,
+  Button,
+  Link,
+} from '../ui';
 import userActions from '../user/userActions';
 import { type UserCreationRequest } from '../user/userActionTypes';
 import EmailPage from './EmailPage';

@@ -4,8 +4,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
+import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 import '../index.css';
 import themeDecorator from './themeDecorator';
 

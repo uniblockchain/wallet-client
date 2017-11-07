@@ -1,5 +1,6 @@
 // @flow
 import styled from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const Button = styled.button`
   display: ${props => (props.inline ? 'inline' : 'block')};
@@ -10,23 +11,27 @@ export const Button = styled.button`
   background-color: #ffffff;
   color: #a1a1a1;
   border: 0;
-  margin-bottom: 0.3125rem;
-  font-size: 16px;
-  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 14px;
 
-  a {
-    color: #a1a1a1;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const Link = styled(RouterLink)`
+  color: inherit;
+  &:hover {
+    text-decoration: none;
   }
 `;
 
 export const PrimaryButton = Button.extend`
   color: white;
   background-color: ${props => props.theme.text};
+  box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
   text-transform: uppercase;
-
-  a {
-    color: white;
-  }
+  font-size: 16px;
 `;
 
 export default { Button, PrimaryButton };

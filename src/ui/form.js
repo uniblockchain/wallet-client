@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const Label = styled.label`
-  margin-top: 40px;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;

@@ -8,8 +8,7 @@ import styled, { keyframes, ThemeProvider } from 'styled-components';
 import { slideInRight } from 'react-animations';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, withRouter } from 'react-router';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
+import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
 import { history, store } from './reduxStore';
 import App from './App';

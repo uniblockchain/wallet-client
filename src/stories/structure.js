@@ -1,13 +1,12 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 // @flow
 import React from 'react';
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import { ThemeProvider } from 'styled-components';
 import StoryRouter from 'storybook-router';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-material-design/dist/css/bootstrap-material-design.css';
+import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 import '../index.css';
 import menu from '../menu/index';
 import { Sidebar } from '../sidebar/Sidebar';

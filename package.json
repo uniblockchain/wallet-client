@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.2",
-    "bootstrap-material-design": "^4.0.0-beta.4",
+    "change-bootstrap": "ChangeFinance/change-bootstrap",
     "chart.js": "^2.7.0",
     "copy-to-clipboard": "^3.0.8",
     "currency-symbol-map": "^4.0.3",

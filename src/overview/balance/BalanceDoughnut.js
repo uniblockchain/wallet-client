@@ -65,40 +65,43 @@ export class BalanceDoughnut extends Component<Props> {
     };
   }
 
-  options = {
-    circumference: 21 / 12 * Math.PI,
-    rotation: 3 / 24 * Math.PI,
-    cutoutPercentage: 60,
-    legend: {
-      display: true,
-      position: 'bottom',
-    },
-    tooltips: {
-      callbacks: {
-        label(tooltipItem: Object, data: Object) {
-          const wallet: WalletType = data.wallets[tooltipItem.index];
-          const walletValue = walletCurrencyValueResolver.resolve(
-            wallet.balance,
-            wallet.currency,
-          );
-          return `${walletValue} ${wallet.currency}`;
+  getOptions() {
+    const { wallets } = this.props;
+
+    return {
+      circumference: 21 / 12 * Math.PI,
+      rotation: 3 / 24 * Math.PI,
+      cutoutPercentage: 60,
+      legend: {
+        display: wallets.length > 1,
+        position: 'bottom',
+      },
+      tooltips: {
+        callbacks: {
+          label(tooltipItem: Object, data: Object) {
+            const wallet: WalletType = data.wallets[tooltipItem.index];
+            const walletValue = walletCurrencyValueResolver.resolve(
+              wallet.balance,
+              wallet.currency,
+            );
+            return `${walletValue} ${wallet.currency}`;
+          },
         },
       },
-    },
-    onClick: () => {
-      (this.chart || {}).chart_instance.options.legend.display ^= 1; // toggle boolean
-      (this.chart || {}).chart_instance.update();
-    },
-  };
+      onClick: () => {
+        (this.chart || {}).chart_instance.options.legend.display ^= 1; // toggle boolean
+        (this.chart || {}).chart_instance.update();
+      },
+    };
+  }
 
   chart = {};
 
   render() {
-    const data = this.getData();
     return (
       <Doughnut
-        data={data}
-        options={this.options}
+        data={this.getData()}
+        options={this.getOptions()}
         ref={chart => {
           this.chart = chart;
         }}
