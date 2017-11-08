@@ -7,7 +7,7 @@ import {
   Top,
   Bottom,
   PrimaryButton,
-  Button,
+  LinkButton,
   Link,
 } from '../ui';
 import userActions from '../user/userActions';
@@ -63,7 +63,7 @@ export class Signup extends Component<Props, State> {
         <Bottom>
           <PrimaryButton onClick={this.handleNext}>Next</PrimaryButton>
           <Link to="/">
-            <Button>Cancel</Button>
+            <LinkButton>Cancel</LinkButton>
           </Link>
         </Bottom>
       </WrappedContent>

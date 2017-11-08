@@ -8,7 +8,7 @@ import {
   Header,
   Label,
   Input,
-  Button,
+  LinkButton,
   Link,
   PrimaryButton,
   Form,
@@ -59,7 +59,7 @@ export const LoginForm = (props: FormProps) => {
           Log In
         </PrimaryButton>
         <Link to="/">
-          <Button>Cancel</Button>
+          <LinkButton>Cancel</LinkButton>
         </Link>
       </Bottom>
     </WrappedContent>

@@ -28,11 +28,6 @@ const SubHeader = styled.h2`
   margin-top: 20px;
 `;
 
-const LoginButton = styled(Button)`
-  color: #02bda5;
-  text-transform: uppercase;
-`;
-
 const SignupButton = styled(PrimaryButton)`
   background-color: #00346b;
 `;
@@ -56,7 +51,7 @@ export const App = ({ authenticated }: Props) => {
           <SignupButton>Sign up</SignupButton>
         </Link>
         <Link to="/login">
-          <LoginButton>Log in</LoginButton>
+          <Button>Log in</Button>
         </Link>
       </Bottom>
     </StyledContent>

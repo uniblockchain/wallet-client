@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 import type { WalletType } from '..';
 import {
-  Button,
+  LinkButton,
   Col,
   Form,
   FormGroup,
@@ -110,7 +110,7 @@ export const SendForm = ({
               Send
             </PrimaryButton>
             <Link to="/wallet">
-              <Button>Cancel</Button>
+              <LinkButton>Cancel</LinkButton>
             </Link>
           </FormGroup>
         </Form>

@@ -9,12 +9,11 @@ export const Button = styled.button`
   height: 44px;
   border-radius: 49px;
   background-color: #ffffff;
-  color: #a1a1a1;
+  color: #02bda5;
   border: 0;
   margin-bottom: 6px;
-  font-size: 14px;
-  font-family: FavoritBold;
-  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
 
   &:hover {
     cursor: pointer;
@@ -33,7 +32,12 @@ export const PrimaryButton = Button.extend`
   background-color: ${props => props.theme.text};
   box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
   text-transform: uppercase;
-  font-size: 16px;
 `;
 
-export default { Button, PrimaryButton };
+export const LinkButton = Button.extend`
+  color: #a1a1a1;
+  font-size: 14px;
+  text-transform: none;
+`;
+
+export default { Button, PrimaryButton, Link };
