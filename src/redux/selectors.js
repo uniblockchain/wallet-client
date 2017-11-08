@@ -2,7 +2,7 @@
 import { createSelector } from 'reselect';
 import type { Wallet } from '../wallet';
 
-const getActiveWalletId = state => state.activeWalletId;
+const getActiveWalletId = state => state.wallet.activeId;
 
 const getWallets = state => state.wallet.wallets;
 
