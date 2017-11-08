@@ -28,6 +28,17 @@ describe('Transaction component', () => {
     ],
   };
 
+  const currentWalletTransactionEntry2: TransactionEntry = {
+    currentWallet: true,
+    address: 'an address',
+    value: [
+      {
+        currency: 'EUR',
+        value: sampleValue,
+      },
+    ],
+  };
+
   const outsidePartyWalletTransactionEntry: TransactionEntry = {
     currentWallet: false,
     address: 'an other address',
@@ -45,6 +56,7 @@ describe('Transaction component', () => {
     date: new Date(),
     entries: [
       currentWalletTransactionEntry,
+      currentWalletTransactionEntry2,
       outsidePartyWalletTransactionEntry,
     ],
   };
@@ -62,14 +74,16 @@ describe('Transaction component', () => {
     expect(component);
   });
 
-  it('renders each transaction', () => {
+  it('renders the transaction, summarizing current wallet entries', () => {
     expect(component.contains(outsidePartyWalletTransactionEntry.address)).toBe(
       true,
     );
     expect(
       component.contains(<DateDisplay date={sampleTransaction.date} />),
     ).toBe(true);
-    expect(component.contains(<FiatValue value={sampleValue} />)).toBe(true);
+    expect(
+      component.contains(<FiatValue value={sampleValue + sampleValue} />),
+    ).toBe(true);
     expect(component.contains('complete')).toBe(true);
   });
 });

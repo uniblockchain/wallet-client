@@ -50,12 +50,17 @@ type Props = {
   transaction: TransactionType,
 };
 
-function getCurrentWalletTransactionEntry(
+function getCurrentWalletTransactionSum(
   transactionEntries: Array<TransactionEntry>,
-): ?TransactionEntry {
-  return transactionEntries.find(
-    (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
-  );
+): ?number {
+  return transactionEntries
+    .filter(
+      (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
+    )
+    .map((transactionEntry: TransactionEntry) =>
+      walletCurrencyValueResolver.resolve(transactionEntry.value),
+    )
+    .reduce((sum, value) => sum + value, 0);
 }
 
 function getExternalPartyTransactionEntry(
@@ -72,11 +77,7 @@ export class Transaction extends Component<Props> {
 
     const { address } =
       getExternalPartyTransactionEntry(transaction.entries) || {};
-    const currentWalletTransactionEntry =
-      getCurrentWalletTransactionEntry(transaction.entries) || {};
-    const amount = walletCurrencyValueResolver.resolve(
-      currentWalletTransactionEntry.value,
-    );
+    const amount = getCurrentWalletTransactionSum(transaction.entries) || 0;
 
     return (
       <div className={classes.root}>
