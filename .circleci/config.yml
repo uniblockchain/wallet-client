@@ -44,6 +44,7 @@ jobs:
           - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-node8-dependencies-
+      - run: yarn install
       - run: yarn build
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
@@ -64,6 +65,7 @@ jobs:
           - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-node8-dependencies-
+      - run: yarn install
       - run:
           name: Build production
           command: yarn build
