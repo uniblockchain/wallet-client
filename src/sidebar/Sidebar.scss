@@ -16,6 +16,9 @@
     background-color: inherit;
     padding: 0;
     border: 0;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .close {
@@ -25,6 +28,7 @@
       font-size: 36px;
       color: #19c3ed;
     }
+    opacity: 1;
   }
 
   .navigation {
@@ -43,6 +47,9 @@
 
     a {
       color: #19c3ed;
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 
@@ -58,6 +65,9 @@
 
     a {
       color: #a1a1a1;
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }

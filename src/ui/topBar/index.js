@@ -19,20 +19,22 @@ const Right = styled.div`
   margin: auto;
 `;
 
-const TopBarWithoutStyles = ({ className }: Props) => {
-  return (
-    <div className={className}>
-      <Left>C</Left>
-      <Right>
-        <Link to="/sidebar">
-          <button type="button" className="btn btn-primary bmd-btn-icon">
-            <i className="material-icons">more_horiz</i>
-          </button>
-        </Link>
-      </Right>
-    </div>
-  );
-};
+const Icon = styled.i`
+  color: #54ccde;
+`;
+
+const TopBarWithoutStyles = ({ className }: Props) => (
+  <div className={className}>
+    <Left>C</Left>
+    <Right>
+      <Link to="/sidebar">
+        <button type="button" className="btn btn-primary bmd-btn-icon">
+          <Icon className="material-icons">more_horiz</Icon>
+        </button>
+      </Link>
+    </Right>
+  </div>
+);
 
 export const TopBar = styled(TopBarWithoutStyles)`
   display: flex;

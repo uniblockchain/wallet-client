@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Doughnut, Chart } from 'react-chartjs-2';
 import type { MapStateToProps } from 'react-redux';
+import styled from 'styled-components';
 
 import walletCurrencyValueResolver from '../../wallet/walletCurrencyValueResolver';
 import type { Wallet } from '../../wallet/walletState';
@@ -74,6 +75,8 @@ export class BalanceDoughnut extends Component<Props> {
     const { wallets } = this.props;
     const totalBalance = this.getTotalBalance(wallets);
     return {
+      responsive: true,
+      maintainAspectRatio: false,
       circumference: 21 / 12 * Math.PI,
       rotation: 3 / 24 * Math.PI,
       cutoutPercentage: 60,
@@ -117,14 +120,19 @@ export class BalanceDoughnut extends Component<Props> {
   chart = {};
 
   render() {
+    const DoughnutContainer = styled.div`
+      height: 30vh;
+    `;
     return (
-      <Doughnut
-        data={this.getData()}
-        options={this.getOptions()}
-        ref={chart => {
-          this.chart = chart;
-        }}
-      />
+      <DoughnutContainer>
+        <Doughnut
+          data={this.getData()}
+          options={this.getOptions()}
+          ref={chart => {
+            this.chart = chart;
+          }}
+        />
+      </DoughnutContainer>
     );
   }
 }
