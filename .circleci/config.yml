@@ -2,30 +2,24 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+defaults: &defaults
+  working_directory: ~/wallet-client
+  docker:
+    - image: circleci/node:8
+  steps:
+    - checkout
+
+    # Download and cache dependencies
+    - restore_cache:
+        keys:
+        - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-node8-dependencies-
+
 version: 2
 jobs:
   build-job:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/wallet-client
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-node8-dependencies-
-
+    <<: *defaults
       - run: yarn install
 
       - save_cache:
@@ -40,31 +34,36 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
-  deploy-job:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8
 
-    working_directory: ~/wallet-client
+      - persist_to_workspace:
+        # Must be an absolute path, or relative path from working_directory
+        root: workspace
 
+  deploy-staging:
+    <<: *defaults
     steps:
       - run: yarn build
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
-
       - deploy:
-          name: Deploy to S3 if tests pass and branch is Master
+          name: Deploy to S3 staging
           command: |
             aws s3 sync build/ s3://aws-website-wallet-client-hip4q --delete
             aws configure set preview.cloudfront true
             aws cloudfront create-invalidation --distribution-id E1IGDSJ2O1604X --paths "/*"
+
+  deploy-production:
+    <<: *defaults
+    steps:
       - run:
           name: Build production
           command: yarn build
           environment:
             REACT_APP_ENV: production
+      - run: 'sudo apt install python-pip python-dev'
+      - run: 'sudo pip install awscli'
       - deploy:
-          name: Deploy to S3 production if tests pass and branch is Master
+          name: Deploy to S3 production
           command: |
             aws s3 sync build/ s3://change-wallet-client --delete
             aws configure set preview.cloudfront true
@@ -75,7 +74,13 @@ workflows:
   build-deploy:
     jobs:
       - build-job
-      - deploy-job:
+      - deploy-staging:
+          requires:
+            - build-job
+          filters:
+            branches:
+              only: master
+      - deploy-production:
           requires:
             - build-job
           filters:
