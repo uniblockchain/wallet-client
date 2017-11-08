@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  build-job:
     docker:
       # specify the version you desire here
       - image: circleci/node:8
@@ -40,22 +40,24 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
+  deploy-job:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8
 
+    working_directory: ~/wallet-client
+
+    steps:
       - run: yarn build
-
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
 
       - deploy:
           name: Deploy to S3 if tests pass and branch is Master
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws s3 sync build/ s3://aws-website-wallet-client-hip4q --delete
-              aws configure set preview.cloudfront true
-              aws cloudfront create-invalidation --distribution-id E1IGDSJ2O1604X --paths "/*"
-            else
-              echo "Not master branch so not deploying"
-            fi
+            aws s3 sync build/ s3://aws-website-wallet-client-hip4q --delete
+            aws configure set preview.cloudfront true
+            aws cloudfront create-invalidation --distribution-id E1IGDSJ2O1604X --paths "/*"
       - run:
           name: Build production
           command: yarn build
@@ -64,10 +66,18 @@ jobs:
       - deploy:
           name: Deploy to S3 production if tests pass and branch is Master
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              aws s3 sync build/ s3://change-wallet-client --delete
-              aws configure set preview.cloudfront true
-              aws cloudfront create-invalidation --distribution-id E2CH23YWJE7QP1 --paths "/*"
-            else
-              echo "Not master branch so not deploying"
-            fi
+            aws s3 sync build/ s3://change-wallet-client --delete
+            aws configure set preview.cloudfront true
+            aws cloudfront create-invalidation --distribution-id E2CH23YWJE7QP1 --paths "/*"
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-job
+      - deploy-job:
+          requires:
+            - build-job
+          filters:
+            branches:
+              only: master
