@@ -14,6 +14,12 @@ const pageReducer = (
         showModal: action.showModal,
       };
 
+    case pageAction.SHOW_PROGRESS:
+      return {
+        ...state,
+        showProgress: action.showProgress,
+      };
+
     default:
       return state;
   }

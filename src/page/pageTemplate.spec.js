@@ -12,6 +12,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import pageTemplate from './pageTemplate';
 import BottomNavigation from '../ui/bottomNavigation';
 import TopBar from '../ui/topBar';
+import { Progress } from '../ui';
 
 describe('pageTemplate higher-order component', () => {
   let component;
@@ -25,7 +26,7 @@ describe('pageTemplate higher-order component', () => {
   const WrappedFakedComponent = pageTemplate(FakeComponent);
 
   beforeEach(() => {
-    fakeStateGetter = () => ({ blur: false });
+    fakeStateGetter = () => ({ showModal: false, showProgress: true });
     fakeReducer = jest.fn(() => fakeStateGetter());
     store = createStore(
       combineReducers({ page: fakeReducer, router: routerReducer }),
@@ -51,5 +52,9 @@ describe('pageTemplate higher-order component', () => {
 
   it('renders TopBar component', () => {
     expect(component.find(TopBar).length).toBe(1);
+  });
+
+  it('renders progress', () => {
+    expect(component.find(Progress)).toHaveLength(1);
   });
 });

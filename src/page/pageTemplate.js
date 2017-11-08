@@ -6,11 +6,12 @@ import { keyframes } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import TopBar from '../ui/topBar';
 import BottomNavigation from '../ui/bottomNavigation';
-import { Content } from '../ui';
+import { Content, Progress } from '../ui';
 import menu from '../menu';
 
 type Props = {
   blur: boolean,
+  progress: boolean,
 };
 
 const blurInAnimation = keyframes`
@@ -48,12 +49,14 @@ const StyledContent = Content.extend`
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   blur: !!state.page.showModal,
+  progress: !!state.page.showProgress,
 });
 
 export const pageTemplate = (WrappedComponent: *) => {
   const page = (props: Props) => (
     <CSSTransition in={props.blur} classNames="blur" timeout={200}>
       <StyledContent className={props.blur ? 'blur' : ''}>
+        {props.progress && <Progress />}
         <TopBar />
         <WrappedComponent {...props} />
         <BottomNavigation menu={menu} />

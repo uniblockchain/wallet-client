@@ -25,7 +25,7 @@ import { unregister } from './registerServiceWorker';
 import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
-import pageTemplate from './page';
+import { pageTemplate } from './page';
 import { DefaultTheme } from './ui';
 import './index.css';
 

@@ -5,6 +5,7 @@ import * as text from './text';
 import * as form from './form';
 import * as theme from './theme';
 import * as tabs from './tabs';
+import * as progress from './progress';
 import Modal from './modal';
 
 export * from './buttons';
@@ -13,6 +14,7 @@ export * from './text';
 export * from './form';
 export * from './theme';
 export * from './tabs';
+export * from './progress';
 export { default as Modal } from './modal';
 
 export default {
@@ -22,5 +24,6 @@ export default {
   ...form,
   ...theme,
   ...tabs,
+  ...progress,
   Modal,
 };
