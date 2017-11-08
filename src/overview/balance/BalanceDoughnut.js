@@ -7,11 +7,11 @@ import { Doughnut, Chart } from 'react-chartjs-2';
 import type { MapStateToProps } from 'react-redux';
 
 import walletCurrencyValueResolver from '../../wallet/walletCurrencyValueResolver';
-import type { Wallet as WalletType } from '../../wallet/walletState';
+import type { Wallet } from '../../wallet/walletState';
 import withWallet from '../../wallet/withWallet';
 
 type Props = {
-  wallets: Array<WalletType>,
+  wallets: Array<Wallet>,
 };
 
 // Ugly AF, but it works.
@@ -65,7 +65,7 @@ export class BalanceDoughnut extends Component<Props> {
           borderWidth: [0, 0, 0],
         },
       ],
-      labels: wallets.map((wallet: WalletType) => wallet.currency),
+      labels: wallets.map((wallet: Wallet) => wallet.currency),
       wallets,
     };
   }
@@ -84,7 +84,7 @@ export class BalanceDoughnut extends Component<Props> {
       tooltips: {
         callbacks: {
           label(tooltipItem: Object, data: Object) {
-            const wallet: WalletType = data.wallets[tooltipItem.index];
+            const wallet: Wallet = data.wallets[tooltipItem.index];
             const walletValue = walletCurrencyValueResolver.resolve(
               wallet.balance,
               wallet.currency,
@@ -100,13 +100,13 @@ export class BalanceDoughnut extends Component<Props> {
     };
   }
 
-  getBalances(wallets) {
-    return wallets.map((wallet: WalletType) =>
+  getBalances(wallets: Array<Wallet>) {
+    return wallets.map((wallet: Wallet) =>
       walletCurrencyValueResolver.resolve(wallet.balance),
     );
   }
 
-  getTotalBalance(wallets) {
+  getTotalBalance(wallets: Array<Wallet>) {
     const walletBalances = this.getBalances(wallets);
     return walletBalances.reduce(
       (balance1, balance2) => balance1 + balance2,
