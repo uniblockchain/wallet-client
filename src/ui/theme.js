@@ -1,20 +1,16 @@
 // @flow
 export type Theme = {
   background: string,
+  altBackground: string,
   text: string,
   altText: string,
 };
 
-export const BlueTheme: Theme = {
-  background: '#c6f3ff',
-  text: '#083b70',
-  altText: '#02bda5',
-};
-
-export const GreenTheme: Theme = {
+export const DefaultTheme: Theme = {
   background: '#e5f9f3',
+  altBackground: '#c6f3ff',
   text: '#02bda5',
   altText: '#083b70',
 };
 
-export default { GreenTheme, BlueTheme };
+export default { DefaultTheme };

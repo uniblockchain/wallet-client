@@ -26,7 +26,7 @@ import tracker from './tracker';
 import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
 import pageTemplate from './page';
-import { GreenTheme } from './ui';
+import { DefaultTheme } from './ui';
 import './index.css';
 
 configuration.initialize();
@@ -56,7 +56,7 @@ const page = component => requireAuthentication(pageTemplate(component));
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
-      <ThemeProvider theme={GreenTheme}>
+      <ThemeProvider theme={DefaultTheme}>
         <div>
           <PublicContent>
             <Route exact path="/" component={App} />

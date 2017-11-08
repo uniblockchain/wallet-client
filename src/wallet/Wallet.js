@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Card, PrimaryButton } from '../ui';
+import { Card, PrimaryButton, Link } from '../ui';
 import CurrencyTabs from './currencyTabs';
 import withWallet from './withWallet';
 

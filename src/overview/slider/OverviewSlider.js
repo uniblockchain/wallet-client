@@ -1,8 +1,7 @@
 // @flow
 
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { Header, PrimaryButton, BlueTheme } from '../../ui';
+import { Header, PrimaryButton, Link, Paragraph } from '../../ui';
 
 import { Slider, Slide } from '../../ui/slider';
 import withWallet from '../../wallet/withWallet';
@@ -12,24 +11,27 @@ export const OverviewSlider = () => (
     <div>
       <Slide>
         <Header>Congratulations</Header>
-        <p>Your account is now ready</p>
-        <PrimaryButton>Cool, what next</PrimaryButton>
+        <Paragraph>Your account is now ready</Paragraph>
       </Slide>
     </div>
     <div>
-      <ThemeProvider theme={BlueTheme}>
-        <Slide>
-          <Header>Order your card</Header>
-          <p>Make everyday purchases with Bitcoin and other cryptocurrencies</p>
-          <PrimaryButton>Order here</PrimaryButton>
-        </Slide>
-      </ThemeProvider>
+      <Slide>
+        <Header>Order your card</Header>
+        <Paragraph>
+          Make everyday purchases with Bitcoin and other cryptocurrencies
+        </Paragraph>
+        <PrimaryButton>
+          <Link to="/card">Order here</Link>
+        </PrimaryButton>
+      </Slide>
     </div>
     <div>
-      <Slide>
-        <Header>Deposit funds</Header>
-        <p>Start by depositing Bitcoin to your account</p>
-        <PrimaryButton>Learn more</PrimaryButton>
+      <Slide alt>
+        <Header alt>Deposit funds</Header>
+        <Paragraph alt>Start by depositing Bitcoin to your account</Paragraph>
+        <PrimaryButton alt>
+          <Link to="/receive">Learn more</Link>
+        </PrimaryButton>
       </Slide>
     </div>
   </Slider>

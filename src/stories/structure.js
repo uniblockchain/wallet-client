@@ -4,7 +4,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
-import { ThemeProvider } from 'styled-components';
 import StoryRouter from 'storybook-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 import '../index.css';
@@ -12,16 +11,7 @@ import menu from '../menu/index';
 import { Sidebar } from '../sidebar/Sidebar';
 import { BottomNavigation } from '../ui/bottomNavigation/BottomNavigation';
 import { Slide, Slider } from '../ui/slider';
-import {
-  Header,
-  PrimaryButton,
-  BlueTheme,
-  GreenTheme,
-  Content,
-  Paragraph,
-  Tabs,
-  Tab,
-} from '../ui';
+import { Header, PrimaryButton, Content, Paragraph, Tabs, Tab } from '../ui';
 import { Modal } from '../ui/modal/Modal';
 import themeDecorator from './themeDecorator';
 
@@ -48,22 +38,18 @@ storiesOf('Structure', module)
     <Content>
       <Slider>
         <div>
-          <ThemeProvider theme={GreenTheme}>
-            <Slide>
-              <Header>First slide</Header>
-              <Paragraph>This is a test text on first slide</Paragraph>
-              <PrimaryButton>Action</PrimaryButton>
-            </Slide>
-          </ThemeProvider>
+          <Slide>
+            <Header>First slide</Header>
+            <Paragraph>This is a test text on first slide</Paragraph>
+            <PrimaryButton>Action</PrimaryButton>
+          </Slide>
         </div>
         <div>
-          <ThemeProvider theme={BlueTheme}>
-            <Slide>
-              <Header>Second slide</Header>
-              <Paragraph>This is a test text on second slide</Paragraph>
-              <PrimaryButton>Action</PrimaryButton>
-            </Slide>
-          </ThemeProvider>
+          <Slide alt>
+            <Header alt>Second slide</Header>
+            <Paragraph alt>This is a test text on second slide</Paragraph>
+            <PrimaryButton alt>Action</PrimaryButton>
+          </Slide>
         </div>
       </Slider>
     </Content>

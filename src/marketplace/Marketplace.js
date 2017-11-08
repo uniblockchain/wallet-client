@@ -15,7 +15,6 @@ const StyledHeader = styled(Header)`
   line-height: 1.05;
   letter-spacing: -0.9px;
   text-align: center;
-  color: #00346b;
 `;
 
 const StyledSubHeader = styled(SubHeader)`
@@ -53,13 +52,12 @@ const Skyline = styled.img.attrs({
   alt: 'Skyline',
 })`
   width: 100vw;
-  height: ;
 `;
 
 export const Marketplace = () => (
   <div>
     <DivWithGradient>
-      <StyledHeader>Marketplace</StyledHeader>
+      <StyledHeader alt>Marketplace</StyledHeader>
       <StyledSubHeader>
         All the innovation in fintech right at your fingertips. Launching Q1
         2018.

@@ -37,6 +37,7 @@ storiesOf('Form', module)
         Normal button
       </Button>
       <PrimaryButton
+        alt={boolean('Alternative', false)}
         inline={boolean('Inline', false)}
         onClick={action('clicked')}
       >

@@ -38,7 +38,7 @@ export const LoginForm = (props: FormProps) => {
   return (
     <WrappedContent>
       <Top>
-        <Header>
+        <Header alt>
           Welcome back.
           <br />
           Please log in.
