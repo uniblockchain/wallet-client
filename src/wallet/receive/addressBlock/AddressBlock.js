@@ -10,23 +10,13 @@ import { connect } from 'react-redux';
 import type { Wallet } from '../../walletState';
 import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
+import { getActiveWallet } from '../../../redux/selectors';
 import { PrimaryButton, Content } from '../../../ui';
 
 type Props = {
-  wallets: Array<Wallet>,
-  activeWalletId: ?number,
+  wallet: ?Wallet,
   onCopy: string => void,
 };
-
-function getActiveWallet(activeId: ?number, wallets: Array<Wallet>): ?Wallet {
-  if (wallets.length) {
-    if (activeId) {
-      return wallets.find(wallet => wallet.id === activeId);
-    }
-    return wallets[0];
-  }
-  return null;
-}
 
 const StyledContent = styled(Content)`
   align-items: center;
@@ -76,9 +66,7 @@ const CopyButton = styled(PrimaryButton)`
 
 CopyButton.displayName = 'CopyButton';
 
-export const AddressBlock = ({ onCopy, wallets, activeWalletId }: Props) => {
-  const wallet: ?Wallet = getActiveWallet(activeWalletId, wallets);
-
+export const AddressBlock = ({ onCopy, wallet }: Props) => {
   if (!wallet) {
     return (
       <div>
@@ -96,7 +84,9 @@ export const AddressBlock = ({ onCopy, wallets, activeWalletId }: Props) => {
         <AddressHeader>Your {currencyName} address</AddressHeader>
         <Address>{wallet.receiveAddress}</Address>
         <div>
-          <CopyButton onClick={() => onCopy(wallet.receiveAddress)}>
+          <CopyButton
+            onClick={() => onCopy(wallet ? wallet.receiveAddress : '')}
+          >
             Tap to copy
           </CopyButton>
         </div>
@@ -106,8 +96,7 @@ export const AddressBlock = ({ onCopy, wallets, activeWalletId }: Props) => {
 };
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  wallets: state.wallet ? state.wallet.wallets : [],
-  activeWalletId: state.wallet.activeId,
+  wallet: getActiveWallet(state),
   onCopy: copy,
 });
 

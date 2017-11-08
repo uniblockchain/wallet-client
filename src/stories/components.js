@@ -12,30 +12,22 @@ import themeDecorator from './themeDecorator';
 storiesOf('Components', module)
   .addDecorator(themeDecorator)
   .add('Address Block', () => {
-    const wallets: Array<Wallet> = [
-      {
-        id: 1,
-        currency: 'BTC',
-        address: '',
-        transactions: [],
-        receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
-        balance: [
-          {
-            value: 0.19890018,
-            currency: 'BTC',
-          },
-          {
-            value: 1257.71,
-            currency: 'EUR',
-          },
-        ],
-      },
-    ];
-    return (
-      <AddressBlock
-        wallets={wallets}
-        activeWalletId={1}
-        onCopy={action('copy')}
-      />
-    );
+    const wallet: Wallet = {
+      id: 1,
+      currency: 'BTC',
+      address: '',
+      transactions: [],
+      receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
+      balance: [
+        {
+          value: 0.19890018,
+          currency: 'BTC',
+        },
+        {
+          value: 1257.71,
+          currency: 'EUR',
+        },
+      ],
+    };
+    return <AddressBlock wallet={wallet} onCopy={action('copy')} />;
   });

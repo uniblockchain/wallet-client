@@ -1,6 +1,6 @@
 // @flow
 import 'isomorphic-fetch';
-import store from '../reduxStore';
+import store from '../redux/reduxStore';
 
 const TOKEN_STORAGE_KEY = 'accessToken';
 

@@ -10,7 +10,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, withRouter } from 'react-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
-import { history, store } from './reduxStore';
+import { history, store } from './redux/reduxStore';
 import App from './App';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';

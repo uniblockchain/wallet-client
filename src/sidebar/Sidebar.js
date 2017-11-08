@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import menu from '../menu';
-import { history } from '../reduxStore';
+import { history } from '../redux/reduxStore';
 import './Sidebar.css';
 
 type ListItemProps = {

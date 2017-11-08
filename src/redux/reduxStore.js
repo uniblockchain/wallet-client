@@ -5,13 +5,13 @@ import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
-import { loginReducer, loginSagas } from './login';
-import { signupReducer } from './signup';
+import { loginReducer, loginSagas } from '../login';
+import { signupReducer } from '../signup';
 
-import { userReducer, userSagas } from './user';
-import { walletReducer, walletSagas } from './wallet';
-import { quoteSagas, sendSagas } from './wallet/send';
-import { pageReducer } from './page';
+import { userReducer, userSagas } from '../user';
+import { walletReducer, walletSagas } from '../wallet';
+import { quoteSagas, sendSagas } from '../wallet/send';
+import { pageReducer } from '../page';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

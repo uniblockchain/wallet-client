@@ -3,7 +3,7 @@
 import type { MonetaryValues } from './walletState';
 
 const mockStore = {};
-jest.mock('../reduxStore', () => mockStore);
+jest.mock('../redux/reduxStore', () => mockStore);
 
 const walletCurrencyResolver = require('./walletCurrencyValueResolver').default;
 

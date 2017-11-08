@@ -26,8 +26,7 @@ describe('Address block', () => {
   };
 
   const props = {
-    wallets: [sampleWallet],
-    activeWalletId: 1,
+    wallet: sampleWallet,
     onCopy: jest.fn(),
   };
 
@@ -55,7 +54,7 @@ describe('Address block', () => {
   });
 
   it('renders loading when active wallet not present', () => {
-    component.setProps({ wallets: [] });
+    component.setProps({ wallet: null });
     expect(component.contains(<LinearProgress />)).toBe(true);
   });
 });

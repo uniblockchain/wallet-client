@@ -2,7 +2,7 @@
 
 import type { MonetaryValues, MonetaryValue } from './walletState';
 
-import store from '../reduxStore';
+import store from '../redux/reduxStore';
 
 function resolve(
   monetaryValues: MonetaryValues,
