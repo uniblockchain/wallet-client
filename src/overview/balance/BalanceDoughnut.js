@@ -14,7 +14,7 @@ type Props = {
   wallets: Array<WalletType>,
 };
 
-// Ugly, but it works.
+// Ugly AF, but it works.
 const originalDoughnutDraw = Chart.controllers.doughnut.prototype.draw;
 Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
   draw(args) {
@@ -49,13 +49,18 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 export class BalanceDoughnut extends Component<Props> {
   getData() {
     const { wallets } = this.props;
+    const walletBalances = this.getBalances(wallets);
+    const totalWalletBalance = this.getTotalBalance(wallets);
+
+    // a hack that makes sure the dougnut is rendered even if all datapoints are 0
+    if (totalWalletBalance <= 0 && walletBalances.length > 0) {
+      walletBalances[0] = 1e-10;
+    }
 
     return {
       datasets: [
         {
-          data: wallets.map((wallet: WalletType) =>
-            walletCurrencyValueResolver.resolve(wallet.balance),
-          ),
+          data: walletBalances,
           backgroundColor: ['#19c3ed', '#47d6e2', '#62dfd9'],
           borderWidth: [0, 0, 0],
         },
@@ -67,13 +72,13 @@ export class BalanceDoughnut extends Component<Props> {
 
   getOptions() {
     const { wallets } = this.props;
-
+    const totalBalance = this.getTotalBalance(wallets);
     return {
       circumference: 21 / 12 * Math.PI,
       rotation: 3 / 24 * Math.PI,
       cutoutPercentage: 60,
       legend: {
-        display: wallets.length > 1,
+        display: wallets.length > 1 && totalBalance > 0,
         position: 'bottom',
       },
       tooltips: {
@@ -93,6 +98,20 @@ export class BalanceDoughnut extends Component<Props> {
         (this.chart || {}).chart_instance.update();
       },
     };
+  }
+
+  getBalances(wallets) {
+    return wallets.map((wallet: WalletType) =>
+      walletCurrencyValueResolver.resolve(wallet.balance),
+    );
+  }
+
+  getTotalBalance(wallets) {
+    const walletBalances = this.getBalances(wallets);
+    return walletBalances.reduce(
+      (balance1, balance2) => balance1 + balance2,
+      0,
+    );
   }
 
   chart = {};
