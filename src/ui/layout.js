@@ -11,7 +11,7 @@ export const Content = styled.div`
 `;
 
 export const WrappedContent = Content.extend`
-  padding: 10vw;
+  padding: 5vh 10vw 10vh 10vw;
 `;
 
 export const Top = styled.div`
