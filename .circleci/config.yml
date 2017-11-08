@@ -6,20 +6,19 @@ defaults: &defaults
   working_directory: ~/wallet-client
   docker:
     - image: circleci/node:8
-  steps:
-    - checkout
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-node8-dependencies-
 
 version: 2
 jobs:
   build-job:
     <<: *defaults
     steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-node8-dependencies-
       - run: yarn install
 
       - save_cache:
@@ -35,13 +34,16 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-      - persist_to_workspace:
-        # Must be an absolute path, or relative path from working_directory
-        root: workspace
-
   deploy-staging:
     <<: *defaults
     steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-node8-dependencies-
       - run: yarn build
       - run: 'sudo apt install python-pip python-dev'
       - run: 'sudo pip install awscli'
@@ -55,6 +57,13 @@ jobs:
   deploy-production:
     <<: *defaults
     steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-node8-dependencies-
       - run:
           name: Build production
           command: yarn build
