@@ -48,11 +48,6 @@ const StyledHeader = Header.extend`
   color: ${props => props.theme.text};
 `;
 
-const StyledDivider = styled(Divider)`
-  height: 1px;
-  margin: 16px 0 16px 0;
-`;
-
 const StyledParagraph = Paragraph.extend`
   font-size: 16px;
   color: #2a2a2a;
@@ -87,14 +82,14 @@ export const Modal = (props: Props) => {
                     <PrimaryButton onClick={props.onConfirm}>
                       Save
                     </PrimaryButton>
-                    <StyledDivider />
+                    <Divider small />
                     <CancelButton onClick={props.onCancel}>Cancel</CancelButton>
                   </div>
                 );
               case 'Confirmation':
                 return (
                   <div>
-                    <StyledDivider />
+                    <Divider small />
                     <DoneButton onClick={props.onConfirm}>Done</DoneButton>
                   </div>
                 );
