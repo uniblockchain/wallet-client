@@ -48,11 +48,6 @@ const StyledHeader = Header.extend`
   color: ${props => props.theme.text};
 `;
 
-const StyledParagraph = Paragraph.extend`
-  font-size: 16px;
-  color: #2a2a2a;
-`;
-
 const CancelButton = Button.extend`
   text-transform: uppercase;
   font-size: 12px;
@@ -61,6 +56,10 @@ const CancelButton = Button.extend`
 
 const DoneButton = CancelButton.extend`
   color: #4fb9a3;
+`;
+
+export const DividerWithMargin = Divider.extend`
+  margin: 16px 0 16px 0;
 `;
 
 export const Modal = (props: Props) => {
@@ -72,7 +71,7 @@ export const Modal = (props: Props) => {
       <ModalBox>
         <Box>
           <StyledHeader>{props.title}</StyledHeader>
-          <StyledParagraph>{props.description}</StyledParagraph>
+          <Paragraph alt>{props.description}</Paragraph>
           <div>{props.children}</div>
           {(() => {
             switch (props.type) {
@@ -82,14 +81,14 @@ export const Modal = (props: Props) => {
                     <PrimaryButton onClick={props.onConfirm}>
                       Save
                     </PrimaryButton>
-                    <Divider small />
+                    <DividerWithMargin small />
                     <CancelButton onClick={props.onCancel}>Cancel</CancelButton>
                   </div>
                 );
               case 'Confirmation':
                 return (
                   <div>
-                    <Divider small />
+                    <DividerWithMargin small />
                     <DoneButton onClick={props.onConfirm}>Done</DoneButton>
                   </div>
                 );

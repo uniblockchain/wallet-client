@@ -22,7 +22,7 @@ const StyledContent = styled(Content)`
   align-items: center;
   padding: 0 18px 0 18px;
   h1 {
-    color: ${props => props.theme.altText};
+    color: ${props => props.theme.alt};
     margin: 39px 0 36px 0;
     font-size: 36px;
   }

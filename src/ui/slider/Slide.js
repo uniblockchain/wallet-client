@@ -7,7 +7,6 @@ const Slide = styled.div`
   height: 240px;
   background-color: ${props =>
     props.alt ? props.theme.altBackground : props.theme.background};
-  color: ${props => props.theme.text};
   display: flex;
   flex-direction: column;
   align-items: center;

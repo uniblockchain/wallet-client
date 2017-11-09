@@ -2,6 +2,8 @@
 export type Theme = {
   background: string,
   altBackground: string,
+  main: string,
+  alt: string,
   text: string,
   altText: string,
 };
@@ -9,8 +11,10 @@ export type Theme = {
 export const DefaultTheme: Theme = {
   background: '#e5f9f3',
   altBackground: '#c6f3ff',
-  text: '#02bda5',
-  altText: '#083b70',
+  main: '#02bda5',
+  alt: '#083b70',
+  text: '#a1a1a1',
+  altText: '#2a2a2a',
 };
 
 export default { DefaultTheme };

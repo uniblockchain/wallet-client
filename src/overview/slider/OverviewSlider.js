@@ -10,13 +10,17 @@ export type Props = {
   isNewUser: boolean,
 };
 
+const StyledParagraph = Paragraph.extend`
+  color: ${props => (props.alt ? props.theme.alt : props.theme.main)};
+`;
+
 export const OverviewSlider = ({ isNewUser }: Props) => (
   <Slider>
     {isNewUser ? (
       <div>
         <Slide>
           <Header>Congratulations</Header>
-          <Paragraph>Your account is now ready</Paragraph>
+          <StyledParagraph>Your account is now ready</StyledParagraph>
         </Slide>
       </div>
     ) : (
@@ -35,9 +39,9 @@ export const OverviewSlider = ({ isNewUser }: Props) => (
     <div>
       <Slide>
         <Header>Order your card</Header>
-        <Paragraph>
+        <StyledParagraph>
           Make everyday purchases with Bitcoin and other cryptocurrencies
-        </Paragraph>
+        </StyledParagraph>
         <PrimaryButton>
           <Link to="/card">Order here</Link>
         </PrimaryButton>
@@ -46,7 +50,9 @@ export const OverviewSlider = ({ isNewUser }: Props) => (
     <div>
       <Slide alt>
         <Header alt>Deposit funds</Header>
-        <Paragraph alt>Start by depositing Bitcoin to your account</Paragraph>
+        <StyledParagraph alt>
+          Start by depositing Bitcoin to your account
+        </StyledParagraph>
         <PrimaryButton alt>
           <Link to="/receive">Learn more</Link>
         </PrimaryButton>
