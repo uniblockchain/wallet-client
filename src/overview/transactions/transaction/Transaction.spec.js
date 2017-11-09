@@ -52,7 +52,7 @@ describe('Transaction component', () => {
 
   const sampleTransaction: TransactionType = {
     id: 1,
-    state: 'complete',
+    state: 'Completed',
     date: new Date(),
     entries: [
       currentWalletTransactionEntry,
@@ -84,6 +84,6 @@ describe('Transaction component', () => {
     expect(
       component.contains(<FiatValue value={sampleValue + sampleValue} />),
     ).toBe(true);
-    expect(component.contains('complete')).toBe(true);
+    expect(component.contains('Completed')).toBe(true);
   });
 });

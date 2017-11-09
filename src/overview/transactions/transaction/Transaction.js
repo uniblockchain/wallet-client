@@ -92,7 +92,7 @@ export class Transaction extends Component<Props> {
             <div className={classes.amount}>
               <FiatValue value={amount} />
             </div>
-            <div className={classes.status}>complete</div>
+            <div className={classes.status}>Completed</div>
           </Grid>
         </ListItem>
       </div>

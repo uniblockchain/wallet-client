@@ -20,8 +20,10 @@ type Props = {
 
 export const FiatValue = ({ value, currency, classes }: Props) => (
   <div className={value < 0 ? classes.expense : ''}>
-    {getSymbolFromCurrency(currency)}
-    {Math.round(value * 100) / 100}
+    {value.toLocaleString('en-US', {
+      style: 'currency',
+      currency,
+    })}
   </div>
 );
 

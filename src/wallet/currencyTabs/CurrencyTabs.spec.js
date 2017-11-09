@@ -19,7 +19,7 @@ describe('CurrencyTabs component', () => {
     transactions: [
       {
         id: 1,
-        state: 'complete',
+        state: 'Completed',
         date: new Date(),
         entries: [],
       },

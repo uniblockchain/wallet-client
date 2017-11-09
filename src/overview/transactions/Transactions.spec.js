@@ -19,13 +19,13 @@ describe('Transactions component', () => {
     transactions: [
       {
         id: 1,
-        state: 'complete',
+        state: 'Completed',
         date: new Date(),
         entries: [],
       },
       {
         id: 2,
-        state: 'complete',
+        state: 'Completed',
         date: new Date(),
         entries: [],
       },

@@ -8,12 +8,9 @@ import { FiatValue } from './FiatValue';
 describe('Fiat value component', () => {
   let component;
 
-  const value: number = 123.33233223;
-  const currency: string = 'USD';
-
   const props = {
-    value,
-    currency,
+    value: 123.33233223,
+    currency: 'USD',
     classes: {},
   };
 
@@ -26,7 +23,12 @@ describe('Fiat value component', () => {
   });
 
   it('renders fiat value', () => {
-    expect(component.contains('$')).toBe(true);
-    expect(component.contains(123.33)).toBe(true);
+    expect(component.contains('$123.33')).toBe(true);
+  });
+
+  it('renders negative fiat value', () => {
+    props.value = -12.3;
+    component = shallow(<FiatValue {...props} />);
+    expect(component.contains('-$12.30')).toBe(true);
   });
 });
