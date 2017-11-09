@@ -7,7 +7,7 @@ import { LinearProgress } from 'material-ui';
 
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
-import type { Wallet } from '../../walletState';
+import { Wallet } from '../../walletState';
 import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
 import { getActiveWallet } from '../../../redux/selectors';

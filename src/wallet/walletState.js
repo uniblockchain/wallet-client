@@ -20,6 +20,15 @@ export type Transaction = {
   +entries: Array<TransactionEntry>,
 };
 
+export type WalletType = {
+  id: number,
+  address: string,
+  currency: string,
+  balance: MonetaryValues,
+  transactions: Array<Transaction>,
+  receiveAddress: string,
+};
+
 export class Wallet {
   id: number;
   address: string;
@@ -28,7 +37,7 @@ export class Wallet {
   transactions: Array<Transaction>;
   receiveAddress: string;
 
-  constructor(wallet: Wallet) {
+  constructor(wallet: WalletType) {
     this.id = wallet.id;
     this.address = wallet.address;
     this.currency = wallet.currency;
@@ -51,7 +60,7 @@ export class Wallet {
 }
 
 export type WalletState = {
-  wallets: Array<Wallet>,
+  wallets: Array<WalletType>,
   currency: string,
   error: ?string,
   activeId: ?number,

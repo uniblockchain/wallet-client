@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import type { Wallet } from '../walletState';
+import type { WalletType } from '../walletState';
 import walletActions from '../walletActions';
 import CurrencyName from '../CurrencyName';
 import { Tabs, Tab } from '../../ui';
 
 type Props = {
-  wallets: Array<Wallet>,
+  wallets: Array<WalletType>,
   setActiveWallet: number => void,
   activeWalletId: ?number,
   fetchWallet: () => *,
@@ -32,7 +32,7 @@ export class CurrencyTabs extends Component<Props> {
 
     return (
       <Tabs value={value} onSelect={this.handleChange}>
-        {wallets.map((wallet: Wallet) => (
+        {wallets.map((wallet: WalletType) => (
           <Tab key={wallet.id} value={wallet.id.toString()}>
             {CurrencyName.get(wallet.currency)}
           </Tab>

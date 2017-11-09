@@ -4,12 +4,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { LinearProgress } from 'material-ui';
 import { AddressBlock } from './AddressBlock';
-import type { Wallet } from '../../walletState';
+import type { WalletType } from '../../walletState';
+import { Wallet } from '../../walletState';
 
 describe('Address block', () => {
   let component;
 
-  const sampleWallet: Wallet = {
+  const sampleWallet: WalletType = {
     id: 1,
     address: 'sampleAddress',
     currency: 'BTC',
@@ -26,7 +27,7 @@ describe('Address block', () => {
   };
 
   const props = {
-    wallet: sampleWallet,
+    wallet: new Wallet(sampleWallet),
     onCopy: jest.fn(),
   };
 
