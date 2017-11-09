@@ -53,7 +53,7 @@ export class Signup extends Component<Props, State> {
         <Redirect
           to={{
             pathname: '/overview',
-            state: { slideOpen: true },
+            state: { isNewUser: true },
           }}
         />
       );

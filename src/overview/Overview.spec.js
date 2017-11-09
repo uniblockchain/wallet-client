@@ -29,23 +29,21 @@ describe('Overview component', () => {
     expect(component.find(BalanceDoughnut).length).toEqual(1);
   });
 
-  it('does not render the overview slider', () => {
-    expect(component.find(OverviewSlider)).toHaveLength(0);
-    expect(component.find(Divider)).toHaveLength(1);
+  it('renders the overview slider for existing users', () => {
+    expect(component.contains(<OverviewSlider />)).toBe(true);
   });
 
-  it('renders the overview slider when location state has', () => {
+  it('renders the overview slider for new users', () => {
     const slideProps: Props = {
       location: {
         pathname: '/overview',
         search: '',
         hash: '',
-        state: { slideOpen: true },
+        state: { isNewUser: true },
       },
     };
     component = shallow(<Overview {...slideProps} />);
-    expect(component.find(OverviewSlider)).toHaveLength(1);
-    expect(component.find(Divider)).toHaveLength(0);
+    expect(component.contains(<OverviewSlider isNewUser />)).toBe(true);
   });
 
   it('renders transactions', () => {

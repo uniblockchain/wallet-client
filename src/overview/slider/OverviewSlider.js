@@ -6,14 +6,32 @@ import { Header, PrimaryButton, Link, Paragraph } from '../../ui';
 import { Slider, Slide } from '../../ui/slider';
 import withWallet from '../../wallet/withWallet';
 
-export const OverviewSlider = () => (
+export type Props = {
+  isNewUser: boolean,
+};
+
+export const OverviewSlider = ({ isNewUser }: Props) => (
   <Slider>
-    <div>
-      <Slide>
-        <Header>Congratulations</Header>
-        <Paragraph>Your account is now ready</Paragraph>
-      </Slide>
-    </div>
+    {isNewUser ? (
+      <div>
+        <Slide>
+          <Header>Congratulations</Header>
+          <Paragraph>Your account is now ready</Paragraph>
+        </Slide>
+      </div>
+    ) : (
+      ''
+    )}
+    {!isNewUser ? (
+      <div>
+        <Slide>
+          <Header>Welcome back!</Header>
+          <Paragraph>Good to see you again.</Paragraph>
+        </Slide>
+      </div>
+    ) : (
+      ''
+    )}
     <div>
       <Slide>
         <Header>Order your card</Header>
