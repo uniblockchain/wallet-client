@@ -25,7 +25,7 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     const { datasets } = this.chart.config.data;
 
     const fontSize = Math.floor(outerRadius / 57); // magic number :o
-    ctx.font = `${fontSize}em Roboto`;
+    ctx.font = `${fontSize}em Favorit`;
     ctx.textBaseline = 'middle';
     ctx.fillStyle = 'rgba(0, 0, 0, 0.54)';
 
