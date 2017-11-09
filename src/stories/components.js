@@ -6,13 +6,14 @@ import { action } from '@storybook/addon-actions';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 import '../index.css';
 import { AddressBlock } from '../wallet/receive/addressBlock/AddressBlock';
-import type { Wallet } from '../wallet/walletState';
+import type { WalletType } from '../wallet/walletState';
+import { Wallet } from '../wallet/walletState';
 import themeDecorator from './themeDecorator';
 
 storiesOf('Components', module)
   .addDecorator(themeDecorator)
   .add('Address Block', () => {
-    const wallet: Wallet = {
+    const wallet: WalletType = {
       id: 1,
       currency: 'BTC',
       address: '',
@@ -29,5 +30,5 @@ storiesOf('Components', module)
         },
       ],
     };
-    return <AddressBlock wallet={wallet} onCopy={action('copy')} />;
+    return <AddressBlock wallet={new Wallet(wallet)} onCopy={action('copy')} />;
   });

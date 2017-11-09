@@ -20,17 +20,47 @@ export type Transaction = {
   +entries: Array<TransactionEntry>,
 };
 
-export type Wallet = {
-  +id: number,
-  +address: string,
-  +currency: string,
-  +balance: MonetaryValues,
-  +transactions: Array<Transaction>,
-  +receiveAddress: string,
+export type WalletType = {
+  id: number,
+  address: string,
+  currency: string,
+  balance: MonetaryValues,
+  transactions: Array<Transaction>,
+  receiveAddress: string,
 };
 
+export class Wallet {
+  id: number;
+  address: string;
+  currency: string;
+  balance: MonetaryValues;
+  transactions: Array<Transaction>;
+  receiveAddress: string;
+
+  constructor(wallet: WalletType) {
+    this.id = wallet.id;
+    this.address = wallet.address;
+    this.currency = wallet.currency;
+    this.balance = wallet.balance;
+    this.transactions = wallet.transactions;
+    this.receiveAddress = wallet.receiveAddress;
+  }
+
+  getBalance = () =>
+    this.balance
+      .filter(it => it.currency === this.currency)
+      .map(it => it.value)[0];
+
+  hasBalance = () => this.getBalance() > 0;
+
+  getRepresentationalBalance = (representationalCurrency: string) =>
+    this.balance
+      .filter(it => it.currency === representationalCurrency)
+      .map(it => it.value)[0];
+}
+
 export type WalletState = {
-  wallets: Array<Wallet>,
+  wallets: Array<WalletType>,
   currency: string,
   error: ?string,
   activeId: ?number,

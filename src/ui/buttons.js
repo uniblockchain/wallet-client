@@ -30,7 +30,7 @@ export const Link = styled(RouterLink)`
 export const PrimaryButton = Button.extend`
   color: white;
   background-color: ${props =>
-    props.alt ? props.theme.altText : props.theme.text};
+    props.alt ? props.theme.alt : props.theme.main};
   box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
   text-transform: uppercase;
 `;

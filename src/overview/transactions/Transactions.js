@@ -7,7 +7,7 @@ import { List } from 'material-ui';
 import type { MapStateToProps } from 'react-redux';
 import type {
   Transaction as TransactionType,
-  Wallet,
+  WalletType,
 } from '../../wallet/walletState';
 import Transaction from './transaction';
 
@@ -19,13 +19,13 @@ const styles = () => ({
 
 type Props = {
   classes: Object,
-  wallets: Array<Wallet>,
+  wallets: Array<WalletType>,
 };
 
-export const Transactions = ({ classes, wallets }: Props) => (
+export const TransactionsWithoutStyles = ({ classes, wallets }: Props) => (
   <div className={classes.root}>
     <List>
-      {wallets.map((wallet: Wallet) =>
+      {wallets.map((wallet: WalletType) =>
         wallet.transactions.map((transaction: TransactionType) => (
           <Transaction key={transaction.id} transaction={transaction} />
         )),
@@ -34,10 +34,10 @@ export const Transactions = ({ classes, wallets }: Props) => (
   </div>
 );
 
+export const Transactions = withStyles(styles)(TransactionsWithoutStyles);
+
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
 });
 
-const componentWithStyles = withStyles(styles)(Transactions);
-
-export default connect(mapStateToProps)(componentWithStyles);
+export default connect(mapStateToProps)(Transactions);

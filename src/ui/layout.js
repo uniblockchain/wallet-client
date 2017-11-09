@@ -50,7 +50,8 @@ const EmptyDiv = ({ className }: any) => (
 );
 
 export const Divider = styled(EmptyDiv)`
-  height: 6px;
+  width: 100%;
+  height: ${props => (props.small ? '1px' : '6px')};
   background-color: #f2f2f2;
 `;
 

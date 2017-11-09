@@ -15,7 +15,7 @@ const styles = {
     backgroundColor: DefaultTheme.background,
   },
   primaryColorBar: {
-    backgroundColor: DefaultTheme.text,
+    backgroundColor: DefaultTheme.main,
   },
 };
 

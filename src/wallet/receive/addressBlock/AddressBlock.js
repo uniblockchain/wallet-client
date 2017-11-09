@@ -7,7 +7,7 @@ import { LinearProgress } from 'material-ui';
 
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
-import type { Wallet } from '../../walletState';
+import { Wallet } from '../../walletState';
 import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
 import { getActiveWallet } from '../../../redux/selectors';
@@ -22,7 +22,7 @@ const StyledContent = styled(Content)`
   align-items: center;
   padding: 0 18px 0 18px;
   h1 {
-    color: ${props => props.theme.altText};
+    color: ${props => props.theme.alt};
     margin: 39px 0 36px 0;
     font-size: 36px;
   }

@@ -3,14 +3,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Transactions } from './Transactions';
+import { TransactionsWithoutStyles } from './Transactions';
 import Transaction from './transaction';
-import type { Wallet } from '../../wallet/walletState';
+import type { WalletType } from '../../wallet/walletState';
 
 describe('Transactions component', () => {
   let component;
 
-  const sampleWallet: Wallet = {
+  const sampleWallet: WalletType = {
     id: 1,
     address: 'sampleAddress',
     currency: 'EUR',
@@ -38,7 +38,7 @@ describe('Transactions component', () => {
   };
 
   beforeEach(() => {
-    component = shallow(<Transactions {...props} />);
+    component = shallow(<TransactionsWithoutStyles {...props} />);
   });
 
   it('renders the component', () => {

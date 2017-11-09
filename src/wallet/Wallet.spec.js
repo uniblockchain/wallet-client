@@ -1,8 +1,9 @@
 // @flow
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Wallet } from './Wallet';
-import type { Wallet as WalletType } from './walletState';
+import { Wallet as WalletComponent } from './Wallet';
+import type { WalletType } from './walletState';
+import { Wallet } from './walletState';
 
 describe('Wallet component', () => {
   let component;
@@ -26,12 +27,12 @@ describe('Wallet component', () => {
   };
 
   const props = {
-    wallet,
+    wallet: new Wallet(wallet),
     representationalCurrency: 'EUR',
   };
 
   beforeEach(() => {
-    component = shallow(<Wallet {...props} />);
+    component = shallow(<WalletComponent {...props} />);
   });
 
   it('renders the component', () => {

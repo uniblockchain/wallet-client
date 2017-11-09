@@ -1,7 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { type Wallet } from './walletState';
+import { type WalletType } from './walletState';
 
 jest.mock('../http');
 
@@ -17,7 +17,7 @@ describe('wallet api', () => {
     { currency: 'EUR', value: 227.9376254547 },
   ];
 
-  const wallet: Wallet = {
+  const wallet: WalletType = {
     id: 1,
     address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
     currency: 'ETH',
@@ -26,7 +26,7 @@ describe('wallet api', () => {
     receiveAddress: '0xlolwat',
   };
 
-  const walletsResponse: Array<Wallet> = [wallet];
+  const walletsResponse: Array<WalletType> = [wallet];
 
   const transactions = [
     {
