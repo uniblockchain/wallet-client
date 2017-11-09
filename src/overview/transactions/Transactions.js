@@ -22,7 +22,9 @@ type Props = {
   wallets: Array<Wallet>,
 };
 
-export const Transactions = ({ classes, wallets }: Props) => (
+export const Transactions = withStyles(
+  styles,
+)(({ classes, wallets }: Props) => (
   <div className={classes.root}>
     <List>
       {wallets.map((wallet: Wallet) =>
@@ -32,12 +34,10 @@ export const Transactions = ({ classes, wallets }: Props) => (
       )}
     </List>
   </div>
-);
+));
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
 });
 
-const componentWithStyles = withStyles(styles)(Transactions);
-
-export default connect(mapStateToProps)(componentWithStyles);
+export default connect(mapStateToProps)(Transactions);
