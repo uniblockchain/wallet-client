@@ -14,7 +14,6 @@ import DateDisplay from './dateDisplay';
 const styles = () => ({
   root: {
     backgroundColor: '#ffffff',
-    // fontFamily: 'Favorit',
   },
   address: {
     fontSize: 14,
@@ -42,6 +41,10 @@ const styles = () => ({
     overflow: 'hidden',
     lineHeight: 2.2,
     textAlign: 'right',
+  },
+  listItem: {
+    paddingLeft: '20px',
+    paddingRight: '20px',
   },
 });
 
@@ -81,7 +84,12 @@ export class Transaction extends Component<Props> {
 
     return (
       <div className={classes.root}>
-        <ListItem button key={transaction.id} disableGutters>
+        <ListItem
+          button
+          key={transaction.id}
+          disableGutters
+          className={classes.listItem}
+        >
           <Grid item xs={6} sm={6}>
             <div className={classes.address}>{address}</div>
             <div className={classes.date}>
