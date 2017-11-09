@@ -8,10 +8,10 @@ const pageReducer = (
   action: PageAction,
 ): PageState => {
   switch (action.type) {
-    case pageAction.SHOW_MODAL:
+    case pageAction.BLUR:
       return {
         ...state,
-        showModal: action.showModal,
+        blur: action.blur,
       };
 
     case pageAction.SHOW_PROGRESS:

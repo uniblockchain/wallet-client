@@ -48,7 +48,7 @@ const StyledContent = Content.extend`
 `;
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  blur: !!state.page.showModal,
+  blur: !!state.page.blur,
   progress: !!state.page.showProgress,
 });
 

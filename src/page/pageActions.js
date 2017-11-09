@@ -1,13 +1,13 @@
 // @flow
 
 import pageActionTypes, {
-  type ShowModal,
+  type Blur,
   type ShowProgress,
 } from './pageActionTypes';
 
-const showModal = (show: boolean): ShowModal => ({
-  type: pageActionTypes.SHOW_MODAL,
-  showModal: show,
+const blur = (blurIt: boolean): Blur => ({
+  type: pageActionTypes.BLUR,
+  blur: blurIt,
 });
 
 const showProgress = (show: boolean): ShowProgress => ({
@@ -16,6 +16,6 @@ const showProgress = (show: boolean): ShowProgress => ({
 });
 
 export default {
-  showModal,
+  blur,
   showProgress,
 };

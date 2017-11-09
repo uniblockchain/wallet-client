@@ -1,24 +1,14 @@
 // @flow
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Portal } from 'react-portal';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import type { MapStateToProps } from 'react-redux';
 import { PrimaryButton, Button } from '../buttons';
 import { Divider } from '../layout';
 import { Header, Paragraph } from '../text';
+import pageActions from '../../page/pageActions'; // FIXME
 
 type ModalType = 'Confirmation' | 'Prompt';
-
-type Props = {
-  visible: boolean,
-  title: string,
-  description: string,
-  type: ModalType,
-  onConfirm: () => void,
-  onCancel: () => void,
-  children: any,
-};
 
 const ModalBox = styled.div`
   display: flex;
@@ -62,57 +52,79 @@ export const DividerWithMargin = Divider.extend`
   margin: 16px 0 16px 0;
 `;
 
-export const Modal = (props: Props) => {
-  if (!props.visible) {
-    return null;
+type Props = {
+  title: string,
+  description: string,
+  type: ModalType,
+  onConfirm: () => void,
+  onCancel: () => void,
+  blur: boolean => void,
+  children: any,
+};
+
+export class Modal extends Component<Props> {
+  static defaultProps = {
+    title: '',
+    description: '',
+    type: 'Confirmation',
+    onConfirm: () => {},
+    onCancel: () => {},
+    blur: () => {},
+    children: null,
+  };
+
+  componentDidMount() {
+    this.props.blur(true);
   }
-  return (
-    <Portal>
-      <ModalBox>
-        <Box>
-          <StyledHeader>{props.title}</StyledHeader>
-          <Paragraph alt>{props.description}</Paragraph>
-          <div>{props.children}</div>
-          {(() => {
-            switch (props.type) {
-              case 'Prompt':
-                return (
-                  <div>
-                    <PrimaryButton onClick={props.onConfirm}>
-                      Save
-                    </PrimaryButton>
-                    <DividerWithMargin small />
-                    <CancelButton onClick={props.onCancel}>Cancel</CancelButton>
-                  </div>
-                );
-              case 'Confirmation':
-                return (
-                  <div>
-                    <DividerWithMargin small />
-                    <DoneButton onClick={props.onConfirm}>Done</DoneButton>
-                  </div>
-                );
-              default:
-                return null;
-            }
-          })()}
-        </Box>
-      </ModalBox>
-    </Portal>
-  );
+
+  componentWillUnmount() {
+    this.props.blur(false);
+  }
+
+  render() {
+    return (
+      <Portal>
+        <ModalBox>
+          <Box>
+            <StyledHeader>{this.props.title}</StyledHeader>
+            <Paragraph alt>{this.props.description}</Paragraph>
+            <div>{this.props.children}</div>
+            {(() => {
+              switch (this.props.type) {
+                case 'Prompt':
+                  return (
+                    <div>
+                      <PrimaryButton onClick={this.props.onConfirm}>
+                        Save
+                      </PrimaryButton>
+                      <DividerWithMargin small />
+                      <CancelButton onClick={this.props.onCancel}>
+                        Cancel
+                      </CancelButton>
+                    </div>
+                  );
+                case 'Confirmation':
+                  return (
+                    <div>
+                      <DividerWithMargin small />
+                      <DoneButton onClick={this.props.onConfirm}>
+                        Done
+                      </DoneButton>
+                    </div>
+                  );
+                default:
+                  return null;
+              }
+            })()}
+          </Box>
+        </ModalBox>
+      </Portal>
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  blur: pageActions.blur,
 };
 
-Modal.defaultProps = {
-  visible: false,
-  description: '',
-  type: 'Confirmation',
-  onConfirm: () => {},
-  onCancel: () => {},
-  children: null,
-};
-
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  visible: state.page.showModal,
-});
-
-export default connect(mapStateToProps, null)(Modal);
+export default connect(null, mapDispatchToProps)(Modal);

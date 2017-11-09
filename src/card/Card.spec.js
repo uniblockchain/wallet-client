@@ -7,7 +7,7 @@ describe('Card component', () => {
   let component;
 
   const props = {
-    showModal: jest.fn(),
+    blur: jest.fn(),
   };
 
   beforeEach(() => {

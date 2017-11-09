@@ -1,12 +1,12 @@
 // @flow
 
 export type PageState = {
-  showModal: boolean,
+  blur: boolean,
   showProgress: boolean,
 };
 
 export const initialPageState: PageState = {
-  showModal: false,
+  blur: false,
   showProgress: false,
 };
 

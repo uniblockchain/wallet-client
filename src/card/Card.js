@@ -1,8 +1,6 @@
 // @flow
-import * as React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { pageActions } from '../page';
 import { WrappedContent, Header, SubHeader, PrimaryButton, Modal } from '../ui';
 import cardInterestApi from './cardInterestApi';
 import plastic from './img/plastic.png';
@@ -37,36 +35,51 @@ const Plastic = styled.img.attrs({
   margin-bottom: 3vh;
 `;
 
-type Props = {
-  showModal: boolean => void,
+type State = {
+  isModalVisible: boolean,
 };
 
-export const Card = (props: Props) => {
-  const handleClick = () => {
-    cardInterestApi.registerInterest().then(() => props.showModal(true));
-  };
-  const handleConfirm = () => {
-    props.showModal(false);
-  };
-  return (
-    <div>
-      <StyledContent>
-        <StyledHeader>Change Card is coming.</StyledHeader>
-        <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
-        <OrderButton onClick={handleClick}>Notify me</OrderButton>
-        <Plastic />
-      </StyledContent>
-      <Modal
-        title="Thanks!"
-        description="We will let you know when we open registration."
-        onConfirm={handleConfirm}
-      />
-    </div>
-  );
-};
+type Props = {};
 
-const mapDispatchToProps = {
-  showModal: pageActions.showModal,
-};
-
-export default connect(null, mapDispatchToProps)(Card);
+export class Card extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      isModalVisible: false,
+    };
+  }
+  render() {
+    const handleClick = () => {
+      cardInterestApi.registerInterest().then(() => {
+        this.setState({
+          isModalVisible: true,
+        });
+      });
+    };
+    const handleConfirm = () => {
+      this.setState({
+        isModalVisible: false,
+      });
+    };
+    return (
+      <div>
+        <StyledContent>
+          <StyledHeader>Change Card is coming.</StyledHeader>
+          <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
+          <OrderButton onClick={handleClick}>Notify me</OrderButton>
+          <Plastic />
+        </StyledContent>
+        {this.state.isModalVisible ? (
+          <Modal
+            title="Thanks!"
+            description="We will let you know when we open registration."
+            onConfirm={handleConfirm}
+          />
+        ) : (
+          ''
+        )}
+      </div>
+    );
+  }
+}
+export default Card;

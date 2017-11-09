@@ -1,11 +1,11 @@
 // @flow
 
-const SHOW_MODAL = '@page/SHOW_MODAL';
+const BLUR = '@page/BLUR';
 const SHOW_PROGRESS = '@page/SHOW_PROGRESS';
 
-export type ShowModal = {|
-  +type: '@page/SHOW_MODAL',
-  +showModal: boolean,
+export type Blur = {|
+  +type: '@page/BLUR',
+  +blur: boolean,
 |};
 
 export type ShowProgress = {|
@@ -13,9 +13,9 @@ export type ShowProgress = {|
   +showProgress: boolean,
 |};
 
-export type PageAction = ShowModal | ShowProgress;
+export type PageAction = Blur | ShowProgress;
 
 export default {
-  SHOW_MODAL,
+  BLUR,
   SHOW_PROGRESS,
 };

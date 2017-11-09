@@ -26,7 +26,7 @@ describe('pageTemplate higher-order component', () => {
   const WrappedFakedComponent = pageTemplate(FakeComponent);
 
   beforeEach(() => {
-    fakeStateGetter = () => ({ showModal: false, showProgress: true });
+    fakeStateGetter = () => ({ blur: false, showProgress: true });
     fakeReducer = jest.fn(() => fakeStateGetter());
     store = createStore(
       combineReducers({ page: fakeReducer, router: routerReducer }),
