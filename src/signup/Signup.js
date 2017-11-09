@@ -49,7 +49,14 @@ export class Signup extends Component<Props, State> {
 
   render() {
     if (this.props.authenticated) {
-      return <Redirect to="/overview" />;
+      return (
+        <Redirect
+          to={{
+            pathname: '/overview',
+            state: { slideOpen: true },
+          }}
+        />
+      );
     }
     return (
       <WrappedContent>

@@ -6,7 +6,6 @@ import MaterialBottomNavigation, {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import styled from 'styled-components';
 import { withStyles } from 'material-ui/styles';
 import OverviewIcon from './icon/OverviewIcon';
 import WalletIcon from './icon/WalletIcon';
@@ -47,8 +46,6 @@ const Icon = withStyles(iconStyles)(({ item, classes }: IconProps): any => {
       return null;
   }
 });
-
-const StyledBottomNavigation = styled(MaterialBottomNavigation)``;
 
 const navigationStyles = {
   root: {
@@ -95,7 +92,7 @@ export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
     onNavigation(v);
   };
   return (
-    <StyledBottomNavigation
+    <MaterialBottomNavigation
       classes={{ root: classes.root }}
       value={value}
       onChange={handleChange}
@@ -110,7 +107,7 @@ export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
           icon={<Icon item={it.link} />}
         />
       ))}
-    </StyledBottomNavigation>
+    </MaterialBottomNavigation>
   );
 });
 
