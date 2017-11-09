@@ -115,6 +115,10 @@ const formatBalance = (number: number) => {
   return number;
 };
 
+export const TransactionsCard = styled(Card)`
+  padding: 0 0 4em 0;
+`;
+
 export const Wallet = ({ wallet, representationalCurrency }: Props) => {
   if (!wallet) {
     return null;
@@ -134,8 +138,10 @@ export const Wallet = ({ wallet, representationalCurrency }: Props) => {
           </FiatBalance>
           <WalletButtons wallet={wallet} />
         </MainContent>
-        <WalletActivity wallet={wallet} />
       </Card>
+      <TransactionsCard>
+        <WalletActivity wallet={wallet} />
+      </TransactionsCard>
     </div>
   );
 };
