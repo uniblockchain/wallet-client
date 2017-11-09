@@ -27,13 +27,20 @@ storiesOf('Structure', module)
       updateState={action('state updated')}
     />
   ))
-  .add('Bottom Navigation', () => (
-    <BottomNavigation
-      menu={menu}
-      onNavigation={action('navigation')}
-      value="/wallet"
-    />
-  ))
+  .add('Bottom Navigation', () => {
+    const options = menu.reduce((obj, i) => {
+      const result = obj;
+      result[i.link] = i.name;
+      return obj;
+    }, {});
+    return (
+      <BottomNavigation
+        menu={menu}
+        onNavigation={action('navigation')}
+        value={select('Active', options, '/wallet')}
+      />
+    );
+  })
   .add('Slider', () => (
     <Content>
       <Slider>

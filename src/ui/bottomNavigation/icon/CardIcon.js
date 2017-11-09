@@ -1,9 +1,9 @@
 import React from 'react';
 import { SvgIcon } from 'material-ui';
 
-export default () => (
-  <SvgIcon>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+export default props => (
+  <SvgIcon viewBox="0 0 36 36" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg">
       <title>icon_card</title>
       <g>
         <path d="M17.849,24.1a.649.649,0,0,1-.094-.007L6.344,22.436a.645.645,0,0,1,.187-1.277l11.411,1.662a.645.645,0,0,1-.092,1.283Z" />
