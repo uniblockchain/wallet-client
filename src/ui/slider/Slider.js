@@ -14,7 +14,7 @@ const settings = {
 
 export default styled(SlickSlider).attrs(settings)`
   .slick-dots {
-    bottom: 1em;
+    bottom: 20px;
     li {
       margin: 0;
       width: auto;
