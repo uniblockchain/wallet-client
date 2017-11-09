@@ -30,7 +30,7 @@ export const OverviewSlider = ({ isNewUser }: Props) => (
       <div>
         <Slide>
           <Header>Welcome back!</Header>
-          <Paragraph>Good to see you again.</Paragraph>
+          <StyledParagraph>Good to see you again.</StyledParagraph>
         </Slide>
       </div>
     ) : (
