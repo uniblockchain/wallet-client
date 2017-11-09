@@ -20,7 +20,7 @@ const Right = styled.div`
 `;
 
 const Icon = styled.i`
-  color: #54ccde;
+  color: #19c3ed;
 `;
 
 const TopBarWithoutStyles = ({ className }: Props) => (
