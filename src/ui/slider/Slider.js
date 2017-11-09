@@ -14,6 +14,15 @@ const settings = {
 
 export default styled(SlickSlider).attrs(settings)`
   .slick-dots {
-    bottom: 0;
+    bottom: 1em;
+    li {
+      margin: 0;
+      width: auto;
+      height: auto;
+      button {
+        width: auto;
+        height: auto;
+      }
+    }
   }
 `;
