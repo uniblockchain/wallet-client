@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, fork, take } from 'redux-saga/effects';
 import walletApi from './walletApi';
 import walletActions from './walletActions';
 import walletActionTypes from './walletActionTypes';
@@ -18,8 +18,17 @@ function* fetchWallet() {
   }
 }
 
+function* takeFirst(pattern, saga, ...args) {
+  return yield fork(function*() {
+    while (true) {
+      const action = yield take(pattern);
+      yield call(saga, ...args.concat(action));
+    }
+  });
+}
+
 function* walletFetchSaga() {
-  yield takeLatest(walletActionTypes.WALLET_FETCH_REQUESTED, fetchWallet);
+  yield takeFirst(walletActionTypes.WALLET_FETCH_REQUESTED, fetchWallet);
 }
 
 export default walletFetchSaga;
