@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import type { MapStateToProps } from 'react-redux';
-import getSymbolFromCurrency from 'currency-symbol-map';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 
