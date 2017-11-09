@@ -65,15 +65,19 @@ const buttonStyles = {
   },
   overview: {
     color: '#19c3ed',
+    paddingTop: '8px',
   },
   wallet: {
     color: '#02bda5',
+    paddingTop: '8px',
   },
   card: {
     color: '#00346b',
+    paddingTop: '8px',
   },
   marketplace: {
     color: '#19c3ed',
+    paddingTop: '8px',
   },
 };
 
