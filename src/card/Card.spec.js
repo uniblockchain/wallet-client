@@ -3,8 +3,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Card } from './Card';
 
-jest.mock('./cardInterestApi');
-const cardInterestApiMock = require('./cardInterestApi');
+jest.mock('./cardInterestApi', () => ({
+  registerInterest: jest.fn(),
+}));
+const cardInterestApi: any = require('./cardInterestApi');
 
 describe('Card component', () => {
   let component;
@@ -20,9 +22,11 @@ describe('Card component', () => {
   it('order button registers interest and opens modal', () => {
     expect.assertions(3);
     expect(component.state().isModalVisible).toBeFalsy();
+    const promise = Promise.resolve();
+    cardInterestApi.registerInterest.mockReturnValueOnce(promise);
     component.find('OrderButton').simulate('click');
-    return cardInterestApiMock.promise.then(() => {
-      expect(cardInterestApiMock.registerInterest.mock.calls).toHaveLength(1);
+    return promise.then(() => {
+      expect(cardInterestApi.registerInterest.mock.calls).toHaveLength(1);
       expect(component.state().isModalVisible).toBeTruthy();
     });
   });
