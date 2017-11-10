@@ -40,6 +40,18 @@ const sendReducer = (
         isLoading: false,
       };
 
+    case actionType.CLEAR_ERROR:
+      return {
+        ...state,
+        error: initialSendState.error,
+      };
+
+    case actionType.CLEAR_TRANSACTION_STATUS:
+      return {
+        ...state,
+        transactionStatus: initialSendState.transactionStatus,
+      };
+
     default:
       return state;
   }

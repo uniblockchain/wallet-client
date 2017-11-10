@@ -35,5 +35,31 @@ describe('send reducer', () => {
       expect(newState.error).toEqual(error);
       expect(newState.isLoading).toEqual(false);
     });
+
+    it('clears error', () => {
+      const action = sendActions.clearError();
+      const newState = sendReducer(
+        {
+          ...initialSendState,
+          error: 'yo',
+        },
+        action,
+      );
+      expect(newState.error).toEqual(initialSendState.error);
+    });
+
+    it('clears transaction status', () => {
+      const action = sendActions.clearTransactionStatus();
+      const newState = sendReducer(
+        {
+          ...initialSendState,
+          transactionStatus: 'yo',
+        },
+        action,
+      );
+      expect(newState.transactionStatus).toEqual(
+        initialSendState.transactionStatus,
+      );
+    });
   });
 });

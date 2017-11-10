@@ -44,4 +44,20 @@ describe('Send actions', () => {
       error,
     });
   });
+
+  it('can clear transaction error message', () => {
+    const action = sendActions.clearError();
+
+    expect(action).toEqual({
+      type: sendActionTypes.CLEAR_ERROR,
+    });
+  });
+
+  it('can clear transaction status', () => {
+    const action = sendActions.clearTransactionStatus();
+
+    expect(action).toEqual({
+      type: sendActionTypes.CLEAR_TRANSACTION_STATUS,
+    });
+  });
 });

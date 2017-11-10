@@ -10,7 +10,7 @@ import { signupReducer } from '../signup';
 
 import { userReducer, userSagas } from '../user';
 import { walletReducer, walletSagas } from '../wallet';
-import { quoteSagas, sendSagas } from '../wallet/send';
+import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
 import { pageReducer } from '../page';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   form: formReducer,
   page: pageReducer,
+  send: sendReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

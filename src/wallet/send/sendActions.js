@@ -6,6 +6,7 @@ import sendActionTypes, {
   type SendTransactionSuccess,
 } from './sendActionTypes';
 import type { SendTransactionResponse } from './sendApi';
+import type { ClearError, ClearTransactionStatus } from './sendActionTypes';
 
 const sendTransactionRequested = (
   address: string,
@@ -30,8 +31,18 @@ const sendTransactionFailed = (error: string): SendTransactionFail => ({
   error,
 });
 
+const clearError = (): ClearError => ({
+  type: sendActionTypes.CLEAR_ERROR,
+});
+
+const clearTransactionStatus = (): ClearTransactionStatus => ({
+  type: sendActionTypes.CLEAR_TRANSACTION_STATUS,
+});
+
 export default {
   sendTransactionRequested,
   sendTransactionSucceeded,
   sendTransactionFailed,
+  clearError,
+  clearTransactionStatus,
 };
