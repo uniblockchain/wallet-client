@@ -8,7 +8,6 @@ import type { Props } from './Overview';
 import Transactions from './transactions';
 import BalanceDoughnut from './balance';
 import OverviewSlider from './slider';
-import { Divider } from '../ui';
 
 describe('Overview component', () => {
   let component;

@@ -27,6 +27,8 @@ const OrderButton = styled(PrimaryButton)`
   margin-top: 25px;
 `;
 
+OrderButton.displayName = 'OrderButton';
+
 const Plastic = styled.img.attrs({
   src: plastic,
   alt: 'Plastic',
