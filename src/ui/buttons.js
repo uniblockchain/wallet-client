@@ -35,10 +35,14 @@ export const PrimaryButton = Button.extend`
   text-transform: uppercase;
 `;
 
+PrimaryButton.displayName = 'PrimaryButton';
+
 export const LinkButton = Button.extend`
   color: #a1a1a1;
   font-size: 14px;
   text-transform: none;
 `;
+
+LinkButton.displayName = 'LinkButton';
 
 export default { Button, PrimaryButton, Link };

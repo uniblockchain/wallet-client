@@ -44,9 +44,13 @@ const CancelButton = Button.extend`
   height: 20px;
 `;
 
+CancelButton.displayName = 'CancelButton';
+
 const DoneButton = CancelButton.extend`
   color: #4fb9a3;
 `;
+
+DoneButton.displayName = 'DoneButton';
 
 export const DividerWithMargin = Divider.extend`
   margin: 16px 0 16px 0;
