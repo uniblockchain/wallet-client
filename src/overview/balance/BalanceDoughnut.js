@@ -24,7 +24,9 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
     const { width, outerRadius, ctx } = this.chart;
     const { datasets } = this.chart.config.data;
 
-    const fontSize = Math.floor(outerRadius / 57); // magic number :o
+    const fullHeight = this.chart.canvas.style.height;
+    const fontSize = parseInt(fullHeight, 10) / 200; // magic number :o
+
     ctx.font = `${fontSize}em Favorit`;
     ctx.textBaseline = 'middle';
     ctx.fillStyle = 'rgba(0, 0, 0, 0.54)';
