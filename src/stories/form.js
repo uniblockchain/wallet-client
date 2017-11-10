@@ -4,9 +4,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
-import 'change-bootstrap/dist/css/bootstrap-material-design.css';
-import '../index.css';
-import themeDecorator from './themeDecorator';
 
 import {
   Button,
@@ -18,7 +15,6 @@ import {
 } from '../ui/index';
 
 storiesOf('Form', module)
-  .addDecorator(themeDecorator)
   .add('Inputs', () => (
     <Form onSubmit={action('submit')}>
       <FormGroup>

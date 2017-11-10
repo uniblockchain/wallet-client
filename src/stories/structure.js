@@ -5,19 +5,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import StoryRouter from 'storybook-router';
-import 'change-bootstrap/dist/css/bootstrap-material-design.css';
-import '../index.css';
 import menu from '../menu/index';
 import { Sidebar } from '../sidebar/Sidebar';
 import { BottomNavigation } from '../ui/bottomNavigation/BottomNavigation';
 import { Slide, Slider } from '../ui/slider';
 import { Header, PrimaryButton, Content, Paragraph, Tabs, Tab } from '../ui';
-import { Modal } from '../ui/modal/Modal';
-import themeDecorator from './themeDecorator';
 
 storiesOf('Structure', module)
   .addDecorator(StoryRouter())
-  .addDecorator(themeDecorator)
   .add('Sidebar', () => (
     <Sidebar
       menu={menu}
@@ -73,23 +68,5 @@ storiesOf('Structure', module)
         <Tab value="eth">Ether</Tab>
         <Tab value="ltc">Litecoin</Tab>
       </Tabs>
-    );
-  })
-  .add('Modal', () => {
-    const options = {
-      Confirmation: 'Confirmation',
-      Prompt: 'Prompt',
-    };
-    return (
-      <Modal
-        title="Primary Wallet"
-        visible
-        description="Set the cryptocurrency you want to use when making card payments"
-        type={select('Type', options)}
-        onConfirm={action('confirm')}
-        onCancel={action('cancel')}
-      >
-        Some content here
-      </Modal>
     );
   });

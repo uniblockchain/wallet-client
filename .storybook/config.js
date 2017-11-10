@@ -7,6 +7,9 @@ import { configure as enzymeConfigure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import expect from 'expect';
 import enzymeMatchers from 'enzyme-matchers';
+import 'change-bootstrap/dist/css/bootstrap-material-design.css';
+import themeDecorator from './themeDecorator';
+import '../src/index.css';
 
 // jest-enzyme doesn't work in the browser so configuring matchers manually
 const matchers = {};
@@ -52,6 +55,7 @@ setOptions({
 
 addDecorator(withKnobs);
 addDecorator(centered);
+addDecorator(themeDecorator);
 
 addDecorator(
   backgrounds([
