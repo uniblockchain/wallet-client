@@ -21,6 +21,8 @@ export const specs = spec => {
   spec();
 };
 
+export const select = () => {};
+
 export const describe = jasmine.currentEnv_.describe;
 export const it = jasmine.currentEnv_.it;
 export const beforeEach = jasmine.currentEnv_.beforeEach;
