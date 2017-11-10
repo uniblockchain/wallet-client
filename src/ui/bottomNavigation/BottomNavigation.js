@@ -60,24 +60,25 @@ const navigationStyles = {
 };
 
 const buttonStyles = {
+  root: {
+    color: '#ccc',
+    paddingTop: 8,
+  },
   label: {
     fontSize: '12px',
+    color: '#a1a1a1',
   },
   overview: {
-    color: '#19c3ed',
-    paddingTop: '8px',
+    color: '#19c3ed !important',
   },
   wallet: {
-    color: '#02bda5',
-    paddingTop: '8px',
+    color: '#02bda5 !important',
   },
   card: {
-    color: '#00346b',
-    paddingTop: '8px',
+    color: '#00346b !important',
   },
   marketplace: {
-    color: '#19c3ed',
-    paddingTop: '8px',
+    color: '#19c3ed !important',
   },
 };
 
@@ -85,7 +86,12 @@ const StyledBottomNavigationButton = withStyles(
   buttonStyles,
 )(({ classes, type, ...other }) => (
   <BottomNavigationButton
-    classes={{ label: classes.label, selected: classes[type] }}
+    classes={{
+      root: classes.root,
+      label: classes.label,
+      selected: classes[type],
+      selectedLabel: classes[type],
+    }}
     {...other}
   />
 ));
