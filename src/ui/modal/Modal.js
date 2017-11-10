@@ -35,7 +35,7 @@ const Box = styled.div`
 
 const StyledHeader = Header.extend`
   font-size: 30px;
-  color: ${props => props.theme.text};
+  color: ${props => props.theme.main};
 `;
 
 const CancelButton = Button.extend`
