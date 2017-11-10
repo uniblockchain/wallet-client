@@ -5,6 +5,7 @@ import { Header, PrimaryButton, Link, Paragraph } from '../../ui';
 
 import { Slider, Slide } from '../../ui/slider';
 import withWallet from '../../wallet/withWallet';
+import congratzImage from './img/congratz.svg';
 
 export type Props = {
   isNewUser: boolean,
@@ -14,24 +15,29 @@ const StyledParagraph = Paragraph.extend`
   color: ${props => (props.alt ? props.theme.alt : props.theme.main)};
 `;
 
+const CongratzSlide = Slide.extend`
+  background-image: url(${congratzImage});
+  background-repeat: no-repeat;
+`;
+
 export const OverviewSlider = ({ isNewUser }: Props) => (
   <Slider>
     {isNewUser ? (
       <div>
-        <Slide>
+        <CongratzSlide>
           <Header>Congratulations</Header>
           <StyledParagraph>Your account is now ready</StyledParagraph>
-        </Slide>
+        </CongratzSlide>
       </div>
     ) : (
       ''
     )}
     {!isNewUser ? (
       <div>
-        <Slide>
+        <CongratzSlide>
           <Header>Welcome back!</Header>
           <StyledParagraph>Good to see you again.</StyledParagraph>
-        </Slide>
+        </CongratzSlide>
       </div>
     ) : (
       ''
