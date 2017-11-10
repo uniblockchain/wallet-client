@@ -20,6 +20,7 @@ const styles = () => ({
     color: '#2a2a2a',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    direction: 'rtl',
     textAlign: 'left',
   },
   amount: {
@@ -90,13 +91,13 @@ export class Transaction extends Component<Props> {
           disableGutters
           className={classes.listItem}
         >
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={9} sm={9}>
             <div className={classes.address}>{address}</div>
             <div className={classes.date}>
               <DateDisplay date={transaction.date} />
             </div>
           </Grid>
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={3} sm={3}>
             <div className={classes.amount}>
               <FiatValue value={amount} />
             </div>
