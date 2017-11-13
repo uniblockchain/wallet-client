@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bitcoinjs-lib": "^3.3.0",
+    "bs58check": "^2.0.2",
     "change-bootstrap": "ChangeFinance/change-bootstrap",
     "chart.js": "^2.7.0",
     "copy-to-clipboard": "^3.0.8",
