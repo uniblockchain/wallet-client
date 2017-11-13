@@ -88,6 +88,54 @@ storiesOf('Components', module).add('Address Block', () => {
         component.setProps({ wallet: null });
         expect(component.contains(<LinearProgress />)).toBe(true);
       });
+
+      describe('renders 2 addresses for Litecoin', () => {
+        const litecoinWallet: WalletType = {
+          id: 1,
+          address: 'sampleAddress',
+          currency: 'LTC',
+          balance: [],
+          receiveAddress: 'QVS6ZCF7zcqqXfEDzGPtzaAvcvUaJpegV5',
+          transactions: [],
+        };
+
+        const ltcProps = {
+          wallet: new Wallet(litecoinWallet),
+          onCopy: jest.fn(),
+        };
+
+        component = shallow(<AddressBlock {...ltcProps} />);
+
+        const addresses = component.find('Address');
+        expect(addresses.length).toBe(2);
+        expect(
+          addresses
+            .at(0)
+            .render()
+            .text(),
+        ).toBe('QVS6ZCF7zcqqXfEDzGPtzaAvcvUaJpegV5');
+        expect(
+          addresses
+            .at(1)
+            .render()
+            .text(),
+        ).toBe('2N25LSBNsyWnkPUUBNAMsusjVUY2kNzeS1T');
+
+        const addressHeaders = component.find('AddressHeader');
+        expect(addressHeaders.length).toBe(2);
+        expect(
+          addressHeaders
+            .at(0)
+            .render()
+            .text(),
+        ).toBe('Your Litecoin address');
+        expect(
+          addressHeaders
+            .at(1)
+            .render()
+            .text(),
+        ).toBe('Testnet p2sh address (deprecated)');
+      });
     }),
   );
 

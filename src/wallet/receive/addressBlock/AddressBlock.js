@@ -12,6 +12,7 @@ import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
 import { getActiveWallet } from '../../../redux/selectors';
 import { PrimaryButton, Content } from '../../../ui';
+import { convertLitecoinAddress } from '../../litecoin/LitecoinAddressConverter';
 
 type Props = {
   wallet: ?Wallet,
@@ -76,6 +77,8 @@ export const AddressBlock = ({ onCopy, wallet }: Props) => {
   }
 
   const currencyName: string = CurrencyName.get(wallet.currency);
+  const ltcAddress =
+    wallet.currency === 'LTC' && convertLitecoinAddress(wallet.receiveAddress);
 
   return (
     <StyledContent>
@@ -83,6 +86,12 @@ export const AddressBlock = ({ onCopy, wallet }: Props) => {
       <AddressBox>
         <AddressHeader>Your {currencyName} address</AddressHeader>
         <Address>{wallet.receiveAddress}</Address>
+        {ltcAddress && (
+          <div className="text-center">
+            <AddressHeader>{ltcAddress.type}</AddressHeader>
+            <Address>{ltcAddress.address}</Address>
+          </div>
+        )}
         <div>
           <CopyButton
             onClick={() => onCopy(wallet ? wallet.receiveAddress : '')}
