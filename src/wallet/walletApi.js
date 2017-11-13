@@ -7,11 +7,11 @@ import type { WalletState } from './walletState';
 
 // TODO: add proper Array<Transaction> type instead of *
 function fetchWalletTransactions(walletId: number): Promise<*> {
-  return get(`${config.get('apiUrl')}/v1/wallet/${walletId}/transaction`);
+  return get(`${config.get('apiUrl')}/v1/wallets/${walletId}/transactions`);
 }
 
 function fetchWallet(): Promise<WalletState> {
-  return get(`${config.get('apiUrl')}/v1/wallet`).then(wallets =>
+  return get(`${config.get('apiUrl')}/v1/wallets`).then(wallets =>
     Promise.all(
       wallets.map(wallet =>
         fetchWalletTransactions(wallet.id).then(transactions => ({
