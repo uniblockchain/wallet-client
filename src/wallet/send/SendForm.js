@@ -90,7 +90,7 @@ export const SendForm = ({
                 />
               </Col>
               <Col>
-                <Label htmlFor="amountInFiat">&nbsp;</Label>
+                <Label htmlFor="amountInFiat">(Approximately)</Label>
                 <Field
                   name="amountInFiat"
                   currencyCode={fiatCurrencyCode}
