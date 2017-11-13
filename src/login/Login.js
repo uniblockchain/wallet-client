@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import loginActions from './loginActions';
 import type { LoginInitiated } from './loginActionTypes';
+import AppRouter from '../router';
 
 export type Props = {
   authenticated: boolean,
@@ -16,7 +16,7 @@ export const Login = (props: Props) => {
     props.login(values.emailAddress, values.password);
   };
   if (props.authenticated) {
-    return <Redirect to="/overview" />;
+    return <AppRouter overview />;
   }
   return <LoginForm onSubmit={handleSubmit} />;
 };

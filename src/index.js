@@ -27,6 +27,7 @@ import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
 import { pageTemplate } from './page';
 import { DefaultTheme } from './ui';
+import { routes } from './router';
 import './index.css';
 
 configuration.initialize();
@@ -66,8 +67,8 @@ render(
             <Route path="/signup" component={Signup} />
           </PublicContent>
           <Switch>
-            <Route path="/overview" component={page(Overview)} />
-            <Route path="/wallet" component={page(Wallet)} />
+            <Route path={routes.OVERVIEW} component={page(Overview)} />
+            <Route path={routes.WALLET} component={page(Wallet)} />
             <Route path="/send" component={page(Send)} />
             <Route path="/receive" component={page(Receive)} />
             <Route path="/card" component={page(Card)} />

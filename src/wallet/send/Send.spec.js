@@ -7,7 +7,9 @@ import { Send } from './Send';
 import sendActions from './sendActions';
 import SendForm from './SendForm';
 import CurrencyTabs from '../currencyTabs';
+import AppRouter from '../../router';
 import { Modal, Progress } from '../../ui';
+// jest.mock('../../ui', () => 'icon' })
 
 describe('Send component', () => {
   let component;
@@ -77,11 +79,17 @@ describe('Send component', () => {
     }).toThrowError();
   });
 
-  it('Clears transaction status when confirming modal', () => {
+  it('On confirm modal clears transaction status', () => {
     const transactionStatus = 'signed';
     component.setProps({ transactionStatus });
-    expect(component.find(Modal).prop('onConfirm')).toEqual(
-      props.clearResponse,
-    );
+    component.find(Modal).prop('onConfirm')();
+    expect(props.clearResponse.mock.calls.length).toBe(1);
+  });
+
+  it('On confirm modal redirects back to wallet', () => {
+    const transactionStatus = 'signed';
+    component.setProps({ transactionStatus });
+    component.find(Modal).prop('onConfirm')();
+    expect(component.contains(<AppRouter wallet />));
   });
 });
