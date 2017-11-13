@@ -112,7 +112,7 @@ const formatBalance = (number: number) => {
   if (!number) {
     return '0.00';
   }
-  return number;
+  return number.toFixed(6);
 };
 
 export const TransactionsCard = styled(Card)`
@@ -132,9 +132,12 @@ export const Wallet = ({ wallet, representationalCurrency }: Props) => {
           <Balance>{formatBalance(wallet.getBalance())}</Balance>
           <FiatBalance>
             ~{' '}
-            {formatBalance(
-              wallet.getRepresentationalBalance(representationalCurrency),
-            )}
+            {wallet
+              .getRepresentationalBalance(representationalCurrency)
+              .toLocaleString('en-US', {
+                style: 'currency',
+                currency: representationalCurrency,
+              })}
           </FiatBalance>
           <WalletButtons wallet={wallet} />
         </MainContent>

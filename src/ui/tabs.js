@@ -14,6 +14,7 @@ const StyledTab = styled.h2`
   padding: 8px 15px 8px 15px;
   margin: 0;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 export const Tab = (props: TabProps) => (
