@@ -4,7 +4,6 @@ import React from 'react';
 import jest from 'jest-mock';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import { LinearProgress } from 'material-ui';
 import {
   storiesOf,
   action,
@@ -84,9 +83,16 @@ storiesOf('Components', module).add('Address Block', () => {
         expect(props.onCopy).toHaveBeenCalledTimes(1);
       });
 
-      it('renders loading when active wallet not present', () => {
+      it('does not render when active wallet not present', () => {
         component.setProps({ wallet: null });
-        expect(component.contains(<LinearProgress />)).toBe(true);
+        expect(component.text()).toBeFalsy();
+      });
+
+      it('shows notification when copy button is clicked', () => {
+        expect(component.find('Notification').length).toEqual(1);
+        expect(component.state('showNotification')).toBeFalsy();
+        component.find('CopyButton').simulate('click');
+        expect(component.state('showNotification')).toBeTruthy();
       });
 
       describe('renders 2 addresses for Litecoin', () => {

@@ -6,6 +6,7 @@ import * as form from './form';
 import * as theme from './theme';
 import * as tabs from './tabs';
 import * as progress from './progress';
+import Notification from './notification';
 import Modal from './modal';
 
 export * from './buttons';
@@ -16,6 +17,7 @@ export * from './theme';
 export * from './tabs';
 export * from './progress';
 export { default as Modal } from './modal';
+export { default as Notification } from './notification';
 
 export default {
   ...buttons,
@@ -26,4 +28,5 @@ export default {
   ...tabs,
   ...progress,
   Modal,
+  Notification,
 };

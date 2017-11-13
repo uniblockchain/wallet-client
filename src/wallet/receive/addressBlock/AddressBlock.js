@@ -3,7 +3,6 @@
 import * as React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
-import { LinearProgress } from 'material-ui';
 
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
@@ -11,7 +10,7 @@ import { Wallet } from '../../walletState';
 import CurrencyName from '../../CurrencyName';
 import withWallet from '../../withWallet';
 import { getActiveWallet } from '../../../redux/selectors';
-import { PrimaryButton, Content } from '../../../ui';
+import { PrimaryButton, Content, Notification } from '../../../ui';
 import { convertLitecoinAddress } from '../../litecoin/LitecoinAddressConverter';
 
 type Props = {
@@ -67,42 +66,65 @@ const CopyButton = styled(PrimaryButton)`
 
 CopyButton.displayName = 'CopyButton';
 
-export const AddressBlock = ({ onCopy, wallet }: Props) => {
-  if (!wallet) {
+type State = {
+  showNotification: boolean,
+};
+
+export class AddressBlock extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showNotification: false,
+    };
+  }
+  handleCopy = (address: string) => {
+    this.props.onCopy(address);
+    this.setState({ showNotification: true });
+  };
+  handleNotificationClose = () => {
+    this.setState({ showNotification: false });
+  };
+  render() {
+    const { wallet } = this.props;
+    if (!wallet) {
+      return null;
+    }
+
+    const currencyName: string = CurrencyName.get(wallet.currency);
+    const ltcAddress =
+      wallet.currency === 'LTC' &&
+      convertLitecoinAddress(wallet.receiveAddress);
+
     return (
-      <div>
-        <LinearProgress />
-      </div>
+      <StyledContent>
+        <h1>Receive {currencyName}</h1>
+        <AddressBox>
+          <AddressHeader>Your {currencyName} address</AddressHeader>
+          <Address>{wallet.receiveAddress}</Address>
+          {ltcAddress && (
+            <div className="text-center">
+              <AddressHeader>{ltcAddress.type}</AddressHeader>
+              <Address>{ltcAddress.address}</Address>
+            </div>
+          )}
+          <div>
+            <CopyButton
+              onClick={() =>
+                this.handleCopy(wallet ? wallet.receiveAddress : '')}
+            >
+              Tap to copy
+            </CopyButton>
+          </div>
+        </AddressBox>
+        <Notification
+          open={this.state.showNotification}
+          onClose={this.handleNotificationClose}
+          message={`Copied ${currencyName} address to clipboard`}
+        />
+      </StyledContent>
     );
   }
-
-  const currencyName: string = CurrencyName.get(wallet.currency);
-  const ltcAddress =
-    wallet.currency === 'LTC' && convertLitecoinAddress(wallet.receiveAddress);
-
-  return (
-    <StyledContent>
-      <h1>Receive {currencyName}</h1>
-      <AddressBox>
-        <AddressHeader>Your {currencyName} address</AddressHeader>
-        <Address>{wallet.receiveAddress}</Address>
-        {ltcAddress && (
-          <div className="text-center">
-            <AddressHeader>{ltcAddress.type}</AddressHeader>
-            <Address>{ltcAddress.address}</Address>
-          </div>
-        )}
-        <div>
-          <CopyButton
-            onClick={() => onCopy(wallet ? wallet.receiveAddress : '')}
-          >
-            Tap to copy
-          </CopyButton>
-        </div>
-      </AddressBox>
-    </StyledContent>
-  );
-};
+}
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallet: getActiveWallet(state),
