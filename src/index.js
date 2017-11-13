@@ -63,10 +63,10 @@ render(
             <Route exact path="/" component={App} />
             <Route path="/landing" component={Landing} />
             <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
             <Route path="/signup" component={Signup} />
           </PublicContent>
           <Switch>
+            <Route path="/logout" component={Logout} />
             <Route path={routes.OVERVIEW} component={page(Overview)} />
             <Route path={routes.WALLET} component={page(Wallet)} />
             <Route path="/send" component={page(Send)} />

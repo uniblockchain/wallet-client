@@ -12,13 +12,14 @@ import { userReducer, userSagas } from '../user';
 import { walletReducer, walletSagas } from '../wallet';
 import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
 import { pageReducer } from '../page';
+import rootReducer from './rootReducer';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const history = createHistory();
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   router: routerReducer,
   user: userReducer,
   wallet: walletReducer,
@@ -39,7 +40,7 @@ const middleware = [
 
 const storeEnhancer = composeEnhancers(applyMiddleware(...middleware));
 
-export const store = createStore(rootReducer, storeEnhancer);
+export const store = createStore(rootReducer(appReducer), storeEnhancer);
 
 [userSagas, loginSagas, walletSagas, sendSagas, quoteSagas].map(
   sagaMiddleware.run,
