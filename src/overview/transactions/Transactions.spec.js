@@ -3,37 +3,33 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { TransactionsWithoutStyles } from './Transactions';
+import { TransactionsWithoutStyles, mapStateToProps } from './Transactions';
 import Transaction from './transaction';
-import type { WalletType } from '../../wallet/walletState';
+import type {
+  WalletType,
+  Transaction as TransactionType,
+} from '../../wallet/walletState';
 
 describe('Transactions component', () => {
   let component;
 
-  const sampleWallet: WalletType = {
-    id: 1,
-    address: 'sampleAddress',
-    currency: 'EUR',
-    balance: [],
-    receiveAddress: 'sampleReceiveAddress',
-    transactions: [
-      {
-        id: 1,
-        state: 'Completed',
-        date: new Date(),
-        entries: [],
-      },
-      {
-        id: 2,
-        state: 'Completed',
-        date: new Date(),
-        entries: [],
-      },
-    ],
-  };
+  const transactions: Array<TransactionType> = [
+    {
+      id: 1,
+      state: 'Completed',
+      date: new Date('2017-11-14T00:00:00Z'),
+      entries: [],
+    },
+    {
+      id: 2,
+      state: 'Completed',
+      date: new Date('2016-10-13T00:00:00Z'),
+      entries: [],
+    },
+  ];
 
   const props = {
-    wallets: [sampleWallet],
+    transactions,
     classes: {},
   };
 
@@ -47,14 +43,38 @@ describe('Transactions component', () => {
 
   it('renders each transaction', () => {
     expect(
-      component.contains(
-        <Transaction transaction={sampleWallet.transactions[0]} />,
-      ),
+      component.contains(<Transaction transaction={transactions[0]} />),
     ).toBe(true);
     expect(
-      component.contains(
-        <Transaction transaction={sampleWallet.transactions[1]} />,
-      ),
+      component.contains(<Transaction transaction={transactions[1]} />),
     ).toBe(true);
+  });
+
+  it('sorts transactions by date (desc)', () => {
+    const sampleWallet: WalletType = {
+      id: 1,
+      address: 'sampleAddress',
+      currency: 'EUR',
+      balance: [],
+      receiveAddress: 'sampleReceiveAddress',
+      transactions,
+    };
+
+    const state = {
+      wallet: {
+        wallets: [sampleWallet, sampleWallet],
+      },
+    };
+
+    const mappedProps = mapStateToProps(state, {});
+
+    expect(mappedProps).toEqual({
+      transactions: [
+        transactions[0],
+        transactions[0],
+        transactions[1],
+        transactions[1],
+      ],
+    });
   });
 });

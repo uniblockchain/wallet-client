@@ -9,7 +9,7 @@ const TOKEN_STORAGE_KEY = 'accessToken';
 const token: ?string =
   (window.localStorage && localStorage.getItem(TOKEN_STORAGE_KEY)) || null;
 
-type LoginState = {
+export type LoginState = {
   token: ?string,
 };
 

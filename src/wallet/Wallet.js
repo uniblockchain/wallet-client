@@ -94,7 +94,7 @@ const WalletButtons = ({ wallet }: WalletButtonsProps) => {
 
 const WalletActivity = ({ wallet }: WalletButtonsProps) => {
   if (wallet.hasBalance()) {
-    return <Transactions wallets={[wallet]} />;
+    return <Transactions transactions={wallet.transactions} />;
   }
   return (
     <div>

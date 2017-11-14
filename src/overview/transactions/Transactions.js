@@ -19,25 +19,34 @@ const styles = () => ({
 
 type Props = {
   classes: Object,
-  wallets: Array<WalletType>,
+  transactions: Array<TransactionType>,
 };
 
-export const TransactionsWithoutStyles = ({ classes, wallets }: Props) => (
+export const TransactionsWithoutStyles = ({ classes, transactions }: Props) => (
   <div className={classes.root}>
     <List>
-      {wallets.map((wallet: WalletType) =>
-        wallet.transactions.map((transaction: TransactionType) => (
-          <Transaction key={transaction.id} transaction={transaction} />
-        )),
-      )}
+      {transactions.map((transaction: TransactionType) => (
+        <Transaction key={transaction.id} transaction={transaction} />
+      ))}
     </List>
   </div>
 );
 
 export const Transactions = withStyles(styles)(TransactionsWithoutStyles);
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  wallets: state.wallet ? state.wallet.wallets : [],
+const getSortedTransactions = (
+  wallets: Array<WalletType>,
+): Array<TransactionType> => {
+  const transactionLists = wallets.map(wallet => wallet.transactions);
+  const transactions = [].concat(...transactionLists);
+  transactions.sort(
+    (transaction1, transaction2) => transaction2.date - transaction1.date,
+  );
+  return transactions;
+};
+
+export const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  transactions: state.wallet ? getSortedTransactions(state.wallet.wallets) : [],
 });
 
 export default connect(mapStateToProps)(Transactions);
