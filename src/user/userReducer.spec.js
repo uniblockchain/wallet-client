@@ -1,7 +1,7 @@
 // @flow
 
 import userReducer from './userReducer';
-import userActions from './userActions';
+import { fetchRoutine, creationRoutine } from './userRoutines';
 import { type UserState, initialUserState } from './userState';
 
 describe('user reducer', () => {
@@ -10,20 +10,20 @@ describe('user reducer', () => {
 
   describe('handles user fetch', () => {
     it('request', () => {
-      const action = userActions.userFetchRequested();
+      const action = fetchRoutine.trigger();
       const newState = userReducer(initialUserState, action);
       expect(newState).toEqual(initialUserState);
     });
 
     it('success', () => {
-      const action = userActions.userFetchSucceeded(user);
+      const action = fetchRoutine.success(user);
       const newState = userReducer(initialUserState, action);
       expect(newState.id).toEqual(user.id);
       expect(newState.email).toEqual(user.email);
     });
 
     it('fail', () => {
-      const action = userActions.userFetchFailed(error);
+      const action = fetchRoutine.failure(error);
       const newState = userReducer(initialUserState, action);
       expect(newState.error).toEqual(error);
     });
@@ -33,20 +33,20 @@ describe('user reducer', () => {
     it('request', () => {
       const email = 'test@example.com';
       const password = 'test';
-      const action = userActions.userCreationRequested(email, password);
+      const action = creationRoutine.trigger(email, password);
       const newState = userReducer(initialUserState, action);
       expect(newState).toEqual(initialUserState);
     });
 
     it('success', () => {
-      const action = userActions.userCreationSucceeded(user);
+      const action = creationRoutine.success(user);
       const newState = userReducer(initialUserState, action);
       expect(newState.id).toEqual(user.id);
       expect(newState.email).toEqual(user.email);
     });
 
     it('fail', () => {
-      const action = userActions.userCreationFailed(error);
+      const action = creationRoutine.failure(error);
       const newState = userReducer(initialUserState, action);
       expect(newState.error).toEqual(error);
     });

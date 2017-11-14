@@ -4,18 +4,12 @@ import { shallow } from 'enzyme';
 import { Signup } from './Signup';
 import type { Props } from './Signup';
 
+jest.mock('../redux/reduxStore');
+
 describe('Signup component', () => {
   let component;
-
-  const mockFn: any = jest.fn();
-
   const props: Props = {
-    email: 'test@example.com',
-    emailValidity: mockFn,
-    password: 'password',
-    passwordValidity: mockFn,
     authenticated: false,
-    createUser: mockFn,
   };
 
   beforeEach(() => {

@@ -1,45 +1,45 @@
 // @flow
-
+import type RoutineAction from 'redux-saga-routines';
 import { type UserState, initialUserState } from './userState';
-import userAction, { type UserAction } from './userActionTypes';
+import { fetchRoutine, creationRoutine } from './userRoutines';
 
 const userReducer = (
   state: UserState = initialUserState,
-  action: UserAction,
+  action: RoutineAction,
 ): UserState => {
   switch (action.type) {
-    case userAction.USER_FETCH_REQUESTED:
+    case fetchRoutine.TRIGGER:
       return {
         ...state,
       };
 
-    case userAction.USER_FETCH_SUCCEEDED:
+    case fetchRoutine.SUCCESS:
       return {
         ...state,
-        ...action.user,
+        ...action.payload,
       };
 
-    case userAction.USER_FETCH_FAILED:
+    case fetchRoutine.FAILURE:
       return {
         ...state,
-        error: action.error,
+        error: action.payload,
       };
 
-    case userAction.USER_CREATION_REQUESTED:
+    case creationRoutine.TRIGGER:
       return {
         ...state,
       };
 
-    case userAction.USER_CREATION_SUCCEEDED:
+    case creationRoutine.SUCCESS:
       return {
         ...state,
-        ...action.user,
+        ...action.payload,
       };
 
-    case userAction.USER_CREATION_FAILED:
+    case creationRoutine.FAILURE:
       return {
         ...state,
-        error: action.error,
+        error: action.payload,
       };
 
     default:

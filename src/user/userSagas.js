@@ -1,41 +1,48 @@
 import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { SubmissionError } from 'redux-form';
 import userApi from './userApi';
-import userActions from './userActions';
-import userActionTypes from './userActionTypes';
 import { loginRoutine } from '../login';
+import { fetchRoutine, creationRoutine } from './userRoutines';
 
 function* fetchUser() {
   try {
     const user = yield call(userApi.fetchUser);
-    yield put(userActions.userFetchSucceeded(user));
+    yield put(fetchRoutine.success(user));
   } catch (error) {
-    yield put(userActions.userFetchFailed(error.message));
     console.error(error);
+    yield put(
+      fetchRoutine.failure(new SubmissionError({ _error: error.body.message })),
+    );
   }
 }
 
 function* createUser(action) {
   try {
-    const user = yield call(userApi.createUser, action.email, action.password);
-    yield put(userActions.userCreationSucceeded(user));
+    const { email, password } = action.payload.values;
+    const user = yield call(userApi.createUser, email, password);
+    yield put(creationRoutine.success(user));
     yield put(
       loginRoutine.trigger({
-        username: action.email,
-        password: action.password,
+        username: email,
+        password,
       }),
     );
   } catch (error) {
-    yield put(userActions.userCreationFailed(error.message));
     console.error(error);
+    yield put(
+      creationRoutine.failure(
+        new SubmissionError({ _error: error.body.message }),
+      ),
+    );
   }
 }
 
 function* userFetchSaga() {
-  yield takeLatest(userActionTypes.USER_FETCH_REQUESTED, fetchUser);
+  yield takeLatest(fetchRoutine.TRIGGER, fetchUser);
 }
 
 function* userCreationSaga() {
-  yield takeLatest(userActionTypes.USER_CREATION_REQUESTED, createUser);
+  yield takeLatest(creationRoutine.TRIGGER, createUser);
 }
 
 function* userSagas() {

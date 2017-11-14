@@ -1,14 +1,18 @@
 // @flow
 import React from 'react';
 import { shallow } from 'enzyme';
+import { type FormProps } from 'redux-form';
+
 import { PasswordPage } from './PasswordPage';
+
+jest.mock('../redux/reduxStore');
 
 describe('PasswordPage component', () => {
   let component;
 
-  const props = {
-    password: 'password',
-    updatePassword: jest.fn(),
+  const props: FormProps = {
+    handleSubmit: jest.fn(),
+    previousPage: jest.fn(),
   };
 
   beforeEach(() => {
@@ -17,16 +21,5 @@ describe('PasswordPage component', () => {
 
   it('renders the component', () => {
     expect(component);
-  });
-
-  it('contains password value', () => {
-    expect(component.find('#password')).toHaveValue(props.password);
-  });
-
-  it('updates password value', () => {
-    const newPassword = 'newpass';
-    const password = component.find('#password');
-    password.simulate('change', { currentTarget: { value: newPassword } });
-    expect(props.updatePassword).toBeCalledWith(newPassword, undefined);
   });
 });

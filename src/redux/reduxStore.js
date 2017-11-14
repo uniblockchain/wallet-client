@@ -7,7 +7,6 @@ import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import { routinePromiseWatcherSaga } from 'redux-saga-routines';
 import { loginReducer, loginSagas } from '../login';
-import { signupReducer } from '../signup';
 
 import { userReducer, userSagas } from '../user';
 import { walletReducer, walletSagas } from '../wallet';
@@ -24,7 +23,6 @@ const appReducer = combineReducers({
   router: routerReducer,
   user: userReducer,
   wallet: walletReducer,
-  signup: signupReducer,
   login: loginReducer,
   form: formReducer,
   page: pageReducer,

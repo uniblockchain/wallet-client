@@ -1,55 +1,51 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
 // import VisibilityIcon from 'material-ui-icons/Visibility';
-import { Header, Label, Input, Form, FormGroup } from '../ui';
-import signupActions from './signupActions';
-import type { SignupPasswordUpdate } from './signupActionTypes';
+import { reduxForm, type FormProps } from 'redux-form';
+import {
+  Header,
+  Form,
+  Field,
+  WrappedContent,
+  Top,
+  Bottom,
+  PrimaryButton,
+  Button,
+  FormFeedback,
+} from '../ui';
+import signupFormSubmitHandler from './signupFormSubmitHandler';
 
-type Props = {
-  password: string,
-  updatePassword: (string, ValidityState) => SignupPasswordUpdate,
-};
-
-export const PasswordPage = (props: Props) => {
-  const handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    props.updatePassword(e.currentTarget.value, e.currentTarget.validity);
-  };
+export const PasswordPage = (props: FormProps) => {
+  const { handleSubmit, previousPage, error } = props;
   return (
-    <div className="top">
-      <Header>
-        One more thing.
-        <br />
-        Create your password.
-      </Header>
-      <Form className="mt-5">
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <div className="input-group">
-            <Input
-              id="password"
-              type="password"
-              autoFocus
-              className="form-control"
-              value={props.password}
-              placeholder="Type your password here..."
-              onChange={handleChange}
-            />
-            {/* TODO: finish the eye password toggle */}
-            {/* <span className="input-group-addon"><VisibilityIcon /></span> */}
-          </div>
-        </FormGroup>
-      </Form>
-    </div>
+    <Form onSubmit={handleSubmit(signupFormSubmitHandler)}>
+      <WrappedContent>
+        <Top>
+          <Header alt>
+            One more thing.
+            <br />
+            Create your password.
+          </Header>
+          {error && <FormFeedback>{error}</FormFeedback>}
+          <Field
+            name="password"
+            type="password"
+            autoFocus
+            label="Password"
+            placeholder="Type your password here..."
+          />
+        </Top>
+        <Bottom>
+          <PrimaryButton type="submit">Next</PrimaryButton>
+          <Button onClick={previousPage}>Back</Button>
+        </Bottom>
+      </WrappedContent>
+    </Form>
   );
 };
 
-const mapStateToProps = state => ({
-  password: state.signup.password,
-});
-
-const mapDispatchToProps = {
-  updatePassword: signupActions.signupPasswordUpdate,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordPage);
+export default reduxForm({
+  form: 'signup',
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+})(PasswordPage);
