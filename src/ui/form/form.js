@@ -60,12 +60,16 @@ const renderField = ({
   input,
   label,
   type,
+  placeholder,
   meta: { touched, error, warning },
 }: any) => (
   <FormGroup>
-    <Label>{label}</Label>
+    <Label className={error ? 'is-invalid' : ''} htmlFor={input.name}>
+      {label}
+    </Label>
     <Input
-      className={`form-control ${input.className}`}
+      className={`form-control ${error ? 'is-invalid' : ''} ${input.className}`}
+      placeholder={placeholder}
       {...input}
       type={type}
     />

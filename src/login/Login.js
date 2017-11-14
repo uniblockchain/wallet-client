@@ -1,32 +1,23 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import type { MapStateToProps } from 'react-redux';
 import LoginForm from './LoginForm';
-import loginActions from './loginActions';
-import type { LoginInitiated } from './loginActionTypes';
 import AppRouter from '../router';
 
 export type Props = {
   authenticated: boolean,
-  login: (string, string) => LoginInitiated,
 };
 
 export const Login = (props: Props) => {
-  const handleSubmit = values => {
-    props.login(values.emailAddress, values.password);
-  };
   if (props.authenticated) {
     return <AppRouter overview />;
   }
-  return <LoginForm onSubmit={handleSubmit} />;
+  return <LoginForm />;
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   authenticated: !!state.login.token,
 });
 
-const mapDispatchToProps = {
-  login: loginActions.login,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps)(Login);

@@ -1,7 +1,7 @@
 // @flow
 
-import type { LoginAction, LoginSuccessful } from './loginActionTypes';
-import loginAction from './loginActionTypes';
+import type RoutineAction from 'redux-saga-routines';
+import { loginRoutine, logoutRoutine } from './loginRoutines';
 
 const TOKEN_STORAGE_KEY = 'accessToken';
 
@@ -17,9 +17,9 @@ const defaultState: LoginState = {
   token,
 };
 
-function addToLocalStorage(action: LoginSuccessful) {
+function addToLocalStorage(action: RoutineAction) {
   if (window.localStorage) {
-    localStorage.setItem(TOKEN_STORAGE_KEY, action.oauthToken.access_token);
+    localStorage.setItem(TOKEN_STORAGE_KEY, action.payload.access_token);
   }
 }
 
@@ -31,24 +31,27 @@ function removeFromLocalStorage() {
 
 const loginReducer = (
   state: LoginState = defaultState,
-  action: LoginAction,
+  action: RoutineAction,
 ): LoginState => {
   switch (action.type) {
-    case loginAction.LOGIN_SUCCESSFUL:
+    case loginRoutine.SUCCESS: {
       addToLocalStorage(action);
       return {
         ...state,
-        token: action.oauthToken.access_token,
+        token: action.payload.access_token,
       };
-    case loginAction.LOGOUT:
+    }
+    case logoutRoutine.TRIGGER: {
       removeFromLocalStorage();
       return {
         ...state,
         token: null,
       };
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 };
 

@@ -1,8 +1,7 @@
 // @flow
 import { type Reducer } from 'redux';
 import rootReducer from './rootReducer';
-import { loginActions } from '../login';
-import type { LoginAction } from '../login/loginActionTypes';
+import { logoutRoutine, loginRoutine } from '../login/loginRoutines';
 
 jest.mock('./reduxStore');
 
@@ -11,7 +10,7 @@ describe('Root reducer', () => {
     test: true,
   };
   let fakeReducer;
-  let reducer: Reducer<any, LoginAction>;
+  let reducer: Reducer<any, any>;
 
   beforeEach(() => {
     fakeReducer = jest.fn();
@@ -19,7 +18,7 @@ describe('Root reducer', () => {
   });
 
   it('dispatches clear state and action to appReducer when action is logout', () => {
-    const action = loginActions.logout();
+    const action = logoutRoutine.trigger();
     reducer(state, action);
     expect(fakeReducer.mock.calls.length).toEqual(1);
     expect(fakeReducer.mock.calls[0][0]).toBeUndefined();
@@ -27,7 +26,7 @@ describe('Root reducer', () => {
   });
 
   it('dispatches state and action to appReducer when action is not logout', () => {
-    const action = loginActions.login('test', 'test');
+    const action = loginRoutine.trigger('test', 'test');
     reducer(state, action);
     expect(fakeReducer.mock.calls.length).toEqual(1);
     expect(fakeReducer.mock.calls[0][0]).toEqual(state);

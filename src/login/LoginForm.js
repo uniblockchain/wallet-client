@@ -1,40 +1,22 @@
 // @flow
 import React from 'react';
-import { Field, reduxForm, type FormProps } from 'redux-form';
+import { reduxForm, type FormProps } from 'redux-form';
+import { loginFormSubmitHandler } from './loginRoutines';
 import {
   WrappedContent,
   Top,
   Bottom,
   Header,
-  Label,
-  Input,
   LinkButton,
   Link,
   PrimaryButton,
   Form,
-  FormGroup,
+  Field,
+  FormFeedback,
 } from '../ui';
 
-const EmailAddress = ({ input }: any): Input => (
-  <Input
-    {...input}
-    type="email"
-    placeholder="Type your email here..."
-    className="form-control"
-  />
-);
-
-const Password = ({ input }: any): Input => (
-  <Input
-    {...input}
-    type="password"
-    placeholder="Type your password here..."
-    className="form-control"
-  />
-);
-
 export const LoginForm = (props: FormProps) => {
-  const { handleSubmit } = props;
+  const { handleSubmit, error } = props;
   return (
     <WrappedContent>
       <Top>
@@ -43,15 +25,24 @@ export const LoginForm = (props: FormProps) => {
           <br />
           Please log in.
         </Header>
-        <Form id="loginForm" onSubmit={handleSubmit} className="mt-5">
-          <FormGroup>
-            <Label htmlFor="emailAddress">Email address</Label>
-            <Field name="emailAddress" component={EmailAddress} />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="password">Password</Label>
-            <Field name="password" component={Password} />
-          </FormGroup>
+        <Form
+          id="loginForm"
+          onSubmit={handleSubmit(loginFormSubmitHandler)}
+          className="mt-5"
+        >
+          {error && <FormFeedback>{error}</FormFeedback>}
+          <Field
+            name="username"
+            label="Email address"
+            type="email"
+            placeholder="Type your email here..."
+          />
+          <Field
+            name="password"
+            label="Password"
+            type="password"
+            placeholder="Type your password here..."
+          />
         </Form>
       </Top>
       <Bottom>

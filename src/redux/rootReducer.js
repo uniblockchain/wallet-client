@@ -1,14 +1,14 @@
 // @flow
 import { type Reducer } from 'redux';
-import { loginActionTypes } from '../login';
-import type LoginAction from '../login';
+import type RoutineAction from 'redux-saga-routines';
+import { logoutRoutine } from '../login';
 
-const rootReducer = (appReducer: Reducer<any, LoginAction>) => (
+const rootReducer = (appReducer: Reducer<any, RoutineAction>) => (
   state: *,
-  action: LoginAction,
+  action: RoutineAction,
 ) => {
   let newState = state;
-  if (action.type === loginActionTypes.LOGOUT) {
+  if (action.type === logoutRoutine.TRIGGER) {
     newState = undefined;
   }
   return appReducer(newState, action);

@@ -5,6 +5,7 @@ import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
+import { routinePromiseWatcherSaga } from 'redux-saga-routines';
 import { loginReducer, loginSagas } from '../login';
 import { signupReducer } from '../signup';
 
@@ -42,8 +43,13 @@ const storeEnhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const store = createStore(rootReducer(appReducer), storeEnhancer);
 
-[userSagas, loginSagas, walletSagas, sendSagas, quoteSagas].map(
-  sagaMiddleware.run,
-);
+[
+  userSagas,
+  loginSagas,
+  walletSagas,
+  sendSagas,
+  quoteSagas,
+  routinePromiseWatcherSaga,
+].map(sagaMiddleware.run);
 
 export default store;

@@ -2,7 +2,7 @@ import { call, put, takeLatest, all } from 'redux-saga/effects';
 import userApi from './userApi';
 import userActions from './userActions';
 import userActionTypes from './userActionTypes';
-import loginActions from '../login/loginActions';
+import { loginRoutine } from '../login';
 
 function* fetchUser() {
   try {
@@ -18,7 +18,12 @@ function* createUser(action) {
   try {
     const user = yield call(userApi.createUser, action.email, action.password);
     yield put(userActions.userCreationSucceeded(user));
-    yield put(loginActions.login(action.email, action.password));
+    yield put(
+      loginRoutine.trigger({
+        username: action.email,
+        password: action.password,
+      }),
+    );
   } catch (error) {
     yield put(userActions.userCreationFailed(error.message));
     console.error(error);

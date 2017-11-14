@@ -3,7 +3,7 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import loginActions from './loginActions';
+import { logoutRoutine } from './loginRoutines';
 
 type Props = {
   logout: () => void,
@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       redirectToMainPage: () => push('/'),
-      logout: loginActions.logout,
+      logout: logoutRoutine.trigger,
     },
     dispatch,
   );
