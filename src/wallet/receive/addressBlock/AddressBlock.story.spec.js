@@ -141,6 +141,9 @@ storiesOf('Components', module).add('Address Block', () => {
             .render()
             .text(),
         ).toBe('Testnet p2sh address (deprecated)');
+
+        const copyButtons = component.find('CopyButton');
+        expect(copyButtons.length).toBe(2);
       });
     }),
   );
