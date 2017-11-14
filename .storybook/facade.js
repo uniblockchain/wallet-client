@@ -6,7 +6,7 @@ import {
   beforeEach as beforeEachReal,
 } from 'storybook-addon-specifications';
 import { action as actionReal } from '@storybook/addon-actions';
-import { select as selectReal } from '@storybook/addon-knobs';
+import { select as selectReal, boolean as booleanReal } from '@storybook/addon-knobs';
 
 export const storiesOf = storiesOfReal;
 export const action = actionReal;
@@ -15,3 +15,4 @@ export const describe = describeReal;
 export const it = itReal;
 export const beforeEach = beforeEachReal;
 export const select = selectReal;
+export const boolean = booleanReal;

@@ -22,6 +22,7 @@ export const specs = spec => {
 };
 
 export const select = () => {};
+export const boolean = () => {};
 
 export const describe = jasmine.currentEnv_.describe;
 export const it = jasmine.currentEnv_.it;
