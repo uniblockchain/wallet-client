@@ -62,6 +62,8 @@ const CopyButton = styled(PrimaryButton)`
   height: 30px;
   margin-top: 4px;
   margin-bottom: 16px;
+  width: auto;
+  display: inline-block;
 `;
 
 CopyButton.displayName = 'CopyButton';
@@ -101,20 +103,20 @@ export class AddressBlock extends React.Component<Props, State> {
         <AddressBox>
           <AddressHeader>Your {currencyName} address</AddressHeader>
           <Address>{wallet.receiveAddress}</Address>
+          <CopyButton
+            onClick={() => this.handleCopy(wallet ? wallet.receiveAddress : '')}
+          >
+            Tap to copy
+          </CopyButton>
           {ltcAddress && (
             <div className="text-center">
               <AddressHeader>{ltcAddress.type}</AddressHeader>
               <Address>{ltcAddress.address}</Address>
+              <CopyButton onClick={() => this.handleCopy(ltcAddress.address)}>
+                Tap to copy
+              </CopyButton>
             </div>
           )}
-          <div>
-            <CopyButton
-              onClick={() =>
-                this.handleCopy(wallet ? wallet.receiveAddress : '')}
-            >
-              Tap to copy
-            </CopyButton>
-          </div>
         </AddressBox>
         <Notification
           open={this.state.showNotification}
