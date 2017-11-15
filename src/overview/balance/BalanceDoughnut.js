@@ -94,7 +94,7 @@ export class BalanceDoughnut extends Component<Props> {
               wallet.balance,
               wallet.currency,
             );
-            return `${walletValue} ${wallet.currency}`;
+            return `${walletValue.toFixed(6)} ${wallet.currency}`;
           },
         },
       },

@@ -16,7 +16,6 @@ export const WrappedContent = Content.extend`
 
 export const Top = styled.div`
   width: 100%;
-  height: 100%;
 
   .form-group {
     margin-top: 40px;
