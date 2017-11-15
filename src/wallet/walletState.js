@@ -17,6 +17,10 @@ export type Transaction = {
   +id: number,
   +state: string,
   +date: Date,
+  +currency: string,
+  +fee: MonetaryValues,
+  +value: MonetaryValues,
+  +address: ?string,
   +entries: Array<TransactionEntry>,
 };
 

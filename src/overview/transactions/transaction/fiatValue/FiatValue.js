@@ -15,16 +15,27 @@ type Props = {
   classes: Object,
   value: number,
   currency: string,
+  inline: ?boolean,
+  noColor: ?boolean,
 };
 
-export const FiatValue = ({ value, currency, classes }: Props) => (
-  <div className={value < 0 ? classes.expense : ''}>
-    {value.toLocaleString('en-US', {
-      style: 'currency',
-      currency,
-    })}
-  </div>
-);
+export const FiatValue = ({
+  value,
+  currency,
+  classes,
+  inline,
+  noColor,
+}: Props) => {
+  const Element = inline ? 'span' : 'div';
+  return (
+    <Element className={value < 0 && !noColor ? classes.expense : ''}>
+      {value.toLocaleString('en-US', {
+        style: 'currency',
+        currency,
+      })}
+    </Element>
+  );
+};
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   currency: state.wallet.currency,

@@ -11,14 +11,15 @@ function fetchWalletTransactions(walletId: number): Promise<*> {
 }
 
 function fetchWallet(): Promise<WalletState> {
-  return get(`${config.get('apiUrl')}/v1/wallets`).then(wallets =>
+  return get(`${config.get('apiUrl')}/v1/wallets`).then(response =>
     Promise.all(
-      wallets.map(wallet =>
+      response.map(wallet =>
         fetchWalletTransactions(wallet.id).then(transactions => ({
           ...wallet,
           transactions: transactions.map(transaction => ({
             ...transaction,
             date: new Date(transaction.date),
+            currency: wallet.currency,
           })),
         })),
       ),

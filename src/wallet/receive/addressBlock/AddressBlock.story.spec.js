@@ -50,7 +50,11 @@ storiesOf('Components', module).add('Address Block', () => {
             id: 1,
             state: 'complete',
             date: new Date(),
+            currency: 'ETH',
             entries: [],
+            fee: [],
+            value: [],
+            address: null,
           },
         ],
       };

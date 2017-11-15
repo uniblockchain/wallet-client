@@ -3,13 +3,11 @@
 import React, { Component } from 'react';
 import { Grid, ListItem } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
-import type {
-  Transaction as TransactionType,
-  TransactionEntry,
-} from '../../../wallet/walletState';
+import type { Transaction as TransactionType } from '../../../wallet/walletState';
 import walletCurrencyValueResolver from '../../../wallet/walletCurrencyValueResolver';
 import FiatValue from './fiatValue';
 import DateDisplay from './dateDisplay';
+import TransactionDetails from './transactionDetails';
 
 const styles = () => ({
   root: {
@@ -54,34 +52,19 @@ type Props = {
   transaction: TransactionType,
 };
 
-function getCurrentWalletTransactionSum(
-  transactionEntries: Array<TransactionEntry>,
-): ?number {
-  return transactionEntries
-    .filter(
-      (transactionEntry: TransactionEntry) => transactionEntry.currentWallet,
-    )
-    .map((transactionEntry: TransactionEntry) =>
-      walletCurrencyValueResolver.resolve(transactionEntry.value),
-    )
-    .reduce((sum, value) => sum + value, 0);
-}
+type State = {
+  showTransactionDetails: boolean,
+};
 
-function getExternalPartyTransactionEntry(
-  transactionEntries: Array<TransactionEntry>,
-): ?TransactionEntry {
-  return transactionEntries.find(
-    (transactionEntry: TransactionEntry) => !transactionEntry.currentWallet,
-  );
-}
-
-export class Transaction extends Component<Props> {
+export class Transaction extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { showTransactionDetails: false };
+  }
   render() {
     const { classes, transaction } = this.props;
 
-    const { address } =
-      getExternalPartyTransactionEntry(transaction.entries) || {};
-    const amount = getCurrentWalletTransactionSum(transaction.entries) || 0;
+    const amount = walletCurrencyValueResolver.resolve(transaction.value);
 
     return (
       <div className={classes.root}>
@@ -90,9 +73,10 @@ export class Transaction extends Component<Props> {
           key={transaction.id}
           disableGutters
           className={classes.listItem}
+          onClick={() => this.setState({ showTransactionDetails: true })}
         >
           <Grid item xs={9} sm={9}>
-            <div className={classes.address}>{address}</div>
+            <div className={classes.address}>{transaction.address}</div>
             <div className={classes.date}>
               <DateDisplay date={transaction.date} />
             </div>
@@ -104,6 +88,14 @@ export class Transaction extends Component<Props> {
             <div className={classes.status}>Completed</div>
           </Grid>
         </ListItem>
+        {this.state.showTransactionDetails && (
+          <TransactionDetails
+            transaction={transaction}
+            onConfirm={() => {
+              this.setState({ showTransactionDetails: false });
+            }}
+          />
+        )}
       </div>
     );
   }

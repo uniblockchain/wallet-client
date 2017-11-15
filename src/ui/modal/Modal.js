@@ -57,8 +57,8 @@ export const DividerWithMargin = Divider.extend`
 `;
 
 type Props = {
-  title: string,
-  description: string,
+  title: ?string,
+  description: ?string,
   type: ModalType,
   onConfirm: () => void,
   onCancel: () => void,

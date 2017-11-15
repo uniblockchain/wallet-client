@@ -118,6 +118,8 @@ describe('wallet api', () => {
         date: new Date(transactions[0].date),
       });
 
+      expect(firstTransaction.currency).toEqual(wallet.currency);
+
       expect(firstWallet.id).toEqual(wallet.id);
       expect(firstWallet.address).toEqual(wallet.address);
       expect(firstWallet.currency).toEqual(wallet.currency);

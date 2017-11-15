@@ -18,13 +18,21 @@ describe('Transactions component', () => {
       id: 1,
       state: 'Completed',
       date: new Date('2017-11-14T00:00:00Z'),
+      currency: 'ETH',
       entries: [],
+      fee: [],
+      value: [],
+      address: null,
     },
     {
       id: 2,
       state: 'Completed',
       date: new Date('2016-10-13T00:00:00Z'),
+      currency: 'ETH',
       entries: [],
+      fee: [],
+      value: [],
+      address: null,
     },
   ];
 

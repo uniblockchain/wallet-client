@@ -21,7 +21,11 @@ describe('CurrencyTabs component', () => {
         id: 1,
         state: 'Completed',
         date: new Date(),
+        currency: 'ETH',
         entries: [],
+        fee: [],
+        value: [],
+        address: null,
       },
     ],
   };
