@@ -1,8 +1,19 @@
 // @flow
+import React from 'react';
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
-export const Button = styled.button`
+type Props = {
+  alt: ?boolean,
+  inline: ?boolean,
+  children: any,
+};
+
+const ButtonBase = ({ alt, inline, ...props }: Props) => (
+  <button {...props}>{props.children}</button>
+);
+
+export const Button = styled(ButtonBase)`
   display: ${props => (props.inline ? 'inline' : 'block')};
   width: ${props => (props.inline ? 'fit-content' : '100%')};
   padding: 0 2em 0 2em;
