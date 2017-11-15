@@ -1,7 +1,17 @@
 // @flow
+import React from 'react';
 import styled from 'styled-components';
 
-const Slide = styled.div`
+type Props = {
+  alt: boolean,
+  children: any,
+};
+
+const SlideDiv = ({ alt, ...props }: Props) => (
+  <div {...props}>{props.children}</div>
+);
+
+const Slide = styled(SlideDiv)`
   padding: 1em;
   width: 100vw;
   height: 240px;
