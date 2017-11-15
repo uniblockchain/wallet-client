@@ -23,6 +23,7 @@ const StyledSubHeader = styled(SubHeader)`
 const OrderButton = styled(PrimaryButton)`
   display: inline;
   width: fit-content;
+  width: -moz-fit-content;
   padding: 0 33px 0 33px;
   margin-top: 25px;
 `;
