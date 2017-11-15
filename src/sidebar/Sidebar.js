@@ -28,8 +28,8 @@ export const Sidebar = () => {
         ))}
       </ul>
       <ul className="menu">
-        <ListItem link="/settings" text="My account" />
-        <ListItem link="/contact" text="Contact" />
+        {/* <ListItem link="/settings" text="My account" />
+        <ListItem link="/contact" text="Contact" /> */}
         <ListItem link="/logout" text="Log out" />
       </ul>
     </div>
