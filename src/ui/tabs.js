@@ -29,7 +29,7 @@ Tab.defaultProps = {
 };
 
 type TabsProps = {
-  +children: React.ChildrenArray<React.Element<typeof Tab>>,
+  +children: any,
   value?: string,
   +onSelect: string => void,
 };
