@@ -14,7 +14,7 @@ function* sendTransaction(action) {
     );
     yield put(sendActions.sendTransactionSucceeded(response));
   } catch (error) {
-    yield put(sendActions.sendTransactionFailed(error.message));
+    yield put(sendActions.sendTransactionFailed(error.body.message));
     console.error(error);
   }
 }
