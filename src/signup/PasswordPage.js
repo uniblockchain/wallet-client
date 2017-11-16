@@ -44,7 +44,7 @@ export const PasswordPage = (props: FormProps) => {
             validate={required}
             label={
               <span>
-                I agree to the <a href="#">Terms of Service</a>
+                I agree to the <a href="//getchange.com">Terms of Service</a>
               </span>
             }
           />
