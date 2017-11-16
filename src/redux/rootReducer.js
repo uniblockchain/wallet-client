@@ -1,4 +1,5 @@
 // @flow
+import mixpanel from 'mixpanel-browser';
 import { type Reducer } from 'redux';
 import type RoutineAction from 'redux-saga-routines';
 import type { LocationShape } from 'react-router';
@@ -29,6 +30,8 @@ const rootReducer = (appReducer: Reducer<any, RoutineAction>) => (
   if (action.type === logoutRoutine.TRIGGER) {
     newState = undefined;
   }
+  const { type, ...params } = action;
+  mixpanel.track(type, params);
   return appReducer(newState, action);
 };
 

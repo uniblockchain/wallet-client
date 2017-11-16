@@ -9,8 +9,9 @@ import { slideInRight } from 'react-animations';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, withRouter } from 'react-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
-import { history, store } from './redux/reduxStore';
 
+import './tracker/initTrackingAndConfig';
+import { history, store } from './redux/reduxStore';
 import './polyfills';
 import App from './App';
 import { Wallet, Send, Receive } from './wallet';
@@ -23,17 +24,11 @@ import { Landing } from './landing';
 import { Settings } from './settings';
 import { Sidebar } from './sidebar';
 import { unregister } from './registerServiceWorker';
-import tracker from './tracker';
-import configuration from './configuration';
 import requireAuthentication from './requireAuthentication';
 import { pageTemplate } from './page';
 import { DefaultTheme } from './ui';
 import { routes } from './router';
 import './index.css';
-
-configuration.initialize();
-
-tracker.initialize();
 
 const animationEnter = keyframes`${slideInRight}`;
 
