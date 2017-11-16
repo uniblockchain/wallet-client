@@ -16,3 +16,4 @@ window.matchMedia =
   }));
 
 jest.mock('../.storybook/facade');
+jest.mock('mixpanel-browser');
