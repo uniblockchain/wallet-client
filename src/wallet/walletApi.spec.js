@@ -31,7 +31,7 @@ describe('wallet api', () => {
   const transactions = [
     {
       id: '59de0dc0bf519ed707b12cb7caf746a2',
-      state: 'confirmed',
+      status: 'COMPLETED',
       date: '2017-10-11T12:25:45.803Z',
       entries: [
         {
@@ -64,7 +64,7 @@ describe('wallet api', () => {
     },
     {
       id: '59de09c8e5a485e707a4ddbce9e92ae1',
-      state: 'confirmed',
+      status: 'COMPLETE',
       date: '2017-10-11T12:08:40.905Z',
       entries: [
         {

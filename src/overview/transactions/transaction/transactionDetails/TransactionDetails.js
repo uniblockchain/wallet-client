@@ -33,6 +33,13 @@ export const AddressField = Field.extend`
   font-size: 12px;
 `;
 
+export const StatusField = Field.extend`
+  text-transform: lowercase;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`;
+
 type Props = {
   transaction: TransactionType,
   onConfirm: () => void,
@@ -71,7 +78,7 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
           {netValueWalletCurrency} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
-        <Field>Completed</Field>
+        <StatusField>{transaction.status}</StatusField>
         <Label>CURRENT VALUE</Label>
         <Field>
           <FiatValue inline value={netValueRepresentationCurrency} />

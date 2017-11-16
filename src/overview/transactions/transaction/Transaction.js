@@ -40,6 +40,10 @@ const styles = () => ({
     overflow: 'hidden',
     lineHeight: 2.2,
     textAlign: 'right',
+    textTransform: 'lowercase',
+    '&:first-letter': {
+      textTransform: 'capitalize',
+    },
   },
   listItem: {
     paddingLeft: '20px',
@@ -85,7 +89,7 @@ export class Transaction extends Component<Props, State> {
             <div className={classes.amount}>
               <FiatValue value={amount} />
             </div>
-            <div className={classes.status}>Completed</div>
+            <div className={classes.status}>{transaction.status}</div>
           </Grid>
         </ListItem>
         {this.state.showTransactionDetails && (

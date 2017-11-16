@@ -48,7 +48,7 @@ storiesOf('Components', module).add('Address Block', () => {
         transactions: [
           {
             id: 1,
-            state: 'complete',
+            status: 'COMPLETE',
             date: new Date(),
             currency: 'ETH',
             entries: [],

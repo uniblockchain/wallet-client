@@ -7,6 +7,7 @@ import {
   Field,
   AddressField,
   Label,
+  StatusField,
 } from './TransactionDetails';
 import type { Transaction as TransactionType } from '../../../../wallet/walletState';
 import { Modal } from '../../../../ui';
@@ -24,7 +25,7 @@ describe('Transaction details component', () => {
   }): TransactionType => {
     const transaction: TransactionType = {
       id: 1,
-      state: 'Completed',
+      status: 'COMPLETE',
       date: new Date(),
       currency: 'ETH',
       entries: [],
@@ -86,7 +87,9 @@ describe('Transaction details component', () => {
 
   it('renders transaction status', () => {
     expect(component).toContainReact(<Label>STATUS</Label>);
-    expect(component).toContainReact(<Field>Completed</Field>);
+    expect(component).toContainReact(
+      <StatusField>{transaction.status}</StatusField>,
+    );
   });
 
   it('renders transaction time', () => {

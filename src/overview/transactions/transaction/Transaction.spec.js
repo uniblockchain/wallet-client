@@ -18,59 +18,22 @@ describe('Transaction component', () => {
   const sampleValue = 123;
   const address = 'some address';
 
-  const currentWalletTransactionEntry: TransactionEntry = {
-    currentWallet: true,
-    address: 'an address',
-    value: [
-      {
-        currency: 'EUR',
-        value: sampleValue,
-      },
-    ],
-  };
-
-  const currentWalletTransactionEntry2: TransactionEntry = {
-    currentWallet: true,
-    address: 'an address',
-    value: [
-      {
-        currency: 'EUR',
-        value: sampleValue,
-      },
-    ],
-  };
-
-  const outsidePartyWalletTransactionEntry: TransactionEntry = {
-    currentWallet: false,
-    address: 'an other address',
-    value: [
-      {
-        currency: 'EUR',
-        value: 32343,
-      },
-    ],
-  };
-
   const sampleTransaction: TransactionType = {
     id: 1,
-    state: 'Completed',
+    status: 'COMPLETE',
     date: new Date(),
     currency: 'ETH',
-    entries: [
-      currentWalletTransactionEntry,
-      currentWalletTransactionEntry2,
-      outsidePartyWalletTransactionEntry,
-    ],
+    entries: [],
     fee: [
       {
         currency: 'EUR',
-        value: 32343,
+        value: sampleValue,
       },
     ],
     value: [
       {
         currency: 'EUR',
-        value: 32343,
+        value: sampleValue,
       },
     ],
     address,
@@ -94,7 +57,7 @@ describe('Transaction component', () => {
     expect(
       component.contains(<DateDisplay date={sampleTransaction.date} />),
     ).toBe(true);
-    // expect(component.contains(<FiatValue value={sampleValue + sampleValue} />)).toBe(true);
-    expect(component.contains('Completed')).toBe(true);
+    expect(component.contains(<FiatValue value={sampleValue} />)).toBe(true);
+    expect(component.contains(sampleTransaction.status)).toBe(true);
   });
 });

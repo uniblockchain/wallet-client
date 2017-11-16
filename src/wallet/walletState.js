@@ -15,7 +15,7 @@ export type TransactionEntry = {
 
 export type Transaction = {
   +id: number,
-  +state: string,
+  +status: string,
   +date: Date,
   +currency: string,
   +fee: MonetaryValues,
