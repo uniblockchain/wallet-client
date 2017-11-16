@@ -64,11 +64,13 @@ const renderField = ({
   meta: { touched, error, warning },
 }: any) => (
   <FormGroup>
-    <Label className={error ? 'is-invalid' : ''} htmlFor={input.name}>
+    <Label className={touched && error ? 'is-invalid' : ''} htmlFor={input.id}>
       {label}
     </Label>
     <Input
-      className={`form-control ${error ? 'is-invalid' : ''} ${input.className}`}
+      className={`form-control ${touched && error
+        ? 'is-invalid'
+        : ''} ${input.className}`}
       placeholder={placeholder}
       {...input}
       type={type}
@@ -77,6 +79,32 @@ const renderField = ({
       ((error && <FormFeedback>{error}</FormFeedback>) ||
         (warning && <FormFeedback>{warning}</FormFeedback>))}
   </FormGroup>
+);
+
+const TosCheckbox = styled.input`
+  margin-top: 0;
+`;
+
+export const renderCheckbox = ({
+  input,
+  label,
+  meta: { touched, error, warning },
+}: any) => (
+  <div className={`form-check ${touched && error ? 'has-error' : ''}`}>
+    <label className="form-check-label" htmlFor={input.id}>
+      <TosCheckbox
+        {...input}
+        type="checkbox"
+        className={`form-check-input ${touched && error
+          ? 'is-invalid'
+          : ''} ${input.className}`}
+      />
+      {label}
+    </label>
+    {touched &&
+      ((error && <FormFeedback>{error}</FormFeedback>) ||
+        (warning && <FormFeedback>{warning}</FormFeedback>))}
+  </div>
 );
 
 export const Field = (props: any) => (
@@ -92,4 +120,5 @@ export default {
   FormFeedback,
   Field,
   Col,
+  renderCheckbox,
 };

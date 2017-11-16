@@ -11,7 +11,9 @@ function* fetchUser() {
   } catch (error) {
     console.error(error);
     yield put(
-      fetchRoutine.failure(new SubmissionError({ _error: error.body.message })),
+      fetchRoutine.failure(
+        new SubmissionError({ _error: (error.body || {}).message }),
+      ),
     );
   }
 }
@@ -31,7 +33,7 @@ function* createUser(action) {
     console.error(error);
     yield put(
       creationRoutine.failure(
-        new SubmissionError({ _error: error.body.message }),
+        new SubmissionError({ _error: (error.body || {}).message }),
       ),
     );
   }
