@@ -29,6 +29,10 @@ export const Field = styled.div`
   margin-bottom: 10px;
 `;
 
+export const AddressField = Field.extend`
+  font-size: 12px;
+`;
+
 type Props = {
   transaction: TransactionType,
   onConfirm: () => void,
@@ -42,37 +46,59 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
     transaction.fee,
     transaction.currency,
   );
-  const valueRepresentationCurrency = walletCurrencyValueResolver.resolve(
-    transaction.value,
+  const valueRepresentationCurrency = Math.abs(
+    walletCurrencyValueResolver.resolve(transaction.value),
   );
-  const valueWalletCurrency = walletCurrencyValueResolver.resolve(
+  const value = walletCurrencyValueResolver.resolve(
     transaction.value,
     transaction.currency,
   );
+  const valueWalletCurrency = Math.abs(value);
+
+  const netValueWalletCurrency = valueWalletCurrency - feeWalletCurrency;
+  const netValueRepresentationCurrency =
+    valueRepresentationCurrency - feeRepresentationCurrency;
+
+  const sending = value < 0;
 
   return (
     <div>
       <Modal onConfirm={onConfirm}>
+        {sending ? <Label>SENT</Label> : <Label>RECEIVED</Label>}
         <Amount alt>
           {valueWalletCurrency} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
         <Field>Completed</Field>
-        <Label>CURRENT VALUE</Label>
+        <Label>TOTAL AMOUNT</Label>
         <Field>
-          <FiatValue noColor value={valueRepresentationCurrency} />
-        </Field>
-        <Label>TIME</Label>
-        <Field>{transaction.date.toUTCString()}</Field>
-        <Label>ADDRESS</Label>
-        <Field>{transaction.address}</Field>
-        <Label>FEE</Label>
-        <Field>
-          {feeWalletCurrency}(<FiatValue
+          {valueWalletCurrency} (<FiatValue
             inline
-            value={feeRepresentationCurrency}
+            value={valueRepresentationCurrency}
           />)
         </Field>
+        {sending && <Label>AMOUNT SENT</Label>}
+        {sending && (
+          <Field>
+            {netValueWalletCurrency} (<FiatValue
+              inline
+              value={netValueRepresentationCurrency}
+            />)
+          </Field>
+        )}
+        {sending && <Label>FEE</Label>}
+        {sending && (
+          <Field>
+            {feeWalletCurrency} (<FiatValue
+              inline
+              value={feeRepresentationCurrency}
+            />)
+          </Field>
+        )}
+        <Label>TIME</Label>
+        <Field>{transaction.date.toUTCString()}</Field>
+        <Label>{sending ? 'RECIPIENT ADDRESS' : 'SENDER ADDRESS'}</Label>
+        <AddressField>{transaction.address}</AddressField>
       </Modal>
     </div>
   );
