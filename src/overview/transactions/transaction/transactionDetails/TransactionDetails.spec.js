@@ -89,18 +89,6 @@ describe('Transaction details component', () => {
     expect(component).toContainReact(<Field>Completed</Field>);
   });
 
-  it('renders transaction total amount', () => {
-    expect(component).toContainReact(<Label>TOTAL AMOUNT</Label>);
-    expect(component).toContainReact(
-      <Field>
-        {transactionInput.valueCrypto} (<FiatValue
-          inline
-          value={transactionInput.valueFiat}
-        />)
-      </Field>,
-    );
-  });
-
   it('renders transaction time', () => {
     expect(component).toContainReact(<Label>TIME</Label>);
     expect(component).toContainReact(
@@ -146,6 +134,18 @@ describe('Transaction details component', () => {
           {sentTransactionInput.feeCrypto} (<FiatValue
             inline
             value={sentTransactionInput.feeFiat}
+          />)
+        </Field>,
+      );
+    });
+
+    it('renders transaction amount with fee', () => {
+      expect(component).toContainReact(<Label>AMOUNT WITH FEE</Label>);
+      expect(component).toContainReact(
+        <Field>
+          {Math.abs(sentTransactionInput.valueCrypto)} (<FiatValue
+            inline
+            value={Math.abs(sentTransactionInput.valueFiat)}
           />)
         </Field>,
       );
