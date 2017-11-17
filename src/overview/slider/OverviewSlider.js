@@ -1,14 +1,19 @@
 // @flow
 
 import React from 'react';
-import { Header, PrimaryButton, Link, Paragraph } from '../../ui';
+import type { MapStateToProps } from 'react-redux';
+import { connect } from 'react-redux';
+import { Wallet } from '../../wallet/walletState';
+import type { WalletType } from '../../wallet/walletState';
+import { Header, Link, Paragraph, PrimaryButton } from '../../ui';
 
-import { Slider, Slide } from '../../ui/slider';
+import { Slide, Slider } from '../../ui/slider';
 import withWallet from '../../wallet/withWallet';
 import congratzImage from './img/congratz.svg';
 
 export type Props = {
   isNewUser: boolean,
+  wallets: Array<WalletType>,
 };
 
 const StyledParagraph = Paragraph.extend`
@@ -20,7 +25,10 @@ const CongratzSlide = Slide.extend`
   background-repeat: no-repeat;
 `;
 
-export const OverviewSlider = ({ isNewUser }: Props) => (
+const hasAnyBalance = (walletState: Array<WalletType>): boolean =>
+  !!walletState.map(w => new Wallet(w)).find(w => w.hasBalance());
+
+export const OverviewSlider = ({ isNewUser, wallets }: Props) => (
   <Slider>
     {isNewUser ? (
       <div>
@@ -30,17 +38,12 @@ export const OverviewSlider = ({ isNewUser }: Props) => (
         </CongratzSlide>
       </div>
     ) : (
-      ''
-    )}
-    {!isNewUser ? (
       <div>
         <CongratzSlide>
           <Header>Welcome back!</Header>
           <StyledParagraph>Good to see you again.</StyledParagraph>
         </CongratzSlide>
       </div>
-    ) : (
-      ''
     )}
     <div>
       <Slide>
@@ -53,18 +56,25 @@ export const OverviewSlider = ({ isNewUser }: Props) => (
         </PrimaryButton>
       </Slide>
     </div>
-    <div>
-      <Slide alt>
-        <Header alt>Deposit funds</Header>
-        <StyledParagraph alt>
-          Start by depositing Bitcoin to your account
-        </StyledParagraph>
-        <PrimaryButton alt>
-          <Link to="/receive">Learn more</Link>
-        </PrimaryButton>
-      </Slide>
-    </div>
+    {!hasAnyBalance(wallets) && (
+      <div>
+        <Slide alt>
+          <Header alt>Deposit funds</Header>
+          <StyledParagraph alt>
+            Start by depositing Bitcoin to your account
+          </StyledParagraph>
+          <PrimaryButton alt>
+            <Link to="/receive">Learn more</Link>
+          </PrimaryButton>
+        </Slide>
+      </div>
+    )}
   </Slider>
 );
 
-export default withWallet(OverviewSlider);
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  wallets: state.wallet ? state.wallet.wallets : [],
+});
+
+const reduxComponent = connect(mapStateToProps);
+export default withWallet(reduxComponent(OverviewSlider));

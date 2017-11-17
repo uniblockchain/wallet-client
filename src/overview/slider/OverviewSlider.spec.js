@@ -2,15 +2,35 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { OverviewSlider } from './OverviewSlider';
 import type { Props } from './OverviewSlider';
+import { OverviewSlider } from './OverviewSlider';
 import { Header } from '../../ui';
+import type { WalletType } from '../../wallet/walletState';
 
 describe('Overview Slider component', () => {
   let component;
 
+  const wallet: WalletType = {
+    id: 1,
+    currency: 'BTC',
+    address: '',
+    transactions: [],
+    receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
+    balance: [
+      {
+        value: 0.19890018,
+        currency: 'BTC',
+      },
+      {
+        value: 1257.71,
+        currency: 'EUR',
+      },
+    ],
+  };
+
   const props: Props = {
     isNewUser: false,
+    wallets: [wallet],
   };
 
   beforeEach(() => {
@@ -29,5 +49,10 @@ describe('Overview Slider component', () => {
   it('renders the login welcome message for existing users', () => {
     props.isNewUser = false;
     expect(component.contains(<Header>Congratulations</Header>)).toBe(true);
+  });
+
+  it('does not render deposit slide when any wallet has deposit', () => {
+    props.isNewUser = false;
+    expect(component.contains(<Header alt>Deposit funds</Header>)).toBe(false);
   });
 });
