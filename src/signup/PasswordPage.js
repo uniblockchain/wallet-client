@@ -45,7 +45,13 @@ export const PasswordPage = (props: FormProps) => {
             label={
               <span>
                 I agree to the{' '}
-                <a href="//getchange.com/betatos/">Terms of Service</a>
+                <a
+                  href="//getchange.com/betatos/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Terms of Service
+                </a>
               </span>
             }
           />
