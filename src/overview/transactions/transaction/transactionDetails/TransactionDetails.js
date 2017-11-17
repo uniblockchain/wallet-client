@@ -75,7 +75,7 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
       <Modal onConfirm={onConfirm}>
         {sending ? <Label>SENT</Label> : <Label>RECEIVED</Label>}
         <Amount alt>
-          {netValueWalletCurrency} {transaction.currency}
+          {netValueWalletCurrency.toFixed(6)} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
         <StatusField>{transaction.status}</StatusField>

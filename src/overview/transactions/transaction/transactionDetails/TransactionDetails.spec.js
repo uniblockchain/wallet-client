@@ -81,7 +81,9 @@ describe('Transaction details component', () => {
   });
 
   it('renders transaction value', () => {
-    expect(component.contains(transactionInput.valueCrypto)).toBe(true);
+    expect(component.contains(transactionInput.valueCrypto.toFixed(6))).toBe(
+      true,
+    );
     expect(component.contains(transaction.currency)).toBe(true);
   });
 
