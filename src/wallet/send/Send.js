@@ -37,8 +37,8 @@ export class Send extends Component<Props, State> {
     this.setState({ redirectToOverview: true });
   };
 
-  getTransactionSatusDescription = (status: string): string => {
-    if (status === 'signed') {
+  getTransactionStatusDescription = (status: string): string => {
+    if (status === 'signed' || status === 'accepted') {
       return 'The transfer is sent!';
     }
     throw new Error('Unknown transaction status');
@@ -63,7 +63,7 @@ export class Send extends Component<Props, State> {
         {this.props.transactionStatus && (
           <Modal
             title="Sent!"
-            description={this.getTransactionSatusDescription(
+            description={this.getTransactionStatusDescription(
               this.props.transactionStatus,
             )}
             onConfirm={this.onTransactionSentAcknowledgement}
