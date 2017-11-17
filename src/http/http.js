@@ -26,7 +26,7 @@ function transformResponse(response) {
 function bearerTokenHeader(): * {
   const { token } = store.getState().login;
   if (token) {
-    return { Authorization: `Bearer ${token}` };
+    return { Authorization: `Bearer ${token.access_token}` };
   }
   return {};
 }

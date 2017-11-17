@@ -6,7 +6,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import { routinePromiseWatcherSaga } from 'redux-saga-routines';
-import { loginReducer, loginSagas } from '../login';
+import { loginReducer, loginSagas, loginRoutine } from '../login';
 
 import { userReducer, userSagas } from '../user';
 import { walletReducer, walletSagas } from '../wallet';
@@ -40,6 +40,8 @@ const middleware = [
 const storeEnhancer = composeEnhancers(applyMiddleware(...middleware));
 
 export const store = createStore(rootReducer(appReducer), storeEnhancer);
+
+store.dispatch(loginRoutine.fulfill());
 
 [
   userSagas,

@@ -2,24 +2,28 @@
 
 import type RoutineAction from 'redux-saga-routines';
 import { loginRoutine, logoutRoutine } from './loginRoutines';
+import { type OauthToken } from './loginApi';
 
-const TOKEN_STORAGE_KEY = 'accessToken';
+export const TOKEN_STORAGE_KEY = 'accessToken';
 
 // get saved token if it's there
-const token: ?string =
-  (window.localStorage && localStorage.getItem(TOKEN_STORAGE_KEY)) || null;
+const getToken = () => {
+  const token =
+    (window.localStorage && localStorage.getItem(TOKEN_STORAGE_KEY)) || null;
+  return JSON.parse((token: any));
+};
 
 export type LoginState = {
-  token: ?string,
+  token: ?OauthToken,
 };
 
 const defaultState: LoginState = {
-  token,
+  token: getToken(),
 };
 
 function addToLocalStorage(action: RoutineAction) {
   if (window.localStorage) {
-    localStorage.setItem(TOKEN_STORAGE_KEY, action.payload.access_token);
+    localStorage.setItem(TOKEN_STORAGE_KEY, JSON.stringify(action.payload));
   }
 }
 
@@ -27,6 +31,18 @@ function removeFromLocalStorage() {
   if (window.localStorage) {
     localStorage.removeItem(TOKEN_STORAGE_KEY);
   }
+}
+
+function checkTokenExpiry() {
+  const token = getToken();
+  if (!token) {
+    return null;
+  }
+  if (new Date(token.expirationTime) > new Date()) {
+    return token;
+  }
+  removeFromLocalStorage();
+  return null;
 }
 
 const loginReducer = (
@@ -38,7 +54,14 @@ const loginReducer = (
       addToLocalStorage(action);
       return {
         ...state,
-        token: action.payload.access_token,
+        token: action.payload,
+      };
+    }
+    case loginRoutine.FULFILL: {
+      const accessToken = checkTokenExpiry();
+      return {
+        ...state,
+        token: accessToken,
       };
     }
     case logoutRoutine.TRIGGER: {

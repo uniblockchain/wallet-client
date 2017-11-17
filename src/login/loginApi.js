@@ -8,6 +8,7 @@ export type OauthToken = {
   token_type: string,
   expires_in: number,
   scope: string,
+  expirationTime: Date,
 };
 
 const authHash = () =>
@@ -36,7 +37,14 @@ function login(username: string, password: string): Promise<OauthToken> {
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${authHash()}`,
     },
-  );
+  ).then(token => {
+    const expirationTime = new Date();
+    expirationTime.setSeconds(expirationTime.getSeconds() + token.expires_in);
+    return {
+      ...token,
+      expirationTime,
+    };
+  });
 }
 
 export default { login };
