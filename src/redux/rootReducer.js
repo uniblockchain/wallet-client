@@ -1,5 +1,4 @@
 // @flow
-import mixpanel from 'mixpanel-browser';
 import { type Reducer } from 'redux';
 import type RoutineAction from 'redux-saga-routines';
 import type { LocationShape } from 'react-router';
@@ -9,6 +8,7 @@ import type { PageState } from '../page/pageState';
 import type { UserState } from '../user/userState';
 import type { SendState } from '../wallet/send/sendReducer';
 import type { WalletState } from '../wallet/walletState';
+import tracker from '../tracker';
 
 export type State = {
   router: {
@@ -31,7 +31,7 @@ const rootReducer = (appReducer: Reducer<any, RoutineAction>) => (
     newState = undefined;
   }
   const { type, ...params } = action;
-  mixpanel.track(type, params);
+  tracker.track(type, params);
   return appReducer(newState, action);
 };
 

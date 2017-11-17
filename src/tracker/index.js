@@ -1,3 +1,3 @@
-import { initialize } from './Tracker';
+import { initialize, track } from './Tracker';
 
-export default { initialize };
+export default { initialize, track };

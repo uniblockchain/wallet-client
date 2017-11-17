@@ -10,7 +10,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Switch, Route, withRouter } from 'react-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
-import './tracker/initTrackingAndConfig';
+import './initialize';
 import { history, store } from './redux/reduxStore';
 import './polyfills';
 import App from './App';
