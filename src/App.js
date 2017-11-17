@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import styled from 'styled-components';
 import type { MapStateToProps } from 'react-redux';
-import { WrappedContent, Top, Bottom, Button, PrimaryButton, Link } from './ui';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import AppRouter from './router';
+import { Bottom, Button, Link, PrimaryButton, Top, WrappedContent } from './ui';
 
 const StyledContent = WrappedContent.extend`
   background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
@@ -38,7 +38,7 @@ type Props = {
 
 export const App = ({ authenticated }: Props) => {
   if (authenticated) {
-    return <Redirect to="/overview" />;
+    return <AppRouter overview />;
   }
   return (
     <StyledContent>
