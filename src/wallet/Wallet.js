@@ -4,8 +4,8 @@ import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Wallet as WalletType } from './walletState';
-import { Card, PrimaryButton, Link, Paragraph, Divider } from '../ui';
 import CurrencyTabs from './currencyTabs';
+import { Card, Link, Paragraph, PrimaryButton, Divider } from '../ui';
 import CurrencyName from './CurrencyName';
 import withWallet from './withWallet';
 import { getActiveWallet } from '../redux/selectors';
@@ -21,7 +21,7 @@ const MainContent = styled.div`
 
 const Buttons = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 90vw;
 `;
 
@@ -46,8 +46,9 @@ const BalanceTitle = styled.p`
   margin-bottom: 6px;
 `;
 
-const ButtonWithMargin = PrimaryButton.extend`
+const LinkWithMargin = Link.extend`
   margin-right: 6px;
+  width: 100%;
 `;
 
 const Image = styled.img`
@@ -74,20 +75,22 @@ const WalletButtons = ({ wallet }: WalletButtonsProps) => {
   if (wallet.hasBalance()) {
     return (
       <Buttons>
-        <ButtonWithMargin>
-          <Link to="/receive">Receive</Link>
-        </ButtonWithMargin>
-        <ButtonWithMargin>
-          <Link to="/send">Send</Link>
-        </ButtonWithMargin>
+        <LinkWithMargin to="/receive">
+          <PrimaryButton>Receive</PrimaryButton>
+        </LinkWithMargin>
+        <LinkWithMargin to="/send">
+          <PrimaryButton>Send</PrimaryButton>
+        </LinkWithMargin>
       </Buttons>
     );
   }
   return (
     <Buttons>
-      <PrimaryButton>
-        <Link to="/receive">{`Get ${CurrencyName.get(wallet.currency)}`}</Link>
-      </PrimaryButton>
+      <Link to="/receive">
+        <PrimaryButton>{`Get ${CurrencyName.get(
+          wallet.currency,
+        )}`}</PrimaryButton>
+      </Link>
     </Buttons>
   );
 };
