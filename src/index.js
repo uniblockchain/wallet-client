@@ -14,6 +14,7 @@ import './initialize';
 import { history, store } from './redux/reduxStore';
 import './polyfills';
 import App from './App';
+import { Page404 } from './error';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';
 import { Login, Logout } from './login';
@@ -82,6 +83,7 @@ render(
               </CSSTransition>
             )}
           </Route>
+          <Route path="*" component={Page404} />
         </div>
       </ThemeProvider>
     </ConnectedRouter>
