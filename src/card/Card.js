@@ -11,21 +11,17 @@ const StyledContent = styled(WrappedContent)`
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
-  color: #02bda5;
 `;
 
 const StyledSubHeader = styled(SubHeader)`
   font-size: 16px;
-  color: #02bda5;
   padding-top: 25px;
 `;
 
 const OrderButton = styled(PrimaryButton)`
-  display: inline;
   width: fit-content;
   width: -moz-fit-content;
   width: -webkit-fit-content;
-  padding: 0 33px 0 33px;
   margin-top: 25px;
 `;
 
