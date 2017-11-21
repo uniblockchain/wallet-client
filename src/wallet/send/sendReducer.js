@@ -28,17 +28,13 @@ const sendReducer = (
       return {
         ...state,
         ...action.payload,
+        isLoading: false,
       };
 
     case sendRoutine.FAILURE:
       return {
         ...state,
         error: action.payload,
-      };
-
-    case sendRoutine.FULFILL:
-      return {
-        ...state,
         isLoading: false,
       };
 
