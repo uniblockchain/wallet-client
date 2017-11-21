@@ -72,7 +72,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  clear: clearRoutine.trigger(),
+  clear: clearRoutine,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send);
