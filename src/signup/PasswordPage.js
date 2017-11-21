@@ -16,7 +16,8 @@ import {
 } from '../ui';
 import signupFormSubmitHandler from './signupFormSubmitHandler';
 
-const required = value => (value ? undefined : "Don't forget this field :)");
+export const required = (value: any) =>
+  value ? undefined : "Don't forget this field :)";
 
 export const PasswordPage = (props: FormProps) => {
   const { handleSubmit, previousPage, error, pristine, submitting } = props;

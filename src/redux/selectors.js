@@ -1,14 +1,14 @@
 // @flow
-import { createSelector } from 'reselect';
-import { Wallet } from '../wallet/walletState';
+import { createSelector, type Selector } from 'reselect';
+import { Wallet, type WalletType } from '../wallet/walletState';
 
 const getActiveWalletId = state => state.wallet.activeId;
 
 const getWallets = state => state.wallet.wallets;
 
-export const getActiveWallet = createSelector(
+export const getActiveWallet: Selector<*, *, ?Wallet> = createSelector(
   [getWallets, getActiveWalletId],
-  (wallets: Array<Wallet>, activeWalletId: Number): ?Wallet => {
+  (wallets: Array<WalletType>, activeWalletId: ?number): ?Wallet => {
     if (wallets.length) {
       if (activeWalletId) {
         const wallet = wallets.find(w => w.id === activeWalletId);

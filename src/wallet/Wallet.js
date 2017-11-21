@@ -3,7 +3,7 @@ import * as React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Wallet as WalletType } from './walletState';
+import { Wallet as WalletClass } from './walletState';
 import CurrencyTabs from './currencyTabs';
 import { Card, Link, Paragraph, PrimaryButton, Divider } from '../ui';
 import CurrencyName from './CurrencyName';
@@ -11,6 +11,7 @@ import withWallet from './withWallet';
 import { getActiveWallet } from '../redux/selectors';
 import address from './img/address.png';
 import { Transactions } from '../overview/transactions/Transactions';
+import type { State } from '../redux/rootReducer';
 
 const MainContent = styled.div`
   display: flex;
@@ -25,21 +26,21 @@ const Buttons = styled.div`
   width: 90vw;
 `;
 
-const Balance = styled.h1`
+export const Balance = styled.h1`
   font-size: 36px;
   text-align: center;
   color: #00346b;
   margin-bottom: 10px;
 `;
 
-const FiatBalance = styled.p`
+export const FiatBalance = styled.p`
   font-size: 12px;
   font-weight: bold;
   text-align: center;
   color: #a1a1a1;
 `;
 
-const BalanceTitle = styled.p`
+export const BalanceTitle = styled.p`
   text-transform: uppercase;
   font-size: 12px;
   color: #a1a1a1;
@@ -62,16 +63,16 @@ const PaddedParagraph = Paragraph.extend`
   text-align: center;
 `;
 
-type Props = {
-  wallet: WalletType,
+export type Props = {
+  wallet: ?WalletClass,
   representationalCurrency: string,
 };
 
-type WalletButtonsProps = {
-  wallet: WalletType,
+type WalletProps = {
+  wallet: WalletClass,
 };
 
-const WalletButtons = ({ wallet }: WalletButtonsProps) => {
+export const WalletButtons = ({ wallet }: WalletProps) => {
   if (wallet.hasBalance()) {
     return (
       <Buttons>
@@ -84,26 +85,26 @@ const WalletButtons = ({ wallet }: WalletButtonsProps) => {
       </Buttons>
     );
   }
+  const currency = CurrencyName.get(wallet.currency);
   return (
     <Buttons>
       <Link to="/receive">
-        <PrimaryButton>{`Get ${CurrencyName.get(
-          wallet.currency,
-        )}`}</PrimaryButton>
+        <PrimaryButton>{`Get ${currency}`}</PrimaryButton>
       </Link>
     </Buttons>
   );
 };
 
-const WalletActivity = ({ wallet }: WalletButtonsProps) => {
+export const WalletActivity = ({ wallet }: WalletProps) => {
   if (wallet.hasBalance()) {
     return <Transactions transactions={wallet.transactions} />;
   }
+  const currency = CurrencyName.get(wallet.currency);
   return (
     <div>
       <Divider small />
       <PaddedParagraph>
-        Start by depositing {CurrencyName.get(wallet.currency)} to your account
+        Start by depositing {currency} to your account
       </PaddedParagraph>
       <Image src={address} alt="Address" />
       <Divider small />
@@ -152,7 +153,7 @@ export const Wallet = ({ wallet, representationalCurrency }: Props) => {
   );
 };
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+const mapStateToProps: MapStateToProps<State, Props, Props> = state => ({
   wallet: getActiveWallet(state),
   representationalCurrency: state.wallet.currency,
 });

@@ -2,7 +2,7 @@
 
 import walletReducer from './walletReducer';
 import walletActions from './walletActions';
-import type { WalletState } from './walletState';
+import { type WalletState, Wallet } from './walletState';
 
 describe('wallet reducer', () => {
   const currentState: WalletState = {
@@ -13,14 +13,14 @@ describe('wallet reducer', () => {
   };
   const wallet: WalletState = {
     wallets: [
-      {
+      new Wallet({
         id: 1,
         address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
         currency: 'ETH',
         transactions: [],
         balance: [],
         receiveAddress: '0xlolwat',
-      },
+      }),
     ],
     currency: 'EUR',
     error: null,
