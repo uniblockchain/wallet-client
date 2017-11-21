@@ -10,7 +10,13 @@ export const TOKEN_STORAGE_KEY = 'accessToken';
 const getToken = () => {
   const token =
     (window.localStorage && localStorage.getItem(TOKEN_STORAGE_KEY)) || null;
-  return JSON.parse((token: any));
+  try {
+    return JSON.parse((token: any));
+  } catch (e) {
+    if (window.localStorage) {
+      localStorage.removeItem(TOKEN_STORAGE_KEY);
+    }
+  }
 };
 
 export type LoginState = {
