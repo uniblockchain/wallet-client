@@ -2,24 +2,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CurrencyTabs from '../currencyTabs';
-import sendActions from './sendActions';
+import { clearRoutine } from './sendRoutines';
+import type { WalletType } from '..';
+import { getActiveWallet } from '../../redux/selectors';
 import { Modal, Progress } from '../../ui';
-import type { SendTransactionRequest } from './sendActionTypes';
 import SendForm from './SendForm';
 import AppRouter from '../../router';
 
 type Props = {
-  walletId: number,
-  error: ?string,
+  activeWallet: WalletType,
   isLoading: boolean,
   transactionStatus: ?string,
-  sendTransaction: (
-    address: string,
-    amount: number,
-    walletId: number,
-  ) => SendTransactionRequest,
-  clearResponse: () => void,
-  clearError: () => void,
+  clear: () => void,
 };
 
 type State = {
@@ -33,7 +27,7 @@ export class Send extends Component<Props, State> {
   }
 
   onTransactionSentAcknowledgement = (): void => {
-    this.props.clearResponse();
+    this.props.clear();
     this.setState({ redirectToOverview: true });
   };
 
@@ -52,14 +46,7 @@ export class Send extends Component<Props, State> {
     return (
       <div>
         <CurrencyTabs />
-        <SendForm
-          onSubmit={values =>
-            this.props.sendTransaction(
-              values.sendToAddress,
-              values.amountInCrypto,
-              this.props.walletId,
-            )}
-        />
+        <SendForm initialValues={{ activeWallet: this.props.activeWallet }} />
         {this.props.transactionStatus && (
           <Modal
             title="Sent!"
@@ -67,13 +54,6 @@ export class Send extends Component<Props, State> {
               this.props.transactionStatus,
             )}
             onConfirm={this.onTransactionSentAcknowledgement}
-          />
-        )}
-        {this.props.error && (
-          <Modal
-            title="Oops!"
-            description={this.props.error}
-            onConfirm={this.props.clearError}
           />
         )}
         {this.props.isLoading && (
@@ -86,16 +66,13 @@ export class Send extends Component<Props, State> {
   }
 }
 const mapStateToProps = state => ({
-  walletId: state.wallet.activeId,
-  error: state.send.error,
+  activeWallet: getActiveWallet(state),
   transactionStatus: state.send.transactionStatus,
   isLoading: state.send.isLoading,
 });
 
 const mapDispatchToProps = {
-  sendTransaction: sendActions.sendTransactionRequested,
-  clearError: sendActions.clearError,
-  clearResponse: sendActions.clearTransactionStatus,
+  clear: clearRoutine.trigger(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Send);

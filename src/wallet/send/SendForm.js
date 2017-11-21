@@ -2,8 +2,8 @@
 import React from 'react';
 import { connect, type MapStateToProps } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import type { WalletType } from '..';
+import { reduxForm, type FormProps } from 'redux-form';
+import { sendFormSubmitHandler } from './sendRoutines';
 import {
   LinkButton,
   Col,
@@ -11,100 +11,79 @@ import {
   FormGroup,
   FormRow,
   Header,
-  Input,
-  Label,
+  Field,
   PrimaryButton,
   Top,
   WrappedContent,
+  Modal,
 } from '../../ui';
 import CurrencyName from '../CurrencyName';
 import quoteActions from './quote/quoteActions';
 import type { Quote } from './quote/quoteApi';
 
-const SendToAddress = ({ input, currencyName }: any): Input => (
-  <Input
-    {...input}
-    type="text"
-    placeholder={`Enter ${currencyName || ''} address...`}
-    className="form-control"
-  />
-);
-
-const Amount = ({ input, currencyCode, readOnly }: any): Input => (
-  <div className="input-group">
-    <Input
-      {...input}
-      readOnly={readOnly}
-      type="text"
-      className="form-control"
-      placeholder="0.00"
-      aria-label="Amount"
-    />
-    <span className="input-group-addon">{currencyCode}</span>
-  </div>
-);
-
 type Props = {
-  handleSubmit: (eventOrSubmit: any) => void | Promise<*>,
-  activeWallet: WalletType,
   fiatCurrencyCode: string,
   getNewQuote: Quote => void,
-};
+} & FormProps;
 
 export const SendForm = ({
   handleSubmit,
-  activeWallet,
+  error,
   fiatCurrencyCode,
   getNewQuote,
+  clearSubmitErrors,
+  initialValues,
 }: Props) => {
+  const { activeWallet } = initialValues;
   const currencyName = CurrencyName.get(activeWallet.currency);
   const cryptoCurrencyCode = activeWallet.currency;
-
   return (
     <WrappedContent>
       <Top>
         <Header>Send {currencyName}</Header>
-        <Form id="sendForm" onSubmit={handleSubmit} className="mt-5">
-          <FormGroup>
-            <Label htmlFor="sendToAddress">Send to</Label>
-            <Field
-              name="sendToAddress"
-              currencyName={currencyName}
-              component={SendToAddress}
-            />
-          </FormGroup>
-          <FormGroup>
-            <FormRow>
-              <Col>
-                <Label htmlFor="amountInCrypto">How much</Label>
-                <Field
-                  name="amountInCrypto"
-                  currencyCode={cryptoCurrencyCode}
-                  component={Amount}
-                  onChange={(event, fromValue) =>
-                    getNewQuote({
-                      fromValue,
-                      fromCurrency: cryptoCurrencyCode,
-                      toCurrency: fiatCurrencyCode,
-                    })}
-                />
-              </Col>
-              <Col>
-                <Label htmlFor="amountInFiat">(Approximately)</Label>
-                <Field
-                  name="amountInFiat"
-                  currencyCode={fiatCurrencyCode}
-                  component={Amount}
-                  onChange={(event, toValue) =>
-                    getNewQuote({
-                      fromCurrency: cryptoCurrencyCode,
-                      toValue,
-                      toCurrency: fiatCurrencyCode,
-                    })}
-                />
-              </Col>
-            </FormRow>
-          </FormGroup>
+        <Form
+          id="sendForm"
+          onSubmit={handleSubmit(sendFormSubmitHandler)}
+          className="mt-5"
+        >
+          <Field
+            name="sendToAddress"
+            label="Send to"
+            type="text"
+            placeholder={`Enter ${currencyName || ''} address...`}
+          />
+          <FormRow>
+            <Col>
+              <Field
+                name="amountInCrypto"
+                addon={cryptoCurrencyCode}
+                label="How much"
+                type="text"
+                placeholder="0.00"
+                onChange={(event, fromValue) =>
+                  getNewQuote({
+                    fromValue,
+                    fromCurrency: cryptoCurrencyCode,
+                    toCurrency: fiatCurrencyCode,
+                  })}
+              />
+            </Col>
+            <Col>
+              <Field
+                name="amountInFiat"
+                addon={fiatCurrencyCode}
+                label="(Approximately)"
+                type="text"
+                placeholder="0.00"
+                onChange={(event, toValue) =>
+                  getNewQuote({
+                    fromCurrency: cryptoCurrencyCode,
+                    toValue,
+                    toCurrency: fiatCurrencyCode,
+                  })}
+              />
+            </Col>
+          </FormRow>
           <FormGroup className="mt-5">
             <PrimaryButton type="submit" form="sendForm">
               Send
@@ -113,17 +92,20 @@ export const SendForm = ({
               <LinkButton>Cancel</LinkButton>
             </Link>
           </FormGroup>
+          {error && (
+            <Modal
+              title="Oops!"
+              description={error}
+              onConfirm={clearSubmitErrors}
+            />
+          )}
         </Form>
       </Top>
     </WrappedContent>
   );
 };
 
-const isActiveWallet = activeWalletId => wallet => wallet.id === activeWalletId;
-
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  activeWallet:
-    state.wallet.wallets.find(isActiveWallet(state.wallet.activeId)) || {},
   fiatCurrencyCode: state.wallet.currency,
 });
 

@@ -1,52 +1,48 @@
 // @flow
 
-import type { SendAction } from './sendActionTypes';
-import actionType from './sendActionTypes';
+import type RoutineAction from 'redux-saga-routines';
+import { sendRoutine, clearRoutine } from './sendRoutines';
 
 export type SendState = {
   +transactionStatus: ?string,
-  +error: ?string,
   +isLoading: boolean,
 };
 
 export const initialSendState: SendState = {
   transactionStatus: null,
-  error: null,
   isLoading: false,
 };
 
 const sendReducer = (
   state: SendState = initialSendState,
-  action: SendAction,
+  action: RoutineAction,
 ): SendState => {
   switch (action.type) {
-    case actionType.SEND_TRANSACTION_REQUESTED:
+    case sendRoutine.TRIGGER:
       return {
         ...state,
         isLoading: true,
       };
 
-    case actionType.SEND_TRANSACTION_SUCCEEDED:
+    case sendRoutine.SUCCESS:
       return {
         ...state,
-        ...action.response,
+        ...action.payload,
+      };
+
+    case sendRoutine.FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case sendRoutine.FULFILL:
+      return {
+        ...state,
         isLoading: false,
       };
 
-    case actionType.SEND_TRANSACTION_FAILED:
-      return {
-        ...state,
-        error: action.error,
-        isLoading: false,
-      };
-
-    case actionType.CLEAR_ERROR:
-      return {
-        ...state,
-        error: initialSendState.error,
-      };
-
-    case actionType.CLEAR_TRANSACTION_STATUS:
+    case clearRoutine.TRIGGER:
       return {
         ...state,
         transactionStatus: initialSendState.transactionStatus,

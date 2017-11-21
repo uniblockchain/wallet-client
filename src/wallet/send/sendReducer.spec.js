@@ -1,7 +1,7 @@
 // @flow
 
 import sendReducer, { initialSendState } from './sendReducer';
-import sendActions from './sendActions';
+import { sendRoutine, clearRoutine } from './sendRoutines';
 import type { SendTransactionResponse } from './sendApi';
 
 describe('send reducer', () => {
@@ -13,43 +13,26 @@ describe('send reducer', () => {
 
   describe('handles send transaction', () => {
     it('request', () => {
-      const action = sendActions.sendTransactionRequested(
-        address,
-        amount,
-        walletId,
-      );
+      const action = sendRoutine.trigger(address, amount, walletId);
       const newState = sendReducer(initialSendState, action);
       expect(newState).toEqual({ ...initialSendState, isLoading: true });
     });
 
     it('success', () => {
-      const action = sendActions.sendTransactionSucceeded(response);
+      const action = sendRoutine.success(response);
       const newState = sendReducer(initialSendState, action);
       expect(newState.transactionStatus).toEqual(response.transactionStatus);
       expect(newState.isLoading).toEqual(false);
     });
 
     it('fail', () => {
-      const action = sendActions.sendTransactionFailed(error);
+      const action = sendRoutine.failure(error);
       const newState = sendReducer(initialSendState, action);
-      expect(newState.error).toEqual(error);
       expect(newState.isLoading).toEqual(false);
     });
 
-    it('clears error', () => {
-      const action = sendActions.clearError();
-      const newState = sendReducer(
-        {
-          ...initialSendState,
-          error: 'yo',
-        },
-        action,
-      );
-      expect(newState.error).toEqual(initialSendState.error);
-    });
-
     it('clears transaction status', () => {
-      const action = sendActions.clearTransactionStatus();
+      const action = clearRoutine.trigger();
       const newState = sendReducer(
         {
           ...initialSendState,

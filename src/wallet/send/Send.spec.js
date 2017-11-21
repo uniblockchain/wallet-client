@@ -4,24 +4,20 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Send } from './Send';
-import sendActions from './sendActions';
 import SendForm from './SendForm';
 import CurrencyTabs from '../currencyTabs';
 import AppRouter from '../../router';
 import { Modal, Progress } from '../../ui';
-// jest.mock('../../ui', () => 'icon' })
+import { testWallet } from '../../fixtures';
 
 describe('Send component', () => {
   let component;
 
   const props = {
-    walletId: 1,
-    sendTransaction: sendActions.sendTransactionRequested,
-    error: null,
+    activeWallet: testWallet,
     isLoading: false,
     transactionStatus: null,
-    clearResponse: jest.fn(),
-    clearError: jest.fn(),
+    clear: jest.fn(),
   };
 
   beforeEach(() => {
@@ -38,20 +34,6 @@ describe('Send component', () => {
 
   it('Displays send form', () => {
     expect(component.find(SendForm).length).toBe(1);
-  });
-
-  it('Displays errors when they are present', () => {
-    const error = 'some error';
-    expect(component.find(Modal).length).toBe(0);
-    component.setProps({ error });
-    expect(component.find(Modal).length).toBe(1);
-    expect(component.find(Modal).prop('description')).toEqual(error);
-  });
-
-  it('Hides error modal on confirming modal', () => {
-    const error = 'some error';
-    component.setProps({ error });
-    expect(component.find(Modal).prop('onConfirm')).toEqual(props.clearError);
   });
 
   it('Displays loading modal when loading', () => {
@@ -83,7 +65,7 @@ describe('Send component', () => {
     const transactionStatus = 'signed';
     component.setProps({ transactionStatus });
     component.find(Modal).prop('onConfirm')();
-    expect(props.clearResponse.mock.calls.length).toBe(1);
+    expect(props.clear.mock.calls.length).toBe(1);
   });
 
   it('On confirm modal redirects back to wallet', () => {

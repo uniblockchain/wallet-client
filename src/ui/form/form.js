@@ -57,16 +57,14 @@ export const FormFeedback = (props: any) => (
 );
 
 const renderField = ({
+  addon,
   input,
   label,
   type,
   placeholder,
   meta: { touched, error, warning },
-}: any) => (
-  <FormGroup>
-    <Label className={touched && error ? 'is-invalid' : ''} htmlFor={input.id}>
-      {label}
-    </Label>
+}: any) => {
+  const renderInput = () => (
     <Input
       className={`form-control ${touched && error
         ? 'is-invalid'
@@ -75,11 +73,29 @@ const renderField = ({
       {...input}
       type={type}
     />
-    {touched &&
-      ((error && <FormFeedback>{error}</FormFeedback>) ||
-        (warning && <FormFeedback>{warning}</FormFeedback>))}
-  </FormGroup>
-);
+  );
+  return (
+    <FormGroup>
+      <Label
+        className={touched && error ? 'is-invalid' : ''}
+        htmlFor={input.id}
+      >
+        {label}
+      </Label>
+      {addon ? (
+        <div className="input-group">
+          {renderInput()}
+          <span className="input-group-addon">{addon}</span>
+        </div>
+      ) : (
+        renderInput()
+      )}
+      {touched &&
+        ((error && <FormFeedback>{error}</FormFeedback>) ||
+          (warning && <FormFeedback>{warning}</FormFeedback>))}
+    </FormGroup>
+  );
+};
 
 const TosCheckbox = styled.input`
   margin-top: 0;

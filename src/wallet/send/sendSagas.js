@@ -1,26 +1,57 @@
 // @flow
 import { call, put, takeLatest } from 'redux-saga/effects';
-import sendActions from './sendActions';
-import sendActionTypes from './sendActionTypes';
+import { SubmissionError } from 'redux-form';
+import { sendRoutine } from './sendRoutines';
 import sendApi from './sendApi';
 
-function* sendTransaction(action) {
+function* sendTransaction(values) {
   try {
+    yield put(sendRoutine.request());
     const response = yield call(
       sendApi.sendTransaction,
-      action.address,
-      action.amount,
-      action.walletId,
+      values.sendToAddress,
+      values.amountInCrypto,
+      values.activeWallet.id,
     );
-    yield put(sendActions.sendTransactionSucceeded(response));
+    yield put(sendRoutine.success(response));
   } catch (error) {
-    yield put(sendActions.sendTransactionFailed(error.body.message));
     console.error(error);
+    yield put(
+      sendRoutine.failure(
+        new SubmissionError({ _error: (error.body || {}).message }),
+      ),
+    );
   }
 }
 
+function getFormErrors(values) {
+  const errors = {};
+  if (!values.sendToAddress) {
+    errors.sendToAddress = 'No address provided!';
+  }
+  if (!values.amountInCrypto) {
+    errors.amountInCrypto = 'No amount provided!';
+  }
+  if (!values.activeWallet) {
+    errors.activeWallet = 'No wallet provided!';
+  }
+  debugger;
+  return errors;
+}
+
+function* validate(action) {
+  const { values } = action.payload;
+  const errors = getFormErrors(values);
+  if (Object.keys(errors).length) {
+    yield put(sendRoutine.failure(new SubmissionError(errors)));
+  } else {
+    yield call(sendTransaction, values);
+  }
+  yield put(sendRoutine.fulfill());
+}
+
 function* sendTransactionSaga(): Generator<*, *, *> {
-  yield takeLatest(sendActionTypes.SEND_TRANSACTION_REQUESTED, sendTransaction);
+  yield takeLatest(sendRoutine.TRIGGER, validate);
 }
 
 export default sendTransactionSaga;
