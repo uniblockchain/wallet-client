@@ -12,7 +12,7 @@ const sendTransaction = (
   amount: number,
   fromWalletId: number,
 ): Promise<SendTransactionResponse> =>
-  post(`${config.get('apiUrl')}/v1/wallets/${fromWalletId}/send`, {
+  post(`${config.get('apiUrl')}/v1/wallets/${fromWalletId}/transactions`, {
     address,
     amount,
   });
