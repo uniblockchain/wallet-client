@@ -1,7 +1,7 @@
 // @flow
-import { type WalletType } from '../wallet/walletState';
+import { Wallet } from '../wallet/walletState';
 
-const wallet: WalletType = {
+const wallet = new Wallet({
   id: 1,
   currency: 'BTC',
   address: '',
@@ -17,6 +17,6 @@ const wallet: WalletType = {
       currency: 'EUR',
     },
   ],
-};
+});
 
 export default wallet;
