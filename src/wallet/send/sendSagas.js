@@ -3,6 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form';
 import { sendRoutine } from './sendRoutines';
 import sendApi from './sendApi';
+import tracker from '../../tracker';
 
 function* sendTransaction(values) {
   try {
@@ -13,6 +14,7 @@ function* sendTransaction(values) {
       values.amountInCrypto,
       values.activeWallet.id,
     );
+    tracker.trackSend(values.activeWallet.currency, values.amountInCrypto);
     yield put(sendRoutine.success(response));
   } catch (error) {
     console.error(error);

@@ -9,6 +9,7 @@ import Transactions from './transactions';
 import withWallet from '../wallet/withWallet';
 import BalanceDoughnut from './balance';
 import OverviewSlider from './slider';
+import { withUser } from '../user';
 
 export type Props = {
   location: Location,
@@ -32,4 +33,4 @@ export const Overview = ({ location }: Props) => (
     </TransactionsCard>
   </div>
 );
-export default withWallet(Overview);
+export default withUser(withWallet(Overview));
