@@ -35,7 +35,6 @@ function getFormErrors(values) {
   if (!values.activeWallet) {
     errors.activeWallet = 'No wallet provided!';
   }
-  debugger;
   return errors;
 }
 

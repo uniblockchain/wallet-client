@@ -2,9 +2,7 @@
 
 import { change } from 'redux-form';
 import { call, put } from 'redux-saga/effects';
-import quoteActions from './quoteActions';
-import type { GetQuoteRequest } from './quoteActionTypes';
-import quoteActionTypes from './quoteActionTypes';
+import quoteRoutine from './quoteRoutine';
 
 import quoteApi, { type Quote } from './quoteApi';
 import { getQuote } from './quoteSagas';
@@ -18,16 +16,11 @@ describe('quote sagas', () => {
       toCurrency: 'EUR',
     };
 
-    const getQuoteRequest: GetQuoteRequest = {
-      type: quoteActionTypes.GET_QUOTE_REQUESTED,
-      quote,
-    };
-
-    const generator = getQuote(getQuoteRequest);
+    const generator = getQuote(quoteRoutine(quote));
 
     expect(generator.next().value).toEqual(call(quoteApi.getQuote, quote));
     expect(generator.next(quote).value).toEqual(
-      put(quoteActions.getQuoteSucceeded(quote)),
+      put(quoteRoutine.success(quote)),
     );
     expect(generator.next().value).toEqual(
       put(change('send', 'amountInFiat', quote.toValue, true, false)),

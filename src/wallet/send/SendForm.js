@@ -18,7 +18,7 @@ import {
   Modal,
 } from '../../ui';
 import CurrencyName from '../CurrencyName';
-import quoteActions from './quote/quoteActions';
+import quoteRoutine from './quote/quoteRoutine';
 import type { Quote } from './quote/quoteApi';
 
 type Props = {
@@ -58,7 +58,7 @@ export const SendForm = ({
                 name="amountInCrypto"
                 addon={cryptoCurrencyCode}
                 label="How much"
-                type="text"
+                type="number"
                 placeholder="0.00"
                 onChange={(event, fromValue) =>
                   getNewQuote({
@@ -73,7 +73,7 @@ export const SendForm = ({
                 name="amountInFiat"
                 addon={fiatCurrencyCode}
                 label="(Approximately)"
-                type="text"
+                type="number"
                 placeholder="0.00"
                 onChange={(event, toValue) =>
                   getNewQuote({
@@ -110,7 +110,7 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
 });
 
 const mapDispatchToProps = {
-  getNewQuote: quoteActions.getQuoteRequested,
+  getNewQuote: quoteRoutine,
 };
 
 const ConnectedSendForm = connect(mapStateToProps, mapDispatchToProps)(
