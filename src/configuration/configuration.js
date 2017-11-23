@@ -10,7 +10,7 @@ const DEFAULT_CONF_DEV = {
 };
 
 const DEFAULT_CONF_STAGING = {
-  apiUrl: 'https://change-wallet-service.producement.com',
+  apiUrl: 'https://staging-wallet-service.getchange.com',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'none',
