@@ -4,34 +4,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { CurrencyTabs } from './CurrencyTabs';
-import type { WalletType } from '../walletState';
 import { Tabs, Tab } from '../../ui';
+import { testWallet } from '../../fixtures';
 
 describe('CurrencyTabs component', () => {
   let component;
 
-  const sampleWallet: WalletType = {
-    id: 1,
-    address: 'sampleAddress',
-    currency: 'ETH',
-    balance: [],
-    receiveAddress: 'sampleReceiveAddress',
-    transactions: [
-      {
-        id: 1,
-        status: 'COMPLETED',
-        date: new Date(),
-        currency: 'ETH',
-        entries: [],
-        fee: [],
-        value: [],
-        address: null,
-      },
-    ],
-  };
-
   const props = {
-    wallets: [sampleWallet],
+    wallets: [testWallet],
     classes: {},
     setActiveWallet: jest.fn(),
     activeWalletId: 0,

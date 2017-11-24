@@ -15,6 +15,7 @@ import {
 import { AddressBlock } from './AddressBlock';
 import type { WalletType } from '../../walletState';
 import { Wallet } from '../../walletState';
+import { testWallet } from '../../../fixtures';
 
 storiesOf('Components', module).add('Address Block', () => {
   const wallet: WalletType = {
@@ -39,28 +40,8 @@ storiesOf('Components', module).add('Address Block', () => {
     describe('Address Block', () => {
       let component;
 
-      const sampleWallet: WalletType = {
-        id: 1,
-        address: 'sampleAddress',
-        currency: 'BTC',
-        balance: [],
-        receiveAddress: 'sampleReceiveAddress',
-        transactions: [
-          {
-            id: 1,
-            status: 'COMPLETE',
-            date: new Date(),
-            currency: 'ETH',
-            entries: [],
-            fee: [],
-            value: [],
-            address: null,
-          },
-        ],
-      };
-
       const props = {
-        wallet: new Wallet(sampleWallet),
+        wallet: testWallet,
         onCopy: jest.fn(),
       };
 

@@ -15,7 +15,7 @@ describe('Transactions component', () => {
 
   const transactions: Array<TransactionType> = [
     {
-      id: 1,
+      id: '1',
       status: 'COMPLETE',
       date: new Date('2017-11-14T00:00:00Z'),
       currency: 'ETH',
@@ -25,7 +25,7 @@ describe('Transactions component', () => {
       address: null,
     },
     {
-      id: 2,
+      id: '2',
       status: 'COMPLETE',
       date: new Date('2016-10-13T00:00:00Z'),
       currency: 'ETH',

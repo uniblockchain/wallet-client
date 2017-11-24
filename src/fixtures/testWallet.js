@@ -1,22 +1,14 @@
 // @flow
 import { Wallet } from '../wallet/walletState';
+import { testTransactions, testBalance } from './testTransactions';
 
 const wallet = new Wallet({
   id: 1,
   currency: 'BTC',
   address: '',
-  transactions: [],
+  transactions: testTransactions,
   receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
-  balance: [
-    {
-      value: 0.19890018,
-      currency: 'BTC',
-    },
-    {
-      value: 1257.71,
-      currency: 'EUR',
-    },
-  ],
+  balance: testBalance,
 });
 
 export default wallet;

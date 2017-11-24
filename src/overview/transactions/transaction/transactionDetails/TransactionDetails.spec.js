@@ -24,7 +24,7 @@ describe('Transaction details component', () => {
     valueFiat,
   }): TransactionType => {
     const transaction: TransactionType = {
-      id: 1,
+      id: '1',
       status: 'COMPLETE',
       date: new Date(),
       currency: 'ETH',

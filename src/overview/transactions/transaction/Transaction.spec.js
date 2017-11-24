@@ -19,7 +19,7 @@ describe('Transaction component', () => {
   const address = 'some address';
 
   const sampleTransaction: TransactionType = {
-    id: 1,
+    id: '1',
     status: 'COMPLETE',
     date: new Date(),
     currency: 'ETH',

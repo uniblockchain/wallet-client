@@ -1,7 +1,8 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { type WalletType } from './walletState';
+import type { WalletType } from './walletState';
+import { testWallet, testBalance } from '../fixtures';
 
 jest.mock('../http');
 
@@ -12,90 +13,7 @@ const walletApi = require('./walletApi').default;
 describe('wallet api', () => {
   const apiUrl = 'sample-api-url';
 
-  const balance = [
-    { currency: 'ETH', value: 0.9 },
-    { currency: 'EUR', value: 227.9376254547 },
-  ];
-
-  const wallet: WalletType = {
-    id: 1,
-    address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
-    currency: 'ETH',
-    balance,
-    transactions: [],
-    receiveAddress: '0xlolwat',
-  };
-
-  const walletsResponse: Array<WalletType> = [wallet];
-
-  const transactions = [
-    {
-      id: '59de0dc0bf519ed707b12cb7caf746a2',
-      status: 'COMPLETED',
-      date: '2017-10-11T12:25:45.803Z',
-      entries: [
-        {
-          address: '0x1be74bc35c5b9e95ebaa40ac7a35cccd0f52f5a1',
-          value: [
-            {
-              currency: 'ETH',
-              value: -0.9,
-            },
-            {
-              currency: 'EUR',
-              value: -250.332,
-            },
-          ],
-        },
-        {
-          address: '0x3c12ae77e4ff9f1f50fe53880d3b62f4a3e8a4ec',
-          value: [
-            {
-              currency: 'ETH',
-              value: 0.9,
-            },
-            {
-              currency: 'EUR',
-              value: 250.332,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: '59de09c8e5a485e707a4ddbce9e92ae1',
-      status: 'COMPLETE',
-      date: '2017-10-11T12:08:40.905Z',
-      entries: [
-        {
-          address: '0x4d6bb4ed029b33cf25d0810b029bd8b1a6bcab7b',
-          value: [
-            {
-              currency: 'ETH',
-              value: -0.9,
-            },
-            {
-              currency: 'EUR',
-              value: -250.332,
-            },
-          ],
-        },
-        {
-          address: '0x1be74bc35c5b9e95ebaa40ac7a35cccd0f52f5a1',
-          value: [
-            {
-              currency: 'ETH',
-              value: 0.9,
-            },
-            {
-              currency: 'EUR',
-              value: 250.332,
-            },
-          ],
-        },
-      ],
-    },
-  ];
+  const walletsResponse: Array<WalletType> = [testWallet];
 
   beforeAll(() => {
     config.set({ apiUrl });
@@ -103,26 +21,22 @@ describe('wallet api', () => {
 
   it('fetches wallet', () => {
     mockHttp.get = jest.fn();
-    mockHttp.get
-      .mockReturnValueOnce(Promise.resolve(walletsResponse))
-      .mockReturnValueOnce(Promise.resolve(transactions));
+    mockHttp.get.mockReturnValueOnce(Promise.resolve(walletsResponse));
 
     return walletApi.fetchWallet().then(response => {
       const firstWallet = response.wallets[0];
 
-      expect(firstWallet.balance).toEqual(balance);
+      expect(firstWallet.balance).toEqual(testBalance);
 
       const firstTransaction = response.wallets[0].transactions[0];
       expect(firstTransaction).toEqual({
         ...firstTransaction,
-        date: new Date(transactions[0].date),
+        date: new Date('2017-10-11T12:25:45.803Z'),
       });
 
-      expect(firstTransaction.currency).toEqual(wallet.currency);
-
-      expect(firstWallet.id).toEqual(wallet.id);
-      expect(firstWallet.address).toEqual(wallet.address);
-      expect(firstWallet.currency).toEqual(wallet.currency);
+      expect(firstWallet.id).toEqual(testWallet.id);
+      expect(firstWallet.address).toEqual(testWallet.address);
+      expect(firstWallet.currency).toEqual(testWallet.currency);
     });
   });
 });

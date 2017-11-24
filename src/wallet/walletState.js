@@ -14,7 +14,7 @@ export type TransactionEntry = {
 };
 
 export type Transaction = {
-  +id: number,
+  +id: string,
   +status: string,
   +date: Date,
   +currency: string,
