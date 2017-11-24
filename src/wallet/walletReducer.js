@@ -11,6 +11,7 @@ const walletReducer = (
     case walletAction.WALLET_FETCH_REQUESTED:
       return {
         ...state,
+        error: null,
       };
 
     case walletAction.WALLET_FETCH_SUCCEEDED:

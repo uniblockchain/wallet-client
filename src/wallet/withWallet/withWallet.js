@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import type { Wallet } from '../walletState';
 import walletActions from '../walletActions';
+import { Modal } from '../../ui';
 
 type Props = {
-  +wallets: Array<Wallet>,
-  +fetchWallet: () => void,
+  wallets: Array<Wallet>,
+  error: string,
+  fetchWallet: () => void,
 };
 
 function getDisplayName(WrappedComponent) {
@@ -19,19 +21,27 @@ const withWallet = (WrappedComponent: *) => {
       this.checkIfWalletIsLoaded(this.props.wallets);
     }
 
-    componentWillReceiveProps(nextProps) {
-      this.checkIfWalletIsLoaded(nextProps.wallets);
-    }
-
-    checkIfWalletIsLoaded(wallets: Array<Wallet>) {
+    checkIfWalletIsLoaded = (wallets: Array<Wallet>) => {
       const isWalletLoaded = wallets.length > 0;
       if (!isWalletLoaded) {
         this.props.fetchWallet();
       }
-    }
+    };
 
     render() {
-      return <div>{<WrappedComponent {...this.props} />}</div>;
+      return (
+        <div>
+          {this.props.error ? (
+            <Modal
+              title="Oops!"
+              description={this.props.error}
+              onConfirm={this.checkIfWalletIsLoaded}
+            />
+          ) : (
+            <WrappedComponent {...this.props} />
+          )}
+        </div>
+      );
     }
   }
 
@@ -41,6 +51,7 @@ const withWallet = (WrappedComponent: *) => {
 
   const mapStateToProps = state => ({
     wallets: state.wallet.wallets,
+    error: state.wallet.error,
   });
 
   const mapDispatchToProps = {

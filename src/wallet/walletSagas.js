@@ -12,8 +12,8 @@ function* fetchWallet() {
     yield put(walletActions.walletFetchSucceeded(wallet));
     yield put(pageActions.showProgress(false));
   } catch (error) {
-    yield put(walletActions.walletFetchFailed(error.message));
     yield put(pageActions.showProgress(false));
+    yield put(walletActions.walletFetchFailed(error.body.message));
     console.error(error);
   }
 }
