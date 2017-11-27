@@ -1,31 +1,15 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { WrappedContent, Header, SubHeader, PrimaryButton, Modal } from '../ui';
-import cardInterestApi from './cardInterestApi';
+import { Flag } from 'flag';
+import { CardInterest } from './interest';
+import { CardOrder } from './order';
+import { WrappedContent } from '../ui';
 import plastic from './img/plastic.png';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;
 `;
-
-const StyledHeader = styled(Header)`
-  font-size: 36px;
-`;
-
-const StyledSubHeader = styled(SubHeader)`
-  font-size: 16px;
-  padding-top: 25px;
-`;
-
-const OrderButton = styled(PrimaryButton)`
-  width: fit-content;
-  width: -moz-fit-content;
-  width: -webkit-fit-content;
-  margin-top: 25px;
-`;
-
-OrderButton.displayName = 'OrderButton';
 
 const Plastic = styled.img.attrs({
   src: plastic,
@@ -35,53 +19,17 @@ const Plastic = styled.img.attrs({
   margin-bottom: 3vh;
 `;
 
-type State = {
-  isModalVisible: boolean,
-};
+export const Card = () => (
+  <div>
+    <StyledContent>
+      <Flag
+        name="feature.cardOrderFlow"
+        component={CardOrder}
+        fallbackComponent={CardInterest}
+      />
+      <Plastic />
+    </StyledContent>
+  </div>
+);
 
-type Props = {};
-
-export class Card extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isModalVisible: false,
-    };
-  }
-  render() {
-    const handleClick = () => {
-      cardInterestApi.registerInterest().then(() => {
-        this.setState({
-          isModalVisible: true,
-        });
-      });
-    };
-    const handleConfirm = () => {
-      this.setState({
-        isModalVisible: false,
-      });
-    };
-    return (
-      <div>
-        <StyledContent>
-          <StyledHeader>Change Card is coming.</StyledHeader>
-          <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
-          <div>
-            <OrderButton onClick={handleClick}>Notify me</OrderButton>
-          </div>
-          <Plastic />
-        </StyledContent>
-        {this.state.isModalVisible ? (
-          <Modal
-            title="Thanks!"
-            description="We will let you know when we open registration."
-            onConfirm={handleConfirm}
-          />
-        ) : (
-          ''
-        )}
-      </div>
-    );
-  }
-}
 export default Card;

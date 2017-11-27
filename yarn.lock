@@ -2733,6 +2733,10 @@ decompress-response@^3.2.0:
   dependencies:
     mimic-response "^1.0.0"
 
+deep-computed@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/deep-computed/-/deep-computed-0.0.6.tgz#945a21aab33f8857b133bcc246356df8ebf24517"
+
 deep-equal-ident@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/deep-equal-ident/-/deep-equal-ident-1.1.1.tgz#06f4b89e53710cd6cea4a7781c7a956642de8dc9"
@@ -3808,6 +3812,19 @@ find-up@^2.0.0, find-up@^2.1.0:
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
     locate-path "^2.0.0"
+
+flag@^3.0.0-0:
+  version "3.0.0-0"
+  resolved "https://registry.yarnpkg.com/flag/-/flag-3.0.0-0.tgz#66dd4a45059cfd6b9d2bf27e737d2521628c7942"
+  dependencies:
+    deep-computed "^0.0.6"
+    hoist-non-react-statics "^2.3.0"
+    lodash "^4.17.4"
+    react "^16.1.0"
+  optionalDependencies:
+    react-dom "^16.1.0"
+    react-redux "^5.0.6"
+    redux "^3.7.2"
 
 flat-cache@^1.2.1:
   version "1.3.0"
@@ -7399,6 +7416,15 @@ react-dom@^16.0.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-dom@^16.1.0:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.1.1.tgz#b2e331b6d752faf1a2d31399969399a41d8d45f8"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
@@ -7702,6 +7728,15 @@ react-treebeard@^2.0.3:
 react@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react@^16.1.0:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.1.1.tgz#d5c4ef795507e3012282dd51261ff9c0e824fe1f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

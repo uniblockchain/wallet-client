@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import styled, { keyframes, ThemeProvider } from 'styled-components';
 import { slideInRight } from 'react-animations';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { ConnectedFlagsProvider } from 'flag';
 import { Switch, Route, withRouter } from 'react-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
@@ -19,6 +20,7 @@ import { Signup } from './signup';
 import { Login, Logout } from './login';
 import { Overview } from './overview';
 import { Card } from './card';
+import { CardOrderFlow } from './card/order';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
 import { Settings } from './settings';
@@ -53,37 +55,40 @@ const page = component => requireAuthentication(pageTemplate(component));
 render(
   <ReduxProvider store={store}>
     <ConnectedRouter history={history}>
-      <ThemeProvider theme={DefaultTheme}>
-        <div>
-          <PublicContent>
-            <Route exact path="/" component={App} />
-            <Route path="/landing" component={Landing} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-          </PublicContent>
-          <Switch>
-            <Route path="/logout" component={Logout} />
-            <Route path={routes.OVERVIEW} component={page(Overview)} />
-            <Route path={routes.WALLET} component={page(Wallet)} />
-            <Route path="/send" component={page(Send)} />
-            <Route path="/receive" component={page(Receive)} />
-            <Route path="/card" component={page(Card)} />
-            <Route path="/marketplace" component={page(Marketplace)} />
-            <Route path="/settings" component={page(Settings)} />
-          </Switch>
-          <Route path="/sidebar">
-            {({ match }) => (
-              <CSSTransition
-                in={match && match.isExact}
-                classNames="slide"
-                timeout={300}
-              >
-                <Styled>{match && <Sidebar />}</Styled>
-              </CSSTransition>
-            )}
-          </Route>
-        </div>
-      </ThemeProvider>
+      <ConnectedFlagsProvider>
+        <ThemeProvider theme={DefaultTheme}>
+          <div>
+            <PublicContent>
+              <Route exact path="/" component={App} />
+              <Route path="/landing" component={Landing} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+            </PublicContent>
+            <Switch>
+              <Route path="/logout" component={Logout} />
+              <Route path={routes.OVERVIEW} component={page(Overview)} />
+              <Route path={routes.WALLET} component={page(Wallet)} />
+              <Route path="/send" component={page(Send)} />
+              <Route path="/receive" component={page(Receive)} />
+              <Route exact path="/card" component={page(Card)} />
+              <Route path="/card/order" component={page(CardOrderFlow)} />
+              <Route path="/marketplace" component={page(Marketplace)} />
+              <Route path="/settings" component={page(Settings)} />
+            </Switch>
+            <Route path="/sidebar">
+              {({ match }) => (
+                <CSSTransition
+                  in={match && match.isExact}
+                  classNames="slide"
+                  timeout={300}
+                >
+                  <Styled>{match && <Sidebar />}</Styled>
+                </CSSTransition>
+              )}
+            </Route>
+          </div>
+        </ThemeProvider>
+      </ConnectedFlagsProvider>
     </ConnectedRouter>
   </ReduxProvider>,
   document.getElementById('root'),
