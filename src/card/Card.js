@@ -66,7 +66,9 @@ export class Card extends Component<Props, State> {
         <StyledContent>
           <StyledHeader>Change Card is coming.</StyledHeader>
           <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
-          <OrderButton onClick={handleClick}>Notify me</OrderButton>
+          <div>
+            <OrderButton onClick={handleClick}>Notify me</OrderButton>
+          </div>
           <Plastic />
         </StyledContent>
         {this.state.isModalVisible ? (
