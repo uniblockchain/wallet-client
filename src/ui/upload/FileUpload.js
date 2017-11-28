@@ -6,7 +6,7 @@ type FileUploadProps = {
   type: 'camera' & 'upload',
   name: string,
   children: any,
-  onChoose: (file: File) => void,
+  onChoose: (files: Array<File>) => void,
 };
 
 const uploadFile = onChoose => ({ target }) => {
@@ -37,9 +37,8 @@ const FileUpload = styled(FileUploadBase)`
   padding: 14px 32px 14px 32px;
   height: 44px;
   border-radius: 49px;
-  color: white;
-  background-color: ${props =>
-    props.alt ? props.theme.alt : props.theme.main};
+  color: #02bda5;
+  background-color: #e5f9f3;
   box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
   border: 0;
   margin-bottom: 6px;

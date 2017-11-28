@@ -16,6 +16,7 @@ export * from './form';
 export * from './theme';
 export * from './tabs';
 export * from './progress';
+export { default as FileUpload } from './upload';
 export { default as Modal } from './modal';
 export { default as Notification } from './notification';
 
