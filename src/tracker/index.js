@@ -1,8 +1,5 @@
-import { initialize, track, trackSend, setUser } from './Tracker';
+import * as tracker from './Tracker';
 
 export default {
-  initialize,
-  track,
-  trackSend,
-  setUser,
+  ...tracker,
 };
