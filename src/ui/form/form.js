@@ -73,7 +73,7 @@ const renderField = ({
       {...input}
       type={type}
       {...(type === 'number'
-        ? { step: '0.01', pattern: '[\\d\\.]*', min: 0 }
+        ? { step: 'any', pattern: '[\\d\\.]*', min: 0 }
         : {})}
     />
   );
