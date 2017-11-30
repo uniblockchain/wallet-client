@@ -13,6 +13,7 @@ import { walletReducer, walletSagas } from '../wallet';
 import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
+import { addressSagas } from '../card/address';
 import rootReducer from './rootReducer';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -29,6 +30,7 @@ const appReducer = combineReducers({
   page: pageReducer,
   send: sendReducer,
   flags: flagsReducer,
+  address: addressSagas,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -51,6 +53,7 @@ store.dispatch(loginRoutine.fulfill());
   walletSagas,
   sendSagas,
   quoteSagas,
+  addressSagas,
   routinePromiseWatcherSaga,
 ].map(sagaMiddleware.run);
 

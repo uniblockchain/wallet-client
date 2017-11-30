@@ -29,6 +29,7 @@ import { unregister } from './registerServiceWorker';
 import requireAuthentication from './requireAuthentication';
 import { pageTemplate } from './page';
 import { DefaultTheme } from './ui';
+import AddressComponent from './card/address/AddressComponent';
 import { routes } from './router';
 import './index.css';
 
@@ -78,6 +79,10 @@ render(
               <Route path="/receive" component={page(Receive)} />
               <Route exact path="/card" component={page(Card)} />
               <Route path="/card/order" component={page(CardOrderFlow)} />
+              <Route
+                path={routes.CARD_ADDRESS}
+                component={page(AddressComponent)}
+              />
               <Route path="/marketplace" component={page(Marketplace)} />
               <Route path="/settings" component={page(Settings)} />
             </Switch>

@@ -2,7 +2,12 @@
 
 import config from 'react-global-configuration';
 
+const DEFAULT_CONF = {
+  googleMapsKey: 'AIzaSyC_IrrtYI6UIuBBqKB8t6xB40tQT8ML3Ho',
+};
+
 const DEFAULT_CONF_DEV = {
+  ...DEFAULT_CONF,
   apiUrl: 'http://localhost:8080',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
@@ -10,6 +15,7 @@ const DEFAULT_CONF_DEV = {
 };
 
 const DEFAULT_CONF_STAGING = {
+  ...DEFAULT_CONF,
   apiUrl: 'https://staging-wallet-service.getchange.com',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
@@ -17,6 +23,7 @@ const DEFAULT_CONF_STAGING = {
 };
 
 const DEFAULT_CONF_PRODUCTION = {
+  ...DEFAULT_CONF,
   apiUrl: 'https://wallet-service.getchange.com',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',

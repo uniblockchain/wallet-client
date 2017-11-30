@@ -56,6 +56,10 @@ export const FormFeedback = (props: any) => (
   />
 );
 
+export const FormInput = (props: any) => (
+  <Input className="form-control" {...props} />
+);
+
 const renderField = ({
   addon,
   input,
@@ -140,4 +144,5 @@ export default {
   Field,
   Col,
   renderCheckbox,
+  StyledInput: FormInput,
 };

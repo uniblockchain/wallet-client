@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "alpha2-countries": "^1.1.0",
     "bs58check": "^2.0.2",
     "change-bootstrap": "ChangeFinance/change-bootstrap",
     "chart.js": "^2.7.0",
@@ -20,6 +21,8 @@
     "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.0.0",
     "react-global-configuration": "^1.2.0",
+    "react-google-maps-loader": "^4.1.0",
+    "react-google-places-suggest": "^3.2.2",
     "react-mixpanel": "^0.0.9",
     "react-modal": "^3.1.5",
     "react-portal": "^4.0.0",
