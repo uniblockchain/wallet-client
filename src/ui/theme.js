@@ -15,6 +15,11 @@ export const DefaultTheme: Theme = {
   alt: '#083b70',
   text: '#a1a1a1',
   altText: '#2a2a2a',
+  breakpoints: {
+    mobile: 0,
+    tablet: 1000,
+    desktop: 1200,
+  },
 };
 
 export default { DefaultTheme };

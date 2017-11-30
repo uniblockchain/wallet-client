@@ -4,6 +4,12 @@
 }
 
 @font-face {
+  font-family: CircularPro;
+  font-weight: bold;
+  src: url('fonts/lineto-circular-pro-bold.woff2') format('woff2');
+}
+
+@font-face {
   font-family: CircularProBold;
   font-weight: bold;
   src: url('fonts/lineto-circular-pro-bold.woff2') format('woff2');
@@ -20,6 +26,12 @@
 }
 
 @font-face {
+  font-family: Favorit;
+  font-weight: bold;
+  src: url('fonts/favorit-bold.woff') format('woff');
+}
+
+@font-face {
   font-family: FavoritBold;
   font-weight: bold;
   src: url('fonts/favorit-bold.woff') format('woff');
@@ -28,6 +40,8 @@
 body {
   font-family: Favorit, Fallback, sans-serif;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {

@@ -1,0 +1,51 @@
+export const variables = {
+  fontPrimary: '"CircularPro", sans-serif',
+  fontSecondary: '"Usual", sans-serif',
+  fontTertiary: '"Favorit", sans-serif',
+  fontOCR: '"OCR A Std", "Favorit", monospace',
+
+  fontSizeTiny: '12px',
+  fontSizeSmall: '14px',
+  fontSizeNormal: '16px',
+  fontSizeMedium: '18px',
+  fontSizeLarge: '20px',
+  fontSizeLarger: '24px',
+  fontSizeLargest: '36px',
+  fontSizeHuge: '48px',
+  fontSizeMassive: '120px',
+
+  fontWeightNormal: 'normal',
+  fontWeightBold: 'bold',
+
+  colorWhite: '#ffffff',
+  colorNeutralLightest: '#f2f2f2',
+  colorNeutralLighter: '#e4e4e4',
+  colorNeutralLight: '#cccccc',
+  colorNeutral: '#a1a1a1',
+  colorNeutralDark: '#686868',
+  colorNeutralDarkest: '#2a2a2a',
+  colorGreen: '#02bda5',
+  colorGreenLight: '#8bf2d3',
+  colorGreenLightest: '#e5f9f3',
+  colorBlue: '#19c3ed',
+  colorBlueLight: '#c6f3ff',
+  colorBlueLightest: '#effcfd',
+  colorBlueDark: '#00346b',
+
+  boxShadowGreenSmall: '0 3px 9px rgba(2,189,165,0.40)',
+  boxShadowNeutralSmall: '0 3px 9px rgba(0, 0, 0, 0.05)',
+  boxShadowNeutralNormal: '0 6px 24px rgba(0, 0, 0, 0.1)',
+  boxShadowNeutralLarge: '0 12px 48px rgba(0, 0, 0, 0.1)',
+
+  zIndexHeader: 1000,
+  zIndexHeroBackground: 10,
+  zIndexHeroDevice: 20,
+  zIndexCardImage: 60,
+  zIndexCardPlastic: 70,
+  zIndexTimelineLine: 100,
+  zIndexTimelineMilestone: 110,
+  zIndexModal: 2010,
+  zIndexModalOverlay: 2000,
+};
+
+export default variables;

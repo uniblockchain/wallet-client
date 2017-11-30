@@ -1,0 +1,17 @@
+// @flow
+import styled from 'styled-components';
+
+import variables from './variables';
+
+export const GradientText = styled.div`
+  display: inline;
+  background: linear-gradient(
+    to right,
+    ${variables.colorGreenLight},
+    ${variables.colorBlue}
+  );
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+`;
+
+export default GradientText;
