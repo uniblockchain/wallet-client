@@ -70,13 +70,13 @@ export const Footer = () => (
     <InnerContainer>
       <ItemsContainer>
         <Item>
-          <ItemLink to="/landing">Home</ItemLink>
+          <ItemLink to="/">Home</ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/landing#wallet">Wallet</ItemLink>
+          <ItemLink to="/#wallet">Wallet</ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/landing#card">Card</ItemLink>
+          <ItemLink to="/#card">Card</ItemLink>
         </Item>
         <Item>
           <ItemLink to="/about">About</ItemLink>
