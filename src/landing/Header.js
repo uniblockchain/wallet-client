@@ -100,7 +100,9 @@ class Header extends React.Component<Props, State> {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const forceBackground = this.props.location.pathname !== '/';
+    const forceBackground =
+      this.props.location.pathname !== '/landing' &&
+      this.props.location.pathname !== '/';
 
     if (prevState.forceBackground !== forceBackground) {
       this.setState({ forceBackground });
@@ -114,7 +116,7 @@ class Header extends React.Component<Props, State> {
       >
         <InnerContainer>
           <LogoContainer>
-            <Link to="/">
+            <Link to="/landing">
               <Logo />
             </Link>
           </LogoContainer>
@@ -122,13 +124,13 @@ class Header extends React.Component<Props, State> {
           <LeftNavContainer>
             <Nav>
               <NavItem>
-                <NavLink to="/#wallet">Wallet</NavLink>
+                <NavLink to="/landing#wallet">Wallet</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/#card">Card</NavLink>
+                <NavLink to="/landing#card">Card</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/#marketplace">Marketplace</NavLink>
+                <NavLink to="/landing#marketplace">Marketplace</NavLink>
               </NavItem>
             </Nav>
           </LeftNavContainer>
@@ -141,7 +143,7 @@ class Header extends React.Component<Props, State> {
                 </NavLink>
               </NavItem>
               <NavItem marginLeft>
-                <NavButton to="/#wallet" color="blue" size="small">
+                <NavButton to="/landing#wallet" color="blue" size="small">
                   Sign up
                 </NavButton>
               </NavItem>

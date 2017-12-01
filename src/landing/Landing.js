@@ -68,7 +68,7 @@ class Landing extends React.Component<Props, State> {
             <Route path="/legal/terms" component={TermsAndConditions} />
             <Route path="/legal/privacy-policy" component={PrivacyPolicy} />
             <Route path="/notify-me-success" component={NotifyMeSuccess} />
-            <Route path="/" component={Home} />
+            <Route path="/landing" component={Home} />
           </Switch>
 
           <Footer />
