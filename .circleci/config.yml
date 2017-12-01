@@ -90,7 +90,7 @@ workflows:
             - build-job
           filters:
             branches:
-              only: master
+              only: staging
       - deploy-production:
           requires:
             - build-job
