@@ -60,14 +60,14 @@ render(
         <ThemeProvider theme={DefaultTheme}>
           <div>
             <Switch>
-              <Route path="/landing" component={Landing} />
+              <Route exact path="/" component={Landing} />
               <Route path="/about" component={Landing} />
               <Route path="/careers" component={Landing} />
               <Route path="/legal" component={Landing} />
               <Route path="/notify-me-success" component={Landing} />
             </Switch>
             <PublicContent>
-              <Route exact path="/" component={App} />
+              <Route exact path="/app" component={App} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
             </PublicContent>
