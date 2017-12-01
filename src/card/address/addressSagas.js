@@ -9,7 +9,7 @@ import type { Address } from './addressApi';
 
 function countryToCountryCode(address: Address): any {
   return {
-    addressLineOne: address.addressLineOne,
+    streetAddress: address.streetAddress,
     city: address.city,
     postalCode: address.postalCode,
     countryCode: countries.resolveCode(address.country),
@@ -42,8 +42,8 @@ export function* createAddress(
 
 function getFormErrors(values: Address) {
   const errors = {};
-  if (!values.addressLineOne) {
-    errors.addressLineOne = 'Address line is empty!';
+  if (!values.streetAddress) {
+    errors.streetAddress = 'Address line is empty!';
   }
 
   if (!values.postalCode) {

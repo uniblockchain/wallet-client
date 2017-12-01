@@ -29,7 +29,11 @@ describe('Address form', () => {
 
   it('renders address line one field', () => {
     expect(component).toContainReact(
-      <Field name="addressLineOne" label="Street first line" type="text" />,
+      <Field
+        name="streetAddress"
+        label="Street address and apartment"
+        type="text"
+      />,
     );
   });
 

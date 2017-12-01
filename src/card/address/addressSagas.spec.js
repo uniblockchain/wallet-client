@@ -10,7 +10,7 @@ describe('address sagas', () => {
     const address: Address = {
       country: 'Estonia',
       city: 'Tallinn',
-      addressLineOne: 'Viru väljak 1-1',
+      streetAddress: 'Viru väljak 1-1',
       postalCode: '10000',
     };
 
@@ -18,7 +18,7 @@ describe('address sagas', () => {
 
     expect(generator.next().value).toEqual(
       call(addressApi.createAddress, {
-        addressLineOne: address.addressLineOne,
+        streetAddress: address.streetAddress,
         city: address.city,
         postalCode: address.postalCode,
         countryCode: 'EE',

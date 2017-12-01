@@ -63,13 +63,13 @@ export class AddressSuggest extends React.Component<Props, State> {
       if (suggestFields.street_number) {
         this.props.setField(
           'cardAddress',
-          'addressLineOne',
+          'streetAddress',
           `${suggestFields.route} ${suggestFields.street_number}`,
         );
       } else {
         this.props.setField(
           'cardAddress',
-          'addressLineOne',
+          'streetAddress',
           `${suggestFields.route}`,
         );
       }

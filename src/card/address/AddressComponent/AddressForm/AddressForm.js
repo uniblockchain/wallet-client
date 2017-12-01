@@ -30,7 +30,11 @@ export const AddressForm = ({ handleSubmit, error }: Props) => (
 
         <Field name="country" label="Country" type="text" />
 
-        <Field name="addressLineOne" label="Street first line" type="text" />
+        <Field
+          name="streetAddress"
+          label="Street address and apartment"
+          type="text"
+        />
 
         <Field name="city" label="City" type="text" />
 

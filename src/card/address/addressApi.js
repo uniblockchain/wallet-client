@@ -4,7 +4,7 @@ import config from 'react-global-configuration';
 import { post } from '../../http';
 
 export type Address = {
-  +addressLineOne: string,
+  +streetAddress: string,
   +country: string,
   +postalCode: string,
   +city: string,

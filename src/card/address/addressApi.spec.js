@@ -20,7 +20,7 @@ describe('address api', () => {
     const address: Address = {
       country: 'EE',
       city: 'Tallinn',
-      addressLineOne: 'Viru väljak 1-1',
+      streetAddress: 'Viru väljak 1-1',
       postalCode: '10000',
     };
     mockHttp.post = jest.fn(() => Promise.resolve(address));
