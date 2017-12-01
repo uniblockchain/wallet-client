@@ -2,11 +2,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { Transition } from 'react-transition-group';
+import Waypoint from 'react-waypoint';
 
 import variables from './variables';
 
 import ScrollToTarget from './ScrollToTarget';
-
 import GradientText from './GradientText';
 import NotifyMe from './NotifyMe';
 import PlasticCard from './PlasticCard';
@@ -99,8 +100,6 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
 `;
 
 const PlasticContainer = styled.div`
@@ -111,7 +110,7 @@ const PlasticContainer = styled.div`
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     position: absolute;
     top: auto;
-    bottom: -48px;
+    bottom: -60px;
     left: 50%;
     margin: 0;
     z-index: ${variables.zIndexCardPlastic};
@@ -119,36 +118,141 @@ const PlasticContainer = styled.div`
   `};
 `;
 
-export const Card = () => (
-  <ScrollToTarget hash="#card">
-    <Container>
-      <InnerContainer>
-        <VisualContainer>
-          <ImageContainer>
-            <Image src={photo} alt="" />
-          </ImageContainer>
-          <PlasticContainer>
-            <PlasticCard
-              name="Francisco Bernardo"
-              number="1234 5678 9012 1101"
-              date="12/20"
-            />
-          </PlasticContainer>
-        </VisualContainer>
-        <TextContainer>
-          <Highlight>
-            <GradientText>Shipping Q1 2018</GradientText>
-          </Highlight>
-          <Heading>Change Card</Heading>
-          <Body>
-            Start converting your virtual currencies seamlessly, with bank level
-            security
-          </Body>
-          <NotifyMe />
-        </TextContainer>
-      </InnerContainer>
-    </Container>
-  </ScrollToTarget>
-);
+const ImageTransition = styled.div`
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.9s, opacity 0.6s;
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
+    transform: translateX(0);
+  `};
+`;
+
+const PlasticTransition = styled.div`
+  opacity: 0;
+  transform: translateX(192px);
+  transition: transform 0.9s, opacity 0.6s;
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
+    transform: translateX(0);
+  `};
+`;
+
+const FadeTransition = styled.div`
+  opacity: 0;
+  transition: all 0.9s;
+  ${props => props.delay && `transition-delay: ${props.delay}ms`};
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
+  `};
+`;
+
+type Props = {};
+
+type State = {
+  isCardVisible: boolean,
+  isTextVisible: boolean,
+};
+
+class Card extends React.Component<Props, State> {
+  state = {
+    isCardVisible: false,
+    isTextVisible: false,
+  };
+
+  handleCardEnter = () => {
+    this.setState({ isCardVisible: true });
+  };
+
+  handleCardLeave = () => {
+    this.setState({ isCardVisible: false });
+  };
+
+  handleTextEnter = () => {
+    this.setState({ isTextVisible: true });
+  };
+
+  handleTextLeave = () => {
+    this.setState({ isTextVisible: false });
+  };
+
+  render() {
+    return (
+      <ScrollToTarget hash="#card" pos="center">
+        <Container>
+          <InnerContainer>
+            <Waypoint
+              onEnter={this.handleCardEnter}
+              onLeave={this.handleCardLeave}
+              topOffset="5%"
+              bottomOffset="20%"
+            >
+              <VisualContainer>
+                <Transition in={this.state.isCardVisible} timeout={2000}>
+                  {state => (
+                    <div>
+                      <ImageContainer>
+                        <ImageTransition state={state}>
+                          <Image src={photo} alt="" />
+                        </ImageTransition>
+                      </ImageContainer>
+                      <PlasticContainer>
+                        <PlasticTransition state={state}>
+                          <PlasticCard
+                            name="Lisa Robinson"
+                            number="1234 5678 9012 1101"
+                            date="12/20"
+                          />
+                        </PlasticTransition>
+                      </PlasticContainer>
+                    </div>
+                  )}
+                </Transition>
+              </VisualContainer>
+            </Waypoint>
+            <Waypoint
+              onEnter={this.handleTextEnter}
+              onLeave={this.handleTextLeave}
+              topOffset="5%"
+              bottomOffset="20%"
+            >
+              <TextContainer>
+                <Transition in={this.state.isTextVisible} timeout={2000}>
+                  {state => (
+                    <div>
+                      <FadeTransition state={state} delay={0}>
+                        <Highlight>
+                          <GradientText>Shipping Q1 2018</GradientText>
+                        </Highlight>
+                      </FadeTransition>
+                      <FadeTransition state={state} delay={150}>
+                        <Heading>Change Card</Heading>
+                      </FadeTransition>
+                      <FadeTransition state={state} delay={300}>
+                        <Body>
+                          Start converting your virtual currencies seamlessly,
+                          with bank level security.
+                        </Body>
+                      </FadeTransition>
+                      <FadeTransition state={state} delay={450}>
+                        <NotifyMe />
+                      </FadeTransition>
+                    </div>
+                  )}
+                </Transition>
+              </TextContainer>
+            </Waypoint>
+          </InnerContainer>
+        </Container>
+      </ScrollToTarget>
+    );
+  }
+}
 
 export default Card;

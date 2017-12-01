@@ -6,7 +6,6 @@ import breakpoint from 'styled-components-breakpoint';
 import JobOffer from './JobOffer';
 
 const Container = styled.div`
-  padding: 96px 0 0;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     padding: 0;
   `};

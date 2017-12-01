@@ -7,7 +7,7 @@ import variables from './variables';
 
 const Container = styled.div`
   width: 288px;
-  height: 768px;
+  height: 586px;
   margin: 0 auto;
   background: linear-gradient(
     to bottom,
@@ -18,7 +18,7 @@ const Container = styled.div`
   box-shadow: ${variables.boxShadowNeutralLarge};
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     width: 360px;
-    height: 768px;
+    height: 740px;
     padding: 2px;
   `};
 `;
@@ -29,7 +29,10 @@ const InnerContainer = styled.div`
   height: 100%;
   border-radius: 28px;
   background: ${variables.colorWhite};
-  padding: 84px 18px;
+  padding: 70px 18px;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    padding: 83px 18px 84px;
+  `};
 `;
 
 const Screen = styled.div`
@@ -44,21 +47,26 @@ const Image = styled.img`
 
 const Speaker = styled.div`
   position: absolute;
-  top: 39px;
+  top: 34px;
   left: 50%;
-  width: 60px;
-  height: 6px;
+  width: 48px;
+  height: 2px;
   background: ${variables.colorNeutralLightest};
   border-radius: 999px;
   transform: translateX(-50%);
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    top: 39px;
+    width: 60px;
+    height: 6px;
+  `};
 `;
 
 const HomeButton = styled.div`
   position: absolute;
   bottom: 12px;
   left: 50%;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   padding: 2px;
   background: linear-gradient(
     to top,
@@ -75,19 +83,21 @@ const HomeButton = styled.div`
     border-radius: 999px;
     background: ${variables.colorWhite};
   }
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    width: 60px;
+    height: 60px;
+  `};
 `;
 
 type Props = {
-  image: string,
+  image?: string,
 };
 
 export const Mobile = (props: Props) => (
   <Container>
     <InnerContainer>
       <Speaker />
-      <Screen>
-        <Image src={props.image} alt="" />
-      </Screen>
+      <Screen>{props.image && <Image src={props.image} alt="" />}</Screen>
       <HomeButton />
     </InnerContainer>
   </Container>

@@ -5,11 +5,11 @@ import breakpoint from 'styled-components-breakpoint';
 
 import variables from './variables';
 
-import background from './img/background-about.png';
+import background from './img/background-about.jpg';
 
 const Container = styled.div`
   padding: 0 24px;
-  margin: 24px 0 36px;
+  margin: 24px 0 48px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     width: 960px;
     margin: 0 auto;

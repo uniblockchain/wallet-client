@@ -2,6 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { Transition } from 'react-transition-group';
+import Waypoint from 'react-waypoint';
 
 import variables from './variables';
 
@@ -68,21 +70,74 @@ const Highlight = styled.div`
   `};
 `;
 
-export const Wallet = () => (
-  <ScrollToTarget hash="#wallet">
-    <Container>
-      <InnerContainer>
-        <Highlight>
-          <GradientText>Launching Q4 2017</GradientText>
-        </Highlight>
-        <Heading>A sophisticated mobile wallet</Heading>
-        <Body>
-          Safe and easy way to store & keep track of virtual currencies
-        </Body>
-        <NotifyMe />
-      </InnerContainer>
-    </Container>
-  </ScrollToTarget>
-);
+const FadeTransition = styled.div`
+  opacity: 0;
+  transition: all 0.9s;
+  ${props => props.delay && `transition-delay: ${props.delay}ms`};
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
+  `};
+`;
+
+type Props = {};
+
+type State = {
+  isVisible: boolean,
+};
+
+class Wallet extends React.Component<Props, State> {
+  state = {
+    isVisible: true,
+  };
+
+  handleWaypointEnter = () => {
+    this.setState({ isVisible: true });
+  };
+
+  handleWaypointLeave = () => {
+    this.setState({ isVisible: false });
+  };
+
+  render() {
+    return (
+      <ScrollToTarget hash="#wallet" pos="center">
+        <Waypoint
+          onEnter={this.handleWaypointEnter}
+          onLeave={this.handleWaypointLeave}
+          topOffset="5%"
+          bottomOffset="20%"
+        >
+          <Container>
+            <Transition in={this.state.isVisible} timeout={2000}>
+              {state => (
+                <InnerContainer>
+                  <FadeTransition state={state} delay={0}>
+                    <Highlight>
+                      <GradientText>Launching Q4 2017</GradientText>
+                    </Highlight>
+                  </FadeTransition>
+                  <FadeTransition state={state} delay={150}>
+                    <Heading>A sophisticated mobile wallet</Heading>
+                  </FadeTransition>
+                  <FadeTransition state={state} delay={300}>
+                    <Body>
+                      Safe and easy way to store & keep track of virtual
+                      currencies.
+                    </Body>
+                  </FadeTransition>
+                  <FadeTransition state={state} delay={450}>
+                    <NotifyMe />
+                  </FadeTransition>
+                </InnerContainer>
+              )}
+            </Transition>
+          </Container>
+        </Waypoint>
+      </ScrollToTarget>
+    );
+  }
+}
 
 export default Wallet;

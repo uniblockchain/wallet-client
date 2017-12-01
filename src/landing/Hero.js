@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { Transition } from 'react-transition-group';
 
 import variables from './variables';
 
@@ -10,7 +11,7 @@ import MobileDevice from './MobileDevice';
 import HeroWords from './HeroWords';
 
 import screenshot from './img/screenshot.png';
-import background from './img/background.png';
+import background from './img/background-home.jpg';
 
 const Container = styled.div`
   text-align: center;
@@ -18,7 +19,7 @@ const Container = styled.div`
   height: 80vh;
   overflow: hidden;
   margin-bottom: 60px;
-  padding: 72px;
+  padding: 72px 0;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     height: 1302px;
     padding: 144px 96px;
@@ -33,17 +34,39 @@ const InnerContainer = styled.div`
   `};
 `;
 
+const WordsTransition = styled.div`
+  opacity: 0;
+  transition: all 0.6s;
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
+  `};
+`;
+
 const WordsHeading = styled.div`
   font-family: ${variables.fontSecondary};
   font-size: ${variables.fontSizeMedium};
   line-height: 1;
-  margin-bottom: 6px;
+  position: relative;
+  z-index: ${variables.zIndexHeroWords};
+  margin-bottom: 9px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     font-size: ${variables.fontSizeLarge};
   `};
 `;
 
-const WordContainer = styled.div``;
+const DeviceTransition = styled.div`
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.9s;
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    transform: translateY(0);
+    opacity: 1;
+  `};
+`;
 
 const DeviceContainer = styled.div`
   position: absolute;
@@ -56,6 +79,16 @@ const DeviceContainer = styled.div`
     top: 420px;
     left: 50%;
     transform: translateX(-50%);
+  `};
+`;
+
+const BackgroundTransition = styled.div`
+  opacity: 0;
+  transition: all 1.2s;
+  ${props =>
+    (props.state === 'entering' || props.state === 'entered') &&
+    `
+    opacity: 1;
   `};
 `;
 
@@ -81,23 +114,72 @@ const BackgroundImage = styled.img`
   `};
 `;
 
-export const Hero = () => (
-  <Container>
-    <InnerContainer>
-      <WordsHeading>
-        <GradientText>Change the way you</GradientText>
-      </WordsHeading>
-      <WordContainer>
-        <HeroWords words={['invest', 'pay', 'live', 'bank']} />
-      </WordContainer>
-      <DeviceContainer>
-        <MobileDevice image={screenshot} />
-      </DeviceContainer>
-      <Background>
-        <BackgroundImage src={background} alt="" />
-      </Background>
-    </InnerContainer>
-  </Container>
-);
+type Props = {};
+
+type State = {
+  wordsVisible: boolean,
+  deviceVisible: boolean,
+  backgroundVisible: boolean,
+};
+
+class Hero extends React.Component<Props, State> {
+  state = {
+    wordsVisible: false,
+    deviceVisible: false,
+    backgroundVisible: false,
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        wordsVisible: true,
+        deviceVisible: true,
+      });
+    }, 150);
+
+    setTimeout(() => {
+      this.setState({
+        backgroundVisible: true,
+      });
+    }, 900);
+  }
+
+  render() {
+    return (
+      <Container>
+        <InnerContainer>
+          <Transition in={this.state.wordsVisible} timeout={600}>
+            {state => (
+              <WordsTransition state={state}>
+                <WordsHeading>
+                  <GradientText>Change the way you</GradientText>
+                </WordsHeading>
+                <HeroWords words={['invest', 'pay', 'live', 'bank']} />
+              </WordsTransition>
+            )}
+          </Transition>
+          <DeviceContainer>
+            <Transition in={this.state.deviceVisible} timeout={600}>
+              {state => (
+                <DeviceTransition state={state}>
+                  <MobileDevice image={screenshot} />
+                </DeviceTransition>
+              )}
+            </Transition>
+          </DeviceContainer>
+          <Transition in={this.state.backgroundVisible} timeout={600}>
+            {state => (
+              <BackgroundTransition state={state}>
+                <Background>
+                  <BackgroundImage src={background} alt="" />
+                </Background>
+              </BackgroundTransition>
+            )}
+          </Transition>
+        </InnerContainer>
+      </Container>
+    );
+  }
+}
 
 export default Hero;

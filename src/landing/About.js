@@ -5,6 +5,8 @@ import breakpoint from 'styled-components-breakpoint';
 
 import variables from './variables';
 
+import { NavButton } from './ui';
+
 import VisionMission from './VisionMission';
 import AboutIntro from './AboutIntro';
 import AboutFacts from './AboutFacts';
@@ -19,11 +21,16 @@ import logoKRToken from './img/partners/kr-token.png';
 import logoBlockchainAssets from './img/partners/blockchain-assets.png';
 import logoICOBank from './img/partners/ico-bank.png';
 import logoMothership from './img/partners/mothership.png';
-import logoNextMoney from './img/partners/next-money.png';
 import logoTSH from './img/partners/TSH.png';
-import logoZilla from './img/partners/zilla.png';
-import logoKuCoin from './img/exchanges/kucoin.png';
-import logoYoBit from './img/exchanges/yobit.png';
+
+import imageKristjan from './img/people/kristjan.jpg';
+import imageFrancisco from './img/people/francisco.jpg';
+import imageGustav from './img/people/gustav.jpg';
+import imageDragos from './img/people/dragos.jpg';
+import imageRoger from './img/people/roger.jpg';
+import imageLesly from './img/people/lesly.jpg';
+import imageMiguel from './img/people/miguel.jpg';
+import imageAndras from './img/people/andras.jpg';
 
 const Container = styled.div`
   overflow: hidden;
@@ -35,11 +42,20 @@ const Container = styled.div`
   `};
 `;
 
+const CareersCTA = styled.div`
+  color: ${variables.colorNeutral};
+  margin: 48px 0;
+  text-align: center;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  `};
+`;
+
 export const About = () => (
   <Container>
     <AboutIntro />
     <VisionMission />
     <AboutFacts />
+    <Residency />
     <LogoStrip
       title="Partners"
       items={[
@@ -60,11 +76,6 @@ export const About = () => (
           link: 'http://www.krtoken.com/',
         },
         {
-          name: 'Next Money',
-          image: logoNextMoney,
-          link: 'https://nextmoney.org/',
-        },
-        {
           name: 'Blockchain Assets',
           image: logoBlockchainAssets,
           link: 'http://bca.fund/',
@@ -79,10 +90,8 @@ export const About = () => (
           image: logoTSH,
           link: 'http://www.tsh-d.co.jp/',
         },
-        { name: 'Zilla', image: logoZilla, link: 'https://zla.io/' },
       ]}
     />
-    <Residency />
     <Timeline
       milestones={[
         { title: 'Q1 2016', body: 'Change is founded in Singapore' },
@@ -103,35 +112,69 @@ export const About = () => (
     />
     <Team
       title="Team"
-      body=""
       people={[
-        { name: 'Kristjan Kangro', title: 'CEO' },
-        { name: 'Francisco Bernardo', title: 'Marketing' },
-        { name: 'Gustav Liblik', title: 'Product' },
-        { name: 'Dragos Giugula', title: 'Partnerships' },
+        {
+          name: 'Kristjan Kangro',
+          title: 'CEO',
+          linkedin: 'http://bit.ly/2AdkfEu',
+          image: imageKristjan,
+        },
+        {
+          name: 'Francisco Bernardo',
+          title: 'Marketing',
+          linkedin: 'http://bit.ly/2naO8QJ',
+          image: imageFrancisco,
+        },
+        {
+          name: 'Gustav Liblik',
+          title: 'Product',
+          linkedin: 'http://bit.ly/2BiKTss',
+          image: imageGustav,
+        },
+        {
+          name: 'Dragos Giugula',
+          title: 'Partnerships',
+          linkedin: 'http://bit.ly/2zuj9AS',
+          image: imageDragos,
+        },
       ]}
     />
     <Team
       title="Advisors"
-      body=""
       people={[
-        { name: 'Roger Crook', title: 'Ex-CEO of DHL' },
-        { name: 'Lesly Goh', title: 'Financial services lead at Microsoft' },
+        {
+          name: 'Roger Crook',
+          title: 'Ex-CEO of DHL',
+          linkedin: 'http://bit.ly/2k4pVdF',
+          image: imageRoger,
+        },
+        {
+          name: 'Lesly Goh',
+          title: 'Financial services lead at Microsoft',
+          linkedin: 'http://bit.ly/2ic9yLm',
+          image: imageLesly,
+        },
         {
           name: 'Miguel Soriano',
           title: 'Professor at the National University of Singapore',
+          linkedin: 'http://bit.ly/2jrTwcZ',
+          image: imageMiguel,
         },
-        { name: 'Andras Kristof', title: 'Blockchain Expert' },
+        {
+          name: 'Andras Kristof',
+          title: 'Blockchain Expert',
+          linkedin: 'http://bit.ly/2iZp8Hn',
+          image: imageAndras,
+        },
       ]}
     />
+    <CareersCTA>
+      <p>Join our fast growing team of over 20 members</p>
+      <NavButton to="/careers" color="gradient">
+        Open positions
+      </NavButton>
+    </CareersCTA>
     <Token />
-    <LogoStrip
-      title="Start trading at"
-      items={[
-        { name: 'KuCoin', image: logoKuCoin, link: 'https://kucoin.com/' },
-        { name: 'YoBit', image: logoYoBit, link: 'https://yobit.net/en/' },
-      ]}
-    />
   </Container>
 );
 

@@ -23,7 +23,7 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   position: relative;
-  background: ${variables.colorWhite};
+  /* background: ${variables.colorWhite}; */
   .ReactModal__video {
     height: 0;
     padding-top: 56.25%;
@@ -91,7 +91,7 @@ const styles = {
     padding: 0,
     border: 0,
     borderRadius: 0,
-    background: variables.colorWhite,
+    background: 'transparent',
     outline: 'none',
     WebkitOverflowScrolling: 'touch',
   },

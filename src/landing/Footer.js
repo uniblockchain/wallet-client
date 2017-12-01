@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 
 import variables from './variables';
 
+import SocialIcons from './SocialIcons';
+
 const Container = styled.div`
-  padding: 48px 24px;
+  padding: 48px 0;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     padding: 60px 0;
   `};
@@ -34,34 +36,64 @@ const ItemsContainer = styled.div`
   `};
 `;
 
-const Item = styled.div`
-  a {
-    color: ${props =>
-      props.light ? variables.colorNeutralLight : variables.colorNeutral};
-  }
-`;
+const Item = styled.div``;
 
 const ItemLink = styled(Link)`
+  color: ${variables.colorNeutral};
   font-size: ${variables.fontSizeSmall};
   display: block;
   padding: 9px 12px;
+  &:hover {
+    color: ${variables.colorNeutral};
+    text-decoration: none;
+  }
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     display: inline-block;
     padding: 12px 24px;
     &:hover {
       color: ${variables.colorNeutralDark};
-      text-decoration: none;
     }
+  `};
+`;
+
+const SocialContainer = styled.div`
+  text-align: center;
+  margin: 24px 0;
+`;
+
+const CompanyContainer = styled.div`
+  text-align: center;
+  padding: 9px 0;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    padding: 12px 0;
   `};
 `;
 
 const Company = styled.div`
   color: ${variables.colorNeutralLight};
   font-size: ${variables.fontSizeSmall};
-  text-align: center;
-  padding: 9px 12px;
+  white-space: nowrap;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    padding: 12px 24px;
+    display: inline;
+  `};
+`;
+
+const LegalLink = styled(Link)`
+  color: ${variables.colorNeutralLight};
+  font-size: ${variables.fontSizeSmall};
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline;
+  margin: 0 9px;
+  &:hover {
+    color: ${variables.colorNeutralLight};
+    text-decoration: none;
+  }
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    margin-left: 24px;
+    &:hover {
+      color: ${variables.colorNeutralDark};
+    }
   `};
 `;
 
@@ -70,22 +102,22 @@ export const Footer = () => (
     <InnerContainer>
       <ItemsContainer>
         <Item>
-          <ItemLink to="/landing">Home</ItemLink>
+          <ItemLink to="/#home">Home</ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/landing#wallet">Wallet</ItemLink>
+          <ItemLink to="/#wallet">Wallet</ItemLink>
         </Item>
         <Item>
-          <ItemLink to="/landing#card">Card</ItemLink>
+          <ItemLink to="/#card">Card</ItemLink>
+        </Item>
+        <Item>
+          <ItemLink to="/#marketplace">Marketplace</ItemLink>
         </Item>
         <Item>
           <ItemLink to="/about">About</ItemLink>
         </Item>
         <Item>
           <ItemLink to="/careers">Careers</ItemLink>
-        </Item>
-        <Item>
-          <ItemLink to="/media">Media kit</ItemLink>
         </Item>
         <Item>
           <ItemLink to="https://support.getchange.com/" target="_blank">
@@ -99,19 +131,16 @@ export const Footer = () => (
         </Item>
       </ItemsContainer>
 
-      <ItemsContainer>
-        <Item light>
-          <ItemLink to="/legal/privacy-policy">Privacy policy</ItemLink>
-        </Item>
-        <Item light>
-          <ItemLink to="/legal/terms">Terms & conditions</ItemLink>
-        </Item>
-        <Item light>
-          <ItemLink to="/legal/aml">AML</ItemLink>
-        </Item>
-      </ItemsContainer>
+      <SocialContainer>
+        <SocialIcons />
+      </SocialContainer>
 
-      <Company>All Rights Reserved © Lion Capital OÜ</Company>
+      <CompanyContainer>
+        <Company>All Rights Reserved © Lion Capital OÜ</Company>
+        <LegalLink to="/legal/privacy-policy">Privacy policy</LegalLink>
+        <LegalLink to="/legal/terms">Terms & conditions</LegalLink>
+        <LegalLink to="/legal/aml">AML</LegalLink>
+      </CompanyContainer>
     </InnerContainer>
   </Container>
 );

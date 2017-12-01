@@ -3,19 +3,17 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { Link } from 'react-router-dom';
+import { Transition } from 'react-transition-group';
 
 import variables from './variables';
 
-import Modal from './ui/Modal';
+import { Modal } from './ui';
 
 const Container = styled.div`
   overflow: hidden;
-  padding: 18px 24px 30px;
-  background-color: ${variables.colorNeutralLightest};
+  padding: 0 24px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    padding: 24px;
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+    padding: 0;
   `};
 `;
 
@@ -24,55 +22,73 @@ const InnerContainer = styled.div`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const Heading = styled.div`
   color: ${variables.colorNeutral};
   font-size: ${variables.fontSizeSmall};
   text-align: center;
-  margin-top: 18px;
   margin-bottom: 6px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const ItemsContainer = styled.div`
   position: relative;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
 `;
 
 const Items = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  position: ${props => (props.absolute ? 'absolute' : 'static')};
-  top: 0;
-  left: 0;
   width: 100%;
-  opacity: ${props => (props.active ? 1 : 0)};
-  pointer-events: ${props => (props.active ? 'auto' : 'none')};
-  transition: all 0.6s;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+`;
+
+const ItemSlot = styled.div`
+  flex: 0 0 ${props => 100 / 3 + '%'};
+  overflow: hidden;
+  position: relative;
+  height: 100px;
+  ${({ theme }) => breakpoint('landscape', theme.breakpoints)`
+    flex: 0 0 ${props => 100 / props.itemsPerRow + '%'};
   `};
 `;
 
 const Item = styled.div`
-  flex: 0 0 ${props => 100 / 3 + '%'};
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
   padding: 0 12px;
   opacity: 0.5;
-  transform: ${props => (props.active ? 'none' : 'translateY(96px)')};
+  transform: translateX(100%);
   transition: all 0.6s;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    flex: 0 0 ${props => 100 / props.itemsPerRow + '%'};
+  user-select: none;
+  ${({ theme }) => breakpoint('landscape', theme.breakpoints)`
     padding: 0 30px;
-    &: hover {
+    &:hover {
       opacity: .75;
     }
+  `};
+
+  ${props =>
+    props.state === 'entering' &&
+    `
+    transform: translateX(0);
+  `};
+  ${props =>
+    props.state === 'entered' &&
+    `
+    transform: translateX(0);
+  `};
+  ${props =>
+    props.state === 'exiting' &&
+    `
+    transform: translateX(-100%);
+  `};
+  ${props =>
+    props.state === 'exited' &&
+    `
+    transition: none;
   `};
 `;
 
@@ -83,12 +99,12 @@ const ItemImage = styled.img`
 `;
 
 type Props = {
-  title: string,
+  title?: string,
   items: Array<Object>,
 };
 
 type State = {
-  page: number,
+  activeIndex: number,
   isModalOpen: boolean,
   videoId: ?string,
 };
@@ -98,7 +114,7 @@ class LogoStrip extends React.Component<Props, State> {
   itemsPerRow: number;
 
   state = {
-    page: 0,
+    activeIndex: 0,
     isModalOpen: false,
     videoId: '',
   };
@@ -110,13 +126,17 @@ class LogoStrip extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const totalPages = Math.ceil(this.props.items.length / this.itemsPerRow);
+    const totalItems = this.props.items.length;
 
-    this.intervalId = setInterval(() => {
-      const nextPage =
-        this.state.page >= totalPages - 1 ? 0 : this.state.page + 1;
-      this.setState({ page: nextPage });
-    }, 5000);
+    if (totalItems > this.itemsPerRow) {
+      this.intervalId = setInterval(() => {
+        const nextIndex =
+          this.state.activeIndex >= totalItems - 1
+            ? 0
+            : this.state.activeIndex + 1;
+        this.setState({ activeIndex: nextIndex });
+      }, 3000);
+    }
   }
 
   componentWillUnmount() {
@@ -132,7 +152,6 @@ class LogoStrip extends React.Component<Props, State> {
       e.preventDefault();
     } else if (item.modal && item.videoId) {
       e.preventDefault();
-
       this.setState({
         isModalOpen: true,
         videoId: item.videoId,
@@ -140,47 +159,55 @@ class LogoStrip extends React.Component<Props, State> {
     }
   }
 
-  render() {
+  isActiveItem(activeIndex: number, slotIndex: number, j: number) {
     const totalItems = this.props.items.length;
-    const groups = [];
-    const items = [];
 
-    for (let i = 0; i < totalItems; i++) {
-      items.push(this.props.items[i]);
+    let index = activeIndex + slotIndex + 1;
 
-      if ((i + 1) % this.itemsPerRow === 0 || i + 1 === totalItems) {
-        groups.push(items.splice(0, items.length));
-      }
+    if (index > totalItems - 1) {
+      index = index - totalItems;
     }
 
+    return index === j;
+  }
+
+  render() {
     return (
       <Container>
         <InnerContainer>
-          <Heading>{this.props.title}</Heading>
+          {this.props.title && <Heading>{this.props.title}</Heading>}
+
           <ItemsContainer>
-            {groups.map((group, i) => (
-              <Items active={this.state.page === i} key={i} absolute={i > 0}>
-                {group.map((item, j) => (
-                  <Item
-                    active={this.state.page === i}
-                    key={j}
-                    itemsPerRow={this.itemsPerRow}
-                  >
-                    <ItemLink
-                      to={item.link || ''}
-                      target="_blank"
-                      onClick={e => {
-                        this.handleClick(e, item);
-                      }}
+            <Items>
+              {this.props.items.slice(0, 6).map((slot, i) => (
+                <ItemSlot key={i} itemsPerRow={this.itemsPerRow}>
+                  {this.props.items.map((item, j) => (
+                    <Transition
+                      key={j}
+                      in={this.isActiveItem(this.state.activeIndex, i, j)}
+                      timeout={600}
                     >
-                      <ItemImage src={item.image} alt={item.name} />
-                    </ItemLink>
-                  </Item>
-                ))}
-              </Items>
-            ))}
+                      {state => (
+                        <Item state={state}>
+                          <ItemLink
+                            to={item.link || ''}
+                            target="_blank"
+                            onClick={e => {
+                              this.handleClick(e, item);
+                            }}
+                          >
+                            <ItemImage src={item.image} alt={item.name} />
+                          </ItemLink>
+                        </Item>
+                      )}
+                    </Transition>
+                  ))}
+                </ItemSlot>
+              ))}
+            </Items>
           </ItemsContainer>
         </InnerContainer>
+
         <Modal
           isOpen={this.state.isModalOpen}
           closeModal={this.closeModal.bind(this)}

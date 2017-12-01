@@ -40,12 +40,20 @@ export const variables = {
   zIndexHeader: 1000,
   zIndexHeroBackground: 10,
   zIndexHeroDevice: 20,
+  zIndexHeroWords: 30,
   zIndexCardImage: 60,
   zIndexCardPlastic: 70,
   zIndexTimelineLine: 100,
   zIndexTimelineMilestone: 110,
+  zIndexAboutFacts: 95,
   zIndexModal: 2010,
   zIndexModalOverlay: 2000,
+  zIndexMarketplaceVisualContainer: 200,
+  zIndexMarketplaceVisualCards: 210,
+  zIndexMarketplaceVisualDeviceContainer: 240,
+  zIndexMarketplaceVisualDeviceCards: 250,
+  zIndexMarketplaceVisualDeviceCardContainer: 260,
+  zIndexMarketplaceVisualDeviceCardContainerActive: 261,
 };
 
 export default variables;

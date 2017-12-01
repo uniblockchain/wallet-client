@@ -6,6 +6,7 @@ import scrollToComponent from 'react-scroll-to-component';
 type Props = {
   hash: string,
   location: Object,
+  pos: string,
   children: ?any,
 };
 
@@ -24,7 +25,7 @@ class ScrollToTarget extends React.Component<Props> {
 
   tryScroll() {
     if (this.element && this.props.location.hash === this.props.hash) {
-      scrollToComponent(this.element);
+      scrollToComponent(this.element, { align: this.props.pos });
     }
   }
 

@@ -37,7 +37,9 @@ class Landing extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    document.title = 'Change';
+    if (window.pageYOffset > 20) {
+      this.setState({ hasScrolled: true });
+    }
   }
 
   handleWaypointEnter = (props: WaypointProps) => {
@@ -68,7 +70,7 @@ class Landing extends React.Component<Props, State> {
             <Route path="/legal/terms" component={TermsAndConditions} />
             <Route path="/legal/privacy-policy" component={PrivacyPolicy} />
             <Route path="/notify-me-success" component={NotifyMeSuccess} />
-            <Route path="/landing" component={Home} />
+            <Route path="/" component={Home} />
           </Switch>
 
           <Footer />

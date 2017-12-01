@@ -87,7 +87,6 @@ class NotifyMe extends React.Component<Props, State> {
             action="//change-bank.us16.list-manage.com/subscribe/post?u=59c2c9a0d1b971d07bb321cae&amp;id=06e561b0df"
             method="post"
             target="_blank"
-            noValidate
           >
             <div
               style={{ position: 'absolute', left: '-5000px' }}
@@ -111,6 +110,7 @@ class NotifyMe extends React.Component<Props, State> {
                     this.input = ref;
                   }}
                   onChange={this.onChange.bind(this)}
+                  required
                 />
               </InputContainer>
               <ButtonContainer>

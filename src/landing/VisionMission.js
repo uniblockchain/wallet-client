@@ -78,9 +78,7 @@ export const VisionMission = () => (
           <GradientText>Vision</GradientText>
         </Heading>
         <Body>
-          <p>
-            To be the most customer centric banking application in the world.
-          </p>
+          <p>To be the most exciting banking application in the world.</p>
           <CTA>
             <NotifyMe />
           </CTA>

@@ -7,7 +7,7 @@ import variables from './variables';
 
 import JobOffersList from './JobOffersList';
 
-import background from './img/background-about.png';
+import background from './img/background-careers.jpg';
 
 const Container = styled.div`
   overflow: hidden;
@@ -25,7 +25,7 @@ const InnerContainer = styled.div`
 
 const Intro = styled.div`
   padding: 0 24px;
-  margin: 24px 0 36px;
+  margin: 24px 0 48px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     width: 960px;
     margin: 0 auto;
@@ -98,7 +98,7 @@ export const Careers = () => (
           </p>
           <p>
             Change has thousands of supporters, and is backed by DHL’s ex-CEO
-            Roger Crook*, alongside several other big names.
+            Roger Crook, alongside several other big names.
           </p>
         </IntroBody>
         <Background>

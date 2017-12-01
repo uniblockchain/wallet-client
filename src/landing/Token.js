@@ -5,14 +5,19 @@ import breakpoint from 'styled-components-breakpoint';
 
 import variables from './variables';
 
+import LogoStrip from './LogoStrip';
 import { GradientText } from './GradientText';
+
+import logoKuCoin from './img/exchanges/kucoin.png';
+import logoYoBit from './img/exchanges/yobit.png';
 
 const Container = styled.div`
   margin-bottom: 1px;
-  padding: 36px 0;
+  padding: 36px 0 0;
   background: ${variables.colorNeutralLightest};
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    padding: 60px 0;
+    margin-top: 96px;
+    padding: 60px 0 30px;
   `};
   ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
   `};
@@ -32,10 +37,10 @@ const InnerContainer = styled.div`
 
 const Columns = styled.div`
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  display: flex;
-`};
+    display: flex;
+  `};
   ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-`};
+  `};
 `;
 
 const Column = styled.div`
@@ -44,7 +49,6 @@ const Column = styled.div`
     padding-right: 48px;
   `};
   ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-
   `};
 `;
 
@@ -59,8 +63,6 @@ const Heading = styled.div`
     margin-bottom: 24px;
     letter-spacing: -1px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const Body = styled.div`
@@ -68,14 +70,23 @@ const Body = styled.div`
   font-family: ${variables.fontSecondary};
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
   p {
     margin-bottom: 12px;
     ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
       font-size: ${variables.fontSizeMedium};
     `};
   }
+`;
+
+const ExchangesHeading = styled.div`
+  font-family: ${variables.fontSecondary};
+  font-size: ${variables.fontSizeMedium};
+  color: ${variables.colorNeutralDark};
+  text-align: center;
+  margin-top: 36px;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    margin-top: 48px;
+  `};
 `;
 
 export const Token = () => (
@@ -102,6 +113,15 @@ export const Token = () => (
           </Body>
         </Column>
       </Columns>
+
+      <ExchangesHeading>Start trading at</ExchangesHeading>
+
+      <LogoStrip
+        items={[
+          { name: 'KuCoin', image: logoKuCoin, link: 'https://kucoin.com/' },
+          { name: 'YoBit', image: logoYoBit, link: 'https://yobit.net/en/' },
+        ]}
+      />
     </InnerContainer>
   </Container>
 );

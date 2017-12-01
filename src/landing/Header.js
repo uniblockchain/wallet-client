@@ -16,7 +16,7 @@ const Container = styled.div`
   position: fixed;
   z-index: ${variables.zIndexHeader};
   width: 100%;
-  padding: 0 24px;
+  padding: 0 18px;
   background: ${props =>
     props.withBackground ? 'rgba(255, 255, 255, .9)' : 'transparent'};
   box-shadow: ${props =>
@@ -28,10 +28,11 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  height: 72px;
+  height: 60px;
   display: flex;
   align-items: center;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    height: 72px;
   `};
   '${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     height: 96px;
@@ -39,6 +40,7 @@ const InnerContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
+  flex: 25%;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     flex: 10%;
     margin-right: 24px;
@@ -63,6 +65,15 @@ const RightNavContainer = styled.div`
   `};
 `;
 
+const MobileNav = styled.div`
+  flex: 75%;
+  display: flex;
+  justify-content: flex-end;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    display: none;
+  `};
+`;
+
 const Nav = styled.div``;
 
 const NavItem = styled.div`
@@ -74,7 +85,7 @@ const NavLink = styled(Link)`
   color: ${props =>
     props.color === 'blue' ? variables.colorBlue : variables.colorNeutral};
   font-size: ${variables.fontSizeSmall};
-  padding: 12px 12px;
+  line-height: 1;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     padding: 12px 18px;
     &:hover {
@@ -100,9 +111,7 @@ class Header extends React.Component<Props, State> {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const forceBackground =
-      this.props.location.pathname !== '/landing' &&
-      this.props.location.pathname !== '/';
+    const forceBackground = this.props.location.pathname !== '/';
 
     if (prevState.forceBackground !== forceBackground) {
       this.setState({ forceBackground });
@@ -116,7 +125,7 @@ class Header extends React.Component<Props, State> {
       >
         <InnerContainer>
           <LogoContainer>
-            <Link to="/landing">
+            <Link to="/#home">
               <Logo />
             </Link>
           </LogoContainer>
@@ -124,13 +133,13 @@ class Header extends React.Component<Props, State> {
           <LeftNavContainer>
             <Nav>
               <NavItem>
-                <NavLink to="/landing#wallet">Wallet</NavLink>
+                <NavLink to="/#wallet">Wallet</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/landing#card">Card</NavLink>
+                <NavLink to="/#card">Card</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/landing#marketplace">Marketplace</NavLink>
+                <NavLink to="/#marketplace">Marketplace</NavLink>
               </NavItem>
             </Nav>
           </LeftNavContainer>
@@ -143,12 +152,22 @@ class Header extends React.Component<Props, State> {
                 </NavLink>
               </NavItem>
               <NavItem marginLeft>
-                <NavButton to="/landing#wallet" color="blue" size="small">
+                <NavButton to="/#wallet" color="blue" size="small">
                   Sign up
                 </NavButton>
               </NavItem>
             </Nav>
           </RightNavContainer>
+
+          <MobileNav>
+            <Nav>
+              <NavItem>
+                <NavButton to="/#wallet" color="blue" size="small">
+                  Sign up
+                </NavButton>
+              </NavItem>
+            </Nav>
+          </MobileNav>
         </InnerContainer>
       </Container>
     );

@@ -5,16 +5,17 @@ import breakpoint from 'styled-components-breakpoint';
 
 import variables from './variables';
 
+import background from './img/photo-about-facts.jpg';
+
 const Container = styled.div`
+  position: relative;
   background: ${variables.colorBlueDark};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const InnerContainer = styled.div`
+  position: relative;
   padding: 48px 24px;
+  z-index: ${variables.zIndexAboutFacts};
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     display: flex;
     justify-content: space-between;
@@ -38,8 +39,9 @@ const FactsColumn = styled.div`
     display: flex;
     align-items: center;
     margin: 0;
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
   `};
 `;
 
@@ -67,6 +69,18 @@ const Fact = styled.div`
   }
 `;
 
+const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+  ${props => (props.src ? `background: url(${props.src})` : null)};
+  background-size: cover;
+  background-position: 50% 50%;
+`;
+
 export const AboutFacts = () => (
   <Container>
     <InnerContainer>
@@ -86,6 +100,7 @@ export const AboutFacts = () => (
         </Fact>
       </FactsColumn>
     </InnerContainer>
+    <Background src={background} />
   </Container>
 );
 

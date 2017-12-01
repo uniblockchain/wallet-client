@@ -8,12 +8,11 @@ import variables from './variables';
 import { GradientText } from './GradientText';
 
 const Container = styled.div`
+  margin: 30px 0 60px;
   padding: 0 24px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    margin: 96px;
+    margin: 96px 0 120px;
     padding: 0;
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
   `};
 `;
 
@@ -38,16 +37,10 @@ const Heading = styled.div`
     margin-bottom: 36px;
     letter-spacing: -1px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const LineContainer = styled.div`
   position: relative;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const Line = styled.div`
@@ -77,16 +70,12 @@ const Line = styled.div`
       ${variables.colorBlue} 100%
     );
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const Milestones = styled.div`
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     display: flex;
     justify-content: space-between;
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
   `};
 `;
 
@@ -106,11 +95,21 @@ const Milestone = styled.div`
       padding-right: 0;
       &:before {
         left: auto;
-        right: 0;
+        right: -2px;
       }
     }
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+    &:nth-child(3) > * {
+      color: #88dfdb;
+    }
+    &:nth-child(4) > * {
+      color: #7bd8df;
+    }
+    &:nth-child(5) > * {
+      color: #6fd0e2;
+    }
+    &:nth-child(6) > * {
+      color: #57c1e9;
+    }
   `};
   &:before {
     content: '';
@@ -130,24 +129,18 @@ const Milestone = styled.div`
 
 const MilestoneTitle = styled.div`
   color: ${props =>
-    props.highlighted ? variables.colorBlue : variables.colorNeutral};
+    props.highlighted ? variables.colorNeutralDark : variables.colorNeutral};
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 3px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     margin-bottom: 9px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 const MilestoneDescription = styled.div`
   color: ${props =>
-    props.highlighted ? variables.colorBlue : variables.colorNeutral};
+    props.highlighted ? variables.colorNeutralDark : variables.colorNeutral};
   line-height: 1.4;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-  `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
 `;
 
 type Props = {
