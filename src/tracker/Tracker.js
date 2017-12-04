@@ -5,7 +5,7 @@ import mixpanel from 'mixpanel-browser';
 import { initialize as initializeErrorTracking } from './ErrorTracker';
 import type { UserState } from '../user/userState';
 
-const isProduction = (): boolean =>
+export const isProduction = (): boolean =>
   (process.env.REACT_APP_ENV || process.env.NODE_ENV) === 'production';
 
 export function initialize(): void {

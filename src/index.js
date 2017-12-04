@@ -32,6 +32,7 @@ import { DefaultTheme } from './ui';
 import AddressComponent from './card/address/AddressComponent';
 import { routes } from './router';
 import './index.css';
+import { GoogleTagManager } from './tracker';
 
 const animationEnter = keyframes`${slideInRight}`;
 
@@ -54,54 +55,57 @@ const PublicContent = withRouter(({ location, children }) => (
 const page = component => requireAuthentication(pageTemplate(component));
 
 render(
-  <ReduxProvider store={store}>
-    <ConnectedRouter history={history}>
-      <ConnectedFlagsProvider>
-        <ThemeProvider theme={DefaultTheme}>
-          <div>
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route path="/about" component={Landing} />
-              <Route path="/careers" component={Landing} />
-              <Route path="/legal" component={Landing} />
-              <Route path="/notify-me-success" component={Landing} />
-            </Switch>
-            <PublicContent>
-              <Route exact path="/app" component={App} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-            </PublicContent>
-            <Switch>
-              <Route path="/logout" component={Logout} />
-              <Route path={routes.OVERVIEW} component={page(Overview)} />
-              <Route path={routes.WALLET} component={page(Wallet)} />
-              <Route path="/send" component={page(Send)} />
-              <Route path="/receive" component={page(Receive)} />
-              <Route exact path="/card" component={page(Card)} />
-              <Route path="/card/order" component={page(CardOrderFlow)} />
-              <Route
-                path={routes.CARD_ADDRESS}
-                component={page(AddressComponent)}
-              />
-              <Route path="/marketplace" component={page(Marketplace)} />
-              <Route path="/settings" component={page(Settings)} />
-            </Switch>
-            <Route path="/sidebar">
-              {({ match }) => (
-                <CSSTransition
-                  in={match && match.isExact}
-                  classNames="slide"
-                  timeout={300}
-                >
-                  <Styled>{match && <Sidebar />}</Styled>
-                </CSSTransition>
-              )}
-            </Route>
-          </div>
-        </ThemeProvider>
-      </ConnectedFlagsProvider>
-    </ConnectedRouter>
-  </ReduxProvider>,
+  <div>
+    <GoogleTagManager gtmId="GTM-55R5ZNL" />
+    <ReduxProvider store={store}>
+      <ConnectedRouter history={history}>
+        <ConnectedFlagsProvider>
+          <ThemeProvider theme={DefaultTheme}>
+            <div>
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route path="/about" component={Landing} />
+                <Route path="/careers" component={Landing} />
+                <Route path="/legal" component={Landing} />
+                <Route path="/notify-me-success" component={Landing} />
+              </Switch>
+              <PublicContent>
+                <Route exact path="/app" component={App} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+              </PublicContent>
+              <Switch>
+                <Route path="/logout" component={Logout} />
+                <Route path={routes.OVERVIEW} component={page(Overview)} />
+                <Route path={routes.WALLET} component={page(Wallet)} />
+                <Route path="/send" component={page(Send)} />
+                <Route path="/receive" component={page(Receive)} />
+                <Route exact path="/card" component={page(Card)} />
+                <Route path="/card/order" component={page(CardOrderFlow)} />
+                <Route
+                  path={routes.CARD_ADDRESS}
+                  component={page(AddressComponent)}
+                />
+                <Route path="/marketplace" component={page(Marketplace)} />
+                <Route path="/settings" component={page(Settings)} />
+              </Switch>
+              <Route path="/sidebar">
+                {({ match }) => (
+                  <CSSTransition
+                    in={match && match.isExact}
+                    classNames="slide"
+                    timeout={300}
+                  >
+                    <Styled>{match && <Sidebar />}</Styled>
+                  </CSSTransition>
+                )}
+              </Route>
+            </div>
+          </ThemeProvider>
+        </ConnectedFlagsProvider>
+      </ConnectedRouter>
+    </ReduxProvider>
+  </div>,
   document.getElementById('root'),
 );
 
