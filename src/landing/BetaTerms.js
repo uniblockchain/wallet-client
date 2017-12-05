@@ -10,7 +10,7 @@ export const BetaTerms = () => (
       <p>
         Please take note that this is a closed beta release of the Change web
         app, which is currently undergoing thorough testing before its release
-        to the public. The software is offered on an “as is” and “as availalbe”
+        to the public. The software is offered on an “as is” and “as available”
         basis. Change does not give any warranties, whether express or implied,
         as to the functionality and usability of the app.
       </p>
