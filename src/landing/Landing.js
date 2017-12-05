@@ -14,6 +14,7 @@ import Home from './Home';
 import About from './About';
 import Careers from './Careers';
 import TermsAndConditions from './TermsAndConditions';
+import BetaTerms from './BetaTerms';
 import PrivacyPolicy from './PrivacyPolicy';
 import NotifyMeSuccess from './NotifyMeSuccess';
 
@@ -68,6 +69,7 @@ class Landing extends React.Component<Props, State> {
             <Route path="/about" component={About} />
             <Route path="/careers" component={Careers} />
             <Route path="/legal/terms" component={TermsAndConditions} />
+            <Route path="/legal/beta" component={BetaTerms} />
             <Route path="/legal/privacy-policy" component={PrivacyPolicy} />
             <Route path="/notify-me-success" component={NotifyMeSuccess} />
             <Route path="/" component={Home} />
