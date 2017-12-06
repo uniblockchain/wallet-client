@@ -11,7 +11,8 @@ import svgClose from '../img/icon-close.svg';
 const Container = styled.div`
   position: relative;
   z-index: ${variables.zIndexModal};
-  width: 80%;
+  width: 85%;
+  padding: 72px 0 0;
   margin: 0 auto;
   &:focus {
     outline: none;
@@ -76,18 +77,17 @@ const styles = {
     left: 0,
     width: '100%',
     height: '100%',
-    padding: '72px 0 0',
+    padding: '0',
     background: `rgba(${variables.colorNeutralDark}, .8)`,
   },
   content: {
     overflow: 'visible',
     position: 'absolute',
-    top: 'auto',
-    left: 'auto',
-    right: 'auto',
-    bottom: 'auto',
+    top: '0',
+    left: '0',
     zIndex: variables.zIndexModal,
     width: '100%',
+    height: '100%',
     padding: 0,
     border: 0,
     borderRadius: 0,

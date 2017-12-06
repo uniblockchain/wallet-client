@@ -125,7 +125,7 @@ export const Footer = () => (
           </ItemLink>
         </Item>
         <Item>
-          <ItemLink to="https://medium.com/@changebank" target="_blank">
+          <ItemLink to="https://medium.com/changefinance" target="_blank">
             Blog
           </ItemLink>
         </Item>
@@ -139,7 +139,6 @@ export const Footer = () => (
         <Company>All Rights Reserved © Lion Capital OÜ</Company>
         <LegalLink to="/legal/privacy-policy">Privacy policy</LegalLink>
         <LegalLink to="/legal/terms">Terms & conditions</LegalLink>
-        <LegalLink to="/legal/aml">AML</LegalLink>
       </CompanyContainer>
     </InnerContainer>
   </Container>

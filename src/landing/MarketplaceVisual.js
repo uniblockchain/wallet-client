@@ -11,6 +11,13 @@ import MarketplaceCard from './MarketplaceCard';
 
 import svgScreenshot from './img/screenshot-marketplace.svg';
 
+import svgCredit from './img/marketplace/credit.svg';
+import svgInsurance from './img/marketplace/insurance.svg';
+import svgLoans from './img/marketplace/loans.svg';
+import svgRealEstate from './img/marketplace/real-estate.svg';
+import svgStartups from './img/marketplace/startups.svg';
+import svgStocks from './img/marketplace/stocks.svg';
+
 const Container = styled.div`
   position: relative;
 `;
@@ -150,26 +157,32 @@ class MarketplaceVisual extends React.Component<Props, State> {
       {
         title: 'Stocks',
         description: 'Automated wealth management.',
+        icon: svgStocks,
       },
       {
         title: 'Real estate',
         description: 'Accessible real estate investing.',
+        icon: svgRealEstate,
       },
       {
         title: 'Loans',
         description: 'Peer to peer loan opportunities.',
+        icon: svgLoans,
       },
       {
         title: 'Startups',
         description: 'Invest in early stage high growth companies.',
+        icon: svgStartups,
       },
       {
         title: 'Insurance',
         description: 'Buy travel insurance from the app.',
+        icon: svgInsurance,
       },
       {
         title: 'Credit',
         description: 'Apply for personal loans.',
+        icon: svgCredit,
       },
     ],
   };
@@ -220,6 +233,7 @@ class MarketplaceVisual extends React.Component<Props, State> {
                     <MarketplaceCard
                       title={card.title}
                       description={card.description}
+                      icon={card.icon}
                       color={variables.colorGreenLight}
                     />
                   </DeviceCardContainer>
@@ -243,6 +257,7 @@ class MarketplaceVisual extends React.Component<Props, State> {
                       <MarketplaceCard
                         title={card.title}
                         description={card.description}
+                        icon={card.icon}
                       />
                     </CardContainer>
                   )}
