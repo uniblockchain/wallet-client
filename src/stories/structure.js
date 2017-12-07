@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { select } from '@storybook/addon-knobs';
 import StoryRouter from 'storybook-router';
-import menu from '../menu/index';
+import menu from '../menu';
 import { Sidebar } from '../sidebar/Sidebar';
 import { BottomNavigation } from '../ui/bottomNavigation/BottomNavigation';
 import { Slide, Slider } from '../ui/slider';

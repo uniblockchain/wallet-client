@@ -1,11 +1,13 @@
 // @flow
 
+const BASE = '/app';
 const WALLET = '/wallet';
 const OVERVIEW = '/overview';
-const CARD_ADDRESS = '/card/address';
+const CARD_ORDER = '/card/order';
 
 export default {
+  BASE,
   WALLET,
   OVERVIEW,
-  CARD_ADDRESS,
+  CARD_ORDER,
 };

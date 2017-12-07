@@ -9,7 +9,7 @@ import {
   PrimaryButton,
   FormFeedback,
   WrappedContent,
-} from '../../../../ui';
+} from '../../../../../ui';
 import { addressFormSubmitHandler } from '../../addressRoutine';
 
 const StyledContent = styled(WrappedContent)`

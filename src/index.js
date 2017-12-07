@@ -20,19 +20,17 @@ import { Signup } from './signup';
 import { Login, Logout } from './login';
 import { Overview } from './overview';
 import { Card } from './card';
-import { CardOrderFlow } from './card/order';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
 import { Settings } from './settings';
 import { Sidebar } from './sidebar';
 import { unregister } from './registerServiceWorker';
-import requireAuthentication from './requireAuthentication';
-import { pageTemplate } from './page';
+import { authenticatedPage } from './page';
 import { DefaultTheme } from './ui';
-import AddressComponent from './card/address/AddressComponent';
 import { routes } from './router';
 import './index.css';
 import { GoogleTagManager } from './tracker';
+import { cardOrderRoutes } from './card/order';
 
 const animationEnter = keyframes`${slideInRight}`;
 
@@ -52,8 +50,6 @@ const PublicContent = withRouter(({ location, children }) => (
   </TransitionGroup>
 ));
 
-const page = component => requireAuthentication(pageTemplate(component));
-
 render(
   <div>
     <GoogleTagManager gtmId="GTM-55R5ZNL" />
@@ -70,24 +66,32 @@ render(
                 <Route path="/notify-me-success" component={Landing} />
               </Switch>
               <PublicContent>
-                <Route exact path="/app" component={App} />
+                <Route exact path={routes.BASE} component={App} />
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
               </PublicContent>
               <Switch>
                 <Route path="/logout" component={Logout} />
-                <Route path={routes.OVERVIEW} component={page(Overview)} />
-                <Route path={routes.WALLET} component={page(Wallet)} />
-                <Route path="/send" component={page(Send)} />
-                <Route path="/receive" component={page(Receive)} />
-                <Route exact path="/card" component={page(Card)} />
-                <Route path="/card/order" component={page(CardOrderFlow)} />
                 <Route
-                  path={routes.CARD_ADDRESS}
-                  component={page(AddressComponent)}
+                  path={routes.OVERVIEW}
+                  component={authenticatedPage(Overview)}
                 />
-                <Route path="/marketplace" component={page(Marketplace)} />
-                <Route path="/settings" component={page(Settings)} />
+                <Route
+                  path={routes.WALLET}
+                  component={authenticatedPage(Wallet)}
+                />
+                <Route path="/send" component={authenticatedPage(Send)} />
+                <Route path="/receive" component={authenticatedPage(Receive)} />
+                <Route exact path="/card" component={authenticatedPage(Card)} />
+                {cardOrderRoutes}
+                <Route
+                  path="/marketplace"
+                  component={authenticatedPage(Marketplace)}
+                />
+                <Route
+                  path="/settings"
+                  component={authenticatedPage(Settings)}
+                />
               </Switch>
               <Route path="/sidebar">
                 {({ match }) => (

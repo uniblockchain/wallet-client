@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { AddressForm } from './AddressForm';
-import { Field } from '../../../../ui';
+import { Field } from '../../../../../ui';
 
 describe('Address form', () => {
   let component;

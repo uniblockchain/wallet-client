@@ -4,7 +4,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 
-import { Header, SubHeader, Paragraph } from '../ui/index';
+import { Header, SubHeader, Paragraph } from '../ui';
 
 storiesOf('Text', module)
   .add('Header', () => (

@@ -7,8 +7,8 @@ import { change } from 'redux-form';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import config from 'react-global-configuration';
-import { FormInput, Label, FormGroup } from '../../../../ui/form';
-import { WrappedContent } from '../../../../ui';
+import { FormInput, Label, FormGroup } from '../../../../../ui/form';
+import { WrappedContent } from '../../../../../ui';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;

@@ -3,9 +3,9 @@
 import config from 'react-global-configuration';
 import type { Address } from './addressApi';
 
-jest.mock('../../http');
+jest.mock('../../../http');
 
-const mockHttp = require('../../http');
+const mockHttp = require('../../../http');
 
 const addressApi = require('./addressApi').default;
 
