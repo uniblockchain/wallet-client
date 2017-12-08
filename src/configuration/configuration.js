@@ -16,7 +16,7 @@ const DEFAULT_CONF_DEV = {
 
 const DEFAULT_CONF_STAGING = {
   ...DEFAULT_CONF,
-  apiUrl: 'https://staging-wallet-service.getchange.com',
+  apiUrl: 'https://staging-api.getchange.com',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'none',
