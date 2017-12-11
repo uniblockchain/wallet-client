@@ -5,14 +5,9 @@ import ReactGoogleMapLoader from 'react-google-maps-loader';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
 import { change } from 'redux-form';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import config from 'react-global-configuration';
 import { FormInput, Label, FormGroup } from '../../../../../ui/form';
 import { WrappedContent } from '../../../../../ui';
-
-const StyledContent = styled(WrappedContent)`
-  background-color: #e5f9f3;
-`;
 
 type Props = {
   setField: (string, string, string) => void,
@@ -102,7 +97,7 @@ export class AddressSuggest extends React.Component<Props, State> {
   render() {
     const { search, value } = this.state;
     return (
-      <StyledContent>
+      <WrappedContent>
         <ReactGoogleMapLoader
           params={{
             key: config.get('googleMapsKey'),
@@ -130,7 +125,7 @@ export class AddressSuggest extends React.Component<Props, State> {
               </div>
             )}
         />
-      </StyledContent>
+      </WrappedContent>
     );
   }
 }

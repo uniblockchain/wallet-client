@@ -1,8 +1,13 @@
 // @flow
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Header, Paragraph, WrappedContent, FileUpload } from '../ui';
+import { Header, Paragraph, WrappedContent, FileUpload } from '../../../ui';
 import address from './img/address.png';
+import verificationFileUploader from './verificationFileUploader';
+import { CARD_ORDER_DONE_ROUTE } from '../constants';
 
 const LargeHeader = Header.extend`
   font-size: 36px;
@@ -46,10 +51,19 @@ const List = styled.ul`
 `;
 
 type Props = {
-  onChoose: (files: Array<File>) => void,
+  onChoose: (fileList: FileList) => void,
+  redirectToNextStep: () => void,
 };
 
-const AddressVerification = ({ onChoose }: Props) => {
+export const AddressVerification = ({
+  onChoose,
+  redirectToNextStep,
+}: Props) => {
+  const chooseAndGoToNextStep = (fileList: FileList) => {
+    onChoose(fileList);
+    redirectToNextStep();
+  };
+
   return (
     <WrappedContent>
       <LargeHeader alt>Address verification</LargeHeader>
@@ -76,15 +90,22 @@ const AddressVerification = ({ onChoose }: Props) => {
         </li>
       </List>
       <Buttons>
-        <FileUpload type="camera" onChoose={onChoose} inline>
+        <FileUpload type="camera" onChoose={chooseAndGoToNextStep}>
           Camera
         </FileUpload>
-        <FileUpload onChoose={onChoose} inline>
-          Upload
-        </FileUpload>
+        <FileUpload onChoose={chooseAndGoToNextStep}>Upload</FileUpload>
       </Buttons>
     </WrappedContent>
   );
 };
 
-export default AddressVerification;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      redirectToNextStep: () => push(CARD_ORDER_DONE_ROUTE),
+    },
+    dispatch,
+  );
+
+const component = connect(null, mapDispatchToProps)(AddressVerification);
+export default verificationFileUploader(component, 'ADDRESS');

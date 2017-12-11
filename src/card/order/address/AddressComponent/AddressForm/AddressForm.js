@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { reduxForm, type FormProps } from 'redux-form';
+import { push } from 'react-router-redux';
 import {
   Form,
   FormGroup,
@@ -11,6 +12,7 @@ import {
   WrappedContent,
 } from '../../../../../ui';
 import { addressFormSubmitHandler } from '../../addressRoutine';
+import { CARD_ORDER_ID_VERIFICATION_ROUTE } from '../../../constants';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;
@@ -48,4 +50,9 @@ export const AddressForm = ({ handleSubmit, error }: Props) => (
   </div>
 );
 
-export default reduxForm({ form: 'cardAddress' })(AddressForm);
+export default reduxForm({
+  form: 'cardAddress',
+  onSubmitSuccess: (result, dispatch) => {
+    dispatch(push(CARD_ORDER_ID_VERIFICATION_ROUTE));
+  },
+})(AddressForm);

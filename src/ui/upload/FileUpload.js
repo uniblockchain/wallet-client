@@ -32,8 +32,8 @@ const FileUploadBase = ({
 );
 
 const FileUpload = styled(FileUploadBase)`
-  display: ${props => (props.inline ? 'inline' : 'block')};
-  width: ${props => (props.inline ? 'fit-content' : '100%')};
+  display: 'inline';
+  width: 'fit-content';
   padding: 14px 32px 14px 32px;
   height: 44px;
   border-radius: 49px;

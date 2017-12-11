@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import AddressSuggest from './AddressSuggest';
 import AddressForm from './AddressForm';

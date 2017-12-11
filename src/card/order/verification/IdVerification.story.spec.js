@@ -10,8 +10,8 @@ import {
   describe,
   beforeEach,
   it,
-} from '../../.storybook/facade';
-import IdVerification from './IdVerification';
+} from '../../../../.storybook/facade';
+import { IdVerification } from './IdVerification';
 
 storiesOf('Page', module).add('ID Verification', () => {
   specs(() =>
@@ -20,6 +20,7 @@ storiesOf('Page', module).add('ID Verification', () => {
 
       const props = {
         onChoose: jest.fn(),
+        redirectToNextStep: jest.fn(),
       };
 
       beforeEach(() => {
@@ -31,5 +32,10 @@ storiesOf('Page', module).add('ID Verification', () => {
     }),
   );
 
-  return <IdVerification onChoose={action('file chosen')} />;
+  return (
+    <IdVerification
+      onChoose={action('file chosen')}
+      redirectToNextStep={action('redirecting to next step')}
+    />
+  );
 });

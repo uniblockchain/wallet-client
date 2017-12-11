@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { routes } from '../router';
 
 type Props = {
   +authenticated: boolean,
@@ -50,7 +51,7 @@ const requireAuthentication = (WrappedComponent: *) => {
   const mapDispatchToProps = dispatch =>
     bindActionCreators(
       {
-        redirectToMainPage: () => push('/'),
+        redirectToMainPage: () => push(routes.BASE),
       },
       dispatch,
     );

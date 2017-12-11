@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { push } from 'react-router-redux';
+import { routes } from '../router';
 
 import requireAuthentication from './requireAuthentication';
 
@@ -28,7 +29,10 @@ describe('requireAuthentication higher-order component', () => {
 
   it('does not render inner component if authentication is not given, redirecting instead', () => {
     expect(component.text()).not.toContain('I am FakeComponent');
-    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/'));
+    expect(fakeReducer).toHaveBeenCalledWith(
+      fakeStateGetter(),
+      push(routes.BASE),
+    );
   });
 
   it('renders the inner component if authentication is given', () => {
@@ -36,12 +40,18 @@ describe('requireAuthentication higher-order component', () => {
     fakeReducer.mockClear();
     store.dispatch({ type: 'this type will not be used!' }); // trigger update from fakeState
     expect(component.text()).toContain('I am FakeComponent');
-    expect(fakeReducer).not.toHaveBeenCalledWith(fakeStateGetter(), push('/'));
+    expect(fakeReducer).not.toHaveBeenCalledWith(
+      fakeStateGetter(),
+      push(routes.BASE),
+    );
 
     // now we remove auth
     fakeStateGetter = () => ({ token: null });
     store.dispatch({ type: 'this type will not be used!' }); // trigger update from fakeState
     expect(component.text()).not.toContain('I am FakeComponent');
-    expect(fakeReducer).toHaveBeenCalledWith(fakeStateGetter(), push('/'));
+    expect(fakeReducer).toHaveBeenCalledWith(
+      fakeStateGetter(),
+      push(routes.BASE),
+    );
   });
 });

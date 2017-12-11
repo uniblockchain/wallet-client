@@ -10,8 +10,8 @@ import {
   describe,
   beforeEach,
   it,
-} from '../../.storybook/facade';
-import AddressVerification from './AddressVerification';
+} from '../../../../.storybook/facade';
+import { AddressVerification } from './AddressVerification';
 
 storiesOf('Page', module).add('Address Verification', () => {
   specs(() =>
@@ -20,6 +20,7 @@ storiesOf('Page', module).add('Address Verification', () => {
 
       const props = {
         onChoose: jest.fn(),
+        redirectToNextStep: jest.fn(),
       };
 
       beforeEach(() => {
@@ -31,5 +32,10 @@ storiesOf('Page', module).add('Address Verification', () => {
     }),
   );
 
-  return <AddressVerification onChoose={action('file chosen')} />;
+  return (
+    <AddressVerification
+      onChoose={action('file chosen')}
+      redirectToNextStep={action('redirecting to next step')}
+    />
+  );
 });

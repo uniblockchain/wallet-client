@@ -31,12 +31,24 @@ function bearerTokenHeader(): * {
   return {};
 }
 
-function paramsToBody(params: any): * {
+function isJsonParams(params: any): boolean {
   const paramsType = typeof params;
-  if (paramsType === 'string' || paramsType === 'FormData') {
-    return params;
+  if (
+    paramsType === 'string' ||
+    paramsType === 'FormData' ||
+    params instanceof String ||
+    params instanceof FormData
+  ) {
+    return false;
   }
-  return JSON.stringify(params);
+  return true;
+}
+
+function paramsToBody(params: any): * {
+  if (isJsonParams(params)) {
+    return JSON.stringify(params);
+  }
+  return params;
 }
 
 function urlEncodeParameters(params) {
@@ -60,11 +72,18 @@ export function get(url: string, params: * = {}, headers: * = {}): * {
   }).then(transformResponse);
 }
 
+function getContentType(params: *) {
+  if (params instanceof FormData) {
+    return {};
+  }
+  return { 'Content-Type': 'application/json; charset=utf-8' };
+}
+
 export function post(url: string, params: * = {}, headers: * = {}): * {
   return fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json; charset=utf-8',
+      ...getContentType(params),
       ...bearerTokenHeader(),
       ...headers,
     },
