@@ -83,12 +83,14 @@ const renderField = ({
   );
   return (
     <FormGroup>
-      <Label
-        className={touched && error ? 'is-invalid' : ''}
-        htmlFor={input.id}
-      >
-        {label}
-      </Label>
+      {label && (
+        <Label
+          className={touched && error ? 'is-invalid' : ''}
+          htmlFor={input.id}
+        >
+          {label}
+        </Label>
+      )}
       {addon ? (
         <div className="input-group">
           {renderInput()}

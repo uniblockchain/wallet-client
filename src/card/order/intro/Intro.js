@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Header, Paragraph, PrimaryButton, Button, Bottom } from '../../../ui';
-import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
+import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 import { routes } from '../../../router';
 
 const Container = styled.div`
@@ -43,7 +43,7 @@ export const Intro = () => (
           <Bulletpoint alt>One time card order fee is €9.</Bulletpoint>
         </li>
       </ul>
-      <Link to={CARD_ORDER_ADDRES_ROUTE}>
+      <Link to={CARD_ORDER_PROFILE_ROUTE}>
         <PrimaryButton>Let’s get started</PrimaryButton>
       </Link>
       <Link to={routes.BASE}>

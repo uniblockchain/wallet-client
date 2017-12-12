@@ -2,6 +2,10 @@
 import type RoutineAction from 'redux-saga-routines';
 import { type UserState, initialUserState } from './userState';
 import { fetchRoutine, creationRoutine } from './userRoutines';
+import {
+  fetchRoutine as fetchProfileRoutine,
+  creationRoutine as createProfileRoutine,
+} from './profile/profileRoutines';
 
 const userReducer = (
   state: UserState = initialUserState,
@@ -37,6 +41,23 @@ const userReducer = (
       };
 
     case creationRoutine.FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case fetchProfileRoutine.TRIGGER:
+      return {
+        ...state,
+      };
+
+    case fetchProfileRoutine.SUCCESS:
+      return {
+        ...state,
+        profile: action.payload,
+      };
+
+    case fetchProfileRoutine.FAILURE:
       return {
         ...state,
         error: action.payload,

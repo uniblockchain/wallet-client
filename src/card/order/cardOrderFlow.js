@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { NavigationDots } from '../../ui';
 import Intro from './intro';
+import Profile from './profile';
 import AddressComponent from './address/AddressComponent';
 import { IdVerification, AddressVerification } from './verification';
 import Done from './done';
 import {
   CARD_ORDER_INTRO_ROUTE,
+  CARD_ORDER_PROFILE_ROUTE,
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
@@ -19,13 +21,14 @@ import {
 
 export const BottomRow = styled.div`
   position: fixed;
-  bottom: 70px;
+  bottom: 66px;
   width: 100%;
   display: flex;
 `;
 
 export const NavigationDotsContainer = styled(BottomRow)`
   justify-content: center;
+  background-color: white;
 `;
 
 const Container = styled.div`
@@ -42,6 +45,7 @@ const BackLink = styled.span`
 
 const stepComponents = [
   Intro,
+  Profile,
   AddressComponent,
   IdVerification,
   AddressVerification,
@@ -50,6 +54,7 @@ const stepComponents = [
 
 const backButtonRoutes = [
   CARD_ORDER_INTRO_ROUTE,
+  CARD_ORDER_PROFILE_ROUTE,
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,

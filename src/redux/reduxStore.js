@@ -9,6 +9,7 @@ import { routinePromiseWatcherSaga } from 'redux-saga-routines';
 import { loginReducer, loginSagas, loginRoutine } from '../login';
 
 import { userReducer, userSagas } from '../user';
+import { profileSagas } from '../user/profile';
 import { walletReducer, walletSagas } from '../wallet';
 import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
 import { pageReducer } from '../page';
@@ -51,6 +52,7 @@ store.dispatch(loginRoutine.fulfill());
 
 [
   userSagas,
+  ...(profileSagas || []),
   loginSagas,
   walletSagas,
   sendSagas,

@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
 import { Intro } from './Intro';
 import { PrimaryButton, Button } from '../../../ui';
-import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
+import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 import { routes } from '../../../router';
 
 describe('Card ordering flow Intro', () => {
@@ -23,7 +23,7 @@ describe('Card ordering flow Intro', () => {
     expect(
       component
         .find(Link)
-        .find({ to: CARD_ORDER_ADDRES_ROUTE })
+        .find({ to: CARD_ORDER_PROFILE_ROUTE })
         .find(PrimaryButton).length,
     ).toBe(1);
   });

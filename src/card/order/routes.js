@@ -4,12 +4,14 @@ import React from 'react';
 import { Route } from 'react-router';
 import AddressComponent from './address/AddressComponent';
 import Intro from './intro';
+import Profile from './profile';
 import { IdVerification, AddressVerification } from './verification';
 import Done from './done';
 import cardOrderFlow from './cardOrderFlow';
 import { authenticatedPage } from '../../page';
 import {
   CARD_ORDER_INTRO_ROUTE,
+  CARD_ORDER_PROFILE_ROUTE,
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
@@ -22,6 +24,15 @@ const introRoute = (
     exact
     path={CARD_ORDER_INTRO_ROUTE}
     component={authenticatedPage(cardOrderFlow(Intro))}
+  />
+);
+
+const profileRoute = (
+  <Route
+    key={1}
+    exact
+    path={CARD_ORDER_PROFILE_ROUTE}
+    component={authenticatedPage(cardOrderFlow(Profile))}
   />
 );
 
@@ -59,6 +70,7 @@ const doneRoute = (
 
 export default [
   introRoute,
+  profileRoute,
   addressRoute,
   idVerificationRoute,
   addressVerificationRoute,

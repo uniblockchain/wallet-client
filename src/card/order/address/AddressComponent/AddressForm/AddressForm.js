@@ -18,12 +18,16 @@ const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;
 `;
 
+const StyledForm = styled(Form)`
+  padding-bottom: 100px;
+`;
+
 type Props = {} & FormProps;
 
 export const AddressForm = ({ handleSubmit, error }: Props) => (
   <div>
     <StyledContent>
-      <Form
+      <StyledForm
         id="addressForm"
         onSubmit={handleSubmit(addressFormSubmitHandler)}
         className="mt-5"
@@ -45,7 +49,7 @@ export const AddressForm = ({ handleSubmit, error }: Props) => (
         <FormGroup className="mt-5">
           <PrimaryButton type="submit">Next</PrimaryButton>
         </FormGroup>
-      </Form>
+      </StyledForm>
     </StyledContent>
   </div>
 );

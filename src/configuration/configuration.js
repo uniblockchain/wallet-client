@@ -8,7 +8,7 @@ const DEFAULT_CONF = {
 
 const DEFAULT_CONF_DEV = {
   ...DEFAULT_CONF,
-  apiUrl: 'http://localhost:8080',
+  apiUrl: '',
   oauth2ClientId: 'wallet-client',
   oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'none',
