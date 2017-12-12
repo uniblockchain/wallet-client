@@ -98,7 +98,7 @@ export const About = () => (
         { title: 'Q3 2017', body: '$17.5 million raised from 5600 people' },
         {
           title: 'Q4 2017',
-          body: 'Change Wallet, Change Card',
+          body: 'Change Wallet', // , Change Card',
           highlighted: true,
         },
         { title: 'Q1 2018', body: 'Change Marketplace', highlighted: true },

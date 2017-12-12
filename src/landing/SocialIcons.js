@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import svgTelegram from './img/social/telegram.svg';
-import svgFacebook from './img/social/facebook.svg';
+// import svgFacebook from './img/social/facebook.svg';
 import svgTwitter from './img/social/twitter.svg';
-import svgYouTube from './img/social/youtube.svg';
-import svgMedium from './img/social/medium.svg';
+// import svgYouTube from './img/social/youtube.svg';
+// import svgMedium from './img/social/medium.svg';
 
 const Container = styled.div``;
 
@@ -58,29 +58,29 @@ export const SocialIcons = () => (
             <IconImage src={svgTelegram} alt="Telegram" />
           </Link>
         </Icon>
-        <Icon>
-          <Link to="https://www.facebook.com/changefinance/" target="_blank">
-            <IconImage src={svgFacebook} alt="Facebook" />
-          </Link>
-        </Icon>
+        {/* <Icon> */}
+        {/* <Link to="https://www.facebook.com/changefinance/" target="_blank"> */}
+        {/* <IconImage src={svgFacebook} alt="Facebook" /> */}
+        {/* </Link> */}
+        {/* </Icon> */}
         <Icon>
           <Link to="https://twitter.com/changefinance" target="_blank">
             <IconImage src={svgTwitter} alt="Twitter" />
           </Link>
         </Icon>
-        <Icon>
-          <Link
-            to="https://www.youtube.com/channel/UCWK5RDsAh3C7jVclziAVF7w"
-            target="_blank"
-          >
-            <IconImage src={svgYouTube} alt="YouTube" />
-          </Link>
-        </Icon>
-        <Icon>
-          <Link to="https://medium.com/@changebank" target="_blank">
-            <IconImage src={svgMedium} alt="Medium" />
-          </Link>
-        </Icon>
+        {/* <Icon> */}
+        {/* <Link */}
+        {/* to="https://www.youtube.com/channel/UCWK5RDsAh3C7jVclziAVF7w" */}
+        {/* target="_blank" */}
+        {/* > */}
+        {/* <IconImage src={svgYouTube} alt="YouTube" /> */}
+        {/* </Link> */}
+        {/* </Icon> */}
+        {/* <Icon> */}
+        {/* <Link to="https://medium.com/@changebank" target="_blank"> */}
+        {/* <IconImage src={svgMedium} alt="Medium" /> */}
+        {/* </Link> */}
+        {/* </Icon> */}
       </Icons>
     </InnerContainer>
   </Container>

@@ -7,7 +7,7 @@ import variables from './variables';
 import ScrollToTarget from './ScrollToTarget';
 import Hero from './Hero';
 import Wallet from './Wallet';
-import Card from './Card';
+// import Card from './Card';
 import Marketplace from './Marketplace';
 import GlobalMovement from './GlobalMovement';
 import Press from './Press';
@@ -23,7 +23,7 @@ export const Home = () => (
     <Container>
       <Hero />
       <Wallet />
-      <Card />
+      {/* <Card /> */}
       <Marketplace />
       <GlobalMovement />
       <Press />

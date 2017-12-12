@@ -5,11 +5,10 @@ import breakpoint from 'styled-components-breakpoint';
 
 import variables from './variables';
 
-import { NavButton } from './ui';
-import { Modal } from './ui';
+import { Modal, NavButton } from './ui';
 
 import photo from './img/photo-landing-global-movement.jpg';
-import svgPlay from './img/icon-play.svg';
+// import svgPlay from './img/icon-play.svg';
 
 const Container = styled.div`
   position: relative;
@@ -108,16 +107,16 @@ const Image = styled.img`
   `};
 `;
 
-const Play = styled.img`
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 48px;
-  height: 48px;
-  margin-left: -24px;
-  margin-top: -24px;
-`;
+// const Play = styled.img`
+//   display: block;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   width: 48px;
+//   height: 48px;
+//   margin-left: -24px;
+//   margin-top: -24px;
+// `;
 
 type Props = {};
 
@@ -142,9 +141,11 @@ class GlobalMovement extends React.Component<Props, State> {
     return (
       <Container>
         <InnerContainer>
-          <ImageContainer onClick={this.handleClick.bind(this)}>
+          <ImageContainer>
+            {' '}
+            {/* onClick={this.handleClick.bind(this)}> */}
             <Image src={photo} alt="" />
-            <Play src={svgPlay} alt="" />
+            {/* <Play src={svgPlay} alt="" /> */}
           </ImageContainer>
           <TextContainer>
             <Heading>A global movement</Heading>
@@ -171,9 +172,7 @@ class GlobalMovement extends React.Component<Props, State> {
           <div className="ReactModal__video">
             <iframe
               title="YouTube"
-              src={
-                'https://www.youtube.com/embed/t2k38bMuc7k/?rel=0&amp;showinfo=0&amp;autoplay=1'
-              }
+              src="https://www.youtube.com/embed/t2k38bMuc7k/?rel=0&amp;showinfo=0&amp;autoplay=1"
               frameBorder="0"
               allowFullScreen
             />

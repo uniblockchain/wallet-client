@@ -107,9 +107,9 @@ export const Footer = () => (
         <Item>
           <ItemLink to="/#wallet">Wallet</ItemLink>
         </Item>
-        <Item>
-          <ItemLink to="/#card">Card</ItemLink>
-        </Item>
+        {/* <Item> */}
+        {/* <ItemLink to="/#card">Card</ItemLink> */}
+        {/* </Item> */}
         <Item>
           <ItemLink to="/#marketplace">Marketplace</ItemLink>
         </Item>
