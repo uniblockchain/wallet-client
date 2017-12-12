@@ -11,6 +11,6 @@ export type Address = {
 };
 
 const createAddress = (address: Address): Promise<Address> =>
-  post(`${config.get('apiUrl')}/v1/me/address`, address);
+  post(`${config.get('apiUrl')}/v1/me/profile/address`, address);
 
 export default { createAddress };
