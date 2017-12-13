@@ -36,7 +36,7 @@ export const NavigationDotsContainer = styled.div`
 
 const Container = styled.div`
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
