@@ -20,19 +20,36 @@ import {
 } from './constants';
 
 export const BottomRow = styled.div`
-  position: fixed;
-  bottom: 66px;
+  position: absolute;
+  bottom: 30px;
+  display: 
   width: 100%;
   display: flex;
 `;
 
-export const NavigationDotsContainer = styled(BottomRow)`
+export const NavigationDotsContainer = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: center;
-  background-color: white;
+  padding-bottom: 28px;
 `;
 
 const Container = styled.div`
-  height: calc(100% - 100px);
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const WrappedContent = styled.div`
+  padding-top: 61px;
+  margin-left: 34px;
+  margin-right: 49px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const BackLink = styled.span`
@@ -77,7 +94,9 @@ export const cardOrderFlow = (WrappedComponent: *) => {
 
     return (
       <Container>
-        <WrappedComponent {...props} />
+        <WrappedContent>
+          <WrappedComponent {...props} />
+        </WrappedContent>
         <NavigationDotsContainer>
           <NavigationDots count={count} activeIndex={activeIndex} />
         </NavigationDotsContainer>

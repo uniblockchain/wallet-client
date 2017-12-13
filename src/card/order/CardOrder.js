@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Header, SubHeader, PrimaryButton } from '../../ui';
-import routes from '../../router';
+import { CARD_ORDER_INTRO_ROUTE } from './constants';
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
@@ -29,7 +29,7 @@ export const CardOrder = () => (
     <StyledSubHeader>
       Start spending your Bitcoin & other cryptocurrencies.
     </StyledSubHeader>
-    <Link to={routes.CARD_ORDER}>
+    <Link to={CARD_ORDER_INTRO_ROUTE}>
       <OrderButton>Order card</OrderButton>
     </Link>
   </div>

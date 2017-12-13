@@ -8,7 +8,7 @@ import Profile from './profile';
 import { IdVerification, AddressVerification } from './verification';
 import Done from './done';
 import cardOrderFlow from './cardOrderFlow';
-import { authenticatedPage } from '../../page';
+import requireAuthentication from '../../requireAuthentication';
 import {
   CARD_ORDER_INTRO_ROUTE,
   CARD_ORDER_PROFILE_ROUTE,
@@ -23,7 +23,7 @@ const introRoute = (
     key={1}
     exact
     path={CARD_ORDER_INTRO_ROUTE}
-    component={authenticatedPage(cardOrderFlow(Intro))}
+    component={requireAuthentication(cardOrderFlow(Intro))}
   />
 );
 
@@ -32,7 +32,7 @@ const profileRoute = (
     key={1}
     exact
     path={CARD_ORDER_PROFILE_ROUTE}
-    component={authenticatedPage(cardOrderFlow(Profile))}
+    component={requireAuthentication(cardOrderFlow(Profile))}
   />
 );
 
@@ -40,7 +40,7 @@ const addressRoute = (
   <Route
     key={2}
     path={CARD_ORDER_ADDRES_ROUTE}
-    component={authenticatedPage(cardOrderFlow(AddressComponent))}
+    component={requireAuthentication(cardOrderFlow(AddressComponent))}
   />
 );
 
@@ -48,7 +48,7 @@ const idVerificationRoute = (
   <Route
     key={2}
     path={CARD_ORDER_ID_VERIFICATION_ROUTE}
-    component={authenticatedPage(cardOrderFlow(IdVerification))}
+    component={requireAuthentication(cardOrderFlow(IdVerification))}
   />
 );
 
@@ -56,7 +56,7 @@ const addressVerificationRoute = (
   <Route
     key={3}
     path={CARD_ORDER_ADDRES_VERIFICATION_ROUTE}
-    component={authenticatedPage(cardOrderFlow(AddressVerification))}
+    component={requireAuthentication(cardOrderFlow(AddressVerification))}
   />
 );
 
@@ -64,7 +64,7 @@ const doneRoute = (
   <Route
     key={4}
     path={CARD_ORDER_DONE_ROUTE}
-    component={authenticatedPage(cardOrderFlow(Done))}
+    component={requireAuthentication(cardOrderFlow(Done))}
   />
 );
 

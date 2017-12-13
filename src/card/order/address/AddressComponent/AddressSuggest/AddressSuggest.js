@@ -7,7 +7,6 @@ import { change } from 'redux-form';
 import { connect } from 'react-redux';
 import config from 'react-global-configuration';
 import { FormInput, Label, FormGroup } from '../../../../../ui/form';
-import { WrappedContent } from '../../../../../ui';
 
 type Props = {
   setField: (string, string, string) => void,
@@ -97,7 +96,7 @@ export class AddressSuggest extends React.Component<Props, State> {
   render() {
     const { search, value } = this.state;
     return (
-      <WrappedContent>
+      <div>
         <ReactGoogleMapLoader
           params={{
             key: config.get('googleMapsKey'),
@@ -125,7 +124,7 @@ export class AddressSuggest extends React.Component<Props, State> {
               </div>
             )}
         />
-      </WrappedContent>
+      </div>
     );
   }
 }

@@ -2,17 +2,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Header, Paragraph, PrimaryButton, Button, Bottom } from '../../../ui';
+import {
+  Header,
+  Paragraph,
+  PrimaryButton,
+  Button,
+  Top,
+  Bottom,
+} from '../../../ui';
 import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 import { routes } from '../../../router';
 
 const Container = styled.div`
-  padding-top: 61px;
-  margin-left: 34px;
-  margin-right: 49px;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 
 const StyledHeader = styled(Header)`
@@ -25,7 +30,9 @@ const Bulletpoint = styled(Paragraph)`
 
 export const Intro = () => (
   <Container>
-    <StyledHeader>Your card is just a few steps away.</StyledHeader>
+    <Top>
+      <StyledHeader>Your card is just a few steps away.</StyledHeader>
+    </Top>
 
     <Bottom>
       <Paragraph alt>Few things to note:</Paragraph>

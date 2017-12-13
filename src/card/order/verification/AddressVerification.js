@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Header, Paragraph, WrappedContent, FileUpload } from '../../../ui';
+import { Header, Paragraph, FileUpload } from '../../../ui';
 import address from './img/address.png';
 import verificationFileUploader from './verificationFileUploader';
 import { CARD_ORDER_DONE_ROUTE } from '../constants';
@@ -65,7 +65,7 @@ export const AddressVerification = ({
   };
 
   return (
-    <WrappedContent>
+    <div>
       <LargeHeader alt>Address verification</LargeHeader>
       <Paragraph alt>
         To finish the process we need a proof of address.
@@ -95,7 +95,7 @@ export const AddressVerification = ({
         </FileUpload>
         <FileUpload onChoose={chooseAndGoToNextStep}>Upload</FileUpload>
       </Buttons>
-    </WrappedContent>
+    </div>
   );
 };
 

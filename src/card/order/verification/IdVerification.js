@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Header, Paragraph, WrappedContent, FileUpload } from '../../../ui';
+import { Header, Paragraph, FileUpload } from '../../../ui';
 import passport from './img/passport.png';
 import verificationFileUploader from './verificationFileUploader';
 import { CARD_ORDER_ADDRES_VERIFICATION_ROUTE } from '../constants';
@@ -49,7 +49,7 @@ export const IdVerification = ({ onChoose, redirectToNextStep }: Props) => {
   };
 
   return (
-    <WrappedContent>
+    <div>
       <LargeHeader alt>Your proof of identification</LargeHeader>
       <Paragraph alt>
         To verify your identity please upload a photo of your id card or
@@ -65,7 +65,7 @@ export const IdVerification = ({ onChoose, redirectToNextStep }: Props) => {
         </FileUpload>
         <FileUpload onChoose={chooseAndGoToNextStep}>Upload</FileUpload>
       </Buttons>
-    </WrappedContent>
+    </div>
   );
 };
 
