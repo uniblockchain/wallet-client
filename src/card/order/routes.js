@@ -9,6 +9,7 @@ import { IdVerification, AddressVerification } from './verification';
 import Done from './done';
 import cardOrderFlow from './cardOrderFlow';
 import requireAuthentication from '../../requireAuthentication';
+import { authenticatedPage } from '../../page';
 import {
   CARD_ORDER_INTRO_ROUTE,
   CARD_ORDER_PROFILE_ROUTE,
@@ -64,7 +65,7 @@ const doneRoute = (
   <Route
     key={4}
     path={CARD_ORDER_DONE_ROUTE}
-    component={requireAuthentication(cardOrderFlow(Done))}
+    component={authenticatedPage(cardOrderFlow(Done))}
   />
 );
 

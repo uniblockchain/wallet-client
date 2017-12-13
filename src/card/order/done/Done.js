@@ -4,15 +4,6 @@ import styled from 'styled-components';
 import { Header, Paragraph } from '../../../ui';
 import PlasticCard from '../../../landing/PlasticCard';
 
-const Container = styled.div`
-  padding-top: 61px;
-  margin-left: 34px;
-  margin-right: 49px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
 `;
@@ -41,7 +32,7 @@ const OrderStatus = styled.div`
 `;
 
 export const Done = () => (
-  <Container>
+  <div>
     <StyledHeader>
       All done! <br />
       Sit back and relax.
@@ -55,7 +46,7 @@ export const Done = () => (
       number="1234 5678 9012 1101"
       date="12/20"
     />
-  </Container>
+  </div>
 );
 
 export default Done;
