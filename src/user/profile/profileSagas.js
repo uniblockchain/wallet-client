@@ -25,7 +25,11 @@ export function* createProfile(
       profileApi.createOrUpdateProfile,
       formValuesToProfile(action.payload.values),
     );
-    yield put(creationRoutine.success(profile));
+    const profileWithDate = { ...profile };
+    if (profile.dateOfBirth) {
+      profileWithDate.dateOfBirth = new Date(profile.dateOfBirth);
+    }
+    yield put(creationRoutine.success(profileWithDate));
   } catch (error) {
     yield put(
       creationRoutine.failure(
