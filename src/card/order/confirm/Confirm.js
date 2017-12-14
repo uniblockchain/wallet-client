@@ -20,7 +20,7 @@ import CurrencyName from '../../../wallet/CurrencyName';
 import { Wallet } from '../../../wallet/walletState';
 import ConfirmIcon from './ConfirmIcon';
 import { confirmFormSubmitHandler } from './confirmRoutine';
-import routes from '../../../router';
+import { routes } from '../../../router';
 
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
