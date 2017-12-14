@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import jest from 'jest';
+import jest from 'jest-mock';
 import { shallow } from 'enzyme';
 import { Confirm } from './Confirm';
 import cardOrderFlow from '../cardOrderFlow';
