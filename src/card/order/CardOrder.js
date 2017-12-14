@@ -36,15 +36,6 @@ const OrderButton = styled(PrimaryButton)`
   margin-top: 25px;
 `;
 
-const WrappedDoneContent = styled.div`
-  padding-top: 61px;
-  margin-left: 34px;
-  margin-right: 49px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
 OrderButton.displayName = 'OrderButton';
 
 type State = {
@@ -53,23 +44,20 @@ type State = {
 
 export class CardOrder extends React.Component<any, State> {
   state = {
-    ordered: undefined,
+    ordered: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     cardOrderApi.hasOrder().then((ordered: boolean) => {
       this.setState({ ordered });
     });
   }
 
   render() {
-    if (this.state.ordered === undefined) {
-      return null;
-    }
     return this.state.ordered ? (
-      <WrappedDoneContent>
+      <WrappedContent>
         <Done />
-      </WrappedDoneContent>
+      </WrappedContent>
     ) : (
       <StyledContent>
         <StyledHeader>Get your Change card.</StyledHeader>

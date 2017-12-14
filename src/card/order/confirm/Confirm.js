@@ -17,10 +17,10 @@ import {
 import { getActiveWallet } from '../../../redux/selectors';
 import withWallet from '../../../wallet/withWallet';
 import CurrencyName from '../../../wallet/CurrencyName';
-import { CARD_ORDER_DONE_ROUTE } from '../constants';
 import { Wallet } from '../../../wallet/walletState';
 import ConfirmIcon from './ConfirmIcon';
 import { confirmFormSubmitHandler } from './confirmRoutine';
+import routes from '../../../router';
 
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
@@ -137,7 +137,7 @@ export const Confirm = ({
 const ConfirmForm = reduxForm({
   form: 'cardConfirm',
   onSubmitSuccess: (result, dispatch) => {
-    dispatch(push(CARD_ORDER_DONE_ROUTE));
+    dispatch(push(routes.CARD));
   },
 })(Confirm);
 
