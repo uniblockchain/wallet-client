@@ -3,7 +3,7 @@ import { createFlagsReducer } from 'flag';
 
 const reducer = createFlagsReducer({
   feature: {
-    cardOrderFlow: false,
+    cardOrderFlow: true,
   },
 });
 
