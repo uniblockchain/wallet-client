@@ -93,7 +93,12 @@ type Props = {
   wallets: Array<Wallet>,
 } & FormProps;
 
-export const Confirm = ({ error, wallets, handleSubmit }: Props) => {
+export const Confirm = ({
+  error,
+  wallets,
+  handleSubmit,
+  submitting,
+}: Props) => {
   return (
     <div>
       <StyledHeader>Please confirm your order.</StyledHeader>
@@ -120,7 +125,9 @@ export const Confirm = ({ error, wallets, handleSubmit }: Props) => {
         </StyledList>
 
         <FormGroup className="mt-5">
-          <PrimaryButton type="submit">Confirm</PrimaryButton>
+          <PrimaryButton type="submit" disabled={submitting}>
+            Confirm
+          </PrimaryButton>
         </FormGroup>
       </form>
     </div>
