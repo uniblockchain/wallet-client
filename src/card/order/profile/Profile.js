@@ -91,7 +91,7 @@ const getInitialFormData = (profile: Profile) => {
 
     if (profile.dateOfBirth instanceof Date) {
       dateFields = {
-        day: profile.dateOfBirth.getDay(),
+        day: profile.dateOfBirth.getDate(),
         month: profile.dateOfBirth.getMonth() + 1,
         year: profile.dateOfBirth.getFullYear(),
       };
