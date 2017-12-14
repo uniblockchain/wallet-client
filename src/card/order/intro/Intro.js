@@ -34,7 +34,10 @@ export const Intro = () => (
     <Paragraph alt>Few things to note:</Paragraph>
     <ul>
       <li>
-        <Bulletpoint alt>We are currently shipping to EU only.</Bulletpoint>
+        <Bulletpoint alt>
+          We are currently shipping to EU only.&nbsp; If you live outside of the
+          EU, please DO NOT order a card.
+        </Bulletpoint>
       </li>
       <li>
         <Bulletpoint alt>
@@ -43,7 +46,10 @@ export const Intro = () => (
         </Bulletpoint>
       </li>
       <li>
-        <Bulletpoint alt>One time card order fee is €9.</Bulletpoint>
+        <Bulletpoint alt>
+          The card ordering fee is 9€,&nbsp; which will be charged in the
+          equivalent value of your selected cryptocurrency.
+        </Bulletpoint>
       </li>
     </ul>
     <Link to={CARD_ORDER_PROFILE_ROUTE}>
