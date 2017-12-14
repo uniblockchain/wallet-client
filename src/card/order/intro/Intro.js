@@ -6,17 +6,6 @@ import { Header, Paragraph, PrimaryButton, Button, Top } from '../../../ui';
 import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 import { routes } from '../../../router';
 
-const Container = styled.div`
-  padding-top: 61px;
-  margin-left: 34px;
-  margin-right: 49px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-`;
-
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
 `;
@@ -26,7 +15,7 @@ const Bulletpoint = styled(Paragraph)`
 `;
 
 export const Intro = () => (
-  <Container>
+  <div>
     <Top>
       <StyledHeader>Your card is just a few steps away.</StyledHeader>
     </Top>
@@ -58,7 +47,7 @@ export const Intro = () => (
     <Link to={routes.BASE}>
       <Button>Cancel</Button>
     </Link>
-  </Container>
+  </div>
 );
 
 Intro.displayName = 'Intro';

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { Header, Paragraph, FileUpload } from '../../../ui';
 import address from './img/address.png';
 import verificationFileUploader from './verificationFileUploader';
-import { CARD_ORDER_DONE_ROUTE } from '../constants';
+import { CARD_ORDER_CONFIRM_ROUTE } from '../constants';
 
 const LargeHeader = Header.extend`
   font-size: 36px;
@@ -102,7 +102,7 @@ export const AddressVerification = ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      redirectToNextStep: () => push(CARD_ORDER_DONE_ROUTE),
+      redirectToNextStep: () => push(CARD_ORDER_CONFIRM_ROUTE),
     },
     dispatch,
   );
