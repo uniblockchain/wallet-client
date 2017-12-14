@@ -4,11 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { NavigationDots } from '../../ui';
-import Intro from './intro';
-import Profile from './profile';
-import AddressComponent from './address/AddressComponent';
-import { IdVerification, AddressVerification } from './verification';
-import Confirm from './confirm';
 import {
   CARD_ORDER_INTRO_ROUTE,
   CARD_ORDER_PROFILE_ROUTE,
