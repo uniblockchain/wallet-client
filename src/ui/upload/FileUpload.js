@@ -25,7 +25,8 @@ const FileUploadBase = ({
       type="file"
       name={name}
       onChange={uploadFile(onChoose)}
-      accept={type === 'camera' ? 'image/*;capture=camera' : 'image/*'}
+      capture="environment"
+      accept="image/*"
     />
     {children}
   </label>
