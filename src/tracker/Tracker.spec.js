@@ -3,6 +3,7 @@
 import mixpanel from 'mixpanel-browser';
 import config from 'react-global-configuration';
 import type { UserState } from '../user/userState';
+import type { ProfileState } from '../user/profile/profileState';
 
 const mockErrorTracker = jest.genMockFromModule('./ErrorTracker');
 jest.mock('./ErrorTracker', () => mockErrorTracker);
@@ -54,10 +55,20 @@ describe('tracker', () => {
     });
 
     it('can set user', () => {
+      const profile: ProfileState = {
+        id: 1,
+        firstName: 'Jordan',
+        lastName: 'Valdma',
+        dateOfBirth: new Date('1908-02-01'),
+        mobileNumber: '+3725555555',
+        error: null,
+      };
+
       const user: UserState = {
         id: 123,
         email: 'example@example.com',
         error: null,
+        profile,
       };
 
       setUser(user);

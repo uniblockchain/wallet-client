@@ -79,6 +79,21 @@ function getContentType(params: *) {
   return { 'Content-Type': 'application/json; charset=utf-8' };
 }
 
+export function put(url: string, params: * = {}, headers: * = {}): * {
+  return fetch(url, {
+    method: 'PUT',
+    headers: {
+      ...getContentType(params),
+      ...bearerTokenHeader(),
+      ...headers,
+    },
+    body: paramsToBody(params),
+    credentials: 'include',
+    mode: 'cors',
+    cache: 'default',
+  }).then(transformResponse);
+}
+
 export function post(url: string, params: * = {}, headers: * = {}): * {
   return fetch(url, {
     method: 'POST',
@@ -94,4 +109,4 @@ export function post(url: string, params: * = {}, headers: * = {}): * {
   }).then(transformResponse);
 }
 
-export default { get, post };
+export default { get, post, put };

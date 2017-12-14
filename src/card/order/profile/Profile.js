@@ -79,7 +79,9 @@ const ProfileForm = reduxForm({
 })(withProfile(Profile));
 
 const getInitialFormData = (profile: Profile) => {
+  // FIXME: logic in view
   if (
+    profile.id ||
     profile.firstName ||
     profile.lastName ||
     profile.mobileNumber ||
@@ -96,6 +98,7 @@ const getInitialFormData = (profile: Profile) => {
     }
 
     return {
+      id: profile.id,
       firstName: profile.firstName,
       lastName: profile.lastName,
       mobileNumber: profile.mobileNumber,

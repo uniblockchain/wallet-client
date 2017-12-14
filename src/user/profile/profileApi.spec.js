@@ -11,6 +11,14 @@ const profileApi = require('./profileApi').default;
 
 describe('user api', () => {
   const profile: Profile = {
+    id: null,
+    firstName: 'Jordan',
+    lastName: 'Valdma',
+    dateOfBirth: new Date(),
+    mobileNumber: 'take me home',
+  };
+
+  const persistedProfile: Profile = {
     id: 1,
     firstName: 'Jordan',
     lastName: 'Valdma',
@@ -38,6 +46,15 @@ describe('user api', () => {
       done();
     });
 
-    return profileApi.createProfile(profile);
+    return profileApi.createOrUpdateProfile(profile);
+  });
+
+  it('updates profile', done => {
+    mockHttp.put = jest.fn((url, input) => {
+      expect(input).toEqual(persistedProfile);
+      done();
+    });
+
+    return profileApi.createOrUpdateProfile(persistedProfile);
   });
 });

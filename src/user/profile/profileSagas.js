@@ -9,7 +9,7 @@ import type { Profile } from './profileState';
 
 function formValuesToProfile(values: *): Profile {
   return {
-    id: null,
+    id: values.id,
     firstName: values.firstName,
     lastName: values.lastName,
     dateOfBirth: new Date(`${values.year}-${values.month}-${values.day}`),
@@ -22,7 +22,7 @@ export function* createProfile(
 ): Generator<IOEffect, void, *> {
   try {
     const profile = yield call(
-      profileApi.createProfile,
+      profileApi.createOrUpdateProfile,
       formValuesToProfile(action.payload.values),
     );
     yield put(creationRoutine.success(profile));

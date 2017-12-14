@@ -31,7 +31,7 @@ describe('profile sagas', () => {
     );
 
     expect(generator.next().value).toEqual(
-      call(profileApi.createProfile, profile),
+      call(profileApi.createOrUpdateProfile, profile),
     );
     expect(generator.next(profile).value).toEqual(
       put(creationRoutine.success(profile)),
