@@ -108,4 +108,9 @@ const mapDispatchToProps = dispatch =>
   );
 
 const component = connect(null, mapDispatchToProps)(AddressVerification);
-export default verificationFileUploader(component, 'ADDRESS');
+const AddressVerificationWithFileUploader = verificationFileUploader(
+  component,
+  'ADDRESS',
+);
+AddressVerificationWithFileUploader.displayName = 'AddressVerification';
+export default AddressVerificationWithFileUploader;

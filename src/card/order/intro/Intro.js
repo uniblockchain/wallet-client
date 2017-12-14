@@ -55,4 +55,6 @@ export const Intro = () => (
   </Container>
 );
 
+Intro.displayName = 'Intro';
+
 export default Intro;

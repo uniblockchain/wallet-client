@@ -7,6 +7,7 @@ import Intro from './intro';
 import Profile from './profile';
 import { IdVerification, AddressVerification } from './verification';
 import Done from './done';
+import Confirm from './confirm';
 import cardOrderFlow from './cardOrderFlow';
 import requireAuthentication from '../../requireAuthentication';
 import { authenticatedPage } from '../../page';
@@ -16,6 +17,7 @@ import {
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
+  CARD_ORDER_CONFIRM_ROUTE,
   CARD_ORDER_DONE_ROUTE,
 } from './constants';
 
@@ -61,9 +63,17 @@ const addressVerificationRoute = (
   />
 );
 
-const doneRoute = (
+const confirmRoute = (
   <Route
     key={4}
+    path={CARD_ORDER_CONFIRM_ROUTE}
+    component={requireAuthentication(cardOrderFlow(Confirm))}
+  />
+);
+
+const doneRoute = (
+  <Route
+    key={5}
     path={CARD_ORDER_DONE_ROUTE}
     component={authenticatedPage(cardOrderFlow(Done))}
   />
@@ -75,5 +85,6 @@ export default [
   addressRoute,
   idVerificationRoute,
   addressVerificationRoute,
+  confirmRoute,
   doneRoute,
 ];

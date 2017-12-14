@@ -2,27 +2,24 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { NavigationDots } from '../../ui';
 import Intro from './intro';
 import Profile from './profile';
 import AddressComponent from './address/AddressComponent';
 import { IdVerification, AddressVerification } from './verification';
-import Done from './done';
+import Confirm from './confirm';
 import {
   CARD_ORDER_INTRO_ROUTE,
   CARD_ORDER_PROFILE_ROUTE,
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
-  CARD_ORDER_DONE_ROUTE,
 } from './constants';
 
 export const BottomRow = styled.div`
-  position: absolute;
+  position: relative;
   bottom: 30px;
-  display: 
   width: 100%;
   display: flex;
 `;
@@ -31,7 +28,6 @@ export const NavigationDotsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 28px;
 `;
 
 const Container = styled.div`
@@ -61,12 +57,12 @@ const BackLink = styled.span`
 `;
 
 const stepComponents = [
-  Intro,
-  Profile,
-  AddressComponent,
-  IdVerification,
-  AddressVerification,
-  Done,
+  'Intro',
+  'Profile',
+  'AddressComponent',
+  'IdVerification',
+  'AddressVerification',
+  'Confirm',
 ];
 
 const backButtonRoutes = [
@@ -75,20 +71,19 @@ const backButtonRoutes = [
   CARD_ORDER_ADDRES_ROUTE,
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
-  CARD_ORDER_DONE_ROUTE,
 ];
 
-type Props = {};
-
 const getActiveStepIndex = (WrappedComponent: *): number => {
-  const WrappedComponentRendered = <WrappedComponent />;
-  return stepComponents.findIndex(
-    component => WrappedComponentRendered.type === component,
-  );
+  return stepComponents.findIndex(component => {
+    if (WrappedComponent.displayName) {
+      return WrappedComponent.displayName === component;
+    }
+    return false;
+  });
 };
 
 export const cardOrderFlow = (WrappedComponent: *) => {
-  const flow = (props: Props) => {
+  const flow = (props: any) => {
     const count = stepComponents.length;
     const activeIndex = getActiveStepIndex(WrappedComponent);
 
@@ -97,22 +92,23 @@ export const cardOrderFlow = (WrappedComponent: *) => {
         <WrappedContent>
           <WrappedComponent {...props} />
         </WrappedContent>
-        <NavigationDotsContainer>
-          <NavigationDots count={count} activeIndex={activeIndex} />
-        </NavigationDotsContainer>
-        {activeIndex > 0 &&
-          activeIndex < count - 1 && (
+        <div>
+          <NavigationDotsContainer>
+            <NavigationDots count={count} activeIndex={activeIndex} />
+          </NavigationDotsContainer>
+          {activeIndex > 0 && (
             <BottomRow>
               <Link id="back-link" to={backButtonRoutes[activeIndex - 1]}>
                 <BackLink>Back</BackLink>
               </Link>
             </BottomRow>
           )}
+        </div>
       </Container>
     );
   };
   flow.displayName = `cardOrderFlow(${WrappedComponent.name})`;
-  return connect()(flow);
+  return flow;
 };
 
 export default cardOrderFlow;

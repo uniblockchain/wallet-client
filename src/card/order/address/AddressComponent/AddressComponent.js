@@ -33,4 +33,6 @@ export class AddressComponent extends React.Component<Props, State> {
   }
 }
 
+AddressComponent.displayName = 'AddressComponent';
+
 export default AddressComponent;

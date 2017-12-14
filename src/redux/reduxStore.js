@@ -15,6 +15,7 @@ import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
 import { addressSagas } from '../card/order/address';
+import { confirmSagas } from '../card/order/confirm';
 import verificationSagas from '../card/order/verification/verificationSagas';
 import rootReducer from './rootReducer';
 
@@ -32,8 +33,6 @@ const appReducer = combineReducers({
   page: pageReducer,
   send: sendReducer,
   flags: flagsReducer,
-  address: addressSagas,
-  verification: verificationSagas,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -60,6 +59,7 @@ store.dispatch(loginRoutine.fulfill());
   addressSagas,
   routinePromiseWatcherSaga,
   verificationSagas,
+  confirmSagas,
 ].map(sagaMiddleware.run);
 
 export default store;

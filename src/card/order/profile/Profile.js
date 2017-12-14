@@ -111,3 +111,7 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
 });
 
 export default connect(mapStateToProps, null)(ProfileForm);
+
+ProfileForm.displayName = 'Profile';
+
+export default ProfileForm;
