@@ -1,7 +1,10 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { connect, type MapStateToProps } from 'react-redux';
+import type { FormProps } from 'redux-form';
+import { reduxForm } from 'redux-form';
+import { push } from 'react-router-redux';
 import {
   Header,
   Form,
@@ -12,13 +15,9 @@ import {
   FormFeedback,
   PrimaryButton,
   Label,
-  // Bottom,
 } from '../../../ui';
 import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
-import { profileFormSubmitHandler } from '../../../user/profile';
-import type { FormProps } from 'redux-form';
-import { reduxForm } from 'redux-form';
-import { push } from 'react-router-redux';
+import { profileFormSubmitHandler, withProfile } from '../../../user/profile';
 
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
@@ -40,19 +39,12 @@ export const Profile = ({ handleSubmit, error }: Props) => (
 
       <Field name="lastName" label="Last name" type="text" />
 
-      <Label>Phone number</Label>
-      <FormRow>
-        <Col>
-          <Field
-            name="internationalCallingCode"
-            placeholder="Calling code"
-            type="string"
-          />
-        </Col>
-        <Col>
-          <Field name="phoneNumber" placeholder="Number" type="number" />
-        </Col>
-      </FormRow>
+      <Field
+        name="mobileNumber"
+        label="Mobile number"
+        placeholder="Calling code"
+        type="string"
+      />
 
       <Label>Date of birth</Label>
       <FormRow>
@@ -79,9 +71,43 @@ export const Profile = ({ handleSubmit, error }: Props) => (
   </div>
 );
 
-export default reduxForm({
+const ProfileForm = reduxForm({
   form: 'cardProfile',
   onSubmitSuccess: (result, dispatch) => {
     dispatch(push(CARD_ORDER_ADDRES_ROUTE));
   },
-})(Profile);
+})(withProfile(Profile));
+
+const getInitialFormData = (profile: Profile) => {
+  if (
+    profile.firstName ||
+    profile.lastName ||
+    profile.mobileNumber ||
+    profile.dateOfBirth
+  ) {
+    let dateFields = {};
+
+    if (profile.dateOfBirth instanceof Date) {
+      dateFields = {
+        day: profile.dateOfBirth.getDay(),
+        month: profile.dateOfBirth.getMonth() + 1,
+        year: profile.dateOfBirth.getFullYear(),
+      };
+    }
+
+    return {
+      firstName: profile.firstName,
+      lastName: profile.lastName,
+      mobileNumber: profile.mobileNumber,
+      ...dateFields,
+    };
+  }
+  return null;
+};
+
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  profile: state.user.profile,
+  initialValues: getInitialFormData(state.user.profile),
+});
+
+export default connect(mapStateToProps, null)(ProfileForm);

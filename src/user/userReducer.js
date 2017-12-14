@@ -2,10 +2,7 @@
 import type RoutineAction from 'redux-saga-routines';
 import { type UserState, initialUserState } from './userState';
 import { fetchRoutine, creationRoutine } from './userRoutines';
-import {
-  fetchRoutine as fetchProfileRoutine,
-  creationRoutine as createProfileRoutine,
-} from './profile/profileRoutines';
+import { fetchRoutine as fetchProfileRoutine } from './profile/profileRoutines';
 
 const userReducer = (
   state: UserState = initialUserState,

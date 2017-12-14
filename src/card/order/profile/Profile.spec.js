@@ -30,11 +30,8 @@ describe('Card ordering flow Profile', () => {
     expect(component.find(Field).find('[name="lastName"]').length).toBe(1);
   });
 
-  it('renders phone fields', () => {
-    expect(
-      component.find(Field).find('[name="internationalCallingCode"]').length,
-    ).toBe(1);
-    expect(component.find(Field).find('[name="phoneNumber"]').length).toBe(1);
+  it('renders phone field', () => {
+    expect(component.find(Field).find('[name="mobileNumber"]').length).toBe(1);
   });
 
   it('renders date of birth name fields', () => {

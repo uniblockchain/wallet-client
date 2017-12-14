@@ -1,4 +1,5 @@
 // @flow
+import { initialProfileState } from './profile';
 
 export type UserState = {
   +id: ?number,
@@ -10,6 +11,7 @@ export const initialUserState: UserState = {
   id: null,
   email: null,
   error: null,
+  profile: initialProfileState,
 };
 
 export default initialUserState;

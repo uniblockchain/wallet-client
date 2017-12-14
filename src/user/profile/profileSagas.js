@@ -13,7 +13,7 @@ function formValuesToProfile(values: *): Profile {
     firstName: values.firstName,
     lastName: values.lastName,
     dateOfBirth: new Date(`${values.year}-${values.month}-${values.day}`),
-    mobileNumber: values.internationalCallingCode + values.phoneNumber,
+    mobileNumber: values.mobileNumber,
   };
 }
 
@@ -44,10 +44,15 @@ export function* fetchProfile(
 ): Generator<IOEffect, void, *> {
   try {
     const profile = yield call(profileApi.fetchProfile);
-    yield put(creationRoutine.success(profile));
+    const profileWithDate = { ...profile };
+    if (profile.dateOfBirth) {
+      profileWithDate.dateOfBirth = new Date(profile.dateOfBirth);
+    }
+
+    yield put(fetchRoutine.success(profileWithDate));
   } catch (error) {
     yield put(
-      creationRoutine.failure(
+      fetchRoutine.failure(
         new Error(
           error.body.message ||
             'Oops! Something went wrong, please try again later.',
@@ -80,12 +85,8 @@ function getFormErrors(values: *) {
     errors.year = 'Year is empty!';
   }
 
-  if (!values.internationalCallingCode) {
-    errors.internationalCallingCode = 'Area code is empty!';
-  }
-
-  if (!values.phoneNumber) {
-    errors.phoneNumber = 'Number is empty!';
+  if (!values.mobileNumber) {
+    errors.mobileNumber = 'Number is empty!';
   }
 
   return errors;

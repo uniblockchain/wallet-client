@@ -23,8 +23,7 @@ describe('profile sagas', () => {
       day: '01',
       month: '02',
       year: '1908',
-      internationalCallingCode: '+372',
-      phoneNumber: '5555555',
+      mobileNumber: '+3725555555',
     };
 
     const generator = createProfile(
@@ -53,7 +52,7 @@ describe('profile sagas', () => {
 
     expect(generator.next().value).toEqual(call(profileApi.fetchProfile));
     expect(generator.next(profile).value).toEqual(
-      put(creationRoutine.success(profile)),
+      put(fetchRoutine.success(profile)),
     );
     expect(generator.next().done).toBeTruthy();
   });
