@@ -27,6 +27,7 @@ export function* createAddress(
     );
     yield put(addressRoutine.success(address));
   } catch (error) {
+    console.error(error);
     yield put(
       addressRoutine.failure(
         new SubmissionError({
@@ -36,9 +37,39 @@ export function* createAddress(
         }),
       ),
     );
-    console.error(error);
   }
 }
+
+const allowedCountries = [
+  'AT',
+  'BE',
+  'BG',
+  'CY',
+  'CZ',
+  'DE',
+  'DK',
+  'EE',
+  'ES',
+  'FI',
+  'FR',
+  'GB',
+  'GR',
+  'HR',
+  'HU',
+  'IE',
+  'IT',
+  'LT',
+  'LU',
+  'LV',
+  'MT',
+  'NL',
+  'PL',
+  'PT',
+  'RO',
+  'SE',
+  'SI',
+  'SK',
+];
 
 function getFormErrors(values: Address) {
   const errors = {};
@@ -54,10 +85,14 @@ function getFormErrors(values: Address) {
     errors.city = 'City is empty!';
   }
 
+  const countryCode = countries.resolveCode(values.country);
+
   if (!values.country) {
     errors.country = 'Country is empty!';
-  } else if (!countries.resolveCode(values.country)) {
+  } else if (!countryCode) {
     errors.country = 'Unknown country!';
+  } else if (allowedCountries.indexOf(countryCode) === -1) {
+    errors.country = 'Country must be in European Union';
   }
 
   return errors;
