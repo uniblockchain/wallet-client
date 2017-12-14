@@ -110,8 +110,8 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   initialValues: getInitialFormData(state.user.profile),
 });
 
-export default connect(mapStateToProps, null)(ProfileForm);
+const ConnectedProfile = connect(mapStateToProps, null)(ProfileForm);
 
-ProfileForm.displayName = 'Profile';
+ConnectedProfile.displayName = 'Profile';
 
-export default ProfileForm;
+export default ConnectedProfile;
