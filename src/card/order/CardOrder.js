@@ -2,8 +2,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Header, SubHeader, PrimaryButton } from '../../ui';
+import { Header, PrimaryButton, SubHeader, WrappedContent } from '../../ui';
 import { CARD_ORDER_INTRO_ROUTE } from './constants';
+import Done from './done';
+import cardOrderApi from './cardOrderApi';
+import plastic from '../img/plastic.png';
+
+const StyledContent = styled(WrappedContent)`
+  background-color: #e5f9f3;
+`;
+
+const Plastic = styled.img.attrs({
+  src: plastic,
+  alt: 'Plastic',
+})`
+  width: 90vw;
+  margin-bottom: 3vh;
+`;
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
@@ -21,18 +36,53 @@ const OrderButton = styled(PrimaryButton)`
   margin-top: 25px;
 `;
 
+const WrappedDoneContent = styled.div`
+  padding-top: 61px;
+  margin-left: 34px;
+  margin-right: 49px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 OrderButton.displayName = 'OrderButton';
 
-export const CardOrder = () => (
-  <div>
-    <StyledHeader>Get your Change card.</StyledHeader>
-    <StyledSubHeader>
-      Start spending your Bitcoin & other cryptocurrencies.
-    </StyledSubHeader>
-    <Link to={CARD_ORDER_INTRO_ROUTE}>
-      <OrderButton>Order card</OrderButton>
-    </Link>
-  </div>
-);
+type State = {
+  ordered: ?boolean,
+};
+
+export class CardOrder extends React.Component<any, State> {
+  state = {
+    ordered: undefined,
+  };
+
+  componentWillMount() {
+    cardOrderApi.hasOrder().then((ordered: boolean) => {
+      this.setState({ ordered });
+    });
+  }
+
+  render() {
+    if (this.state.ordered === undefined) {
+      return null;
+    }
+    return this.state.ordered ? (
+      <WrappedDoneContent>
+        <Done />
+      </WrappedDoneContent>
+    ) : (
+      <StyledContent>
+        <StyledHeader>Get your Change card.</StyledHeader>
+        <StyledSubHeader>
+          Start spending your Bitcoin & other cryptocurrencies.
+        </StyledSubHeader>
+        <Link to={CARD_ORDER_INTRO_ROUTE}>
+          <OrderButton>Order card</OrderButton>
+        </Link>
+        <Plastic />
+      </StyledContent>
+    );
+  }
+}
 
 export default CardOrder;

@@ -3,11 +3,11 @@ import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
 import type RoutineAction from 'redux-saga-routines';
 import { SubmissionError } from 'redux-form';
 import confirmRoutine from './confirmRoutine';
-import confirmApi from './confirmApi';
+import cardOrderApi from '../cardOrderApi';
 
 export function* createOrder(walletId: number): Generator<IOEffect, void, *> {
   try {
-    yield call(confirmApi.createOrder, walletId);
+    yield call(cardOrderApi.createOrder, walletId);
     yield put(confirmRoutine.success());
   } catch (error) {
     yield put(

@@ -1,8 +1,27 @@
 // @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Header, SubHeader, PrimaryButton, Modal } from '../../ui';
+import {
+  Header,
+  SubHeader,
+  PrimaryButton,
+  Modal,
+  WrappedContent,
+} from '../../ui';
 import cardInterestApi from './cardInterestApi';
+import plastic from '../img/plastic.png';
+
+const StyledContent = styled(WrappedContent)`
+  background-color: #e5f9f3;
+`;
+
+const Plastic = styled.img.attrs({
+  src: plastic,
+  alt: 'Plastic',
+})`
+  width: 90vw;
+  margin-bottom: 3vh;
+`;
 
 const StyledHeader = styled(Header)`
   font-size: 36px;
@@ -49,7 +68,7 @@ export class CardInterest extends Component<Props, State> {
       });
     };
     return (
-      <div>
+      <StyledContent>
         <StyledHeader>Change Card is coming.</StyledHeader>
         <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
         <div>
@@ -62,7 +81,8 @@ export class CardInterest extends Component<Props, State> {
             onConfirm={handleConfirm}
           />
         )}
-      </div>
+        <Plastic />
+      </StyledContent>
     );
   }
 }
