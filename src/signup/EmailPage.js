@@ -13,6 +13,7 @@ import {
   Link,
   FormFeedback,
 } from '../ui';
+import { routes } from '../router';
 
 export const EmailPage = (props: FormProps) => {
   const { handleSubmit, error } = props;
@@ -35,7 +36,7 @@ export const EmailPage = (props: FormProps) => {
         </Top>
         <Bottom>
           <PrimaryButton type="submit">Next</PrimaryButton>
-          <Link to="/">
+          <Link to={routes.BASE}>
             <LinkButton>Cancel</LinkButton>
           </Link>
         </Bottom>

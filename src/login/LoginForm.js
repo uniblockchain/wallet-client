@@ -14,6 +14,7 @@ import {
   Field,
   FormFeedback,
 } from '../ui';
+import { routes } from '../router';
 
 export const LoginForm = (props: FormProps) => {
   const { handleSubmit, error } = props;
@@ -49,7 +50,7 @@ export const LoginForm = (props: FormProps) => {
         <PrimaryButton type="submit" form="loginForm">
           Log In
         </PrimaryButton>
-        <Link to="/">
+        <Link to={routes.BASE}>
           <LinkButton>Cancel</LinkButton>
         </Link>
       </Bottom>
