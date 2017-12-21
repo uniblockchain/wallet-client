@@ -92,6 +92,7 @@ workflows:
             branches:
               only: master
       - deploy-production:
+          type: approval
           requires:
             - build-job
           filters:
