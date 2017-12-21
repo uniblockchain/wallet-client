@@ -1,6 +1,5 @@
 // @flow
 
-import config from 'react-global-configuration';
 import { post } from '../../../http';
 
 export type VerificationFile = {
@@ -15,6 +14,6 @@ const uploadDocument = (
   formData.append('type', verificationFile.type);
   formData.append('file', verificationFile.file);
 
-  return post(`${config.get('apiUrl')}/v1/verification-file`, formData);
+  return post('/v1/verification-files', formData);
 };
 export default { uploadDocument };
