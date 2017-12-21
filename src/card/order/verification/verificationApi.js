@@ -14,7 +14,6 @@ const uploadDocument = (
   const formData = new FormData();
   formData.append('type', verificationFile.type);
   formData.append('file', verificationFile.file);
-
-  return post(`${config.get('apiUrl')}/v1/verification-file`, formData);
+  return post('/v1/verification-files', formData);
 };
 export default { uploadDocument };
