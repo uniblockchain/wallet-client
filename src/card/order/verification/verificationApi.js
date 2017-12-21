@@ -1,5 +1,6 @@
 // @flow
 
+import config from 'react-global-configuration';
 import { post } from '../../../http';
 
 export type VerificationFile = {
