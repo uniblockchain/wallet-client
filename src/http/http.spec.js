@@ -103,6 +103,20 @@ describe('http', () => {
       .catch(givenResponse => expect(givenResponse).toEqual(expectedError));
   });
 
+  it('throws empty error if response is 404 successful', () => {
+    const expectedError = { status: 404, body: null };
+    fetch.mockReturnValueOnce(
+      Promise.resolve({
+        status: 404,
+        json: () => Promise.resolve(null),
+        blob: () => Promise.resolve(null),
+      }),
+    );
+    return get('https://change.producement.com')
+      .then(fail)
+      .catch(givenResponse => expect(givenResponse).toEqual(expectedError));
+  });
+
   it('can post some data', () => {
     const value = { thisIsTheReturnValue: true };
     fetch.mockReturnValueOnce(fakeSuccessfulResponseWithValue(value));

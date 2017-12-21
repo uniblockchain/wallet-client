@@ -13,6 +13,14 @@ function transformResponse(response) {
       localStorage.removeItem(TOKEN_STORAGE_KEY);
       window.location.reload();
     }
+
+    if (response.status === 404) {
+      const error = {};
+      error.status = response.status;
+      error.body = null;
+      throw error;
+    }
+
     return response.json().then((data: any) => {
       const error = {};
       error.status = response.status;

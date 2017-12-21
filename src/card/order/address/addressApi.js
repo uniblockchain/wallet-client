@@ -1,16 +1,21 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { post } from '../../../http';
+import { post, get, put } from '../../../http';
+import { type Address } from './addressState';
 
-export type Address = {
-  +streetAddress: string,
-  +country: string,
-  +postalCode: string,
-  +city: string,
-};
+function createOrUpdateAddress(address: Address): Promise<Address> {
+  if (address.id) {
+    return put(`${config.get('apiUrl')}/v1/me/profile/address`, {
+      ...address,
+    });
+  }
+  return post(`${config.get('apiUrl')}/v1/me/profile/address`, {
+    ...address,
+  });
+}
 
-const createAddress = (address: Address): Promise<Address> =>
-  post(`${config.get('apiUrl')}/v1/me/profile/address`, address);
+const getAddress = (address: Address): Promise<Address> =>
+  get(`${config.get('apiUrl')}/v1/me/profile/address`, address);
 
-export default { createAddress };
+export default { createOrUpdateAddress, getAddress };

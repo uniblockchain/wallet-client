@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AddressForm } from './AddressForm';
+import { AddressReduxForm } from './AddressForm';
 import { Field } from '../../../../../ui';
 
 describe('Address form', () => {
@@ -14,7 +14,7 @@ describe('Address form', () => {
   };
 
   beforeEach(() => {
-    component = shallow(<AddressForm {...props} />);
+    component = shallow(<AddressReduxForm {...props} />);
   });
 
   it('renders the component', () => {

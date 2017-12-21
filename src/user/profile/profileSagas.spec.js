@@ -14,6 +14,7 @@ describe('profile sagas', () => {
       lastName: 'Valdma',
       dateOfBirth: new Date('1908-02-01'),
       mobileNumber: '+3725555555',
+      address: null,
     };
 
     const profileFormValues: * = {
@@ -46,6 +47,7 @@ describe('profile sagas', () => {
       lastName: 'Valdma',
       dateOfBirth: new Date('1908-02-01'),
       mobileNumber: '+3725555555',
+      address: null,
     };
 
     const generator = fetchProfile(fetchRoutine());

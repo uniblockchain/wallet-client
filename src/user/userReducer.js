@@ -6,6 +6,10 @@ import {
   fetchRoutine as fetchProfileRoutine,
   creationRoutine as createOrUpdateProfileRoutine,
 } from './profile/profileRoutines';
+import {
+  createOrUpdateAddressRoutine,
+  fetchAddressRoutine,
+} from '../card/order/address/addressRoutine';
 
 const userReducer = (
   state: UserState = initialUserState,
@@ -54,7 +58,10 @@ const userReducer = (
     case fetchProfileRoutine.SUCCESS:
       return {
         ...state,
-        profile: action.payload,
+        profile: {
+          ...action.payload,
+          address: state.profile.address,
+        },
       };
 
     case fetchProfileRoutine.FAILURE:
@@ -69,7 +76,33 @@ const userReducer = (
     case createOrUpdateProfileRoutine.SUCCESS:
       return {
         ...state,
-        profile: action.payload,
+        profile: {
+          ...action.payload,
+          address: state.profile.address,
+        },
+      };
+
+    case fetchAddressRoutine.SUCCESS:
+    case createOrUpdateAddressRoutine.SUCCESS:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          address: action.payload,
+        },
+      };
+
+    case createOrUpdateAddressRoutine.FAILURE:
+    case fetchAddressRoutine.FAILURE:
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          address: {
+            ...state.profile.address,
+            error: action.payload,
+          },
+        },
       };
 
     default:

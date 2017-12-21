@@ -2,7 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { reduxForm, type FormProps } from 'redux-form';
+import { connect, type MapStateToProps } from 'react-redux';
 import { push } from 'react-router-redux';
+import countries from 'alpha2-countries';
 import {
   Form,
   FormGroup,
@@ -12,6 +14,7 @@ import {
 } from '../../../../../ui';
 import { addressFormSubmitHandler } from '../../addressRoutine';
 import { CARD_ORDER_ID_VERIFICATION_ROUTE } from '../../../constants';
+import { type Address, type AddressForm } from '../../addressState';
 
 const StyledForm = styled(Form)`
   padding-bottom: 100px;
@@ -19,7 +22,7 @@ const StyledForm = styled(Form)`
 
 type Props = {} & FormProps;
 
-export const AddressForm = ({ handleSubmit, error }: Props) => (
+export const AddressReduxForm = ({ handleSubmit, error }: Props) => (
   <div>
     <StyledForm
       id="addressForm"
@@ -47,9 +50,25 @@ export const AddressForm = ({ handleSubmit, error }: Props) => (
   </div>
 );
 
-export default reduxForm({
+const reduxAddressForm = reduxForm({
   form: 'cardAddress',
   onSubmitSuccess: (result, dispatch) => {
     dispatch(push(CARD_ORDER_ID_VERIFICATION_ROUTE));
   },
-})(AddressForm);
+})(AddressReduxForm);
+
+const getInitialFormData = (address: Address): AddressForm => {
+  const country = countries.resolveName(address.countryCode);
+
+  return {
+    ...address,
+    country,
+  };
+};
+
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  address: state.user.profile.address,
+  initialValues: getInitialFormData(state.user.profile.address),
+});
+
+export default connect(mapStateToProps, null)(reduxAddressForm);

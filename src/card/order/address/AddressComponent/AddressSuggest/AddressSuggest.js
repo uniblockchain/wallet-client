@@ -3,13 +3,14 @@
 import React from 'react';
 import ReactGoogleMapLoader from 'react-google-maps-loader';
 import ReactGooglePlacesSuggest from 'react-google-places-suggest';
-import { change } from 'redux-form';
 import { connect } from 'react-redux';
 import config from 'react-global-configuration';
 import { FormInput, Label, FormGroup } from '../../../../../ui/form';
+import { fetchAddressRoutine } from '../../addressRoutine';
+import type { Address } from '../../addressState';
 
 type Props = {
-  setField: (string, string, string) => void,
+  setAddress: (address: Address) => void,
   onSuggest: () => void,
 };
 
@@ -24,7 +25,7 @@ const getSuggestFields = suggest => {
     route: 'long_name',
     locality: 'long_name',
     administrative_area_level_1: 'short_name',
-    country: 'long_name',
+    country: 'short_name',
     postal_code: 'short_name',
   };
 
@@ -53,37 +54,38 @@ export class AddressSuggest extends React.Component<Props, State> {
   }
 
   fillAddressForm(suggestFields: any) {
+    let streetAddress = null;
+    let countryCode = null;
+    let city = null;
+    let postalCode = null;
+
     if (suggestFields.route) {
       if (suggestFields.street_number) {
-        this.props.setField(
-          'cardAddress',
-          'streetAddress',
-          `${suggestFields.route} ${suggestFields.street_number}`,
-        );
+        streetAddress = `${suggestFields.route} ${suggestFields.street_number}`;
       } else {
-        this.props.setField(
-          'cardAddress',
-          'streetAddress',
-          `${suggestFields.route}`,
-        );
+        streetAddress = `${suggestFields.route}`;
       }
     }
 
     if (suggestFields.country) {
-      this.props.setField('cardAddress', 'country', suggestFields.country);
+      countryCode = suggestFields.country;
     }
 
     if (suggestFields.locality) {
-      this.props.setField('cardAddress', 'city', suggestFields.locality);
+      city = suggestFields.locality;
     }
 
     if (suggestFields.postal_code) {
-      this.props.setField(
-        'cardAddress',
-        'postalCode',
-        suggestFields.postal_code,
-      );
+      postalCode = suggestFields.postal_code;
     }
+
+    this.props.setAddress({
+      id: null,
+      streetAddress,
+      city,
+      postalCode,
+      countryCode,
+    });
   }
 
   handleSelectSuggest(suggest: any) {
@@ -130,7 +132,7 @@ export class AddressSuggest extends React.Component<Props, State> {
 }
 
 const mapDispatchToProps = {
-  setField: change,
+  setAddress: fetchAddressRoutine.success,
 };
 
 export default connect(undefined, mapDispatchToProps)(AddressSuggest);

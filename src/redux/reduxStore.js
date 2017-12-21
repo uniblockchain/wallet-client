@@ -56,7 +56,7 @@ store.dispatch(loginRoutine.fulfill());
   walletSagas,
   sendSagas,
   quoteSagas,
-  addressSagas,
+  ...(addressSagas || []),
   routinePromiseWatcherSaga,
   verificationSagas,
   confirmSagas,

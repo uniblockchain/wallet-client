@@ -3,12 +3,16 @@ import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
 import type RoutineAction from 'redux-saga-routines';
 import { SubmissionError } from 'redux-form';
 import countries from 'alpha2-countries';
-import addressRoutine from './addressRoutine';
+import {
+  createOrUpdateAddressRoutine,
+  fetchAddressRoutine,
+} from './addressRoutine';
 import addressApi from './addressApi';
-import type { Address } from './addressApi';
+import { type Address, type AddressForm } from './addressState';
 
-function countryToCountryCode(address: Address): any {
+function countryToCountryCode(address: AddressForm): Address {
   return {
+    id: address.id,
     streetAddress: address.streetAddress,
     city: address.city,
     postalCode: address.postalCode,
@@ -16,20 +20,20 @@ function countryToCountryCode(address: Address): any {
   };
 }
 
-export function* createAddress(
+export function* createOrUpdateAddress(
   action: RoutineAction,
 ): Generator<IOEffect, void, *> {
   try {
     const addressWithCountryCode = countryToCountryCode(action.payload.values);
     const address = yield call(
-      addressApi.createAddress,
+      addressApi.createOrUpdateAddress,
       addressWithCountryCode,
     );
-    yield put(addressRoutine.success(address));
+    yield put(createOrUpdateAddressRoutine.success(address));
   } catch (error) {
     console.error(error);
     yield put(
-      addressRoutine.failure(
+      createOrUpdateAddressRoutine.failure(
         new SubmissionError({
           _error:
             error.body.message ||
@@ -71,7 +75,7 @@ const allowedCountries = [
   'SK',
 ];
 
-function getFormErrors(values: Address) {
+function getFormErrors(values: AddressForm) {
   const errors = {};
   if (!values.streetAddress) {
     errors.streetAddress = 'Address line is empty!';
@@ -102,15 +106,49 @@ function* validateAddress(action: RoutineAction): Generator<IOEffect, void, *> {
   const address = action.payload.values;
   const errors = getFormErrors(address);
   if (Object.keys(errors).length) {
-    yield put(addressRoutine.failure(new SubmissionError(errors)));
+    yield put(
+      createOrUpdateAddressRoutine.failure(new SubmissionError(errors)),
+    );
   } else {
-    yield call(createAddress, action);
+    yield call(createOrUpdateAddress, action);
   }
-  yield put(addressRoutine.fulfill());
+  yield put(createOrUpdateAddressRoutine.fulfill());
 }
 
-function* createAddressSaga(): Generator<IOEffect, void, *> {
-  yield takeLatest(addressRoutine.TRIGGER, validateAddress);
+export function* fetchAddress(
+  action: RoutineAction,
+): Generator<IOEffect, void, *> {
+  try {
+    const address = yield call(addressApi.getAddress);
+    yield put(fetchAddressRoutine.success(address));
+  } catch (error) {
+    if (error.status !== 404) {
+      console.error(error);
+      yield put(
+        fetchAddressRoutine.failure(
+          new Error(
+            error.body.message ||
+              'Oops! Something went wrong, please try again later.',
+          ),
+        ),
+      );
+    }
+  }
 }
 
-export default createAddressSaga;
+function* callFetchAddress(
+  action: RoutineAction,
+): Generator<IOEffect, void, *> {
+  yield call(fetchAddress, action);
+  yield put(fetchAddressRoutine.fulfill());
+}
+
+function* createOrUpdateAddressSaga(): Generator<IOEffect, void, *> {
+  yield takeLatest(createOrUpdateAddressRoutine.TRIGGER, validateAddress);
+}
+
+function* fetchAddressSaga(): Generator<IOEffect, void, *> {
+  yield takeLatest(fetchAddressRoutine.TRIGGER, callFetchAddress);
+}
+
+export default [fetchAddressSaga, createOrUpdateAddressSaga];

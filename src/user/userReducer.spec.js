@@ -8,8 +8,22 @@ import {
   fetchRoutine as fetchProfileRoutine,
   creationRoutine as createOrUpdateProfileRoutine,
 } from './profile/profileRoutines';
+import { type AddressState } from '../card/order/address/addressState';
+import {
+  fetchAddressRoutine,
+  createOrUpdateAddressRoutine,
+} from '../card/order/address/addressRoutine';
 
 describe('user reducer', () => {
+  const address: AddressState = {
+    id: 1,
+    countryCode: 'EE',
+    city: 'Tallinn',
+    streetAddress: 'Viru väljak 1-1',
+    postalCode: '10000',
+    error: null,
+  };
+
   const profile: ProfileState = {
     id: 1,
     firstName: 'Jordan',
@@ -17,6 +31,7 @@ describe('user reducer', () => {
     dateOfBirth: new Date('1908-02-01'),
     mobileNumber: '+3725555555',
     error: null,
+    address,
   };
 
   const user: UserState = {
@@ -104,6 +119,58 @@ describe('user reducer', () => {
       expect(newState.profile.lastName).toEqual(profile.lastName);
       expect(newState.profile.dateOfBirth).toEqual(profile.dateOfBirth);
       expect(newState.profile.mobileNumber).toEqual(profile.mobileNumber);
+    });
+  });
+
+  describe('handles fetching address', () => {
+    it('success', () => {
+      const action = fetchAddressRoutine.success(address);
+      const newState = userReducer(initialUserState, action);
+      const stateAddress = newState.profile.address;
+      expect(!!stateAddress);
+      if (stateAddress) {
+        expect(stateAddress.id).toEqual(address.id);
+        expect(stateAddress.city).toEqual(address.city);
+        expect(stateAddress.postalCode).toEqual(address.postalCode);
+        expect(stateAddress.streetAddress).toEqual(address.streetAddress);
+        expect(stateAddress.countryCode).toEqual(address.countryCode);
+      }
+    });
+
+    it('fails', () => {
+      const action = fetchAddressRoutine.failure(error);
+      const newState = userReducer(initialUserState, action);
+      const stateAddress = newState.profile.address;
+      expect(!!stateAddress);
+      if (stateAddress) {
+        expect(stateAddress.error).toEqual(error);
+      }
+    });
+  });
+
+  describe('handles creating and updating address', () => {
+    it('success', () => {
+      const action = createOrUpdateAddressRoutine.success(address);
+      const newState = userReducer(initialUserState, action);
+      const stateAddress = newState.profile.address;
+      expect(!!stateAddress);
+      if (stateAddress) {
+        expect(stateAddress.id).toEqual(address.id);
+        expect(stateAddress.city).toEqual(address.city);
+        expect(stateAddress.postalCode).toEqual(address.postalCode);
+        expect(stateAddress.streetAddress).toEqual(address.streetAddress);
+        expect(stateAddress.countryCode).toEqual(address.countryCode);
+      }
+    });
+
+    it('fails', () => {
+      const action = createOrUpdateAddressRoutine.failure(error);
+      const newState = userReducer(initialUserState, action);
+      const stateAddress = newState.profile.address;
+      expect(!!stateAddress);
+      if (stateAddress) {
+        expect(stateAddress.error).toEqual(error);
+      }
     });
   });
 });

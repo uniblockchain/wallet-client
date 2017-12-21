@@ -16,6 +16,7 @@ describe('user api', () => {
     lastName: 'Valdma',
     dateOfBirth: new Date(),
     mobileNumber: 'take me home',
+    address: null,
   };
 
   const persistedProfile: Profile = {
@@ -24,6 +25,7 @@ describe('user api', () => {
     lastName: 'Valdma',
     dateOfBirth: new Date(),
     mobileNumber: 'take me home',
+    address: null,
   };
 
   const apiUrl = 'sample-api-url';

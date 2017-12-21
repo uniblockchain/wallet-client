@@ -8,8 +8,28 @@ import AddressForm from './AddressForm';
 describe('Address component', () => {
   let component;
 
+  const savedAddress = {
+    id: 1,
+    countryCode: 'EE',
+    city: 'Tallinn',
+    streetAddress: 'Viru väljak 1-1',
+    postalCode: '10000',
+  };
+
+  const initialAddress = {
+    id: null,
+    countryCode: null,
+    city: null,
+    streetAddress: null,
+    postalCode: null,
+  };
+
+  const props = {
+    address: initialAddress,
+  };
+
   beforeEach(() => {
-    component = shallow(<AddressComponent />);
+    component = shallow(<AddressComponent {...props} />);
   });
 
   it('renders the component', () => {
@@ -20,8 +40,13 @@ describe('Address component', () => {
     expect(component.find(AddressSuggest)).toBePresent();
   });
 
-  it('renders address form', () => {
+  it('renders address form when suggest is done', () => {
     component.setState({ showFullForm: true });
+    expect(component.find(AddressForm)).toBePresent();
+  });
+
+  it('renders address form when address is already present', () => {
+    component.setProps({ address: savedAddress });
     expect(component.find(AddressForm)).toBePresent();
   });
 });

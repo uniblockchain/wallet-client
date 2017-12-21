@@ -1,16 +1,24 @@
 // @flow
 
 import React from 'react';
+import { connect, type MapStateToProps } from 'react-redux';
 import AddressSuggest from './AddressSuggest';
 import AddressForm from './AddressForm';
+import withAddress from '../withAddress';
+import { type Address } from '../addressState';
 
-type Props = {};
+type Props = {
+  address: Address,
+};
 
 type State = {
   showFullForm: boolean,
 };
 
-export class AddressComponent extends React.Component<Props, State> {
+export const AddressComponent = class AddressComponent extends React.Component<
+  Props,
+  State,
+> {
   state = {
     showFullForm: false,
   };
@@ -20,7 +28,11 @@ export class AddressComponent extends React.Component<Props, State> {
   }
 
   render() {
-    const { showFullForm } = this.state;
+    let { showFullForm } = this.state;
+    if (this.props.address.id) {
+      showFullForm = true;
+    }
+
     return (
       <div>
         {showFullForm ? (
@@ -31,8 +43,16 @@ export class AddressComponent extends React.Component<Props, State> {
       </div>
     );
   }
-}
+};
 
-AddressComponent.displayName = 'AddressComponent';
+const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  address: state.user.profile.address,
+});
 
-export default AddressComponent;
+const ConnectedAddressComponent = connect(mapStateToProps, null)(
+  AddressComponent,
+);
+
+ConnectedAddressComponent.displayName = 'AddressComponent';
+
+export default withAddress(ConnectedAddressComponent);

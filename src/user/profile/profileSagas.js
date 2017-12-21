@@ -14,6 +14,7 @@ function formValuesToProfile(values: *): Profile {
     lastName: values.lastName,
     dateOfBirth: new Date(`${values.year}-${values.month}-${values.day}`),
     mobileNumber: values.mobileNumber,
+    address: null,
   };
 }
 
@@ -55,15 +56,17 @@ export function* fetchProfile(
 
     yield put(fetchRoutine.success(profileWithDate));
   } catch (error) {
-    yield put(
-      fetchRoutine.failure(
-        new Error(
-          error.body.message ||
-            'Oops! Something went wrong, please try again later.',
+    if (error.status !== 404) {
+      yield put(
+        fetchRoutine.failure(
+          new Error(
+            error.body.message ||
+              'Oops! Something went wrong, please try again later.',
+          ),
         ),
-      ),
-    );
-    console.error(error);
+      );
+      console.error(error);
+    }
   }
 }
 

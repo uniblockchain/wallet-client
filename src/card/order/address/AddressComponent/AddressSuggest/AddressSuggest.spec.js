@@ -7,7 +7,7 @@ import { AddressSuggest } from './AddressSuggest';
 describe('Address suggest component', () => {
   let component;
   const props = {
-    setField: jest.fn(),
+    setAddress: jest.fn(),
     onSuggest: jest.fn(),
   };
 

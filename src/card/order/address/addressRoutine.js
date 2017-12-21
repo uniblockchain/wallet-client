@@ -1,7 +1,10 @@
 // @flow
 import { createRoutine, bindRoutineToReduxForm } from 'redux-saga-routines';
 
-const addressRoutine = createRoutine('ADDRESS');
-export const addressFormSubmitHandler = bindRoutineToReduxForm(addressRoutine);
-
-export default addressRoutine;
+export const createOrUpdateAddressRoutine = createRoutine(
+  'CREATE_OR_UPDATE_ADDRESS',
+);
+export const fetchAddressRoutine = createRoutine('FETCH_ADDRESS');
+export const addressFormSubmitHandler = bindRoutineToReduxForm(
+  createOrUpdateAddressRoutine,
+);
