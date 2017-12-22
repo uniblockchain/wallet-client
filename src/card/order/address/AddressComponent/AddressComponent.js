@@ -45,6 +45,8 @@ export const AddressComponent = class AddressComponent extends React.Component<
   }
 };
 
+AddressComponent.displayName = 'AddressComponent';
+
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   address: state.user.profile.address,
 });

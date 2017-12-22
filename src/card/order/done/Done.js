@@ -49,4 +49,6 @@ export const Done = () => (
   </div>
 );
 
+Done.displayName = 'Done';
+
 export default Done;

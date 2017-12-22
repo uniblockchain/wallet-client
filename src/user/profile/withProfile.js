@@ -9,6 +9,10 @@ type Props = {
   +fetchProfile: () => void,
 };
 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
 const withProfile = (WrappedComponent: *) => {
   class ComponentWithProfile extends Component<Props> {
     componentWillMount() {
@@ -26,6 +30,10 @@ const withProfile = (WrappedComponent: *) => {
       return <div>{<WrappedComponent {...this.props} />}</div>;
     }
   }
+
+  ComponentWithProfile.displayName = `withProfile(${getDisplayName(
+    WrappedComponent,
+  )})`;
 
   const mapStateToProps = state => ({
     profile: state.user.profile,

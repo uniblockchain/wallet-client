@@ -134,6 +134,8 @@ export const Confirm = ({
   );
 };
 
+Confirm.displayName = 'Confirm';
+
 const ConfirmForm = reduxForm({
   form: 'cardConfirm',
   onSubmitSuccess: (result, dispatch) => {

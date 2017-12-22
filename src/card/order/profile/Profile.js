@@ -71,6 +71,8 @@ export const Profile = ({ handleSubmit, error }: Props) => (
   </div>
 );
 
+Profile.displayName = 'Profile';
+
 const ProfileForm = reduxForm({
   form: 'cardProfile',
   onSubmitSuccess: (result, dispatch) => {

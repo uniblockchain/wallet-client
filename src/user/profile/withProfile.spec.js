@@ -12,6 +12,7 @@ describe('withProfile higher-order component', () => {
   let store;
 
   const FakeComponent = () => <h1>I am FakeComponent</h1>;
+  FakeComponent.displayName = 'FakeComponent';
   const WrappedFakedComponent = withProfile(FakeComponent);
 
   beforeEach(() => {

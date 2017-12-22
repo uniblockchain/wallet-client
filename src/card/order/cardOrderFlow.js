@@ -71,7 +71,10 @@ const backButtonRoutes = [
 const getActiveStepIndex = (WrappedComponent: *): number => {
   return stepComponents.findIndex(component => {
     if (WrappedComponent.displayName) {
-      return WrappedComponent.displayName === component;
+      return (
+        WrappedComponent.displayName === component ||
+        WrappedComponent.displayName.includes(`(${component})`)
+      );
     }
     return false;
   });

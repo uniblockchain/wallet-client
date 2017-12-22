@@ -9,8 +9,12 @@ type Props = {
   +fetchAddress: () => void,
 };
 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
 const withAddress = (WrappedComponent: *) => {
-  class ComponentWithProfile extends Component<Props> {
+  class ComponentWithAddress extends Component<Props> {
     componentWillMount() {
       this.checkIfProfileIsLoaded(this.props.address);
     }
@@ -35,7 +39,14 @@ const withAddress = (WrappedComponent: *) => {
     fetchAddress: fetchAddressRoutine,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(ComponentWithProfile);
+  const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(
+    ComponentWithAddress,
+  );
+  connectedComponent.displayName = `withAddress(${getDisplayName(
+    WrappedComponent,
+  )})`;
+
+  return connectedComponent;
 };
 
 export default withAddress;

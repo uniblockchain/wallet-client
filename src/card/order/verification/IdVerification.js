@@ -77,7 +77,12 @@ const mapDispatchToProps = dispatch =>
     dispatch,
   );
 
+IdVerification.displayName = 'IdVerification';
+
 const component = connect(null, mapDispatchToProps)(IdVerification);
-const IdVerificationWithFileUploader = verificationFileUploader(component, 'ID');
+const IdVerificationWithFileUploader = verificationFileUploader(
+  component,
+  'ID',
+);
 IdVerificationWithFileUploader.displayName = 'IdVerification';
 export default IdVerificationWithFileUploader;
