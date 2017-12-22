@@ -1,6 +1,7 @@
 // @flow
 
 import { call, put } from 'redux-saga/effects';
+import moment from 'moment-es6';
 import { creationRoutine, fetchRoutine } from './profileRoutines';
 import profileApi from './profileApi';
 import { createProfile, fetchProfile } from './profileSagas';
@@ -12,7 +13,7 @@ describe('profile sagas', () => {
       id: null,
       firstName: 'Jordan',
       lastName: 'Valdma',
-      dateOfBirth: new Date('1908-02-01'),
+      dateOfBirth: moment.utc('1908-02-01'),
       mobileNumber: '+3725555555',
       address: null,
     };
@@ -45,7 +46,7 @@ describe('profile sagas', () => {
       id: null,
       firstName: 'Jordan',
       lastName: 'Valdma',
-      dateOfBirth: new Date('1908-02-01'),
+      dateOfBirth: moment.utc('1908-02-01'),
       mobileNumber: '+3725555555',
       address: null,
     };

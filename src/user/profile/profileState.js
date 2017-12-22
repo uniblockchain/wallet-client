@@ -1,5 +1,6 @@
 // @flow
 
+import moment from 'moment-es6';
 import {
   type AddressState,
   initialAddressState,
@@ -9,7 +10,7 @@ export type Profile = {
   +id: ?number,
   +firstName: ?string,
   +lastName: ?string,
-  +dateOfBirth: ?Date,
+  +dateOfBirth: ?moment,
   +mobileNumber: ?string,
   address: ?AddressState,
 };

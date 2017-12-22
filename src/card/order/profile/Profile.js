@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import moment from 'moment-es6';
 import styled from 'styled-components';
 import { connect, type MapStateToProps } from 'react-redux';
 import type { FormProps } from 'redux-form';
@@ -91,11 +92,11 @@ const getInitialFormData = (profile: Profile) => {
   ) {
     let dateFields = {};
 
-    if (profile.dateOfBirth instanceof Date) {
+    if (profile.dateOfBirth instanceof moment) {
       dateFields = {
-        day: profile.dateOfBirth.getDate(),
-        month: profile.dateOfBirth.getMonth() + 1,
-        year: profile.dateOfBirth.getFullYear(),
+        day: profile.dateOfBirth.date(),
+        month: profile.dateOfBirth.month() + 1,
+        year: profile.dateOfBirth.year(),
       };
     }
 

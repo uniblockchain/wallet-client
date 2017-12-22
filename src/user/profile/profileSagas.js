@@ -1,6 +1,7 @@
 // @flow
 
 import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
+import moment from 'moment-es6';
 import type RoutineAction from 'redux-saga-routines';
 import { SubmissionError } from 'redux-form';
 import { creationRoutine, fetchRoutine } from './profileRoutines';
@@ -8,11 +9,12 @@ import profileApi from './profileApi';
 import type { Profile } from './profileState';
 
 function formValuesToProfile(values: *): Profile {
+  const date = moment.utc(`${values.year}-${values.month}-${values.day}`);
   return {
     id: values.id,
     firstName: values.firstName,
     lastName: values.lastName,
-    dateOfBirth: new Date(`${values.year}-${values.month}-${values.day}`),
+    dateOfBirth: date,
     mobileNumber: values.mobileNumber,
     address: null,
   };
@@ -28,7 +30,7 @@ export function* createProfile(
     );
     const profileWithDate = { ...profile };
     if (profile.dateOfBirth) {
-      profileWithDate.dateOfBirth = new Date(profile.dateOfBirth);
+      profileWithDate.dateOfBirth = moment.utc(profile.dateOfBirth);
     }
     yield put(creationRoutine.success(profileWithDate));
   } catch (error) {
@@ -51,7 +53,7 @@ export function* fetchProfile(
     const profile = yield call(profileApi.fetchProfile);
     const profileWithDate = { ...profile };
     if (profile.dateOfBirth) {
-      profileWithDate.dateOfBirth = new Date(profile.dateOfBirth);
+      profileWithDate.dateOfBirth = moment.utc(profile.dateOfBirth);
     }
 
     yield put(fetchRoutine.success(profileWithDate));
