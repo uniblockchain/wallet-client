@@ -9,7 +9,11 @@ import profileApi from './profileApi';
 import type { Profile } from './profileState';
 
 function formValuesToProfile(values: *): Profile {
-  const date = moment.utc(`${values.year}-${values.month}-${values.day}`);
+  const date = moment()
+    .year(values.year)
+    .month(values.month - 1)
+    .date(values.day)
+    .utc();
   return {
     id: values.id,
     firstName: values.firstName,
