@@ -42,8 +42,8 @@ export const Profile = ({ handleSubmit, error }: Props) => (
 
       <Field
         name="mobileNumber"
-        label="Mobile number"
-        placeholder="Phone number"
+        label="Mobile number (with country code)"
+        placeholder="+49 8963648018"
         type="string"
       />
 
