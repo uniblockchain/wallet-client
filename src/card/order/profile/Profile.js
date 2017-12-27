@@ -48,10 +48,12 @@ export const Profile = ({ handleSubmit, error }: Props) => (
         <Col3>
           <SelectField
             name="phoneCountryCode"
-            items={countryCodes.map(code => ({
-              value: code.dialCode,
-              label: code.dialCode,
-            }))}
+            items={countryCodes
+              .sort((a, b) => a.dialCode.localeCompare(b.dialCode))
+              .map(code => ({
+                value: code.dialCode,
+                label: code.dialCode,
+              }))}
           />
         </Col3>
         <Col>
