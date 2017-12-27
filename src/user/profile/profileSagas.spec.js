@@ -9,11 +9,20 @@ import type { Profile } from './profileState';
 
 describe('profile sagas', () => {
   it('can create profile', () => {
+    const date = moment()
+      .year(1908)
+      .month(1)
+      .date(1)
+      .utc()
+      .startOf('day');
+
+    expect(date.format('L')).toEqual('02/01/1908');
+
     const profile: Profile = {
       id: null,
       firstName: 'Jordan',
       lastName: 'Valdma',
-      dateOfBirth: moment.utc('1908-02-01'),
+      dateOfBirth: date,
       mobileNumber: '+3725555555',
       address: null,
     };

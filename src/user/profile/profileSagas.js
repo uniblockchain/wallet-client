@@ -13,7 +13,8 @@ function formValuesToProfile(values: *): Profile {
     .year(values.year)
     .month(values.month - 1)
     .date(values.day)
-    .utc();
+    .utc()
+    .startOf('day');
   return {
     id: values.id,
     firstName: values.firstName,
