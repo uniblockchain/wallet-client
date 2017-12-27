@@ -52,8 +52,8 @@ export const IdVerification = ({ onChoose, redirectToNextStep }: Props) => {
     <div>
       <LargeHeader alt>Your proof of identification</LargeHeader>
       <Paragraph alt>
-        To verify your identity please upload a photo of your id card or
-        passport identification page.
+        To verify your identity please upload a photo (less than 10MB) of your
+        id card or passport identification page.
       </Paragraph>
       <LinkContainer>
         <Link href="#">Learn why</Link>

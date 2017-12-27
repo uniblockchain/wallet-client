@@ -75,8 +75,8 @@ export const AddressVerification = ({
       </LinkContainer>
       <AddressImg src={address} />
       <Paragraph alt>
-        Please upload one of the following documents with your address and full
-        name on it:
+        Please upload (less than 10MB) one of the following documents with your
+        address and full name on it:
       </Paragraph>
       <List>
         <li>
