@@ -103,7 +103,8 @@ export const Confirm = ({
     <div>
       <StyledHeader>Please confirm your order.</StyledHeader>
       <Explanation>
-        One time fee equivalent to 9€ will be deducted from your chosen wallet.
+        One time fee equivalent to 9€ (plus additional network fee) will be
+        deducted from your chosen wallet.
       </Explanation>
       <form className="mt-5" onSubmit={handleSubmit(confirmFormSubmitHandler)}>
         {error && <FormFeedback>{error}</FormFeedback>}
