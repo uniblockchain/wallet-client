@@ -29,6 +29,21 @@ export const Input = styled.input`
   }
 `;
 
+export const Select = styled.select`
+  font-size: 16px;
+  ::placeholder {
+    color: #cccccc;
+  }
+  &.is-invalid {
+    background-image: linear-gradient(
+        to top,
+        #d50000 2px,
+        rgba(213, 0, 0, 0) 2px
+      ),
+      linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
+  }
+`;
+
 export const Form = (props: any) => <form {...props} />;
 
 export const FormGroup = (props: any) => (
@@ -38,6 +53,8 @@ export const FormGroup = (props: any) => (
 export const FormRow = (props: any) => <div className="form-row" {...props} />;
 
 export const Col = (props: any) => <div className="col" {...props} />;
+
+export const Col3 = (props: any) => <div className="col-3" {...props} />;
 
 const FormFeedbackTag = styled.p`
   display: block;
@@ -106,6 +123,52 @@ const renderField = ({
   );
 };
 
+const renderSelectField = ({
+  addon,
+  input,
+  items,
+  label,
+  meta: { touched, error, warning },
+}: any) => {
+  const renderSelect = () => (
+    <Select
+      className={`form-control ${touched && error
+        ? 'is-invalid'
+        : ''} ${input.className}`}
+      {...input}
+    >
+      {items.map((item, index) => (
+        <option key={index} value={item.value}>
+          {item.label}
+        </option>
+      ))}
+    </Select>
+  );
+  return (
+    <FormGroup>
+      {label && (
+        <Label
+          className={touched && error ? 'is-invalid' : ''}
+          htmlFor={input.id}
+        >
+          {label}
+        </Label>
+      )}
+      {addon ? (
+        <div className="input-group">
+          {renderSelect()}
+          <span className="input-group-addon">{addon}</span>
+        </div>
+      ) : (
+        renderSelect()
+      )}
+      {touched &&
+        ((error && <FormFeedback>{error}</FormFeedback>) ||
+          (warning && <FormFeedback>{warning}</FormFeedback>))}
+    </FormGroup>
+  );
+};
+
 const TosCheckbox = styled.input`
   margin-top: 0;
 `;
@@ -136,15 +199,22 @@ export const Field = (props: any) => (
   <ReduxField component={props.component || renderField} {...props} />
 );
 
+export const SelectField = (props: any) => (
+  <ReduxField component={props.component || renderSelectField} {...props} />
+);
+
 export default {
   Label,
   Input,
+  Select,
   Form,
   FormGroup,
   FormRow,
   FormFeedback,
   Field,
+  SelectField,
   Col,
+  Col3,
   renderCheckbox,
   StyledInput: FormInput,
 };

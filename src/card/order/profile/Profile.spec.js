@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Profile } from './Profile';
-import { Field, PrimaryButton } from '../../../ui';
+import { Field, PrimaryButton, SelectField } from '../../../ui';
 
 describe('Card ordering flow Profile', () => {
   let component;
@@ -30,8 +30,11 @@ describe('Card ordering flow Profile', () => {
     expect(component.find(Field).find('[name="lastName"]').length).toBe(1);
   });
 
-  it('renders phone field', () => {
-    expect(component.find(Field).find('[name="mobileNumber"]').length).toBe(1);
+  it('renders phone fields', () => {
+    expect(component.find(Field).find('[name="phoneNumber"]').length).toBe(1);
+    expect(
+      component.find(SelectField).find('[name="phoneCountryCode"]').length,
+    ).toBe(1);
   });
 
   it('renders date of birth name fields', () => {

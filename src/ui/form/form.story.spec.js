@@ -10,7 +10,7 @@ import {
   it,
 } from '../../../.storybook/facade';
 import { PrimaryButton, Button } from '../buttons';
-import { Form, FormGroup, FormFeedback, Input, Label } from './form';
+import { Form, FormGroup, FormFeedback, Input, Label, Select } from './form';
 import { WrappedContent } from '../layout';
 
 storiesOf('Form', module).add('Example form', () => {
@@ -43,6 +43,13 @@ storiesOf('Form', module).add('Example form', () => {
         <FormGroup>
           <Label htmlFor="password">Password</Label>
           <Input name="password" type="password" className="form-control" />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="select-field">Select box</Label>
+          <Select name="select-field" className="form-control">
+            <option value="1">One</option>
+            <option value="2">Two</option>
+          </Select>
         </FormGroup>
         <FormGroup>
           <Label className="is-invalid" htmlFor="invalidInput">

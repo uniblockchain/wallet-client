@@ -20,7 +20,7 @@ function formValuesToProfile(values: *): Profile {
     firstName: values.firstName,
     lastName: values.lastName,
     dateOfBirth: date,
-    mobileNumber: values.mobileNumber,
+    mobileNumber: values.phoneCountryCode + values.phoneNumber,
     address: null,
   };
 }
@@ -99,8 +99,12 @@ function getFormErrors(values: *) {
     errors.year = 'Year is empty!';
   }
 
-  if (!values.mobileNumber) {
-    errors.mobileNumber = 'Number is empty!';
+  if (!values.phoneCountryCode) {
+    errors.phoneCountryCode = 'Country code is empty!';
+  }
+
+  if (!values.phoneNumber) {
+    errors.phoneNumber = 'Number is empty!';
   }
 
   return errors;

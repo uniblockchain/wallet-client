@@ -34,7 +34,8 @@ describe('profile sagas', () => {
       day: '01',
       month: '02',
       year: '1908',
-      mobileNumber: '+3725555555',
+      phoneNumber: '5555555',
+      phoneCountryCode: '+372',
     };
 
     const generator = createProfile(
