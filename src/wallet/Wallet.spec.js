@@ -3,14 +3,12 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import CurrencyTabs from './currencyTabs';
 import {
-  Balance,
-  BalanceTitle,
-  FiatBalance,
   type Props,
   Wallet as WalletComponent,
   WalletActivity,
   WalletButtons,
 } from './Wallet';
+import { Balance } from './Balance';
 import { Wallet } from './walletState';
 
 describe('Wallet component', () => {
@@ -62,20 +60,12 @@ describe('Wallet component', () => {
     expect(component.contains(<CurrencyTabs />)).toEqual(true);
   });
 
-  it('renders a balance title', () => {
-    expect(component.contains(<BalanceTitle>Balance</BalanceTitle>)).toEqual(
-      true,
-    );
-  });
-
-  it('renders a correctly formatted crypto balance', () => {
-    expect(component.contains(<Balance>0.198900</Balance>)).toEqual(true);
-  });
-
-  it('renders a correctly fiat balance', () => {
-    expect(component.contains(<FiatBalance>~ €1,257.71</FiatBalance>)).toEqual(
-      true,
-    );
+  it('renders balance component', () => {
+    expect(
+      component.contains(
+        <Balance wallet={wallet} currency={representationalCurrency} />,
+      ),
+    ).toEqual(true);
   });
 
   it('renders wallet send & receive buttons', () => {

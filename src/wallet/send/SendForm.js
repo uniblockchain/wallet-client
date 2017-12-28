@@ -10,7 +10,6 @@ import {
   Form,
   FormGroup,
   FormRow,
-  Header,
   Field,
   PrimaryButton,
   Top,
@@ -20,6 +19,7 @@ import {
 import CurrencyName from '../CurrencyName';
 import quoteRoutine from './quote/quoteRoutine';
 import type { Quote } from './quote/quoteApi';
+import { Balance } from '../Balance';
 
 type Props = {
   fiatCurrencyCode: string,
@@ -40,7 +40,7 @@ export const SendForm = ({
   return (
     <WrappedContent>
       <Top>
-        <Header>Send {currencyName}</Header>
+        <Balance wallet={activeWallet} currency={fiatCurrencyCode} />
         <Form
           id="sendForm"
           onSubmit={handleSubmit(sendFormSubmitHandler)}

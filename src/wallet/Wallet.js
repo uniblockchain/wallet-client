@@ -12,6 +12,7 @@ import { getActiveWallet } from '../redux/selectors';
 import address from './img/address.png';
 import { Transactions } from '../overview/transactions/Transactions';
 import type { State } from '../redux/rootReducer';
+import { Balance } from './Balance';
 
 const MainContent = styled.div`
   display: flex;
@@ -24,27 +25,6 @@ const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 90vw;
-`;
-
-export const Balance = styled.h1`
-  font-size: 36px;
-  text-align: center;
-  color: #00346b;
-  margin-bottom: 10px;
-`;
-
-export const FiatBalance = styled.p`
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-  color: #a1a1a1;
-`;
-
-export const BalanceTitle = styled.p`
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #a1a1a1;
-  margin-bottom: 6px;
 `;
 
 const LinkWithMargin = Link.extend`
@@ -112,13 +92,6 @@ export const WalletActivity = ({ wallet }: WalletProps) => {
   );
 };
 
-const formatBalance = (number: number) => {
-  if (!number) {
-    return '0.00';
-  }
-  return number.toFixed(6);
-};
-
 export const TransactionsCard = styled(Card)`
   padding: 0 0 4em 0;
 `;
@@ -132,17 +105,7 @@ export const Wallet = ({ wallet, representationalCurrency }: Props) => {
       <CurrencyTabs />
       <Card>
         <MainContent>
-          <BalanceTitle>Balance</BalanceTitle>
-          <Balance>{formatBalance(wallet.getBalance())}</Balance>
-          <FiatBalance>
-            ~{' '}
-            {wallet
-              .getRepresentationalBalance(representationalCurrency)
-              .toLocaleString('en-US', {
-                style: 'currency',
-                currency: representationalCurrency,
-              })}
-          </FiatBalance>
+          <Balance wallet={wallet} currency={representationalCurrency} />
           <WalletButtons wallet={wallet} />
         </MainContent>
       </Card>
