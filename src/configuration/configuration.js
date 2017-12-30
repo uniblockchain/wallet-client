@@ -3,7 +3,7 @@
 import config from 'react-global-configuration';
 
 const DEFAULT_CONF = {
-  googleMapsKey: 'AIzaSyC_IrrtYI6UIuBBqKB8t6xB40tQT8ML3Ho',
+  googleMapsKey: 'AIzaSyC5hizdMNKn1sLOUdmrCSeSgSsJfl7acO4',
 };
 
 const DEFAULT_CONF_DEV = {
