@@ -4,6 +4,8 @@ import config from 'react-global-configuration';
 
 const DEFAULT_CONF = {
   googleMapsKey: 'AIzaSyC5hizdMNKn1sLOUdmrCSeSgSsJfl7acO4',
+  waveCrestApiUrl: 'https://wcapi.wavecrest.in',
+  cardServiceApiUrl: 'http://localhost:8888',
 };
 
 const DEFAULT_CONF_DEV = {
