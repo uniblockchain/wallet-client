@@ -3,9 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from './variables';
-
 import { GradientText } from './GradientText';
+
+import variables from './variables';
 
 const Container = styled.div`
   margin: 30px 0 60px;
@@ -98,9 +98,9 @@ const Milestone = styled.div`
         right: -2px;
       }
     }
-    &:nth-child(3) > * {
-      color: #88dfdb;
-    }
+    // &:nth-child(3) > * {
+    //   color: #88dfdb;
+    // }
     &:nth-child(4) > * {
       color: #7bd8df;
     }

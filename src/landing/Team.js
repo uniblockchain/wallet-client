@@ -1,12 +1,13 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { Link } from 'react-router-dom';
-
-import variables from './variables';
 
 import svgLinkedIn from './img/social/linkedin.svg';
+import svgTwitter from './img/social/twitter.svg';
+
+import variables from './variables';
 
 const Container = styled.div`
   margin: 36px 0;
@@ -153,11 +154,18 @@ export const Team = (props: Props) => (
             <PersonTitle>{person.title}</PersonTitle>
             {person.linkedin && (
               <PersonLinks>
-                <Link to={person.linkedin} target="_blank">
-                  <Icon>
+                <Icon>
+                  <Link to={person.linkedin} target="_blank">
                     <IconImage src={svgLinkedIn} alt="LinkedIn" />
+                  </Link>
+                </Icon>
+                {person.twitter && (
+                  <Icon>
+                    <Link to={person.twitter} target="_blank">
+                      <IconImage src={svgTwitter} alt="Twitter" />
+                    </Link>
                   </Icon>
-                </Link>
+                )}
               </PersonLinks>
             )}
           </Person>

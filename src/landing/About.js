@@ -2,35 +2,35 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import AboutFacts from './AboutFacts';
+import AboutIntro from './AboutIntro';
+import Residency from './eResidency';
+import logoBlockchainAssets from './img/partners/blockchain-assets.png';
 
-import variables from './variables';
+import logoeResidency from './img/partners/e-residency.png';
+import logoICOBank from './img/partners/ico-bank.png';
+import logoKRToken from './img/partners/kr-token.png';
+import logoMothership from './img/partners/mothership.png';
+import logoTSH from './img/partners/TSH.png';
+import imageAndras from './img/people/andras.jpg';
+import imageDragos from './img/people/dragos.jpg';
+import imageFrancisco from './img/people/francisco.jpg';
+import imageGustav from './img/people/gustav.jpg';
+
+import imageKristjan from './img/people/kristjan.jpg';
+import imageLesly from './img/people/lesly.jpg';
+import imageMiguel from './img/people/miguel.jpg';
+import imageRoger from './img/people/roger.jpg';
+import LogoStrip from './LogoStrip';
+import Team from './Team';
+import Timeline from './Timeline';
+import Token from './Token';
 
 import { NavButton } from './ui';
 
+import variables from './variables';
+
 import VisionMission from './VisionMission';
-import AboutIntro from './AboutIntro';
-import AboutFacts from './AboutFacts';
-import Residency from './eResidency';
-import LogoStrip from './LogoStrip';
-import Timeline from './Timeline';
-import Team from './Team';
-import Token from './Token';
-
-import logoeResidency from './img/partners/e-residency.png';
-import logoKRToken from './img/partners/kr-token.png';
-import logoBlockchainAssets from './img/partners/blockchain-assets.png';
-import logoICOBank from './img/partners/ico-bank.png';
-import logoMothership from './img/partners/mothership.png';
-import logoTSH from './img/partners/TSH.png';
-
-import imageKristjan from './img/people/kristjan.jpg';
-import imageFrancisco from './img/people/francisco.jpg';
-import imageGustav from './img/people/gustav.jpg';
-import imageDragos from './img/people/dragos.jpg';
-import imageRoger from './img/people/roger.jpg';
-import imageLesly from './img/people/lesly.jpg';
-import imageMiguel from './img/people/miguel.jpg';
-import imageAndras from './img/people/andras.jpg';
 
 const Container = styled.div`
   overflow: hidden;
@@ -96,11 +96,7 @@ export const About = () => (
       milestones={[
         { title: 'Q1 2016', body: 'Change is founded in Singapore' },
         { title: 'Q3 2017', body: '$17.5 million raised from 5600 people' },
-        {
-          title: 'Q4 2017',
-          body: 'Change Wallet', // , Change Card',
-          highlighted: true,
-        },
+        { title: 'Q4 2017', body: 'Change Wallet' },
         { title: 'Q1 2018', body: 'Change Marketplace', highlighted: true },
         {
           title: 'Q4 2018',
@@ -117,6 +113,7 @@ export const About = () => (
           name: 'Kristjan Kangro',
           title: 'CEO',
           linkedin: 'http://bit.ly/2AdkfEu',
+          twitter: 'https://twitter.com/KristjanKangr0',
           image: imageKristjan,
         },
         {
@@ -144,7 +141,7 @@ export const About = () => (
       people={[
         {
           name: 'Roger Crook',
-          title: 'Ex-CEO of DHL',
+          title: 'Former CEO of DHL',
           linkedin: 'http://bit.ly/2k4pVdF',
           image: imageRoger,
         },
