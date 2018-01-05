@@ -44,6 +44,10 @@ export const PrimaryButton = Button.extend`
     props.alt ? props.theme.alt : props.theme.main};
   box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
   text-transform: uppercase;
+
+  &:disabled {
+    background-color: #a1a1a1;
+  }
 `;
 
 PrimaryButton.displayName = 'PrimaryButton';
