@@ -12,6 +12,7 @@ import {
   specs,
   storiesOf,
 } from '../../../../.storybook/facade';
+import { testWallets, testFee } from '../../../fixtures';
 
 storiesOf('Card Ordering', module).add('Confirm', () => {
   specs(() =>
@@ -19,7 +20,9 @@ storiesOf('Card Ordering', module).add('Confirm', () => {
       let component;
 
       const props = {
-        wallets: [],
+        wallet: testWallets,
+        fee: testFee,
+        activeWalletId: 1,
         handleSubmit: jest.fn(),
         error: undefined,
       };
