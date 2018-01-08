@@ -12,6 +12,7 @@ import { userReducer, userSagas } from '../user';
 import { profileSagas } from '../user/profile';
 import { walletReducer, walletSagas } from '../wallet';
 import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
+import { feeSagas, feeReducer } from '../wallet/fee';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
 import { addressSagas } from '../card/order/address';
@@ -33,6 +34,7 @@ const appReducer = combineReducers({
   page: pageReducer,
   send: sendReducer,
   flags: flagsReducer,
+  fee: feeReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -60,6 +62,7 @@ store.dispatch(loginRoutine.fulfill());
   routinePromiseWatcherSaga,
   verificationSagas,
   confirmSagas,
+  ...(feeSagas || []),
 ].map(sagaMiddleware.run);
 
 export default store;
