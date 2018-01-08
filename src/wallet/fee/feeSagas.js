@@ -1,13 +1,16 @@
 // @flow
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
+import type RoutineAction from 'redux-saga-routines';
 import { sendFeeRoutine, cardOrderFeeRoutine } from './feeRoutines';
 import feeApi from './feeApi';
 import { pageActions } from '../../page';
 
-function* getSendFee(values) {
+export function* getSendFee(
+  action: RoutineAction,
+): Generator<IOEffect, void, *> {
   try {
     yield put(pageActions.showProgress(true));
-    const { sendToAddress, amountInCrypto, activeWallet } = values.payload;
+    const { sendToAddress, amountInCrypto, activeWallet } = action.payload;
     yield put(sendFeeRoutine.request());
     const response = yield call(
       feeApi.sendFee,
@@ -24,10 +27,12 @@ function* getSendFee(values) {
   }
 }
 
-function* getCardOrderFee(values) {
+export function* getCardOrderFee(
+  action: RoutineAction,
+): Generator<IOEffect, void, *> {
   try {
     yield put(pageActions.showProgress(true));
-    const { activeWallet } = values.payload;
+    const { activeWallet } = action.payload;
     yield put(cardOrderFeeRoutine.request());
     const response = yield call(feeApi.cardOrderFee, activeWallet.id);
     yield put(cardOrderFeeRoutine.success(response));

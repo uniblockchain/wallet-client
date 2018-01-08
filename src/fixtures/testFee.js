@@ -1,8 +1,18 @@
 // @flow
-import { initialFeeState } from '../wallet/fee/feeReducer';
+import { type FeeState, initialFeeState } from '../wallet/fee/feeReducer';
 
-const fee = {
+const fee: FeeState = {
   ...initialFeeState,
+  fee: [
+    {
+      currency: 'ETH',
+      value: -0.9,
+    },
+    {
+      currency: 'EUR',
+      value: -250.332,
+    },
+  ],
 };
 
 export default fee;
