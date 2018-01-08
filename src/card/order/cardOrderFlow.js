@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { NavigationDots } from '../../ui';
+import { NavigationDots, Progress } from '../../ui';
 import {
   CARD_ORDER_INTRO_ROUTE,
   CARD_ORDER_PROFILE_ROUTE,
@@ -11,6 +11,8 @@ import {
   CARD_ORDER_ID_VERIFICATION_ROUTE,
   CARD_ORDER_ADDRES_VERIFICATION_ROUTE,
 } from './constants';
+import type { MapStateToProps } from 'react-redux';
+import { connect } from 'react-redux';
 
 export const BottomRow = styled.div`
   position: relative;
@@ -87,6 +89,7 @@ export const cardOrderFlow = (WrappedComponent: *) => {
 
     return (
       <Container>
+        {props.progress && <Progress />}
         <WrappedContent>
           <WrappedComponent {...props} />
         </WrappedContent>
@@ -105,8 +108,14 @@ export const cardOrderFlow = (WrappedComponent: *) => {
       </Container>
     );
   };
-  flow.displayName = `cardOrderFlow(${WrappedComponent.name})`;
-  return flow;
+  const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+    progress: state.page.showProgress,
+  });
+
+  const connectedFlow = connect(mapStateToProps)(flow);
+  connectedFlow.displayName = `cardOrderFlow(${WrappedComponent.name})`;
+
+  return connectedFlow;
 };
 
 export default cardOrderFlow;

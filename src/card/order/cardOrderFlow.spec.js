@@ -9,10 +9,11 @@ import {
 import createHistory from 'history/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import cardOrderFlow from './cardOrderFlow';
-import { NavigationDots } from '../../ui';
+import { NavigationDots, Progress } from '../../ui';
 import Intro from './intro';
 import Done from './done';
 import { IdVerification } from './verification';
+import { pageReducer } from '../../page';
 
 describe('cardOrderFlow higher-order component', () => {
   let component;
@@ -24,7 +25,7 @@ describe('cardOrderFlow higher-order component', () => {
 
   beforeEach(() => {
     store = createStore(
-      combineReducers({ router: routerReducer }),
+      combineReducers({ router: routerReducer, page: pageReducer }),
       applyMiddleware(routerMiddleware(history)),
     );
     component = mount(
@@ -39,6 +40,10 @@ describe('cardOrderFlow higher-order component', () => {
   it('renders the component', () => {
     expect(component);
     expect(component.find(initialComponent)).toHaveLength(1);
+  });
+
+  it('does not show progress when not loading', () => {
+    expect(component.find(Progress)).toHaveLength(0);
   });
 
   it('renders navigation dots', () => {
