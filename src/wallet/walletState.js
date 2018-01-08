@@ -68,6 +68,7 @@ export type WalletState = {
   currency: string,
   error: ?string,
   activeId: ?number,
+  isLoading: boolean,
 };
 
 export const initialWalletState: WalletState = {
@@ -75,6 +76,7 @@ export const initialWalletState: WalletState = {
   currency: 'EUR',
   error: null,
   activeId: null,
+  isLoading: false,
 };
 
 export default initialWalletState;

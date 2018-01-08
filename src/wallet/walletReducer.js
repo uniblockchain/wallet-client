@@ -11,6 +11,7 @@ const walletReducer = (
     case walletAction.WALLET_FETCH_REQUESTED:
       return {
         ...state,
+        isLoading: true,
         error: null,
       };
 
@@ -18,6 +19,7 @@ const walletReducer = (
       return {
         ...state,
         ...action.wallet,
+        isLoading: false,
         activeId:
           state.activeId ||
           (action.wallet.wallets && action.wallet.wallets[0].id),
@@ -26,6 +28,7 @@ const walletReducer = (
     case walletAction.WALLET_FETCH_FAILED:
       return {
         ...state,
+        isLoading: false,
         error: action.error,
       };
 

@@ -10,6 +10,7 @@ describe('wallet reducer', () => {
     currency: 'EUR',
     error: null,
     activeId: null,
+    isLoading: false,
   };
   const wallet: WalletState = {
     wallets: [
@@ -25,6 +26,7 @@ describe('wallet reducer', () => {
     currency: 'EUR',
     error: null,
     activeId: null,
+    isLoading: false,
   };
 
   const error = 'whoops';
@@ -32,7 +34,7 @@ describe('wallet reducer', () => {
   it('handles wallet fetch request', () => {
     const action = walletActions.walletFetchRequested();
     const newState = walletReducer(currentState, action);
-    expect(newState).toEqual(currentState);
+    expect(newState).toEqual({ ...currentState, isLoading: true });
   });
 
   it('handles wallet fetch success', () => {
