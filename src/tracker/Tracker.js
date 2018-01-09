@@ -1,12 +1,18 @@
 // @flow
 
-import config from 'react-global-configuration';
 import mixpanel from 'mixpanel-browser';
-import { initialize as initializeErrorTracking } from './ErrorTracker';
+import config from 'react-global-configuration';
 import type { UserState } from '../user/userState';
+import { initialize as initializeErrorTracking } from './ErrorTracker';
 
 export const isProduction = (): boolean =>
   (process.env.REACT_APP_ENV || process.env.NODE_ENV) === 'production';
+
+const hasPassword = data =>
+  data &&
+  JSON.stringify(data)
+    .toLowerCase()
+    .includes('password');
 
 export function initialize(): void {
   initializeErrorTracking();
@@ -16,7 +22,7 @@ export function initialize(): void {
 }
 
 export function track(event: string, data: ?Object = undefined): void {
-  if (isProduction()) {
+  if (isProduction() && !hasPassword(data)) {
     mixpanel.track(event, data);
   }
 }

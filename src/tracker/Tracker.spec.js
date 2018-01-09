@@ -2,8 +2,8 @@
 
 import mixpanel from 'mixpanel-browser';
 import config from 'react-global-configuration';
-import type { UserState } from '../user/userState';
 import type { ProfileState } from '../user/profile/profileState';
+import type { UserState } from '../user/userState';
 
 const mockErrorTracker = jest.genMockFromModule('./ErrorTracker');
 jest.mock('./ErrorTracker', () => mockErrorTracker);
@@ -29,7 +29,7 @@ describe('tracker', () => {
         set: jest.fn(),
         increment: jest.fn(),
       };
-
+      mixpanel.track = jest.fn();
       mixpanel.identify = jest.fn();
     });
 
@@ -41,7 +41,8 @@ describe('tracker', () => {
       const event = 'SAMPLE_EVENT';
 
       track(event);
-      expect(mixpanel.track).toHaveBeenCalled();
+
+      expect(mixpanel.track).toHaveBeenCalledTimes(1);
       expect(mixpanel.track).toHaveBeenCalledWith(event, undefined);
     });
 
@@ -50,8 +51,18 @@ describe('tracker', () => {
       const data = { sample: 'data' };
 
       track(event, data);
-      expect(mixpanel.track).toHaveBeenCalled();
+
+      expect(mixpanel.track).toHaveBeenCalledTimes(1);
       expect(mixpanel.track).toHaveBeenCalledWith(event, data);
+    });
+
+    it('never tracks password data', () => {
+      const event = 'SAMPLE_EVENT';
+      const data = { someData: 'password' };
+
+      track(event, data);
+
+      expect(mixpanel.track).not.toHaveBeenCalled();
     });
 
     it('can set user', () => {
