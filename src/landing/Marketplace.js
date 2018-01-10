@@ -1,19 +1,20 @@
 // @flow
 import React from 'react';
-import styled from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
+import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import Waypoint from 'react-waypoint';
-
-import variables from './variables';
-
-import ScrollToTarget from './ScrollToTarget';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import GradientText from './GradientText';
-import NotifyMe from './NotifyMe';
-import MarketplaceVisual from './MarketplaceVisual';
 
 import photo from './img/photo-landing-marketplace.jpg';
+import MarketplaceVisual from './MarketplaceVisual';
+
+import ScrollToTarget from './ScrollToTarget';
+import { Button } from './ui';
+
+import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: -96px;
@@ -220,7 +221,9 @@ class Marketplace extends React.Component<Props, State> {
                         </Body>
                       </FadeTransition>
                       <FadeTransition state={state} delay={450}>
-                        <NotifyMe />
+                        <Link to="/app">
+                          <Button color="gradient">Go to Wallet</Button>
+                        </Link>
                       </FadeTransition>
                     </div>
                   )}

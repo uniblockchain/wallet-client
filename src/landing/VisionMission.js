@@ -1,14 +1,15 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from './variables';
+import Disclaimer from './Disclaimer';
 
 import { GradientText } from './GradientText';
+import { Button } from './ui';
 
-import Disclaimer from './Disclaimer';
-import NotifyMe from './NotifyMe';
+import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: 60px;
@@ -84,7 +85,9 @@ export const VisionMission = () => (
             application in the world.
           </p>
           <CTA>
-            <NotifyMe />
+            <Link to="/app">
+              <Button color="gradient">Go to Wallet</Button>
+            </Link>
           </CTA>
         </Body>
       </Column>
