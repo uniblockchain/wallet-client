@@ -1,23 +1,23 @@
 // @flow
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router';
-import styled from 'styled-components';
 import Waypoint from 'react-waypoint';
-
-import variables from './variables';
-
-import ScrollToTop from './ScrollToTop';
+import styled from 'styled-components';
+import About from './About';
 
 import Arrow from './Arrow';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
-import About from './About';
-import Careers from './Careers';
-import TermsAndConditions from './TermsAndConditions';
 import BetaTerms from './BetaTerms';
-import PrivacyPolicy from './PrivacyPolicy';
+import Careers from './Careers';
+import Footer from './Footer';
+import Header from './Header';
+import Home from './Home';
 import NotifyMeSuccess from './NotifyMeSuccess';
+import PrivacyPolicy from './PrivacyPolicy';
+
+import ScrollToTop from './ScrollToTop';
+import TermsAndConditions from './TermsAndConditions';
+
+import variables from './variables';
 
 const Container = styled.div`
   overflow: hidden;
@@ -42,10 +42,6 @@ class Landing extends React.Component<Props, State> {
 
   componentDidMount() {
     document.title = 'Change – your blockchain-based mobile finance app';
-
-    if (window.pageYOffset > 20) {
-      this.setState({ hasScrolled: true });
-    }
   }
 
   handleWaypointEnter = (props: WaypointProps) => {
@@ -56,7 +52,11 @@ class Landing extends React.Component<Props, State> {
     this.setState({ hasScrolled: true });
   };
 
-  handleWaypointPositionChange = (props: WaypointProps) => {};
+  handleWaypointPositionChange = (props: WaypointProps) => {
+    if (window.pageYOffset > 20) {
+      this.setState({ hasScrolled: true });
+    }
+  };
 
   render() {
     return (
