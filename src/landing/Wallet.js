@@ -116,7 +116,7 @@ class Wallet extends React.Component<Props, State> {
                 <InnerContainer>
                   <FadeTransition state={state} delay={0}>
                     <Highlight>
-                      <GradientText>Launching Q4 2017</GradientText>
+                      <GradientText>Available worldwide</GradientText>
                     </Highlight>
                   </FadeTransition>
                   <FadeTransition state={state} delay={150}>
