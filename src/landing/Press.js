@@ -1,12 +1,6 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-
-import variables from './variables';
-
-import LogoStrip from './LogoStrip';
-
-import logoE27 from './img/press/e27.png';
 import logoABC from './img/press/abc.png';
 import logoAripaev from './img/press/aripaev.png';
 import logoBBC from './img/press/BBC.png';
@@ -14,11 +8,17 @@ import logoBusinessInsider from './img/press/business-insider.png';
 import logoCNA from './img/press/CNA.png';
 import logoCNBC from './img/press/cnbc.png';
 import logoCoinTelegraph from './img/press/coin-telegraph.png';
+
+import logoE27 from './img/press/e27.png';
 import logoEPL from './img/press/epl.png';
 import logoFintechSingapore from './img/press/fintech-singapore.png';
 import logoFoxNews from './img/press/fox-news.png';
 import logoMarketWatch from './img/press/market-watch.png';
 import logoYahooFinance from './img/press/yahoo-finance.png';
+
+import LogoStrip from './LogoStrip';
+
+import variables from './variables';
 
 const Container = styled.div`
   background: ${variables.colorNeutralLightest};
@@ -51,7 +51,7 @@ export const Press = () => (
           name: 'CNBC',
           image: logoCNBC,
           link:
-            'https://www.cnbc.com/video/2017/08/13/smartly-wants-millennials-to-start-investing-.html',
+            'https://www.cnbc.com/video/2017/12/18/riding-cryptocurrencies-to-become-a-major-bank.html?play=1',
         },
         {
           name: 'Business Insider',
@@ -95,7 +95,7 @@ export const Press = () => (
           name: 'Äripäev',
           image: logoAripaev,
           link:
-            'http://www.aripaev.ee/uudised/2016/09/26/eesti-maffia-istutab-idusid-kagu-aasias',
+            'https://www.aripaev.ee/uudised/2018/01/04/eestlased-ehitavad-maailma-suurimat-kruptopanka',
         },
         {
           name: 'Cointelegraph',
