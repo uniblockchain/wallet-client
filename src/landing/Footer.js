@@ -1,12 +1,12 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { Link } from 'react-router-dom';
-
-import variables from './variables';
 
 import SocialIcons from './SocialIcons';
+
+import variables from './variables';
 
 const Container = styled.div`
   padding: 48px 0;
@@ -107,9 +107,9 @@ export const Footer = () => (
         <Item>
           <ItemLink to="/#wallet">Wallet</ItemLink>
         </Item>
-        {/* <Item> */}
-        {/* <ItemLink to="/#card">Card</ItemLink> */}
-        {/* </Item> */}
+        <Item>
+          <ItemLink to="/#card">Card</ItemLink>
+        </Item>
         <Item>
           <ItemLink to="/#marketplace">Marketplace</ItemLink>
         </Item>

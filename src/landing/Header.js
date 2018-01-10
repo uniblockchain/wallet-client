@@ -135,9 +135,9 @@ class Header extends React.Component<Props, State> {
               <NavItem>
                 <NavLink to="/#wallet">Wallet</NavLink>
               </NavItem>
-              {/* <NavItem> */}
-              {/* <NavLink to="/#card">Card</NavLink> */}
-              {/* </NavItem> */}
+              <NavItem>
+                <NavLink to="/#card">Card</NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink to="/#marketplace">Marketplace</NavLink>
               </NavItem>

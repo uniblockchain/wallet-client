@@ -1,16 +1,16 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-
-import variables from './variables';
+import Card from './Card';
+import GlobalMovement from './GlobalMovement';
+import Hero from './Hero';
+import Marketplace from './Marketplace';
+import Press from './Press';
 
 import ScrollToTarget from './ScrollToTarget';
-import Hero from './Hero';
+
+import variables from './variables';
 import Wallet from './Wallet';
-// import Card from './Card';
-import Marketplace from './Marketplace';
-import GlobalMovement from './GlobalMovement';
-import Press from './Press';
 
 const Container = styled.div`
   overflow: hidden;
@@ -23,7 +23,7 @@ export const Home = () => (
     <Container>
       <Hero />
       <Wallet />
-      {/* <Card /> */}
+      <Card />
       <Marketplace />
       <GlobalMovement />
       <Press />

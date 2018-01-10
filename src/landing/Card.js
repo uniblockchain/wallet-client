@@ -233,7 +233,7 @@ class Card extends React.Component<Props, State> {
                     <div>
                       <FadeTransition state={state} delay={0}>
                         <Highlight>
-                          <GradientText>Shipping Q1 2018</GradientText>
+                          <GradientText>Available soon</GradientText>
                         </Highlight>
                       </FadeTransition>
                       <FadeTransition state={state} delay={150}>
@@ -248,7 +248,7 @@ class Card extends React.Component<Props, State> {
                             currency. You can load the card with fiat currency
                             that you receive in exchange for your virtual
                             currency.
-                          </Disclaimer>
+                          </Disclaimer>{' '}
                           seamlessly, with government level security.
                         </Body>
                       </FadeTransition>

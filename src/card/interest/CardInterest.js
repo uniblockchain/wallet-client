@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import {
   Header,
-  SubHeader,
-  PrimaryButton,
   Modal,
+  PrimaryButton,
+  SubHeader,
   WrappedContent,
 } from '../../ui';
-import cardInterestApi from './cardInterestApi';
 import plastic from '../img/plastic.png';
+import cardInterestApi from './cardInterestApi';
 
 const StyledContent = styled(WrappedContent)`
   background-color: #e5f9f3;
@@ -70,7 +70,7 @@ export class CardInterest extends Component<Props, State> {
     return (
       <StyledContent>
         <StyledHeader>Change Card is coming.</StyledHeader>
-        <StyledSubHeader>First cards will be shipped Q4 2017</StyledSubHeader>
+        <StyledSubHeader>First cards will be shipped soon.</StyledSubHeader>
         <div>
           <OrderButton onClick={handleClick}>Notify me</OrderButton>
         </div>
