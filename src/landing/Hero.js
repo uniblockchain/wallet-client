@@ -16,7 +16,7 @@ import background from './img/background-home.jpg';
 const Container = styled.div`
   text-align: center;
   position: relative;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
   margin-bottom: 60px;
   padding: 72px 0;
@@ -154,7 +154,7 @@ class Hero extends React.Component<Props, State> {
                 <WordsHeading>
                   <GradientText>Change the way you</GradientText>
                 </WordsHeading>
-                <HeroWords words={['invest', 'pay', 'live', 'bank']} />
+                <HeroWords words={['invest', 'pay', 'insure', 'live']} />
               </WordsTransition>
             )}
           </Transition>

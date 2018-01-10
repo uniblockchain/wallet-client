@@ -100,7 +100,7 @@ export const Token = () => (
           <Body>
             <p>
               More than just a company, Change is a movement of people who will
-              not settle for an average banking experience.
+              not settle for how banks currently operate.
             </p>
           </Body>
         </Column>

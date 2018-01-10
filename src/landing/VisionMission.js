@@ -7,6 +7,7 @@ import variables from './variables';
 
 import { GradientText } from './GradientText';
 
+import Disclaimer from './Disclaimer';
 import NotifyMe from './NotifyMe';
 
 const Container = styled.div`
@@ -53,8 +54,6 @@ const Heading = styled.div`
 const Body = styled.div`
   font-family: ${variables.fontSecondary};
   color: ${variables.colorNeutralDark};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
-  `};
   p {
     margin-bottom: 12px;
     ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
@@ -78,7 +77,12 @@ export const VisionMission = () => (
           <GradientText>Vision</GradientText>
         </Heading>
         <Body>
-          <p>To be the most exciting banking application in the world.</p>
+          <p>
+            To be the most exciting banking<Disclaimer>
+              After acquiring a banking license
+            </Disclaimer>{' '}
+            application in the world.
+          </p>
           <CTA>
             <NotifyMe />
           </CTA>
@@ -94,7 +98,7 @@ export const VisionMission = () => (
             enabling payments, transfers, and investments worldwide.
           </p>
           <p>
-            Change is set to simplify and modernise retail banking, focusing on
+            Change is set to simplify and modernise mobile finance, focusing on
             security, efficiency, and equal access to opportunities.
           </p>
         </Body>

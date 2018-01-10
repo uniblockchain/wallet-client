@@ -34,7 +34,12 @@ const Icon = styled.div`
   position: absolute;
   bottom: 24px;
   right: 24px;
-  height: 96px;
+  height: 72px;
+  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    bottom: 30px;
+    right: 30px;
+    height: 96px;
+  `};
 `;
 
 const IconImage = styled.img`

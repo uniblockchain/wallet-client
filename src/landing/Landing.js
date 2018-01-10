@@ -8,6 +8,7 @@ import variables from './variables';
 
 import ScrollToTop from './ScrollToTop';
 
+import Arrow from './Arrow';
 import Header from './Header';
 import Footer from './Footer';
 import Home from './Home';
@@ -24,7 +25,9 @@ const Container = styled.div`
   background: ${variables.colorWhite};
 `;
 
-type Props = {};
+type Props = {
+  location: Object,
+};
 
 type State = {
   hasScrolled: boolean,
@@ -38,6 +41,8 @@ class Landing extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    document.title = 'Change – your blockchain-based mobile finance app';
+
     if (window.pageYOffset > 20) {
       this.setState({ hasScrolled: true });
     }
@@ -76,6 +81,10 @@ class Landing extends React.Component<Props, State> {
           </Switch>
 
           <Footer />
+
+          {this.props.location.pathname === '/' && (
+            <Arrow to="/#card" isHidden={this.state.hasScrolled} />
+          )}
         </Container>
       </ScrollToTop>
     );

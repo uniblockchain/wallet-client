@@ -11,6 +11,7 @@ import ScrollToTarget from './ScrollToTarget';
 import GradientText from './GradientText';
 import NotifyMe from './NotifyMe';
 import PlasticCard from './PlasticCard';
+import Disclaimer from './Disclaimer';
 
 import photo from './img/photo-landing-card.jpg';
 
@@ -107,6 +108,9 @@ const PlasticContainer = styled.div`
   justify-content: center;
   position: relative;
   top: -60px;
+  @media (max-width: 340px) {
+    transform: scale(0.9);
+  }
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     position: absolute;
     top: auto;
@@ -236,8 +240,15 @@ class Card extends React.Component<Props, State> {
                       </FadeTransition>
                       <FadeTransition state={state} delay={300}>
                         <Body>
-                          Start converting your virtual currencies seamlessly,
-                          with bank level security.
+                          Start converting your virtual currencies<Disclaimer>
+                            The prepaid card is denominated in fiat currency
+                            (USD, EUR, GBP). It can only be loaded with fiat
+                            currency and only facilitates spending in fiat
+                            currency. You can load the card with fiat currency
+                            that you receive in exchange for your virtual
+                            currency.
+                          </Disclaimer>
+                          seamlessly, with government level security.
                         </Body>
                       </FadeTransition>
                       <FadeTransition state={state} delay={450}>

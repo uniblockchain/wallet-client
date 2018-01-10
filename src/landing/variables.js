@@ -37,6 +37,7 @@ export const variables = {
   boxShadowNeutralNormal: '0 6px 24px rgba(0, 0, 0, 0.1)',
   boxShadowNeutralLarge: '0 12px 48px rgba(0, 0, 0, 0.1)',
 
+  zIndexArrow: 1000,
   zIndexHeader: 1000,
   zIndexHeroBackground: 10,
   zIndexHeroDevice: 20,
@@ -54,6 +55,7 @@ export const variables = {
   zIndexMarketplaceVisualDeviceCards: 250,
   zIndexMarketplaceVisualDeviceCardContainer: 260,
   zIndexMarketplaceVisualDeviceCardContainerActive: 261,
+  zIndexDisclaimer: 2000,
 };
 
 export default variables;

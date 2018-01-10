@@ -9,7 +9,7 @@ import variables from './variables';
 import MobileDevice from './MobileDevice';
 import MarketplaceCard from './MarketplaceCard';
 
-import svgScreenshot from './img/screenshot-marketplace.svg';
+import screenshot from './img/screenshot-marketplace.png';
 
 import svgCredit from './img/marketplace/credit.svg';
 import svgInsurance from './img/marketplace/insurance.svg';
@@ -241,7 +241,7 @@ class MarketplaceVisual extends React.Component<Props, State> {
               </Transition>
             ))}
           </DeviceCards>
-          <MobileDevice image={svgScreenshot} />
+          <MobileDevice image={screenshot} />
         </DeviceContainer>
         <CardSlots>
           {this.props.cards.map((card, i) => (

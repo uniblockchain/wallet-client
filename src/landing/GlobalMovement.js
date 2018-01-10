@@ -152,11 +152,12 @@ class GlobalMovement extends React.Component<Props, State> {
             <Body>
               <p>
                 In 2017, over 5600 individuals got together to demand a better
-                banking experience.
+                alternative to current banking.
               </p>
               <p>
-                Change is set to build a more exciting bank that includes
-                cryptocurrencies and an investment marketplace.
+                Change is set to build a more exciting mobile finance
+                application that includes cryptocurrencies and an investment
+                marketplace.
               </p>
             </Body>
             <NavButton to="/about" color="gradient">

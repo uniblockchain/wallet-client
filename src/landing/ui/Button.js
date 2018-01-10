@@ -82,6 +82,7 @@ const Button = styled(ButtonBase)`
   }
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     &:hover {
+      opacity: .9;
       background: ${props => getBackgroundHover(props.color)};
     }
     &:active {

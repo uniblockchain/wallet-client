@@ -137,8 +137,12 @@ export const Footer = () => (
 
       <CompanyContainer>
         <Company>All Rights Reserved © Lion Capital OÜ</Company>
-        <LegalLink to="/legal/privacy-policy">Privacy policy</LegalLink>
-        <LegalLink to="/legal/terms">Terms & conditions</LegalLink>
+        <LegalLink style={{ display: 'none' }} to="/legal/privacy-policy">
+          Privacy policy
+        </LegalLink>
+        <LegalLink style={{ display: 'none' }} to="/legal/terms">
+          Terms & conditions
+        </LegalLink>
       </CompanyContainer>
     </InnerContainer>
   </Container>
