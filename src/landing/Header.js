@@ -1,15 +1,15 @@
 // @flow
 import React from 'react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { Link } from 'react-router-dom';
 
-import variables from './variables';
+import Logo from './Logo';
 
 import { NavButton } from './ui';
 
-import Logo from './Logo';
+import variables from './variables';
 
 const Container = styled.div`
   overflow: hidden;
@@ -155,7 +155,7 @@ class Header extends React.Component<Props, State> {
                 </NavLink>
               </NavItem>
               <NavItem marginLeft>
-                <NavButton to="/#wallet" color="blue" size="small">
+                <NavButton to="/app" color="blue" size="small">
                   Sign up
                 </NavButton>
               </NavItem>
@@ -165,7 +165,7 @@ class Header extends React.Component<Props, State> {
           <MobileNav>
             <Nav>
               <NavItem>
-                <NavButton to="/#wallet" color="blue" size="small">
+                <NavButton to="/app" color="blue" size="small">
                   Sign up
                 </NavButton>
               </NavItem>
