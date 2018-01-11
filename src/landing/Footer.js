@@ -78,7 +78,7 @@ const Company = styled.div`
   `};
 `;
 
-const LegalLink = styled(Link)`
+const LegalLink = styled.a`
   color: ${variables.colorNeutralLight};
   font-size: ${variables.fontSizeSmall};
   text-decoration: none;
@@ -137,10 +137,11 @@ export const Footer = () => (
 
       <CompanyContainer>
         <Company>All Rights Reserved © Lion Capital OÜ</Company>
-        <LegalLink style={{ display: 'none' }} to="/legal/privacy-policy">
-          Privacy policy
-        </LegalLink>
-        <LegalLink style={{ display: 'none' }} to="/legal/terms">
+        <LegalLink
+          href="Change.Terms.and.Conditions.2017-12-28.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Terms & conditions
         </LegalLink>
       </CompanyContainer>
