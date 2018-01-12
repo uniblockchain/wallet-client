@@ -2,14 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-
-import variables from './variables';
-
-import LogoStrip from './LogoStrip';
 import { GradientText } from './GradientText';
+import logoBibox from './img/exchanges/bibox.png';
 
 import logoKuCoin from './img/exchanges/kucoin.png';
+import logoOkex from './img/exchanges/okex.png';
 import logoYoBit from './img/exchanges/yobit.png';
+
+import LogoStrip from './LogoStrip';
+
+import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: 1px;
@@ -120,6 +122,8 @@ export const Token = () => (
         items={[
           { name: 'KuCoin', image: logoKuCoin, link: 'https://kucoin.com/' },
           { name: 'YoBit', image: logoYoBit, link: 'https://yobit.net/en/' },
+          { name: 'Bibox', image: logoBibox, link: 'https://www.bibox.com/' },
+          { name: 'Okex', image: logoOkex, link: 'https://www.okex.com/' },
         ]}
       />
     </InnerContainer>
