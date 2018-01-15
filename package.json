@@ -43,6 +43,7 @@
     "redux-saga-routines": "^2.2.2",
     "reselect": "^3.0.1",
     "slick-carousel": "^1.8.1",
+    "string.prototype.includes": "^1.0.0",
     "styled-components": "^2.2.2",
     "styled-components-breakpoint": "^1.0.1"
   },
