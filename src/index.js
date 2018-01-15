@@ -11,9 +11,9 @@ import { ConnectedFlagsProvider } from 'flag';
 import { Switch, Route, withRouter } from 'react-router';
 import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
+import './polyfills';
 import './initialize';
 import { history, store } from './redux/reduxStore';
-import './polyfills';
 import App from './App';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';
