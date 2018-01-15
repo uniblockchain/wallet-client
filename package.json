@@ -16,7 +16,7 @@
     "mixpanel-browser": "^2.14.0",
     "moment-es6": "^1.0.0",
     "number-to-locale-string": "^1.0.1",
-    "raven-js": "^3.19.1",
+    "raven-js": "^3.22.0",
     "react": "^16.0.0",
     "react-animations": "^1.0.0",
     "react-chartjs-2": "^2.6.4",
