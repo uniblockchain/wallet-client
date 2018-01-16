@@ -143,15 +143,23 @@ describe('Transaction details component', () => {
       );
     });
 
+    const valueField = (valueCrypto: number, valueFiat: number) => {
+      return (
+        <Field>
+          {valueCrypto} (<FiatValue inline value={valueFiat} />)
+        </Field>
+      );
+    };
+
     it('renders transaction amount with fee', () => {
       expect(component).toContainReact(<Label>AMOUNT WITH FEE</Label>);
       expect(component).toContainReact(
-        <Field>
-          {Math.abs(sentTransactionInput.valueCrypto)} (<FiatValue
-            inline
-            value={Math.abs(sentTransactionInput.valueFiat)}
-          />)
-        </Field>,
+        valueField(
+          Math.abs(sentTransactionInput.valueCrypto) +
+            sentTransactionInput.feeCrypto,
+          Math.abs(sentTransactionInput.valueFiat) +
+            sentTransactionInput.feeFiat,
+        ),
       );
     });
   });

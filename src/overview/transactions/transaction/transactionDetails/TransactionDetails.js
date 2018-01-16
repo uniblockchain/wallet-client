@@ -63,11 +63,11 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
   const valueWalletCurrency = Math.abs(value);
 
   const sending = value < 0;
-  const netValueWalletCurrency = sending
-    ? valueWalletCurrency - feeWalletCurrency
+  const valueWithFeeWalletCurrency = sending
+    ? valueWalletCurrency + feeWalletCurrency
     : valueWalletCurrency;
-  const netValueRepresentationCurrency = sending
-    ? valueRepresentationCurrency - feeRepresentationCurrency
+  const valueWithFeeRepresentationCurrency = sending
+    ? valueRepresentationCurrency + feeRepresentationCurrency
     : valueRepresentationCurrency;
 
   return (
@@ -75,20 +75,20 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
       <Modal onConfirm={onConfirm}>
         {sending ? <Label>SENT</Label> : <Label>RECEIVED</Label>}
         <Amount alt>
-          {netValueWalletCurrency.toFixed(6)} {transaction.currency}
+          {valueWalletCurrency.toFixed(6)} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
         <StatusField>{transaction.status}</StatusField>
         <Label>CURRENT VALUE</Label>
         <Field>
-          <FiatValue inline value={netValueRepresentationCurrency} />
+          <FiatValue inline value={valueRepresentationCurrency} />
         </Field>
         {sending && <Label>AMOUNT WITH FEE</Label>}
         {sending && (
           <Field>
-            {valueWalletCurrency} (<FiatValue
+            {valueWithFeeWalletCurrency} (<FiatValue
               inline
-              value={valueRepresentationCurrency}
+              value={valueWithFeeRepresentationCurrency}
             />)
           </Field>
         )}
