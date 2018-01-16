@@ -136,7 +136,7 @@ export const Footer = () => (
       </SocialContainer>
 
       <CompanyContainer>
-        <Company>All Rights Reserved © Lion Capital OÜ</Company>
+        <Company>All Rights Reserved © Change Technologies OÜ</Company>
         <LegalLink
           href="Change.Terms.and.Conditions.2017-12-28.pdf"
           target="_blank"
