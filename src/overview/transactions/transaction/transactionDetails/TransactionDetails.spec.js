@@ -28,7 +28,6 @@ describe('Transaction details component', () => {
       status: 'COMPLETE',
       date: new Date(),
       currency: 'ETH',
-      entries: [],
       fee: [
         {
           currency: 'ETH',

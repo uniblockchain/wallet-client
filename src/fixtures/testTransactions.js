@@ -21,19 +21,6 @@ export const testEntriesValue: MonetaryValues = [
   },
 ];
 
-export const testEntries: Array<TransactionEntry> = [
-  {
-    address: '0x1be74bc35c5b9e95ebaa40ac7a35cccd0f52f5a1',
-    value: testEntriesValue,
-    currentWallet: true,
-  },
-  {
-    address: '0x3c12ae77e4ff9f1f50fe53880d3b62f4a3e8a4ec',
-    value: testEntriesValue,
-    currentWallet: false,
-  },
-];
-
 export const testTransactions: Array<Transaction> = [
   {
     id: '59de0dc0bf519ed707b12cb7caf746a2',
@@ -42,7 +29,6 @@ export const testTransactions: Array<Transaction> = [
     fee: testBalance,
     value: testBalance,
     address: '0x51720690acf7469f9cac4362bd4440ec3ee44550',
-    entries: testEntries,
     currency: 'ETH',
   },
   {
@@ -52,7 +38,6 @@ export const testTransactions: Array<Transaction> = [
     fee: testBalance,
     value: testBalance,
     address: '0x51720690acf7469f9cac4362bd4440ec3ee44550',
-    entries: testEntries,
     currency: 'ETH',
   },
 ];
