@@ -53,29 +53,30 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
     transaction.fee,
     transaction.currency,
   );
-  const valueRepresentationCurrency = Math.abs(
-    walletCurrencyValueResolver.resolve(transaction.value),
+  const valueRepresentationCurrency = walletCurrencyValueResolver.resolve(
+    transaction.value,
   );
   const value = walletCurrencyValueResolver.resolve(
     transaction.value,
     transaction.currency,
   );
-  const valueWalletCurrency = Math.abs(value);
+  const absValueWalletCurrency = Math.abs(value);
+  const absValueRepresentationCurrency = Math.abs(valueRepresentationCurrency);
 
   const sending = value < 0;
   const valueWithFeeWalletCurrency = sending
-    ? valueWalletCurrency + feeWalletCurrency
-    : valueWalletCurrency;
+    ? absValueWalletCurrency + feeWalletCurrency
+    : absValueWalletCurrency;
   const valueWithFeeRepresentationCurrency = sending
-    ? valueRepresentationCurrency + feeRepresentationCurrency
-    : valueRepresentationCurrency;
+    ? absValueRepresentationCurrency + feeRepresentationCurrency
+    : absValueRepresentationCurrency;
 
   return (
     <div>
       <Modal onConfirm={onConfirm}>
         {sending ? <Label>SENT</Label> : <Label>RECEIVED</Label>}
         <Amount alt>
-          {valueWalletCurrency.toFixed(6)} {transaction.currency}
+          {absValueWalletCurrency.toFixed(6)} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
         <StatusField>{transaction.status}</StatusField>
