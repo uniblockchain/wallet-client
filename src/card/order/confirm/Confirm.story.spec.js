@@ -1,10 +1,7 @@
 // @flow
 
-import React from 'react';
-import jest from 'jest-mock';
 import { shallow } from 'enzyme';
-import { Confirm } from './Confirm';
-import cardOrderFlow from '../cardOrderFlow';
+import React from 'react';
 import {
   beforeEach,
   describe,
@@ -12,7 +9,8 @@ import {
   specs,
   storiesOf,
 } from '../../../../.storybook/facade';
-import { testWallets, testFee } from '../../../fixtures';
+import cardOrderFlow from '../cardOrderFlow';
+import { Confirm } from './Confirm';
 
 storiesOf('Card Ordering', module).add('Confirm', () => {
   specs(() =>
@@ -20,11 +18,8 @@ storiesOf('Card Ordering', module).add('Confirm', () => {
       let component;
 
       const props = {
-        wallet: testWallets,
-        fee: testFee,
         activeWalletId: 1,
-        handleSubmit: jest.fn(),
-        error: undefined,
+        confirm: jest.fn(),
       };
 
       beforeEach(() => {

@@ -1,31 +1,25 @@
 // @flow
 import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
 import type RoutineAction from 'redux-saga-routines';
-import { SubmissionError } from 'redux-form';
+import { push } from 'react-router-redux';
 import confirmRoutine from './confirmRoutine';
 import cardOrderApi from '../cardOrderApi';
+import { routes } from '../../../router';
 
 export function* createOrder(walletId: number): Generator<IOEffect, void, *> {
   try {
     yield call(cardOrderApi.createOrder, walletId);
     yield put(confirmRoutine.success());
+    yield put(push(routes.CARD));
   } catch (error) {
-    yield put(
-      confirmRoutine.failure(
-        new SubmissionError({
-          _error:
-            error.body.message ||
-            'Oops! Something went wrong, please try again later.',
-        }),
-      ),
-    );
+    yield put(confirmRoutine.failure(error));
     console.error(error);
   }
 }
 
 function* validate(action: RoutineAction): Generator<IOEffect, void, *> {
-  const { wallet } = action.payload.values;
-  yield call(createOrder, wallet);
+  const walletId = action.payload;
+  yield call(createOrder, walletId);
   yield put(confirmRoutine.fulfill());
 }
 

@@ -54,10 +54,7 @@ export class Intro extends Component<any, State> {
             </Bulletpoint>
           </li>
           <li>
-            <Bulletpoint alt>
-              The card ordering fee is 9€,&nbsp; which will be charged in the
-              equivalent value of your selected cryptocurrency.
-            </Bulletpoint>
+            <Bulletpoint alt>The card ordering is free.</Bulletpoint>
           </li>
         </ul>
         <Link to={CARD_ORDER_PROFILE_ROUTE}>
