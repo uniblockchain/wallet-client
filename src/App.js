@@ -28,6 +28,12 @@ const SubHeader = styled.h2`
   margin-top: 20px;
 `;
 
+const ErrorMessage = styled.h3`
+  margin-top: 20px;
+  font-size: 20px;
+  color: #ff0000d6;
+`;
+
 const SignupButton = styled(PrimaryButton)`
   background-color: #00346b;
 `;
@@ -45,6 +51,10 @@ export const App = ({ authenticated }: Props) => {
       <Top>
         <Header>Change is a free digital wallet.</Header>
         <SubHeader>Get started with cryptocurrencies. Easily.</SubHeader>
+        <ErrorMessage>
+          The Change wallet is under heavy load. We are experiencing technical
+          difficulties and are currently working on fixing them.
+        </ErrorMessage>
       </Top>
       <Bottom>
         <Link to="/signup">
