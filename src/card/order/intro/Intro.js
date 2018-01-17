@@ -15,6 +15,10 @@ const Bulletpoint = styled(Paragraph)`
   font-size: 14px;
 `;
 
+type State = {
+  ordered: ?boolean,
+};
+
 export class Intro extends Component<any, State> {
   state = {
     ordered: false,
