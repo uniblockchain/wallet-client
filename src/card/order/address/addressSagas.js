@@ -44,37 +44,6 @@ export function* createOrUpdateAddress(
   }
 }
 
-const allowedCountries = [
-  'AT',
-  'BE',
-  'BG',
-  'CY',
-  'CZ',
-  'DE',
-  'DK',
-  'EE',
-  'ES',
-  'FI',
-  'FR',
-  'GB',
-  'GR',
-  'HR',
-  'HU',
-  'IE',
-  'IT',
-  'LT',
-  'LU',
-  'LV',
-  'MT',
-  'NL',
-  'PL',
-  'PT',
-  'RO',
-  'SE',
-  'SI',
-  'SK',
-];
-
 function getFormErrors(values: AddressForm) {
   const errors = {};
   if (!values.streetAddress) {
@@ -95,8 +64,6 @@ function getFormErrors(values: AddressForm) {
     errors.country = 'Country is empty!';
   } else if (!countryCode) {
     errors.country = 'Unknown country!';
-  } else if (allowedCountries.indexOf(countryCode) === -1) {
-    errors.country = 'Country must be in European Union';
   }
 
   return errors;
