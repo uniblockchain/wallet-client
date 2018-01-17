@@ -11,7 +11,7 @@ export type Props = {
 
 export const Login = (props: Props) => {
   if (props.authenticated) {
-    return <AppRouter overview />;
+    return <AppRouter cardOrderFlow />;
   }
   return <LoginForm />;
 };

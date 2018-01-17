@@ -15,6 +15,10 @@ import Done from './done';
 import { IdVerification } from './verification';
 import { pageReducer } from '../../page';
 
+jest.mock('./cardOrderApi', () => ({
+  hasOrder: jest.fn(() => Promise.resolve(false)),
+}));
+
 describe('cardOrderFlow higher-order component', () => {
   let component;
   let store;
