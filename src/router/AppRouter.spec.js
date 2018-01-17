@@ -11,6 +11,8 @@ describe('app router', () => {
   const props = {
     wallet: true,
     overview: null,
+    cardOrderFlow: null,
+    card: null,
   };
 
   beforeEach(() => {

@@ -8,6 +8,10 @@ import { PrimaryButton, Button } from '../../../ui';
 import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 import { routes } from '../../../router';
 
+jest.mock('../cardOrderApi', () => ({
+  hasOrder: jest.fn(() => Promise.resolve(false)),
+}));
+
 describe('Card ordering flow Intro', () => {
   let component;
 
@@ -32,7 +36,7 @@ describe('Card ordering flow Intro', () => {
     expect(
       component
         .find(Link)
-        .find({ to: routes.BASE })
+        .find({ to: routes.LOGOUT })
         .find(Button).length,
     ).toBe(1);
   });
