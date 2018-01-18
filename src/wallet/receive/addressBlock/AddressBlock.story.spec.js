@@ -18,24 +18,6 @@ import { Wallet } from '../../walletState';
 import { testWallet } from '../../../fixtures';
 
 storiesOf('Components', module).add('Address Block', () => {
-  const wallet: WalletType = {
-    id: 1,
-    currency: 'BTC',
-    address: '',
-    transactions: [],
-    receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
-    balance: [
-      {
-        value: 0.19890018,
-        currency: 'BTC',
-      },
-      {
-        value: 1257.71,
-        currency: 'EUR',
-      },
-    ],
-  };
-
   specs(() =>
     describe('Address Block', () => {
       let component;
@@ -54,12 +36,12 @@ storiesOf('Components', module).add('Address Block', () => {
       });
 
       it('renders deposit hero', () => {
-        expect(component).toContainReact(<h1>Receive Bitcoin</h1>);
+        expect(component).toContainReact(<h1>Receive Ether</h1>);
       });
 
       it('renders deposit address intro', () => {
         const header = component.find('AddressHeader');
-        expect(header.render().text()).toBe('Your Bitcoin address');
+        expect(header.render().text()).toBe('Your Ether address');
       });
 
       it('renders copying button', () => {
@@ -85,7 +67,6 @@ storiesOf('Components', module).add('Address Block', () => {
           id: 1,
           address: 'sampleAddress',
           currency: 'LTC',
-          balance: [],
           receiveAddress: 'QVS6ZCF7zcqqXfEDzGPtzaAvcvUaJpegV5',
           transactions: [],
         };
@@ -133,5 +114,5 @@ storiesOf('Components', module).add('Address Block', () => {
     }),
   );
 
-  return <AddressBlock wallet={new Wallet(wallet)} onCopy={action('copy')} />;
+  return <AddressBlock wallet={testWallet} onCopy={action('copy')} />;
 });

@@ -19,7 +19,6 @@ describe('wallet reducer', () => {
         address: '59dcc2c2e2d55fcb075e09e8dc5d2723',
         currency: 'ETH',
         transactions: [],
-        balance: [],
         receiveAddress: '0xlolwat',
       }),
     ],

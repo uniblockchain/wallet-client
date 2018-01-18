@@ -61,7 +61,6 @@ describe('Transactions component', () => {
       id: 1,
       address: 'sampleAddress',
       currency: 'EUR',
-      balance: [],
       receiveAddress: 'sampleReceiveAddress',
       transactions,
     };

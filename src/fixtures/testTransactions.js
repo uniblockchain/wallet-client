@@ -1,24 +1,9 @@
 // @flow
-import type {
-  MonetaryValues,
-  Transaction,
-  TransactionEntry,
-} from '../wallet/walletState';
+import type { MonetaryValues, Transaction } from '../wallet/walletState';
 
 export const testBalance: MonetaryValues = [
   { currency: 'ETH', value: 0.9 },
   { currency: 'EUR', value: 227.9376254547 },
-];
-
-export const testEntriesValue: MonetaryValues = [
-  {
-    currency: 'ETH',
-    value: -0.9,
-  },
-  {
-    currency: 'EUR',
-    value: -250.332,
-  },
 ];
 
 export const testTransactions: Array<Transaction> = [

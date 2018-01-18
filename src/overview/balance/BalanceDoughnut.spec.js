@@ -4,28 +4,23 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Wallet } from '../../wallet/walletState';
 import { BalanceDoughnut } from './BalanceDoughnut';
+import { testWallet } from '../../fixtures';
 
 describe('Balance Doughnut component', () => {
   let component;
 
   const props = {
     wallets: [],
+    currency: 'ETH',
   };
 
-  const walletWithBalance = (value: number, currency: string): Wallet =>
-    new Wallet({
-      id: 1,
-      address: '0xlolz0rz',
-      currency: 'ETH',
-      balance: [
-        {
-          value,
-          currency,
-        },
-      ],
-      transactions: [],
-      receiveAddress: '0xlolw0t',
-    });
+  const walletWithoutBalance = new Wallet({
+    id: 1,
+    address: '0xlolz0rz',
+    currency: 'ETH',
+    transactions: [],
+    receiveAddress: '0xlolw0t',
+  });
 
   beforeEach(() => {
     component = shallow(<BalanceDoughnut {...props} />);
@@ -36,13 +31,10 @@ describe('Balance Doughnut component', () => {
   });
 
   it('calculates the total balance in fiat currency', () => {
-    const wallets: Array<Wallet> = [
-      walletWithBalance(300, 'EUR'),
-      walletWithBalance(200, 'EUR'),
-    ];
+    const wallets: Array<Wallet> = [testWallet, walletWithoutBalance];
 
     const balanceDoughnut: BalanceDoughnut = component.instance();
 
-    expect(balanceDoughnut.getTotalBalance(wallets)).toEqual(300 + 200);
+    expect(balanceDoughnut.getTotalBalance(wallets, 'ETH')).toEqual(1.8);
   });
 });

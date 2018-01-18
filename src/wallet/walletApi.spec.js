@@ -2,7 +2,7 @@
 
 import config from 'react-global-configuration';
 import type { WalletType } from './walletState';
-import { testWallet, testBalance } from '../fixtures';
+import { testWallet } from '../fixtures';
 
 jest.mock('../http');
 
@@ -25,8 +25,6 @@ describe('wallet api', () => {
 
     return walletApi.fetchWallet().then(response => {
       const firstWallet = response.wallets[0];
-
-      expect(firstWallet.balance).toEqual(testBalance);
 
       const firstTransaction = response.wallets[0].transactions[0];
       expect(firstTransaction).toEqual({

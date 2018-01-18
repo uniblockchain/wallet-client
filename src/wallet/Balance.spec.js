@@ -1,7 +1,6 @@
 // @flow
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Wallet } from './walletState';
 import {
   Balance,
   BalanceDiv,
@@ -9,36 +8,19 @@ import {
   FiatBalance,
   type Props,
 } from './Balance';
+import { testWallet } from '../fixtures';
 
 describe('Balance component', () => {
   let component;
 
   const currency = 'EUR';
 
-  const wallet = new Wallet({
-    id: 1,
-    currency: 'BTC',
-    address: '',
-    transactions: [],
-    receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
-    balance: [
-      {
-        value: 0.19890018,
-        currency: 'BTC',
-      },
-      {
-        value: 1257.71,
-        currency,
-      },
-    ],
-  });
-
   let props: Props;
 
   beforeEach(() => {
     props = {
       currency,
-      wallet,
+      wallet: testWallet,
     };
     component = shallow(<Balance {...props} />);
   });
@@ -48,18 +30,14 @@ describe('Balance component', () => {
   });
 
   it('renders a balance title', () => {
-    expect(component.contains(<BalanceTitle>Balance</BalanceTitle>)).toEqual(
-      true,
-    );
+    expect(component).toContainReact(<BalanceTitle>Balance</BalanceTitle>);
   });
 
   it('renders a correctly formatted crypto balance', () => {
-    expect(component.contains(<BalanceDiv>0.198900</BalanceDiv>)).toEqual(true);
+    expect(component).toContainReact(<BalanceDiv>1.800000</BalanceDiv>);
   });
 
   it('renders a correctly fiat balance', () => {
-    expect(component.contains(<FiatBalance>~ €1,257.71</FiatBalance>)).toEqual(
-      true,
-    );
+    expect(component).toContainReact(<FiatBalance>~ €455.88</FiatBalance>);
   });
 });

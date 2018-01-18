@@ -7,12 +7,12 @@ import { Doughnut, Chart } from 'react-chartjs-2';
 import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
 
-import walletCurrencyValueResolver from '../../wallet/walletCurrencyValueResolver';
-import type { Wallet } from '../../wallet/walletState';
+import { Wallet } from '../../wallet/walletState';
 import withWallet from '../../wallet/withWallet';
 
 type Props = {
   wallets: Array<Wallet>,
+  currency: string,
 };
 
 // Ugly AF, but it works.
@@ -51,9 +51,9 @@ Chart.helpers.extend(Chart.controllers.doughnut.prototype, {
 
 export class BalanceDoughnut extends Component<Props> {
   getData() {
-    const { wallets } = this.props;
-    const walletBalances = this.getBalances(wallets);
-    const totalWalletBalance = this.getTotalBalance(wallets);
+    const { wallets, currency } = this.props;
+    const walletBalances = this.getBalances(wallets, currency);
+    const totalWalletBalance = this.getTotalBalance(wallets, currency);
 
     // a hack that makes sure the dougnut is rendered even if all datapoints are 0
     if (totalWalletBalance <= 0 && walletBalances.length > 0) {
@@ -74,8 +74,8 @@ export class BalanceDoughnut extends Component<Props> {
   }
 
   getOptions() {
-    const { wallets } = this.props;
-    const totalBalance = this.getTotalBalance(wallets);
+    const { wallets, currency } = this.props;
+    const totalBalance = this.getTotalBalance(wallets, currency);
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -89,12 +89,8 @@ export class BalanceDoughnut extends Component<Props> {
       tooltips: {
         callbacks: {
           label(tooltipItem: Object, data: Object) {
-            const wallet: Wallet = data.wallets[tooltipItem.index];
-            const walletValue = walletCurrencyValueResolver.resolve(
-              wallet.balance,
-              wallet.currency,
-            );
-            return `${walletValue.toFixed(6)} ${wallet.currency}`;
+            const wallet: Wallet = new Wallet(data.wallets[tooltipItem.index]);
+            return `${wallet.getBalance().toFixed(6)} ${wallet.currency}`;
           },
         },
       },
@@ -105,14 +101,14 @@ export class BalanceDoughnut extends Component<Props> {
     };
   }
 
-  getBalances(wallets: Array<Wallet>) {
+  getBalances(wallets: Array<Wallet>, currency: string) {
     return wallets.map((wallet: Wallet) =>
-      walletCurrencyValueResolver.resolve(wallet.balance),
+      new Wallet(wallet).getRepresentationalBalance(currency),
     );
   }
 
-  getTotalBalance(wallets: Array<Wallet>) {
-    const walletBalances = this.getBalances(wallets);
+  getTotalBalance(wallets: Array<Wallet>, currency: string) {
+    const walletBalances = this.getBalances(wallets, currency);
     return walletBalances.reduce(
       (balance1, balance2) => balance1 + balance2,
       0,
@@ -141,6 +137,7 @@ export class BalanceDoughnut extends Component<Props> {
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   wallets: state.wallet ? state.wallet.wallets : [],
+  currency: state.wallet ? state.wallet.currency : undefined,
 });
 
 export default withWallet(connect(mapStateToProps)(BalanceDoughnut));

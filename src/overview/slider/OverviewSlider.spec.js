@@ -5,32 +5,14 @@ import { shallow } from 'enzyme';
 import type { Props } from './OverviewSlider';
 import { OverviewSlider } from './OverviewSlider';
 import { Header } from '../../ui';
-import type { WalletType } from '../../wallet/walletState';
+import { testWallet } from '../../fixtures';
 
 describe('Overview Slider component', () => {
   let component;
 
-  const wallet: WalletType = {
-    id: 1,
-    currency: 'BTC',
-    address: '',
-    transactions: [],
-    receiveAddress: '2MvpyDrvrV3PNRTD8cBX9Hy97s7NtBSGfEN',
-    balance: [
-      {
-        value: 0.19890018,
-        currency: 'BTC',
-      },
-      {
-        value: 1257.71,
-        currency: 'EUR',
-      },
-    ],
-  };
-
   const props: Props = {
     isNewUser: false,
-    wallets: [wallet],
+    wallets: [testWallet],
   };
 
   beforeEach(() => {
