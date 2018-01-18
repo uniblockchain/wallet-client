@@ -22,15 +22,16 @@ describe('Transaction details component', () => {
     feeFiat,
     valueCrypto,
     valueFiat,
+    currency,
   }): TransactionType => {
     const transaction: TransactionType = {
       id: '1',
       status: 'COMPLETE',
       date: new Date(),
-      currency: 'ETH',
+      currency,
       fee: [
         {
-          currency: 'ETH',
+          currency,
           value: feeCrypto,
         },
         {
@@ -40,7 +41,7 @@ describe('Transaction details component', () => {
       ],
       value: [
         {
-          currency: 'ETH',
+          currency,
           value: valueCrypto,
         },
         {
@@ -59,6 +60,7 @@ describe('Transaction details component', () => {
     feeFiat: 12333,
     valueCrypto: 556,
     valueFiat: 556000,
+    currency: 'ETH',
   };
 
   let transaction = getTransaction(transactionInput);
@@ -116,6 +118,7 @@ describe('Transaction details component', () => {
       feeFiat: 12333,
       valueCrypto: -456,
       valueFiat: -456000,
+      currency: 'ETH',
     };
 
     beforeEach(() => {
@@ -143,23 +146,36 @@ describe('Transaction details component', () => {
       );
     });
 
-    const valueField = (valueCrypto: number, valueFiat: number) => {
-      return (
-        <Field>
-          {valueCrypto} (<FiatValue inline value={valueFiat} />)
-        </Field>
-      );
-    };
-
-    it('renders transaction amount with fee', () => {
+    it('renders transaction amount with fee for ETH (fee not included in value)', () => {
       expect(component).toContainReact(<Label>AMOUNT WITH FEE</Label>);
       expect(component).toContainReact(
-        valueField(
-          Math.abs(sentTransactionInput.valueCrypto) +
-            sentTransactionInput.feeCrypto,
-          Math.abs(sentTransactionInput.valueFiat) +
-            sentTransactionInput.feeFiat,
-        ),
+        <Field>
+          {Math.abs(sentTransactionInput.valueCrypto) +
+            sentTransactionInput.feeCrypto}{' '}
+          (<FiatValue
+            inline
+            value={
+              Math.abs(sentTransactionInput.valueFiat) +
+              sentTransactionInput.feeFiat
+            }
+          />)
+        </Field>,
+      );
+    });
+
+    it('renders transaction amount with fee for non ETH (fee included in value)', () => {
+      const ltcTransaction = getTransaction({
+        ...sentTransactionInput,
+        currency: 'LTC',
+      });
+      component.setProps({ transaction: ltcTransaction });
+      expect(component).toContainReact(
+        <Field>
+          {Math.abs(sentTransactionInput.valueCrypto)} (<FiatValue
+            inline
+            value={Math.abs(sentTransactionInput.valueFiat)}
+          />)
+        </Field>,
       );
     });
   });

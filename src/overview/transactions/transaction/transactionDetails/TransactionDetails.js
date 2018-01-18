@@ -53,36 +53,46 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
     transaction.fee,
     transaction.currency,
   );
-  const valueRepresentationCurrency = walletCurrencyValueResolver.resolve(
-    transaction.value,
+  const valueRepresentationCurrency = Math.abs(
+    walletCurrencyValueResolver.resolve(transaction.value),
   );
   const value = walletCurrencyValueResolver.resolve(
     transaction.value,
     transaction.currency,
   );
-  const absValueWalletCurrency = Math.abs(value);
-  const absValueRepresentationCurrency = Math.abs(valueRepresentationCurrency);
+  const valueWalletCurrency = Math.abs(value);
+
+  const isFeeIncluded = transaction.currency !== 'ETH';
 
   const sending = value < 0;
-  const valueWithFeeWalletCurrency = sending
-    ? absValueWalletCurrency + feeWalletCurrency
-    : absValueWalletCurrency;
-  const valueWithFeeRepresentationCurrency = sending
-    ? absValueRepresentationCurrency + feeRepresentationCurrency
-    : absValueRepresentationCurrency;
+  const netValueWalletCurrency =
+    sending && isFeeIncluded
+      ? valueWalletCurrency - feeWalletCurrency
+      : valueWalletCurrency;
+  const netValueRepresentationCurrency =
+    sending && isFeeIncluded
+      ? valueRepresentationCurrency - feeRepresentationCurrency
+      : valueRepresentationCurrency;
+
+  const valueWithFeeWalletCurrency = isFeeIncluded
+    ? valueWalletCurrency
+    : valueWalletCurrency + feeWalletCurrency;
+  const valueWithFeeRepresentationCurrency = isFeeIncluded
+    ? valueRepresentationCurrency
+    : valueRepresentationCurrency + feeRepresentationCurrency;
 
   return (
     <div>
       <Modal onConfirm={onConfirm}>
         {sending ? <Label>SENT</Label> : <Label>RECEIVED</Label>}
         <Amount alt>
-          {value.toFixed(6)} {transaction.currency}
+          {netValueWalletCurrency.toFixed(6)} {transaction.currency}
         </Amount>
         <Label>STATUS</Label>
         <StatusField>{transaction.status}</StatusField>
         <Label>CURRENT VALUE</Label>
         <Field>
-          <FiatValue inline value={valueRepresentationCurrency} />
+          <FiatValue inline value={netValueRepresentationCurrency} />
         </Field>
         {sending && <Label>AMOUNT WITH FEE</Label>}
         {sending && (
