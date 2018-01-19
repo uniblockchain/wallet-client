@@ -136,9 +136,9 @@ export const Footer = () => (
       </SocialContainer>
 
       <CompanyContainer>
-        <Company>All Rights Reserved © Change Technologies OÜ</Company>
+        <Company>All Rights Reserved © Liontech PTE LTD</Company>
         <LegalLink
-          href="Change.Terms.and.Conditions.2017-12-28.pdf"
+          href="TERMS-AND-CONDITIONS-OF-CHANGESG-v2.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
