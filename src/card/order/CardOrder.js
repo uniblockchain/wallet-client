@@ -44,7 +44,7 @@ type State = {
 
 export class CardOrder extends React.Component<any, State> {
   state = {
-    ordered: false,
+    ordered: undefined,
   };
 
   componentDidMount() {
@@ -54,6 +54,9 @@ export class CardOrder extends React.Component<any, State> {
   }
 
   render() {
+    if (this.state.ordered === undefined) {
+      return null;
+    }
     return this.state.ordered ? (
       <WrappedContent>
         <Done />
