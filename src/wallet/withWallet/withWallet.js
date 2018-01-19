@@ -18,14 +18,11 @@ function getDisplayName(WrappedComponent) {
 const withWallet = (WrappedComponent: *) => {
   class ComponentWithWallet extends Component<Props> {
     componentWillMount() {
-      this.checkIfWalletIsLoaded(this.props.wallets);
+      this.loadWallet();
     }
 
-    checkIfWalletIsLoaded = (wallets: Array<Wallet>) => {
-      const isWalletLoaded = wallets.length > 0;
-      if (!isWalletLoaded) {
-        this.props.fetchWallet();
-      }
+    loadWallet = () => {
+      this.props.fetchWallet();
     };
 
     render() {
@@ -35,7 +32,7 @@ const withWallet = (WrappedComponent: *) => {
             <Modal
               title="Oops!"
               description={this.props.error}
-              onConfirm={this.checkIfWalletIsLoaded}
+              onConfirm={this.loadWallet}
             />
           ) : (
             <WrappedComponent {...this.props} />

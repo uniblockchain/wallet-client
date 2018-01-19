@@ -11,16 +11,9 @@ type Props = {
   wallets: Array<WalletType>,
   setActiveWallet: number => void,
   activeWalletId: ?number,
-  fetchWallet: () => *,
 };
 
 export class CurrencyTabs extends Component<Props> {
-  componentDidMount() {
-    const { fetchWallet } = this.props;
-    if (fetchWallet) {
-      fetchWallet();
-    }
-  }
   handleChange = (value: string) => {
     this.props.setActiveWallet(Number(value));
   };
@@ -47,7 +40,6 @@ const mapStateToProps = state => ({
   activeWalletId: state.wallet.activeId,
 });
 const mapDispatchToProps = {
-  fetchWallet: walletActions.walletFetchRequested,
   setActiveWallet: walletActions.walletSetActive,
 };
 
