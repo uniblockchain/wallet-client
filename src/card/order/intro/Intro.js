@@ -9,10 +9,15 @@ import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
+  margin-bottom: 14px;
 `;
 
 const Bulletpoint = styled(Paragraph)`
   font-size: 14px;
+`;
+
+const Links = styled(Paragraph)`
+  margin-top: 24px;
 `;
 
 type State = {
@@ -36,33 +41,34 @@ export class Intro extends Component<any, State> {
     ) : (
       <div>
         <Top>
-          <StyledHeader>Your card is just a few steps away.</StyledHeader>
+          <StyledHeader>
+            Financial regulations require us to get to know you better.
+          </StyledHeader>
         </Top>
 
-        <Paragraph alt>Few things to note:</Paragraph>
+        <Paragraph alt>A few things to note:</Paragraph>
         <ul>
           <li>
             <Bulletpoint alt>
-              We are currently shipping to EU only.&nbsp; If you live outside of
-              the EU, please DO NOT order a card.
-            </Bulletpoint>
-          </li>
-          <li>
-            <Bulletpoint alt>
-              For identification please have your id card / passport and proof
+              For identification please have your ID card / passport and proof
               of address nearby.
             </Bulletpoint>
           </li>
           <li>
-            <Bulletpoint alt>The card ordering is free.</Bulletpoint>
+            <Bulletpoint alt>
+              As a welcome to the community we are giving you a Change card for
+              free.
+            </Bulletpoint>
           </li>
         </ul>
-        <Link to={CARD_ORDER_PROFILE_ROUTE}>
-          <PrimaryButton>Let’s get started</PrimaryButton>
-        </Link>
-        <Link to={routes.LOGOUT}>
-          <Button>Log out</Button>
-        </Link>
+        <Links>
+          <Link to={CARD_ORDER_PROFILE_ROUTE}>
+            <PrimaryButton>Let’s get started</PrimaryButton>
+          </Link>
+          <Link to={routes.LOGOUT}>
+            <Button>Log out</Button>
+          </Link>
+        </Links>
       </div>
     );
   }
