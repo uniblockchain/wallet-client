@@ -19,8 +19,20 @@ storiesOf('Card Ordering', module).add('Done', () => {
     describe('Done', () => {
       let component;
 
+      const initialAddress = {
+        id: null,
+        countryCode: null,
+        city: null,
+        streetAddress: null,
+        postalCode: null,
+      };
+
+      const props = {
+        address: initialAddress,
+      };
+
       beforeEach(() => {
-        component = shallow(<Done />);
+        component = shallow(<Done {...props} />);
       });
 
       it('renders the component', () => {

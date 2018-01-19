@@ -1,19 +1,19 @@
-import React from 'react';
 import { mount } from 'enzyme';
+import createHistory from 'history/createBrowserHistory';
+import React from 'react';
 import { Provider } from 'react-redux';
 import {
   ConnectedRouter,
   routerMiddleware,
   routerReducer,
 } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import cardOrderFlow from './cardOrderFlow';
-import { NavigationDots, Progress } from '../../ui';
-import Intro from './intro';
-import Done from './done';
-import { IdVerification } from './verification';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { pageReducer } from '../../page';
+import { NavigationDots, Progress } from '../../ui';
+import cardOrderFlow from './cardOrderFlow';
+import Done from './done';
+import Intro from './intro';
+import { IdVerification } from './verification';
 
 jest.mock('./cardOrderApi', () => ({
   hasOrder: jest.fn(() => Promise.resolve(false)),
@@ -28,8 +28,14 @@ describe('cardOrderFlow higher-order component', () => {
   const WrappedComponent = cardOrderFlow(initialComponent);
 
   beforeEach(() => {
+    const fakeStateGetter = () => ({ profile: { address: { id: 123 } } });
+    const fakeReducer = jest.fn(() => fakeStateGetter());
     store = createStore(
-      combineReducers({ router: routerReducer, page: pageReducer }),
+      combineReducers({
+        router: routerReducer,
+        page: pageReducer,
+        user: fakeReducer,
+      }),
       applyMiddleware(routerMiddleware(history)),
     );
     component = mount(

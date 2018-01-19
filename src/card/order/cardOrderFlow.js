@@ -86,7 +86,6 @@ export const cardOrderFlow = (WrappedComponent: *) => {
   const flow = (props: any) => {
     const count = stepComponents.length;
     const activeIndex = getActiveStepIndex(WrappedComponent);
-
     return (
       <Container>
         {props.progress && <Progress />}
