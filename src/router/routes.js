@@ -5,6 +5,7 @@ const WALLET = '/wallet';
 const OVERVIEW = '/overview';
 const CARD = '/card';
 const LOGOUT = '/logout';
+const WALLET_COMING_SOON = '/wallet-coming-soon';
 
 export default {
   BASE,
@@ -12,4 +13,5 @@ export default {
   OVERVIEW,
   CARD,
   LOGOUT,
+  WALLET_COMING_SOON,
 };

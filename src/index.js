@@ -18,7 +18,7 @@ import App from './App';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';
 import { Login, Logout } from './login';
-import { Overview } from './overview';
+import { Overview, WalletComingSoon } from './overview';
 import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
@@ -72,6 +72,10 @@ render(
               </PublicContent>
               <Switch>
                 <Route path="/logout" component={Logout} />
+                <Route
+                  path={routes.WALLET_COMING_SOON}
+                  component={WalletComingSoon}
+                />
                 <Route
                   path={routes.OVERVIEW}
                   component={authenticatedPage(Overview)}

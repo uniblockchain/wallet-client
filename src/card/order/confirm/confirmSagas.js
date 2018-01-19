@@ -10,7 +10,7 @@ export function* createOrder(walletId: number): Generator<IOEffect, void, *> {
   try {
     yield call(cardOrderApi.createOrder, walletId);
     yield put(confirmRoutine.success());
-    yield put(push(routes.CARD));
+    yield put(push(routes.WALLET_COMING_SOON));
   } catch (error) {
     yield put(confirmRoutine.failure(error));
     console.error(error);

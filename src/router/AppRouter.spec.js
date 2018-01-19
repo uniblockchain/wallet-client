@@ -13,6 +13,7 @@ describe('app router', () => {
     overview: null,
     cardOrderFlow: null,
     card: null,
+    walletComingSoon: null,
   };
 
   beforeEach(() => {

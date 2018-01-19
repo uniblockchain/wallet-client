@@ -37,7 +37,7 @@ export class Intro extends Component<any, State> {
 
   render() {
     return this.state.ordered ? (
-      <AppRouter card />
+      <AppRouter walletComingSoon />
     ) : (
       <div>
         <Top>
