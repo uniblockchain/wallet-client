@@ -8,6 +8,7 @@ export const Content = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  min-height: 500px;
 `;
 
 export const WrappedContent = Content.extend`
