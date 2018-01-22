@@ -7,6 +7,7 @@ import { reducer as formReducer } from 'redux-form';
 import createSagaMiddleware from 'redux-saga';
 import { routinePromiseWatcherSaga } from 'redux-saga-routines';
 import { loginReducer, loginSagas, loginRoutine } from '../login';
+import verificationTokenLoginSaga from '../login/verification-token/verificationTokenSagas';
 
 import { userReducer, userSagas } from '../user';
 import { profileSagas } from '../user/profile';
@@ -18,6 +19,7 @@ import { flagsReducer } from '../flags';
 import { addressSagas } from '../card/order/address';
 import { confirmSagas } from '../card/order/confirm';
 import verificationSagas from '../card/order/verification/verificationSagas';
+import { resetPasswordSagas } from '../user/password/reset';
 import rootReducer from './rootReducer';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -63,6 +65,8 @@ store.dispatch(loginRoutine.fulfill());
   verificationSagas,
   confirmSagas,
   ...(feeSagas || []),
+  resetPasswordSagas,
+  verificationTokenLoginSaga,
 ].map(sagaMiddleware.run);
 
 export default store;

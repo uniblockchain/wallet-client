@@ -20,12 +20,12 @@ function* fetchUser() {
   }
 }
 
-function* createUser(action) {
+function* createOrUpdateUser(action) {
   try {
-    const { email, password } = action.payload.values;
-    const user = yield call(userApi.createUser, email, password);
+    const user = yield call(userApi.createOrUpdateUser, action.payload.values);
     yield put(creationRoutine.success(user));
     tracker.signup(user.id);
+    const { email, password } = action.payload.values;
     yield put(
       loginRoutine.trigger({
         username: email,
@@ -56,7 +56,7 @@ function* userFetchSaga() {
 }
 
 function* userCreationSaga() {
-  yield takeFirst(creationRoutine.TRIGGER, createUser);
+  yield takeFirst(creationRoutine.TRIGGER, createOrUpdateUser);
 }
 
 function* userSagas() {

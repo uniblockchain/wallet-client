@@ -31,6 +31,8 @@ import { routes } from './router';
 import './index.css';
 import { GoogleTagManager } from './tracker';
 import { cardOrderRoutes } from './card/order';
+import ResetPassword, { ResetPasswordDone } from './user/password/reset';
+import UpdatePassword from './user/password/update';
 
 const animationEnter = keyframes`${slideInRight}`;
 
@@ -69,6 +71,11 @@ render(
                 <Route exact path={routes.BASE} component={App} />
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
+                <Route path={routes.RESET_PASSWORD} component={ResetPassword} />
+                <Route
+                  path={routes.RESET_PASSWORD_DONE}
+                  component={ResetPasswordDone}
+                />
               </PublicContent>
               <Switch>
                 <Route path="/logout" component={Logout} />
@@ -108,6 +115,7 @@ render(
                   </CSSTransition>
                 )}
               </Route>
+              <Route path={routes.UPDATE_PASSWORD} component={UpdatePassword} />
             </div>
           </ThemeProvider>
         </ConnectedFlagsProvider>

@@ -1,7 +1,9 @@
 // @flow
+
 import React from 'react';
+import { push } from 'react-router-redux';
 import { reduxForm, type FormProps } from 'redux-form';
-import { loginFormSubmitHandler } from './loginRoutines';
+import { resetPasswordFormSubmitHandler } from './resetPasswordRoutines';
 import {
   WrappedContent,
   Top,
@@ -13,52 +15,48 @@ import {
   Form,
   Field,
   FormFeedback,
-} from '../ui';
-import { routes } from '../router';
+} from '../../../ui';
+import { routes } from '../../../router';
 
-export const LoginForm = (props: FormProps) => {
+export const ResetPassword = (props: FormProps) => {
   const { handleSubmit, error } = props;
   return (
     <WrappedContent>
       <Top>
         <Header alt>
-          Welcome back.
+          Forgot password?
           <br />
-          Please log in.
+          Send reset link to your email.
         </Header>
         <Form
-          id="loginForm"
-          onSubmit={handleSubmit(loginFormSubmitHandler)}
+          id="resetPasswordForm"
+          onSubmit={handleSubmit(resetPasswordFormSubmitHandler)}
           className="mt-5"
         >
           {error && <FormFeedback>{error}</FormFeedback>}
           <Field
-            name="username"
+            name="email"
             label="Email address"
             type="email"
             placeholder="Type your email here..."
           />
-          <Field
-            name="password"
-            label="Password"
-            type="password"
-            placeholder="Type your password here..."
-          />
         </Form>
       </Top>
       <Bottom>
-        <PrimaryButton type="submit" form="loginForm">
-          Log In
+        <PrimaryButton type="submit" form="resetPasswordForm">
+          Reset my password
         </PrimaryButton>
         <Link to={routes.BASE}>
           <LinkButton>Cancel</LinkButton>
-        </Link>
-        <Link to={routes.RESET_PASSWORD}>
-          <LinkButton>Forgot password</LinkButton>
         </Link>
       </Bottom>
     </WrappedContent>
   );
 };
 
-export default reduxForm({ form: 'login' })(LoginForm);
+export default reduxForm({
+  form: 'reset-password',
+  onSubmitSuccess: (response, dispatch) => {
+    dispatch(push(routes.RESET_PASSWORD_DONE));
+  },
+})(ResetPassword);

@@ -1,6 +1,7 @@
 // @flow
 import loginReducer, { TOKEN_STORAGE_KEY } from './loginReducer';
 import { loginRoutine, logoutRoutine } from './loginRoutines';
+import { verificationTokenLoginRoutine } from './verification-token';
 import type { OauthToken } from './loginApi';
 
 jest.mock('../redux/reduxStore');
@@ -41,8 +42,20 @@ describe('Login reducer', () => {
   };
 
   it('Adds token to state and local storage when login is successful', () => {
-    const state = { token: null };
+    const state = { token: null, verificationTokenLoginError: null };
     const newState = loginReducer(state, loginRoutine.success(fakeToken));
+    expect(newState.token).toEqual(fakeToken);
+    expect(localStorageMock.getItem(TOKEN_STORAGE_KEY)).toEqual(
+      JSON.stringify(fakeToken),
+    );
+  });
+
+  it('Adds token to state and local storage when verification token login is successful', () => {
+    const state = { token: null, verificationTokenLoginError: null };
+    const newState = loginReducer(
+      state,
+      verificationTokenLoginRoutine.success(fakeToken),
+    );
     expect(newState.token).toEqual(fakeToken);
     expect(localStorageMock.getItem(TOKEN_STORAGE_KEY)).toEqual(
       JSON.stringify(fakeToken),
@@ -52,6 +65,7 @@ describe('Login reducer', () => {
   it('Removes token from state and local storage when logging out', () => {
     const state = {
       token: fakeToken,
+      verificationTokenLoginError: null,
     };
     const newState = loginReducer(state, logoutRoutine.trigger());
     expect(newState.token).toBeNull();
@@ -61,9 +75,19 @@ describe('Login reducer', () => {
   it('Removes token from state and local storage when token expires', () => {
     const state = {
       token: expiredToken,
+      verificationTokenLoginError: null,
     };
     const newState = loginReducer(state, loginRoutine.fulfill());
     expect(newState.token).toBeNull();
     expect(localStorageMock.getItem(TOKEN_STORAGE_KEY)).toBeUndefined();
+  });
+
+  it('Adds error on verification token login failure', () => {
+    const state = { token: null, verificationTokenLoginError: null };
+    const newState = loginReducer(
+      state,
+      verificationTokenLoginRoutine.failure('error'),
+    );
+    expect(!!newState.verificationTokenLoginError).toBeTruthy();
   });
 });

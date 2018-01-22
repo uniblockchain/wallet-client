@@ -2,12 +2,13 @@
 
 import React from 'react';
 import type { Location } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Card, WrappedContent, Top, Header } from '../ui';
+import { Card, WrappedContent, Top, Header, Button } from '../ui';
 import withWallet from '../wallet/withWallet';
-import OverviewSlider from './slider';
 import { withUser } from '../user';
+import { routes } from '../router';
 
 export type Props = {
   location: Location,
@@ -31,8 +32,10 @@ export const WalletComingSoon = ({ location }: Props) => (
         <div>Thanks for ordering the card!</div>
         <div>Wallet will be available soon.</div>
       </Top>
+      <Link to={routes.LOGOUT}>
+        <Button>Log out</Button>
+      </Link>
     </WrappedContent>
-    <OverviewSlider isNewUser={location.state && location.state.isNewUser} />
   </div>
 );
 export default withUser(withWallet(WalletComingSoon));

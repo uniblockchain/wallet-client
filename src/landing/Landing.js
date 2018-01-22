@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router';
 import Waypoint from 'react-waypoint';

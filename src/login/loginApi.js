@@ -11,7 +11,7 @@ export type OauthToken = {
   expirationTime: Date,
 };
 
-const authHash = () =>
+export const authHash = () =>
   btoa(`${config.get('oauth2ClientId')}:${config.get('oauth2Secret')}`);
 
 const loginFormData = (username: string, password: string): string => {

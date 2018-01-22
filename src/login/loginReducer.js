@@ -3,6 +3,7 @@
 import type RoutineAction from 'redux-saga-routines';
 import { loginRoutine, logoutRoutine } from './loginRoutines';
 import { type OauthToken } from './loginApi';
+import verificationTokenLoginRoutine from './verification-token/verificationTokenRoutines';
 
 export const TOKEN_STORAGE_KEY = 'accessToken';
 
@@ -21,10 +22,12 @@ const getToken = () => {
 
 export type LoginState = {
   token: ?OauthToken,
+  verificationTokenLoginError: ?string,
 };
 
 const defaultState: LoginState = {
   token: getToken(),
+  verificationTokenLoginError: null,
 };
 
 function addToLocalStorage(action: RoutineAction) {
@@ -56,6 +59,7 @@ const loginReducer = (
   action: RoutineAction,
 ): LoginState => {
   switch (action.type) {
+    case verificationTokenLoginRoutine.SUCCESS:
     case loginRoutine.SUCCESS: {
       addToLocalStorage(action);
       return {
@@ -63,6 +67,7 @@ const loginReducer = (
         token: action.payload,
       };
     }
+    case verificationTokenLoginRoutine.FULFILL:
     case loginRoutine.FULFILL: {
       const accessToken = checkTokenExpiry();
       return {
@@ -75,6 +80,12 @@ const loginReducer = (
       return {
         ...state,
         token: null,
+      };
+    }
+    case verificationTokenLoginRoutine.FAILURE: {
+      return {
+        ...state,
+        verificationTokenLoginError: action.payload,
       };
     }
 
