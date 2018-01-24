@@ -41,11 +41,12 @@ export class Intro extends Component<any, State> {
     ) : (
       <div>
         <Top>
-          <StyledHeader>
-            Financial regulations require us to get to know you better.
-          </StyledHeader>
+          <StyledHeader>Order your Change card.</StyledHeader>
         </Top>
 
+        <Paragraph alt>
+          Financial regulations require us to get to know you better.
+        </Paragraph>
         <Paragraph alt>A few things to note:</Paragraph>
         <ul>
           <li>

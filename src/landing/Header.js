@@ -155,8 +155,8 @@ class Header extends React.Component<Props, State> {
                 </NavLink>
               </NavItem>
               <NavItem marginLeft>
-                <NavButton to="/app" color="blue" size="small">
-                  Sign up
+                <NavButton to="/signup" color="blue" size="small">
+                  Order card
                 </NavButton>
               </NavItem>
             </Nav>
@@ -165,8 +165,8 @@ class Header extends React.Component<Props, State> {
           <MobileNav>
             <Nav>
               <NavItem>
-                <NavButton to="/app" color="blue" size="small">
-                  Sign up
+                <NavButton to="/signup" color="blue" size="small">
+                  Order card
                 </NavButton>
               </NavItem>
             </Nav>

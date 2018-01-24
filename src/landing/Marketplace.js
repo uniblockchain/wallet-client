@@ -220,11 +220,6 @@ class Marketplace extends React.Component<Props, State> {
                           one app.
                         </Body>
                       </FadeTransition>
-                      <FadeTransition state={state} delay={450}>
-                        <Link to="/app">
-                          <Button color="gradient">Go to Wallet</Button>
-                        </Link>
-                      </FadeTransition>
                     </div>
                   )}
                 </Transition>

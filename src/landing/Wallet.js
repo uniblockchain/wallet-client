@@ -116,7 +116,7 @@ class Wallet extends React.Component<Props, State> {
                 <InnerContainer>
                   <FadeTransition state={state} delay={0}>
                     <Highlight>
-                      <GradientText>Available worldwide</GradientText>
+                      <GradientText>Launching Q1 2018</GradientText>
                     </Highlight>
                   </FadeTransition>
                   <FadeTransition state={state} delay={150}>
@@ -127,11 +127,6 @@ class Wallet extends React.Component<Props, State> {
                       Safe and easy way to store & keep track of virtual
                       currencies.
                     </Body>
-                  </FadeTransition>
-                  <FadeTransition state={state} delay={450}>
-                    <Link to="/app">
-                      <Button color="gradient">Go to Wallet</Button>
-                    </Link>
                   </FadeTransition>
                 </InnerContainer>
               )}
