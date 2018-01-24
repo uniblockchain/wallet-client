@@ -24,13 +24,13 @@ type Props = {
 
 export const Confirm = ({ activeWalletId, confirm }: Props) => (
   <div>
-    <StyledHeader>Please confirm your card order.</StyledHeader>
+    <StyledHeader>Please confirm your details.</StyledHeader>
     <Explanation>
       That’s it, you’re almost done. We’ll let you know when we are starting to
       deliver the cards.
     </Explanation>
     <PrimaryButton onClick={() => confirm(activeWalletId)}>
-      Order card
+      Confirm
     </PrimaryButton>
   </div>
 );
