@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import Waypoint from 'react-waypoint';
 import styled from 'styled-components';
@@ -9,7 +8,6 @@ import breakpoint from 'styled-components-breakpoint';
 import GradientText from './GradientText';
 
 import ScrollToTarget from './ScrollToTarget';
-import { Button } from './ui';
 
 import variables from './variables';
 

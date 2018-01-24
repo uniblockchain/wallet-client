@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import Waypoint from 'react-waypoint';
 import styled from 'styled-components';
@@ -12,7 +11,6 @@ import photo from './img/photo-landing-marketplace.jpg';
 import MarketplaceVisual from './MarketplaceVisual';
 
 import ScrollToTarget from './ScrollToTarget';
-import { Button } from './ui';
 
 import variables from './variables';
 
