@@ -156,7 +156,7 @@ class Header extends React.Component<Props, State> {
               </NavItem>
               <NavItem marginLeft>
                 <NavButton to="/signup" color="blue" size="small">
-                  Order card
+                  Sign up
                 </NavButton>
               </NavItem>
             </Nav>
@@ -166,7 +166,7 @@ class Header extends React.Component<Props, State> {
             <Nav>
               <NavItem>
                 <NavButton to="/signup" color="blue" size="small">
-                  Order card
+                  Sign up
                 </NavButton>
               </NavItem>
             </Nav>
