@@ -15,19 +15,22 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  padding: 96px 0 0;
+  padding: 96px 24px 24px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    padding: 0;
+    width: 960px;
+    margin: 0 auto;
+  `};
+  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+    width: 1152px;
   `};
 `;
 
 const Intro = styled.div`
-  padding: 0 24px;
   margin: 24px 0 48px;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     width: 960px;
     margin: 0 auto;
-    padding: 244px 0 192px;
+    padding: 244px 0 36px;
     padding-right: calc(480px + 48px);
   `};
   ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
@@ -103,11 +106,11 @@ export const Careers = class Careers extends React.Component<{}> {
             </IntroHeading>
             <IntroBody>
               <p>
-                Change is a leading proposition in the digital banking sphere,
-                using blockchain technology to reinvent banking and offer a
-                all-in-one proposition for finance. Not only disruptive in the
-                fintech sphere, Change is set to create a revolution in the
-                entire financial sector.
+                Change is a leading proposition in the Fintech sphere, using
+                blockchain technology to reinvent banking and offer a all-in-one
+                proposition for finance. Not only disruptive in the fintech
+                sphere, Change is set to create a revolution in the entire
+                financial sector.
               </p>
               <p>
                 Change has thousands of supporters, and is backed by DHL’s

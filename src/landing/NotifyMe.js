@@ -115,7 +115,7 @@ class NotifyMe extends React.Component<Props, State> {
               </InputContainer>
               <ButtonContainer>
                 <Button type="submit" color="gradient" fluid>
-                  Sign up
+                  Order free card
                 </Button>
               </ButtonContainer>
             </FormContainer>

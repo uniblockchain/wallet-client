@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import Waypoint from 'react-waypoint';
 import styled from 'styled-components';
@@ -8,6 +9,7 @@ import breakpoint from 'styled-components-breakpoint';
 import GradientText from './GradientText';
 
 import ScrollToTarget from './ScrollToTarget';
+import { Button } from './ui';
 
 import variables from './variables';
 
@@ -114,7 +116,7 @@ class Wallet extends React.Component<Props, State> {
                 <InnerContainer>
                   <FadeTransition state={state} delay={0}>
                     <Highlight>
-                      <GradientText>Launching Q1 2018</GradientText>
+                      <GradientText>Available for sign up</GradientText>
                     </Highlight>
                   </FadeTransition>
                   <FadeTransition state={state} delay={150}>
@@ -122,9 +124,14 @@ class Wallet extends React.Component<Props, State> {
                   </FadeTransition>
                   <FadeTransition state={state} delay={300}>
                     <Body>
-                      Safe and easy way to store & keep track of virtual
-                      currencies.
+                      Safe and easy way to store, exchange, and keep track of
+                      traditional and virtual currencies.
                     </Body>
+                  </FadeTransition>
+                  <FadeTransition state={state} delay={450}>
+                    <Link to="/signup">
+                      <Button color="gradient">Order free card</Button>
+                    </Link>
                   </FadeTransition>
                 </InnerContainer>
               )}

@@ -233,7 +233,7 @@ class Card extends React.Component<Props, State> {
                     <div>
                       <FadeTransition state={state} delay={0}>
                         <Highlight>
-                          <GradientText>Available soon</GradientText>
+                          <GradientText>Available for pre-order</GradientText>
                         </Highlight>
                       </FadeTransition>
                       <FadeTransition state={state} delay={150}>
@@ -241,7 +241,8 @@ class Card extends React.Component<Props, State> {
                       </FadeTransition>
                       <FadeTransition state={state} delay={300}>
                         <Body>
-                          Start converting your virtual currencies<Disclaimer>
+                          Use Change Travel Card to convert your currencies<Disclaimer
+                          >
                             The prepaid card is denominated in fiat currency
                             (USD, EUR, GBP). It can only be loaded with fiat
                             currency and only facilitates spending in fiat
@@ -254,7 +255,7 @@ class Card extends React.Component<Props, State> {
                       </FadeTransition>
                       <FadeTransition state={state} delay={450}>
                         <Link to="/signup">
-                          <Button color="gradient">Order card</Button>
+                          <Button color="gradient">Order free card</Button>
                         </Link>
                       </FadeTransition>
                     </div>

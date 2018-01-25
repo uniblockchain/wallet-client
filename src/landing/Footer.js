@@ -97,6 +97,13 @@ const LegalLink = styled.a`
   `};
 `;
 
+const LegalText = styled.p`
+  color: ${variables.colorNeutralLight};
+  font-size: ${variables.fontSizeSmall};
+  text-align: center;
+  margin-top: 12px;
+`;
+
 export const Footer = () => (
   <Container>
     <InnerContainer>
@@ -142,7 +149,7 @@ export const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Terms & conditions
+          Terms & Conditions
         </LegalLink>
         <LegalLink
           href="bug-bounty.pdf"
@@ -152,6 +159,13 @@ export const Footer = () => (
           Bug Bounty
         </LegalLink>
       </CompanyContainer>
+      <LegalText>
+        Change is currently not authorised to provide and does not provide
+        banking, payment or other financial services.
+        <br />
+        No financial services will be provided until the issue of a required
+        operating licence by a competent financial supervision authority.
+      </LegalText>
     </InnerContainer>
   </Container>
 );
