@@ -17,7 +17,7 @@ import { feeSagas, feeReducer } from '../wallet/fee';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
 import { addressSagas } from '../card/order/address';
-import { confirmSagas } from '../card/order/confirm';
+import { confirmSagas, confirmReducer } from '../card/order/confirm';
 import verificationSagas from '../card/order/verification/verificationSagas';
 import { resetPasswordSagas } from '../user/password/reset';
 import rootReducer from './rootReducer';
@@ -37,6 +37,7 @@ const appReducer = combineReducers({
   send: sendReducer,
   flags: flagsReducer,
   fee: feeReducer,
+  confirm: confirmReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

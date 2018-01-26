@@ -8,6 +8,7 @@ import type { PageState } from '../page/pageState';
 import type { UserState } from '../user/userState';
 import type { SendState } from '../wallet/send/sendReducer';
 import type { WalletState } from '../wallet/walletState';
+import type { ConfirmState } from '../card/order/confirm/confirmReducer';
 import tracker from '../tracker';
 
 export type State = {
@@ -20,6 +21,7 @@ export type State = {
   form: Object,
   page: PageState,
   send: SendState,
+  confirm: ConfirmState,
 };
 
 const rootReducer = (appReducer: Reducer<any, RoutineAction>) => (

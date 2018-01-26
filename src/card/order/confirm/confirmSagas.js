@@ -1,6 +1,5 @@
 // @flow
-import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
-import type RoutineAction from 'redux-saga-routines';
+import { call, type IOEffect, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import confirmRoutine from './confirmRoutine';
 import cardOrderApi from '../cardOrderApi';
@@ -12,12 +11,12 @@ export function* createOrder(): Generator<IOEffect, void, *> {
     yield put(confirmRoutine.success());
     yield put(push(routes.WALLET_COMING_SOON));
   } catch (error) {
-    yield put(confirmRoutine.failure(error));
     console.error(error);
+    yield put(confirmRoutine.failure(error.body.message));
   }
 }
 
-function* validate(action: RoutineAction): Generator<IOEffect, void, *> {
+function* validate(): Generator<IOEffect, void, *> {
   yield call(createOrder);
   yield put(confirmRoutine.fulfill());
 }

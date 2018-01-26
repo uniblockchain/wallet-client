@@ -11,6 +11,7 @@ import {
 } from '../../../../.storybook/facade';
 import cardOrderFlow from '../cardOrderFlow';
 import { Confirm } from './Confirm';
+import { FormFeedback } from '../../../ui/form';
 
 storiesOf('Card Ordering', module).add('Confirm', () => {
   specs(() =>
@@ -19,6 +20,7 @@ storiesOf('Card Ordering', module).add('Confirm', () => {
 
       const props = {
         confirm: jest.fn(),
+        error: undefined,
       };
 
       beforeEach(() => {
@@ -27,6 +29,13 @@ storiesOf('Card Ordering', module).add('Confirm', () => {
 
       it('renders the component', () => {
         expect(component);
+      });
+
+      it('renders error if present', () => {
+        component.setProps({ ...props, error: 'Some error' });
+        expect(component).toContainReact(
+          <FormFeedback>Some error</FormFeedback>,
+        );
       });
     }),
   );
