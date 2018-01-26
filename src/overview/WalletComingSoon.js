@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import type { Location } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
