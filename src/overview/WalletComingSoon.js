@@ -6,13 +6,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Card, WrappedContent, Top, Header, Button } from '../ui';
-import withWallet from '../wallet/withWallet';
 import { withUser } from '../user';
 import { routes } from '../router';
-
-export type Props = {
-  location: Location,
-};
 
 export const TransactionsCard = styled(Card)`
   padding: 1em 0 4em 0;
@@ -21,7 +16,7 @@ export const TransactionsCard = styled(Card)`
   }
 `;
 
-export const WalletComingSoon = ({ location }: Props) => (
+export const WalletComingSoon = () => (
   <div>
     <WrappedContent>
       <Top>
@@ -38,4 +33,4 @@ export const WalletComingSoon = ({ location }: Props) => (
     </WrappedContent>
   </div>
 );
-export default withUser(withWallet(WalletComingSoon));
+export default withUser(WalletComingSoon);

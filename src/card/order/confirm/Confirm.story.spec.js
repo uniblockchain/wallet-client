@@ -18,7 +18,6 @@ storiesOf('Card Ordering', module).add('Confirm', () => {
       let component;
 
       const props = {
-        activeWalletId: 1,
         confirm: jest.fn(),
       };
 

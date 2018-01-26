@@ -1,10 +1,8 @@
 // @flow
 import React from 'react';
-import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Header, Paragraph, PrimaryButton } from '../../../ui';
-import withWallet from '../../../wallet/withWallet';
 import confirmRoutine from './confirmRoutine';
 
 const StyledHeader = styled(Header)`
@@ -18,34 +16,27 @@ const Explanation = styled(Paragraph)`
 `;
 
 type Props = {
-  activeWalletId: number,
-  confirm: number => void,
+  confirm: () => void,
 };
 
-export const Confirm = ({ activeWalletId, confirm }: Props) => (
+export const Confirm = ({ confirm }: Props) => (
   <div>
     <StyledHeader>Please confirm your details.</StyledHeader>
     <Explanation>
       That’s it, you’re almost done. We’ll let you know when we are starting to
       deliver the cards.
     </Explanation>
-    <PrimaryButton onClick={() => confirm(activeWalletId)}>
-      Confirm
-    </PrimaryButton>
+    <PrimaryButton onClick={() => confirm()}>Confirm</PrimaryButton>
   </div>
 );
 
 Confirm.displayName = 'Confirm';
 
-const mapStateToProps: MapStateToProps<*, *, *> = state => ({
-  activeWalletId: state.wallet.activeId,
-});
-
 const mapDispatchToProps = {
   confirm: confirmRoutine,
 };
 
-const reduxComponent = connect(mapStateToProps, mapDispatchToProps);
-const ConfirmWithWallet = withWallet(reduxComponent(Confirm));
+const reduxComponent = connect(undefined, mapDispatchToProps);
+const ConfirmWithWallet = reduxComponent(Confirm);
 ConfirmWithWallet.displayName = 'Confirm';
 export default ConfirmWithWallet;
