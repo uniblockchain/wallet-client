@@ -14,15 +14,11 @@ export function* createOrder(): Generator<IOEffect, void, *> {
     console.error(error);
     yield put(confirmRoutine.failure(error.body.message));
   }
-}
-
-function* validate(): Generator<IOEffect, void, *> {
-  yield call(createOrder);
   yield put(confirmRoutine.fulfill());
 }
 
 function* createConfirmSaga(): Generator<IOEffect, void, *> {
-  yield takeLatest(confirmRoutine.TRIGGER, validate);
+  yield takeLatest(confirmRoutine.TRIGGER, createOrder);
 }
 
 export default createConfirmSaga;
