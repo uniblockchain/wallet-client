@@ -2,32 +2,23 @@
 
 import config from 'react-global-configuration';
 import { post } from '../../http';
-import { type OauthToken } from '../loginApi';
+import { authHash, type OauthToken } from '../loginApi';
 
-export const authHash = () =>
-  btoa(
-    `${config.get('oauth2PasswordResetClientId')}:${config.get(
-      'oauth2PasswordResetClientSecret',
-    )}`,
-  );
-
-const loginFormData = (verificationToken: string): string => {
+const loginFormData = (token: string): string => {
   const formBody = [];
   formBody.push(
     `${encodeURIComponent('grant_type')}=${encodeURIComponent(
-      'verification-token',
+      'verification-auth-to-oauth',
     )}`,
   );
-  formBody.push(
-    `${encodeURIComponent('token')}=${encodeURIComponent(verificationToken)}`,
-  );
+  formBody.push(`${encodeURIComponent('token')}=${encodeURIComponent(token)}`);
   return formBody.join('&');
 };
 
-function login(verificationToken: string): Promise<OauthToken> {
+function login(verificationOauthToken: string): Promise<OauthToken> {
   return post(
     `${config.get('apiUrl')}/oauth/token`,
-    loginFormData(verificationToken),
+    loginFormData(verificationOauthToken),
     {
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${authHash()}`,

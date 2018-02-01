@@ -6,6 +6,8 @@ const DEFAULT_CONF = {
   googleMapsKey: 'AIzaSyC5hizdMNKn1sLOUdmrCSeSgSsJfl7acO4',
   waveCrestApiUrl: 'https://wcapi.wavecrest.in',
   cardServiceApiUrl: 'http://localhost:8888',
+  oauth2PasswordResetClientId: 'password-reset-client',
+  oauth2PasswordResetClientSecret: 'PasswordResetClientSecret',
 };
 
 const DEFAULT_CONF_DEV = {

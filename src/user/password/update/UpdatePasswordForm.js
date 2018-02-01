@@ -15,6 +15,7 @@ import {
 import { updatePassword } from './updatePasswordRoutines';
 import withUser from '../../withUser';
 import { routes } from '../../../router';
+import { verificationOauthTokenLoginRoutine } from '../../../login/verification-oauth-token/verificationOauthTokenRoutines';
 
 export const required = (value: any) =>
   value ? undefined : "Don't forget this field :)";
@@ -46,7 +47,8 @@ export const PasswordForm = (props: FormProps) => {
 
 const ReduxPasswordForm = reduxForm({
   form: 'update-password',
-  onSubmitSuccess: (response, dispatch) => {
+  onSubmitSuccess: (response, dispatch, props) => {
+    dispatch(verificationOauthTokenLoginRoutine(props.token));
     dispatch(push(routes.DEFAULT_ON_ENTER));
   },
 })(PasswordForm);
@@ -58,6 +60,7 @@ const mapStateToProps: MapStateToProps<*, *, *> = state => ({
         email: state.user.email,
       }
     : null,
+  token: state.login.token.access_token,
 });
 
 export default connect(mapStateToProps)(withUser(ReduxPasswordForm));
