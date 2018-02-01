@@ -38,6 +38,10 @@ const StyledHeader = Header.extend`
   color: ${props => props.theme.main};
 `;
 
+const StyledParagraph = Paragraph.extend`
+  margin: 28px 0;
+`;
+
 const CancelButton = Button.extend`
   text-transform: uppercase;
   font-size: 12px;
@@ -91,7 +95,9 @@ export class Modal extends Component<Props> {
         <ModalBox>
           <Box>
             <StyledHeader>{this.props.title}</StyledHeader>
-            <Paragraph alt>{this.props.description}</Paragraph>
+            {this.props.description && (
+              <StyledParagraph alt>{this.props.description}</StyledParagraph>
+            )}
             <div>{this.props.children}</div>
             {(() => {
               switch (this.props.type) {
@@ -99,7 +105,7 @@ export class Modal extends Component<Props> {
                   return (
                     <div>
                       <PrimaryButton onClick={this.props.onConfirm}>
-                        Save
+                        OK
                       </PrimaryButton>
                       <DividerWithMargin small />
                       <CancelButton onClick={this.props.onCancel}>

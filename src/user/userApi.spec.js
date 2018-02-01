@@ -20,9 +20,25 @@ describe('user api', () => {
     mobileNumber: '+3725555555',
     error: null,
   };
-  const userState: UserState = { id: 1, email, error: null, profile };
-  const existingUser: User = { id: 1, email, password: 'some password' };
-  const newUser: User = { id: null, email, password: 'some password' };
+  const userState: UserState = {
+    id: 1,
+    email,
+    error: null,
+    profile,
+    isUsing2Fa: false,
+  };
+  const existingUser: User = {
+    id: 1,
+    email,
+    password: 'some password',
+    isUsing2Fa: false,
+  };
+  const newUser: User = {
+    id: null,
+    email,
+    password: 'some password',
+    isUsing2Fa: false,
+  };
 
   const apiUrl = 'sample-api-url';
 

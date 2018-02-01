@@ -10,6 +10,7 @@ import {
   createOrUpdateAddressRoutine,
   fetchAddressRoutine,
 } from '../card/order/address/addressRoutine';
+import { createRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
 
 const userReducer = (
   state: UserState = initialUserState,
@@ -103,6 +104,12 @@ const userReducer = (
             error: action.payload,
           },
         },
+      };
+
+    case createMultiFactorAuth.SUCCESS:
+      return {
+        ...state,
+        isUsing2Fa: true,
       };
 
     default:

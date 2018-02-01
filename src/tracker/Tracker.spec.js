@@ -80,6 +80,7 @@ describe('tracker', () => {
         email: 'example@example.com',
         error: null,
         profile,
+        isUsing2Fa: false,
       };
 
       setUser(user);

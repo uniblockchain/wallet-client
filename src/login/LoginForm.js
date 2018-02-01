@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import styled from 'styled-components';
 import { reduxForm, type FormProps } from 'redux-form';
 import { loginFormSubmitHandler } from './loginRoutines';
 import {
@@ -16,6 +17,12 @@ import {
 } from '../ui';
 import { routes } from '../router';
 
+const Links = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const LoginForm = (props: FormProps) => {
   const { handleSubmit, error } = props;
   return (
@@ -26,12 +33,8 @@ export const LoginForm = (props: FormProps) => {
           <br />
           Please log in.
         </Header>
-        <Form
-          id="loginForm"
-          onSubmit={handleSubmit(loginFormSubmitHandler)}
-          className="mt-5"
-        >
-          {error && <FormFeedback>{error}</FormFeedback>}
+        <Form id="loginForm" onSubmit={handleSubmit(loginFormSubmitHandler)}>
+          {error && <FormFeedback className="mt-4">{error}</FormFeedback>}
           <Field
             name="username"
             label="Email address"
@@ -44,18 +47,26 @@ export const LoginForm = (props: FormProps) => {
             type="password"
             placeholder="Type your password here..."
           />
+          <Field
+            name="otp"
+            label="Two Factor Authentication"
+            type="password"
+            placeholder="If enabled..."
+          />
         </Form>
       </Top>
       <Bottom>
         <PrimaryButton type="submit" form="loginForm">
           Log In
         </PrimaryButton>
-        <Link to={routes.BASE}>
-          <LinkButton>Cancel</LinkButton>
-        </Link>
-        <Link to={routes.RESET_PASSWORD}>
-          <LinkButton>Forgot password</LinkButton>
-        </Link>
+        <Links>
+          <Link to={routes.BASE}>
+            <LinkButton>Cancel</LinkButton>
+          </Link>
+          <Link to={routes.RESET_PASSWORD}>
+            <LinkButton>Forgot password</LinkButton>
+          </Link>
+        </Links>
       </Bottom>
     </WrappedContent>
   );

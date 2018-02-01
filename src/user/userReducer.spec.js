@@ -13,6 +13,7 @@ import {
   fetchAddressRoutine,
   createOrUpdateAddressRoutine,
 } from '../card/order/address/addressRoutine';
+import { createRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
 
 describe('user reducer', () => {
   const address: AddressState = {
@@ -39,6 +40,7 @@ describe('user reducer', () => {
     email: 'erko@risthein.ee',
     profile,
     error: null,
+    isUsing2Fa: false,
   };
   const error = 'whoops';
 
@@ -172,5 +174,12 @@ describe('user reducer', () => {
         expect(stateAddress.error).toEqual(error);
       }
     });
+  });
+
+  it('handles 2fa setup', () => {
+    const action = createMultiFactorAuth.success();
+    const newState = userReducer(initialUserState, action);
+    const stateAddress = newState.profile.address;
+    expect(newState.isUsing2Fa).toEqual(true);
   });
 });

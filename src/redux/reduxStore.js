@@ -8,6 +8,8 @@ import createSagaMiddleware from 'redux-saga';
 import { routinePromiseWatcherSaga } from 'redux-saga-routines';
 import { loginReducer, loginSagas, loginRoutine } from '../login';
 import verificationTokenLoginSaga from '../login/verification-token/verificationTokenSagas';
+import multiFactorAuthReducer from '../settings/multiFactorAuth/multiFactorAuthReducer';
+import multiFactorAuthSaga from '../settings/multiFactorAuth/multiFactorAuthSagas';
 
 import { userReducer, userSagas } from '../user';
 import { profileSagas } from '../user/profile';
@@ -38,6 +40,7 @@ const appReducer = combineReducers({
   flags: flagsReducer,
   fee: feeReducer,
   confirm: confirmReducer,
+  multiFactorAuth: multiFactorAuthReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -68,6 +71,7 @@ store.dispatch(loginRoutine.fulfill());
   ...(feeSagas || []),
   resetPasswordSagas,
   verificationTokenLoginSaga,
+  multiFactorAuthSaga,
 ].map(sagaMiddleware.run);
 
 export default store;

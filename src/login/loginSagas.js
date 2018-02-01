@@ -10,6 +10,7 @@ function* fetchToken(payload) {
       loginApi.login,
       payload.username,
       payload.password,
+      payload.otp,
     );
     yield put(loginRoutine.success(oauthToken));
   } catch (error) {

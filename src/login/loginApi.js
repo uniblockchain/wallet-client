@@ -29,11 +29,16 @@ const loginFormData = (username: string, password: string): string => {
   return formBody.join('&');
 };
 
-function login(username: string, password: string): Promise<OauthToken> {
+function login(
+  username: string,
+  password: string,
+  otp: ?any,
+): Promise<OauthToken> {
   return post(
     `${config.get('apiUrl')}/oauth/token`,
     loginFormData(username, password),
     {
+      ...(otp && { 'X-Change-OTP': otp }),
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: `Basic ${authHash()}`,
     },
