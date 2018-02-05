@@ -6,9 +6,9 @@ import variables from '../landing/variables';
 import { Header, Modal, Top, WrappedContent } from '../ui';
 import { withUser } from '../user';
 import type { User } from '../user/userState';
+import { removeSecret } from './multiFactorAuth/multiFactorAuthActions';
 import MultiFactorAuthForm from './multiFactorAuth/MultiFactorAuthForm';
 import { createRoutine } from './multiFactorAuth/multiFactorAuthRoutines';
-import { removeSecret } from './multiFactorAuth/multiFactorAuthActions';
 
 const StyledList = styled.ul`
   margin-top: 20px;
@@ -130,6 +130,7 @@ export class Settings extends Component<Props, State> {
                 Download an authenticator app, hit &quot;add&quot; and then scan
                 this QR code.
               </StyledParagraph>
+              Secret: {secret}
               <ImageContainer>
                 <img
                   src={`https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=otpauth://totp/getchange.com:${email}?secret=${secret}&issuer=getchange.com`}

@@ -56,6 +56,8 @@ const ItemLink = styled(Link)`
   `};
 `;
 
+const ItemAnchor = ItemLink.withComponent('a');
+
 const SocialContainer = styled.div`
   text-align: center;
   margin: 24px 0;
@@ -121,6 +123,15 @@ export const Footer = () => (
           <ItemLink to="/#marketplace">Marketplace</ItemLink>
         </Item>
         <Item>
+          <ItemAnchor
+            href="/Whitepaper_light.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Whitepaper
+          </ItemAnchor>
+        </Item>
+        <Item>
           <ItemLink to="/about">About</ItemLink>
         </Item>
         <Item>
@@ -145,14 +156,14 @@ export const Footer = () => (
       <CompanyContainer>
         <Company>All Rights Reserved © Liontech PTE LTD</Company>
         <LegalLink
-          href="TERMS-AND-CONDITIONS-OF-CHANGESG-v2.pdf"
+          href="/TERMS-AND-CONDITIONS-OF-CHANGESG-v2.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           Terms & Conditions
         </LegalLink>
         <LegalLink
-          href="bug-bounty.pdf"
+          href="/bug-bounty.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >

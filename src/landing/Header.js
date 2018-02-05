@@ -59,7 +59,7 @@ const LeftNavContainer = styled.div`
 const RightNavContainer = styled.div`
   display: none;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    flex: 50%;
+    flex: 80%;
     display: flex;
     justify-content: flex-end;
   `};
@@ -95,6 +95,8 @@ const NavLink = styled(Link)`
     }
   `};
 `;
+
+const NavAnchor = NavLink.withComponent('a');
 
 type Props = {
   location: Object,
@@ -147,6 +149,15 @@ class Header extends React.Component<Props, State> {
           <RightNavContainer>
             <Nav>
               <NavItem>
+                <NavItem>
+                  <NavAnchor
+                    href="/Whitepaper_light.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Whitepaper
+                  </NavAnchor>
+                </NavItem>
                 <NavItem>
                   <NavLink to="/about">About</NavLink>
                 </NavItem>
