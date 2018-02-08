@@ -7,6 +7,7 @@ export type User = {
   +email: ?string,
   +password: ?string,
   isUsing2Fa: ?boolean,
+  isVerified: boolean,
 };
 
 export type UserState = {
@@ -14,6 +15,7 @@ export type UserState = {
   +email: ?string,
   +profile: ProfileState,
   isUsing2Fa: ?boolean,
+  isVerified: boolean,
   error: ?string,
 };
 
@@ -23,6 +25,7 @@ export const initialUserState: UserState = {
   error: null,
   profile: initialProfileState,
   isUsing2Fa: null,
+  isVerified: false,
 };
 
 export default initialUserState;

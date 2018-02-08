@@ -41,6 +41,7 @@ describe('user reducer', () => {
     profile,
     error: null,
     isUsing2Fa: false,
+    isVerified: false,
   };
   const error = 'whoops';
 
@@ -179,7 +180,6 @@ describe('user reducer', () => {
   it('handles 2fa setup', () => {
     const action = createMultiFactorAuth.success();
     const newState = userReducer(initialUserState, action);
-    const stateAddress = newState.profile.address;
     expect(newState.isUsing2Fa).toEqual(true);
   });
 });
