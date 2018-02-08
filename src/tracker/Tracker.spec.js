@@ -81,6 +81,7 @@ describe('tracker', () => {
         error: null,
         profile,
         isUsing2Fa: false,
+        isVerified: false,
       };
 
       setUser(user);

@@ -16,6 +16,7 @@ describe('Settings component', () => {
       email: 'erko@risthein.ee',
       password: 'pass',
       isUsing2Fa: false,
+      isVerified: false,
     },
     email: 'erko@risthein.ee',
     fetchNewQRCode: () => {},

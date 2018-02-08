@@ -26,18 +26,21 @@ describe('user api', () => {
     error: null,
     profile,
     isUsing2Fa: false,
+    isVerified: false,
   };
   const existingUser: User = {
     id: 1,
     email,
     password: 'some password',
     isUsing2Fa: false,
+    isVerified: false,
   };
   const newUser: User = {
     id: null,
     email,
     password: 'some password',
     isUsing2Fa: false,
+    isVerified: false,
   };
 
   const apiUrl = 'sample-api-url';
