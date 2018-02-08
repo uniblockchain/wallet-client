@@ -124,7 +124,7 @@ export const Footer = () => (
         </Item>
         <Item>
           <ItemAnchor
-            href="/Whitepaper_light.pdf"
+            href="/Whitepaper.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
