@@ -7,10 +7,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { withStyles } from 'material-ui/styles';
-import OverviewIcon from './icon/OverviewIcon';
-import WalletIcon from './icon/WalletIcon';
-import CardIcon from './icon/CardIcon';
-import MarketplaceIcon from './icon/MarketplaceIcon';
+import OverviewIcon from '../icon/OverviewIcon';
+import WalletIcon from '../icon/WalletIcon';
+import CardIcon from '../icon/CardIcon';
+import MarketplaceIcon from '../icon/MarketplaceIcon';
 import type { Menu } from '../../menu';
 
 type Props = {
@@ -69,16 +69,16 @@ const buttonStyles = {
     color: '#a1a1a1',
   },
   overview: {
-    color: '#19c3ed !important',
+    color: '#2a2a2a !important',
   },
   wallet: {
-    color: '#02bda5 !important',
+    color: '#2a2a2a !important',
   },
   card: {
-    color: '#00346b !important',
+    color: '#2a2a2a !important',
   },
   marketplace: {
-    color: '#19c3ed !important',
+    color: '#2a2a2a !important',
   },
 };
 
@@ -111,7 +111,6 @@ export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
       {menu.map(it => (
         <StyledBottomNavigationButton
           key={it.link}
-          label={it.name}
           value={it.link}
           type={it.code}
           icon={<Icon item={it.link} />}
