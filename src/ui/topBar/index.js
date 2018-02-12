@@ -7,11 +7,6 @@ type Props = {
   className: string,
 };
 
-const Left = styled.div`
-  width: 100%;
-  color: ${props => (props.light ? '#ffffff' : '#e5f9f3')};
-`;
-
 const Right = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -20,12 +15,11 @@ const Right = styled.div`
 `;
 
 const Icon = styled.i`
-  color: #19c3ed;
+  color: #2a2a2a;
 `;
 
 const TopBarWithoutStyles = ({ className }: Props) => (
   <div className={className}>
-    <Left>C</Left>
     <Right>
       <Link to="/sidebar">
         <button type="button" className="btn btn-primary bmd-btn-icon">

@@ -9,12 +9,25 @@ type TabProps = {
   onSelect: string => void,
 };
 
-const StyledTab = styled.h2`
-  background-color: ${props => (props.active ? '#ffffff' : '#e5f9f3')};
-  padding: 8px 15px 8px 15px;
+const StyledTab = styled.p`
+  color: ${props => (props.active ? props.theme.main : props.theme.text)};
+  text-transform: uppercase;
+  padding: 8px 0px 8px 18px;
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 45%;
+    bottom: 0;
+    height: 2px;
+    width: 24px;
+    border-bottom: ${props => (props.active ? '2px solid #02bda5' : '')};
+  }
 `;
 
 export const Tab = (props: TabProps) => (
@@ -35,14 +48,12 @@ type TabsProps = {
 };
 
 const StyledTabs = styled.div`
-  background-color: #e5f9f3;
-  color: #02bda5;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   width: 100vw;
-  height: 80px;
+  height: 48px;
 `;
 
 export const Tabs = ({ children, value, onSelect }: TabsProps) => (
