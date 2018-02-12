@@ -6,7 +6,7 @@ import { Wallet as WalletClass } from './walletState';
 export const BalanceDiv = styled.h1`
   font-size: 36px;
   text-align: center;
-  color: #00346b;
+  color: #2a2a2a;
   margin-bottom: 10px;
 `;
 
