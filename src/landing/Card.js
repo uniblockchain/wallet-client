@@ -254,7 +254,7 @@ class Card extends React.Component<Props, State> {
                         </Body>
                       </FadeTransition>
                       <FadeTransition state={state} delay={450}>
-                        <Link to="/signup">
+                        <Link to="/app">
                           <Button color="gradient">Order free card</Button>
                         </Link>
                       </FadeTransition>
