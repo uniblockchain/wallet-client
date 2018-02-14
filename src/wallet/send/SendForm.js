@@ -17,8 +17,8 @@ import {
   Modal,
 } from '../../ui';
 import CurrencyName from '../CurrencyName';
-import quoteRoutine from './quote/quoteRoutine';
-import type { Quote } from './quote/quoteApi';
+import quoteRoutine from '../quote/quoteRoutine';
+import type { Quote } from '../quote/quoteApi';
 import { Balance } from '../Balance';
 
 type Props = {
