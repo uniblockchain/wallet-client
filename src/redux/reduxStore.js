@@ -14,7 +14,8 @@ import multiFactorAuthSaga from '../settings/multiFactorAuth/multiFactorAuthSaga
 import { userReducer, userSagas } from '../user';
 import { profileSagas } from '../user/profile';
 import { walletReducer, walletSagas } from '../wallet';
-import { quoteSagas, sendSagas, sendReducer } from '../wallet/send';
+import { sendSagas, sendReducer } from '../wallet/send';
+import { quoteSagas } from '../wallet/quote';
 import { feeSagas, feeReducer } from '../wallet/fee';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';

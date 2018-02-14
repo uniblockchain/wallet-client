@@ -3,9 +3,9 @@
 import config from 'react-global-configuration';
 import type { Quote } from './quoteApi';
 
-jest.mock('../../../http');
+jest.mock('../../http');
 
-const mockHttp = require('../../../http');
+const mockHttp = require('../../http');
 
 const quoteApi = require('./quoteApi').default;
 
