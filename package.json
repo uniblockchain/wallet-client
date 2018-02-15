@@ -2,6 +2,15 @@
   "name": "wallet-client",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/ChangeFinance/wallet-client.git"
+  },
+  "bugs": { 
+    "url" : "https://github.com/ChangeFinance/wallet-client/issues",
+    "email" : "maido@getchange.com"
+  },
   "dependencies": {
     "alpha2-countries": "^1.1.0",
     "bs58check": "^2.0.2",
