@@ -1,6 +1,5 @@
 // @flow
 /* global isNaN */
-import { change } from 'redux-form';
 import { call, put, takeLatest, type IOEffect } from 'redux-saga/effects';
 import type RoutineAction from 'redux-saga-routines';
 import quoteRoutine from './quoteRoutine';
@@ -8,17 +7,12 @@ import quoteApi from './quoteApi';
 
 export function* getQuote(action: RoutineAction): Generator<IOEffect, void, *> {
   try {
-    const quote = yield call(quoteApi.getQuote, action.payload);
-    yield put(quoteRoutine.success(quote));
-    if (action.payload.fromValue) {
-      yield put(change('send', 'amountInFiat', quote.toValue, true, false));
-    }
-    if (action.payload.toValue) {
-      yield put(change('send', 'amountInCrypto', quote.fromValue, true, false));
-    }
+    const { fromWalletId, quote } = action.payload;
+    const quoteResponse = yield call(quoteApi.getQuote, fromWalletId, quote);
+    yield put(quoteRoutine.success(quoteResponse));
   } catch (error) {
-    yield put(quoteRoutine.failure(error.message));
     console.error(error);
+    yield put(quoteRoutine.failure((error.body || {}).message));
   }
 }
 
@@ -28,13 +22,13 @@ const isNumber = value => {
 };
 
 function* validateQuote(action: RoutineAction): Generator<IOEffect, void, *> {
-  const quote = action.payload;
-  if (!quote.fromValue && !quote.toValue) {
-    yield put(quoteRoutine.failure());
-  } else if (!isNumber(quote.fromValue) && !quote.toValue) {
-    yield put(quoteRoutine.failure());
-  } else if (!isNumber(quote.toValue) && !quote.fromValue) {
-    yield put(quoteRoutine.failure());
+  const { quote } = action.payload;
+  if (!quote.fromValue) {
+    yield put(quoteRoutine.failure('Amount missing for quote'));
+  } else if (!quote.toCurrency) {
+    yield put(quoteRoutine.failure('Target currency missing for quote'));
+  } else if (!isNumber(quote.fromValue)) {
+    yield put(quoteRoutine.failure('Amount is not a number'));
   } else {
     yield call(getQuote, action);
   }

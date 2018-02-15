@@ -1,6 +1,7 @@
 // @flow
 import { createRoutine } from 'redux-saga-routines';
 
-const quoteRoutine = createRoutine('QUOTE');
+export const quoteRoutine = createRoutine('QUOTE');
+export const clearRoutine = createRoutine('QUOTE_CLEAR');
 
 export default quoteRoutine;

@@ -15,7 +15,7 @@ import { userReducer, userSagas } from '../user';
 import { profileSagas } from '../user/profile';
 import { walletReducer, walletSagas } from '../wallet';
 import { sendSagas, sendReducer } from '../wallet/send';
-import { quoteSagas } from '../wallet/quote';
+import { quoteSagas, quoteReducer } from '../wallet/quote';
 import { feeSagas, feeReducer } from '../wallet/fee';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
@@ -41,6 +41,7 @@ const appReducer = combineReducers({
   flags: flagsReducer,
   fee: feeReducer,
   confirm: confirmReducer,
+  quote: quoteReducer,
   multiFactorAuth: multiFactorAuthReducer,
 });
 

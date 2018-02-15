@@ -1,32 +1,23 @@
 // @flow
 
-import { change } from 'redux-form';
 import { call, put } from 'redux-saga/effects';
 import quoteRoutine from './quoteRoutine';
 
-import quoteApi, { type Quote } from './quoteApi';
+import quoteApi from './quoteApi';
 import { getQuote } from './quoteSagas';
+import { testQuote, testQuoteCommand } from '../../fixtures';
 
 describe('quote sagas', () => {
   it('works', () => {
-    const quote: Quote = {
-      fromValue: 1,
-      fromCurrency: 'ETH',
-      toValue: 250,
-      toCurrency: 'EUR',
-    };
-
-    const generator = getQuote(quoteRoutine(quote));
-
-    expect(generator.next().value).toEqual(call(quoteApi.getQuote, quote));
-    expect(generator.next(quote).value).toEqual(
-      put(quoteRoutine.success(quote)),
+    const generator = getQuote(
+      quoteRoutine({ fromWalletId: 1, quote: testQuoteCommand }),
     );
+
     expect(generator.next().value).toEqual(
-      put(change('send', 'amountInFiat', quote.toValue, true, false)),
+      call(quoteApi.getQuote, 1, testQuoteCommand),
     );
-    expect(generator.next().value).toEqual(
-      put(change('send', 'amountInCrypto', quote.fromValue, true, false)),
+    expect(generator.next(testQuote).value).toEqual(
+      put(quoteRoutine.success(testQuote)),
     );
     expect(generator.next().done).toBeTruthy();
   });

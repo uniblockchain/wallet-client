@@ -11,32 +11,62 @@ import {
   FormGroup,
   FormRow,
   Field,
+  FieldInput,
   PrimaryButton,
   Top,
   WrappedContent,
   Modal,
 } from '../../ui';
 import CurrencyName from '../CurrencyName';
-import quoteRoutine from '../quote/quoteRoutine';
+import {
+  quoteRoutine,
+  clearRoutine as clearQuoteRoutine,
+} from '../quote/quoteRoutine';
 import type { Quote } from '../quote/quoteApi';
 import { Balance } from '../Balance';
+import AppRouter from '../../router';
+import type { QuoteState } from '../quote/quoteReducer';
+import { FormFeedback } from '../../ui/form';
 
 type Props = {
   fiatCurrencyCode: string,
+  quote: QuoteState,
   getNewQuote: Quote => void,
+  clearQuote: () => void,
 } & FormProps;
 
 export const SendForm = ({
   handleSubmit,
   error,
+  submitting,
   fiatCurrencyCode,
   getNewQuote,
+  clearQuote,
   clearSubmitErrors,
   initialValues,
+  quote,
 }: Props) => {
   const { activeWallet } = initialValues;
+  if (!activeWallet) {
+    return <AppRouter wallet />;
+  }
   const currencyName = CurrencyName.get(activeWallet.currency);
   const cryptoCurrencyCode = activeWallet.currency;
+
+  const handleAmountChange = (event, fromValue) => {
+    if (!fromValue || fromValue < 0.0001) {
+      return;
+    }
+    clearQuote();
+    getNewQuote({
+      fromWalletId: activeWallet.id,
+      quote: {
+        fromValue,
+        toCurrency: fiatCurrencyCode,
+      },
+    });
+  };
+  const submitAllowed = !submitting && !quote.isLoading;
   return (
     <WrappedContent>
       <Top>
@@ -60,32 +90,31 @@ export const SendForm = ({
                 label="How much"
                 type="number"
                 placeholder="0.00"
-                onChange={(event, fromValue) =>
-                  getNewQuote({
-                    fromValue,
-                    fromCurrency: cryptoCurrencyCode,
-                    toCurrency: fiatCurrencyCode,
-                  })}
+                onChange={handleAmountChange}
               />
             </Col>
             <Col>
-              <Field
-                name="amountInFiat"
+              <FieldInput
+                input={{
+                  name: 'amountInFiat',
+                  value: quote.to ? quote.to.value : 0,
+                  readOnly: true,
+                }}
+                meta={{}}
                 addon={fiatCurrencyCode}
                 label="(Approximately)"
                 type="number"
                 placeholder="0.00"
-                onChange={(event, toValue) =>
-                  getNewQuote({
-                    fromCurrency: cryptoCurrencyCode,
-                    toValue,
-                    toCurrency: fiatCurrencyCode,
-                  })}
               />
             </Col>
           </FormRow>
+          {quote.error && <FormFeedback>{quote.error}</FormFeedback>}
           <FormGroup className="mt-5">
-            <PrimaryButton type="submit" form="sendForm">
+            <PrimaryButton
+              type="submit"
+              form="sendForm"
+              disabled={!submitAllowed}
+            >
               Send
             </PrimaryButton>
             <Link to="/wallet">
@@ -107,10 +136,12 @@ export const SendForm = ({
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   fiatCurrencyCode: state.wallet.currency,
+  quote: state.quote,
 });
 
 const mapDispatchToProps = {
   getNewQuote: quoteRoutine,
+  clearQuote: clearQuoteRoutine,
 };
 
 const ConnectedSendForm = connect(mapStateToProps, mapDispatchToProps)(
