@@ -5,15 +5,18 @@ import { shallow } from 'enzyme';
 
 import { SendForm } from './SendForm';
 import { Modal } from '../../ui';
-import { testWallet } from '../../fixtures';
+import { testQuote, testWallet } from '../../fixtures';
 
 describe('Send Form component', () => {
   let component;
 
   const props = {
     fiatCurrencyCode: 'EUR',
+    quote: testQuote,
+    amountInFiat: 100.2,
     getNewQuote: jest.fn(),
     handleSubmit: jest.fn(),
+    clearQuote: jest.fn(),
     error: undefined,
     initialValues: { activeWallet: testWallet },
   };

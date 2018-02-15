@@ -1,7 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
-import type { Quote } from './quoteApi';
+import { testQuote, testQuoteCommand } from '../../fixtures';
 
 jest.mock('../../http');
 
@@ -17,16 +17,10 @@ describe('quote api', () => {
   });
 
   it('gets a quote', () => {
-    const quote: Quote = {
-      fromValue: 1,
-      fromCurrency: 'ETH',
-      toValue: 250,
-      toCurrency: 'EUR',
-    };
-    mockHttp.get = jest.fn(() => Promise.resolve(quote));
+    mockHttp.get = jest.fn(() => Promise.resolve(testQuote));
 
     return quoteApi
-      .getQuote(quote)
-      .then(response => expect(response).toEqual(quote));
+      .getQuote(1, testQuoteCommand)
+      .then(response => expect(response).toEqual(testQuote));
   });
 });

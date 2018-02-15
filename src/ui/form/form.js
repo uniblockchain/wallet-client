@@ -27,6 +27,9 @@ export const Input = styled.input`
       ),
       linear-gradient(to top, rgba(0, 0, 0, 0.26) 1px, transparent 1px);
   }
+  &:read-only {
+    background-color: white;
+  }
 `;
 
 export const Select = styled.select`
@@ -77,7 +80,7 @@ export const FormInput = (props: any) => (
   <Input className="form-control" {...props} />
 );
 
-const renderField = ({
+export const FieldInput = ({
   addon,
   input,
   label,
@@ -196,7 +199,7 @@ export const renderCheckbox = ({
 );
 
 export const Field = (props: any) => (
-  <ReduxField component={props.component || renderField} {...props} />
+  <ReduxField component={props.component || FieldInput} {...props} />
 );
 
 export const SelectField = (props: any) => (
@@ -212,6 +215,7 @@ export default {
   FormRow,
   FormFeedback,
   Field,
+  FieldInput,
   SelectField,
   Col,
   Col3,
