@@ -3,8 +3,8 @@
   "name": "Change Wallet Application",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
+      "src": "icon.png",
+      "sizes": "240x240",
       "type": "image/png"
     }
   ],

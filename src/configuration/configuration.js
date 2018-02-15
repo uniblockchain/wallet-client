@@ -8,29 +8,27 @@ const DEFAULT_CONF = {
   cardServiceApiUrl: 'http://localhost:8888',
   oauth2PasswordResetClientId: 'password-reset-client',
   oauth2PasswordResetClientSecret: 'PasswordResetClientSecret',
+  oauth2ClientId: 'wallet-client',
+  // We know that this secret is exposed,
+  // we just need to specify something here because the backend doesn't accept no value
+  oauth2Secret: 'WalletClientSecret',
 };
 
 const DEFAULT_CONF_DEV = {
   ...DEFAULT_CONF,
   apiUrl: '',
-  oauth2ClientId: 'wallet-client',
-  oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'none',
 };
 
 const DEFAULT_CONF_STAGING = {
   ...DEFAULT_CONF,
   apiUrl: 'https://staging-api.getchange.com',
-  oauth2ClientId: 'wallet-client',
-  oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'none',
 };
 
 const DEFAULT_CONF_PRODUCTION = {
   ...DEFAULT_CONF,
   apiUrl: 'https://api.getchange.com',
-  oauth2ClientId: 'wallet-client',
-  oauth2Secret: 'WalletClientSecret',
   mixpanelToken: 'eda8215eea75dc2a02b6fce287d0e144',
 };
 

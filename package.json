@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/ChangeFinance/wallet-client.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChangeFinance/wallet-client.git"
   },
-  "bugs": { 
-    "url" : "https://github.com/ChangeFinance/wallet-client/issues",
-    "email" : "maido@getchange.com"
+  "bugs": {
+    "url": "https://github.com/ChangeFinance/wallet-client/issues",
+    "email": "maido@getchange.com"
   },
   "dependencies": {
     "alpha2-countries": "^1.1.0",
@@ -62,13 +62,15 @@
   "scripts": {
     "precommit": "lint-staged",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "start:staging": "REACT_APP_ENV=staging react-scripts start",
     "build": "npm run build-css && react-scripts build",
     "test": "npm run build-css && flow && react-scripts test --env=jsdom",
-    "test:ci": "npm run build-css && flow && react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
+    "test:ci":
+      "npm run build-css && flow && react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit",
     "flow": "flow",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
