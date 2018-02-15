@@ -17,6 +17,7 @@ import { walletReducer, walletSagas } from '../wallet';
 import { sendSagas, sendReducer } from '../wallet/send';
 import { quoteSagas, quoteReducer } from '../wallet/quote';
 import { feeSagas, feeReducer } from '../wallet/fee';
+import { exchangeReducer } from '../wallet/exchange';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
 import { addressSagas } from '../card/order/address';
@@ -42,6 +43,7 @@ const appReducer = combineReducers({
   fee: feeReducer,
   confirm: confirmReducer,
   quote: quoteReducer,
+  exchange: exchangeReducer,
   multiFactorAuth: multiFactorAuthReducer,
 });
 

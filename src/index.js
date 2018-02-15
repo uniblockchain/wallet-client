@@ -15,7 +15,7 @@ import './polyfills';
 import './initialize';
 import { history, store } from './redux/reduxStore';
 import App from './App';
-import { Wallet, Send, Receive } from './wallet';
+import { Wallet, Send, Receive, Exchange } from './wallet';
 import { Signup } from './signup';
 import { Login, Logout } from './login';
 import { Overview, WalletComingSoon } from './overview';
@@ -93,6 +93,10 @@ render(
                 />
                 <Route path="/send" component={authenticatedPage(Send)} />
                 <Route path="/receive" component={authenticatedPage(Receive)} />
+                <Route
+                  path="/exchange"
+                  component={authenticatedPage(Exchange)}
+                />
                 <Route exact path="/card" component={authenticatedPage(Card)} />
                 {cardOrderRoutes}
                 <Route

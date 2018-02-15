@@ -3,9 +3,10 @@ import * as React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { withStyles } from 'material-ui';
 import { Wallet as WalletClass } from './walletState';
 import CurrencyTabs from './currencyTabs';
-import { Card, Link, Paragraph, PrimaryButton, Divider } from '../ui';
+import { Card, Link, Paragraph, Divider } from '../ui';
 import CurrencyName from './CurrencyName';
 import withWallet from './withWallet';
 import { getActiveWallet } from '../redux/selectors';
@@ -13,6 +14,7 @@ import address from './img/address.png';
 import { Transactions } from '../overview/transactions/Transactions';
 import type { State } from '../redux/rootReducer';
 import { Balance } from './Balance';
+import { AddIcon, SendIcon, ExchangeIcon } from '../ui/icon';
 
 const MainContent = styled.div`
   display: flex;
@@ -24,7 +26,6 @@ const MainContent = styled.div`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
-  width: 90vw;
 `;
 
 const LinkWithMargin = Link.extend`
@@ -43,6 +44,13 @@ const PaddedParagraph = Paragraph.extend`
   text-align: center;
 `;
 
+const IconButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 0px 20px;
+`;
+
 export type Props = {
   wallet: ?WalletClass,
   representationalCurrency: string,
@@ -52,24 +60,63 @@ type WalletProps = {
   wallet: WalletClass,
 };
 
+type IconProps = {
+  item: string,
+  classes: any,
+};
+
+const iconStyles = {
+  root: {
+    width: '30px',
+    height: '30px',
+  },
+};
+
+const Icon = withStyles(iconStyles)(({ item, classes }: IconProps): any => {
+  switch (item) {
+    case '/receive':
+      return <AddIcon classes={{ root: classes.root }} />;
+    case '/exchange':
+      return <ExchangeIcon classes={{ root: classes.root }} />;
+    case '/send':
+      return <SendIcon classes={{ root: classes.root }} />;
+    default:
+      return null;
+  }
+});
+
 export const WalletButtons = ({ wallet }: WalletProps) => {
   if (wallet.hasBalance()) {
     return (
       <Buttons>
         <LinkWithMargin to="/receive">
-          <PrimaryButton>Receive</PrimaryButton>
+          <IconButton>
+            <Icon item="/receive" />
+            <span>Add</span>
+          </IconButton>
+        </LinkWithMargin>
+        <LinkWithMargin to="/exchange">
+          <IconButton>
+            <Icon item="/exchange" />
+            <span>Convert</span>
+          </IconButton>
         </LinkWithMargin>
         <LinkWithMargin to="/send">
-          <PrimaryButton>Send</PrimaryButton>
+          <IconButton>
+            <Icon item="/send" />
+            <span>Send</span>
+          </IconButton>
         </LinkWithMargin>
       </Buttons>
     );
   }
-  const currency = CurrencyName.get(wallet.currency);
   return (
     <Buttons>
       <Link to="/receive">
-        <PrimaryButton>{`Get ${currency}`}</PrimaryButton>
+        <IconButton>
+          <Icon item="/receive" />
+          <span>Add</span>
+        </IconButton>
       </Link>
     </Buttons>
   );

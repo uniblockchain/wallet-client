@@ -1,9 +1,11 @@
 import AddIcon from './AddIcon';
-import ConvertIcon from './ConvertIcon';
+import ExchangeIcon from './ExchangeIcon';
 import SendIcon from './SendIcon';
+import InOutIcon from './InOutIcon';
 
 export { default as AddIcon } from './AddIcon';
-export { default as ConvertIcon } from './ConvertIcon';
+export { default as ExchangeIcon } from './ExchangeIcon';
 export { default as SendIcon } from './SendIcon';
+export { default as InOutIcon } from './InOutIcon';
 
-export default { AddIcon, ConvertIcon, SendIcon };
+export default { AddIcon, ExchangeIcon, SendIcon, InOutIcon };
