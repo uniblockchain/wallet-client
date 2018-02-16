@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-import { Header, Paragraph, FileUpload } from '../../../ui';
+import { FileUpload, Header, Paragraph } from '../../../ui';
+import { CARD_ORDER_ADDRES_VERIFICATION_ROUTE } from '../constants';
 import passport from './img/passport.png';
 import verificationFileUploader from './verificationFileUploader';
-import { CARD_ORDER_ADDRES_VERIFICATION_ROUTE } from '../constants';
 
 const LargeHeader = Header.extend`
   font-size: 36px;
@@ -19,22 +19,12 @@ const Buttons = styled.div`
   justify-content: space-between;
 `;
 
-const LinkContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 const PassportImg = styled.img`
   max-height: 220px;
   max-width: 280px;
   margin-top: 36px;
   margin-left: auto;
   margin-right: auto;
-`;
-
-const Link = styled.a`
-  color: #19c3ed;
-  font-size: 14px;
 `;
 
 type Props = {
@@ -50,14 +40,11 @@ export const IdVerification = ({ onChoose, redirectToNextStep }: Props) => {
 
   return (
     <div>
-      <LargeHeader alt>Your proof of identification</LargeHeader>
+      <LargeHeader alt>Your proof of identification.</LargeHeader>
       <Paragraph alt>
         To verify your identity please upload a photo (less than 10MB) of your
         id card or passport identification page.
       </Paragraph>
-      <LinkContainer>
-        <Link href="#">Learn why</Link>
-      </LinkContainer>
       <PassportImg src={passport} />
       <Buttons>
         <FileUpload type="camera" onChoose={chooseAndGoToNextStep}>

@@ -1,12 +1,12 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import AppRouter, { routes } from '../router';
 import { Button, Header, Top, WrappedContent } from '../ui';
 import { withUser } from '../user';
-import AppRouter, { routes } from '../router';
 
 export type Props = {
   verified: boolean,
@@ -21,11 +21,12 @@ export const WalletComingSoon = ({ verified }: Props) => {
       <WrappedContent>
         <Top>
           <Header alt>
-            Hey, there!
+            You’re all set!
             <br />
           </Header>
-          <div>Thanks for ordering the card!</div>
-          <div>Wallet will be available soon.</div>
+          <div>
+            The wallet will be available soon and you’ll be the first to know.
+          </div>
         </Top>
         <Link to={routes.LOGOUT}>
           <Button>Log out</Button>

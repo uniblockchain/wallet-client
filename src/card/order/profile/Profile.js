@@ -1,26 +1,26 @@
+import moment from 'moment-es6';
 // @flow
 import React from 'react';
-import moment from 'moment-es6';
-import styled from 'styled-components';
 import { connect, type MapStateToProps } from 'react-redux';
+import { push } from 'react-router-redux';
 import type { FormProps } from 'redux-form';
 import { reduxForm } from 'redux-form';
-import { push } from 'react-router-redux';
+import styled from 'styled-components';
 import {
-  Header,
-  Form,
-  FormGroup,
-  FormRow,
   Col,
   Col3,
   Field,
-  SelectField,
+  Form,
   FormFeedback,
-  PrimaryButton,
+  FormGroup,
+  FormRow,
+  Header,
   Label,
+  PrimaryButton,
+  SelectField,
 } from '../../../ui';
-import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
 import { profileFormSubmitHandler, withProfile } from '../../../user/profile';
+import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
 import countryCodes from './countryCodes';
 
 const StyledHeader = styled(Header)`
@@ -31,7 +31,7 @@ type Props = {} & FormProps;
 
 export const Profile = ({ handleSubmit, error }: Props) => (
   <div>
-    <StyledHeader>Who will the card be registered to?</StyledHeader>
+    <StyledHeader>Who are you?</StyledHeader>
     <Form
       id="profileForm"
       onSubmit={handleSubmit(profileFormSubmitHandler)}

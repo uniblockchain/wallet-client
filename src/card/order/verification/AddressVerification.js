@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-import { Header, Paragraph, FileUpload } from '../../../ui';
+import { FileUpload, Header, Paragraph } from '../../../ui';
+import { CARD_ORDER_CONFIRM_ROUTE } from '../constants';
 import address from './img/address.png';
 import verificationFileUploader from './verificationFileUploader';
-import { CARD_ORDER_CONFIRM_ROUTE } from '../constants';
 
 const LargeHeader = Header.extend`
   font-size: 36px;
@@ -19,19 +19,9 @@ const Buttons = styled.div`
   justify-content: space-between;
 `;
 
-const LinkContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
 const AddressImg = styled.img`
   width: 100%;
   margin: 23px 0 33px 0;
-`;
-
-const Link = styled.a`
-  color: #19c3ed;
-  font-size: 14px;
 `;
 
 const List = styled.ul`
@@ -66,13 +56,7 @@ export const AddressVerification = ({
 
   return (
     <div>
-      <LargeHeader alt>Address verification</LargeHeader>
-      <Paragraph alt>
-        To finish the process we need a proof of address.
-      </Paragraph>
-      <LinkContainer>
-        <Link href="#">Learn why</Link>
-      </LinkContainer>
+      <LargeHeader alt>Your proof of address.</LargeHeader>
       <AddressImg src={address} />
       <Paragraph alt>
         Please upload (less than 10MB) one of the following documents with your

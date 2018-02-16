@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AppRouter, { routes } from '../../../router';
-import { Header, Paragraph, PrimaryButton, Button, Top } from '../../../ui';
+import { Button, Header, Paragraph, PrimaryButton, Top } from '../../../ui';
 import cardOrderApi from '../cardOrderApi';
 import { CARD_ORDER_PROFILE_ROUTE } from '../constants';
 
@@ -41,16 +41,16 @@ export class Intro extends Component<any, State> {
     ) : (
       <div>
         <Top>
-          <StyledHeader>
-            Financial regulations require us to get to know you better.
-          </StyledHeader>
+          <StyledHeader>We need to get to know you better.</StyledHeader>
         </Top>
-        <Paragraph alt>A few things to note:</Paragraph>
+        <Paragraph alt>
+          The wallet is down for maintenance. You may still get ready for
+          launch.
+        </Paragraph>
         <ul>
           <li>
             <Bulletpoint alt>
-              For identification please have your ID card / passport and proof
-              of address nearby.
+              Please have your passport copy and utility bill nearby.
             </Bulletpoint>
           </li>
           <li>

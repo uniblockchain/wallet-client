@@ -43,8 +43,10 @@ export const App = ({ authenticated }: Props) => {
   return (
     <StyledContent>
       <Top>
-        <Header>Change is a free digital wallet.</Header>
-        <SubHeader>Get started with cryptocurrencies. Easily.</SubHeader>
+        <Header>Change makes money simple.</Header>
+        <SubHeader>
+          Get started with a free digital wallet. It’s easy!
+        </SubHeader>
       </Top>
       <Bottom>
         <Link to="/signup">
