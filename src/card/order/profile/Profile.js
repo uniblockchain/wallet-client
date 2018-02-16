@@ -1,5 +1,5 @@
-import moment from 'moment-es6';
 // @flow
+import moment from 'moment-es6';
 import React from 'react';
 import { connect, type MapStateToProps } from 'react-redux';
 import { push } from 'react-router-redux';
