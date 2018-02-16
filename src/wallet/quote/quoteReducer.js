@@ -2,14 +2,14 @@
 
 import type RoutineAction from 'redux-saga-routines';
 import { quoteRoutine, clearRoutine } from './quoteRoutine';
-import type { MonetaryValue } from '../walletState';
+import type { MonetaryValue, MonetaryValuesMap } from '../walletState';
 
 export type QuoteState = {
-  from: ?MonetaryValue,
-  to: ?MonetaryValue,
-  fee: ?MonetaryValue,
-  minAmount?: number,
-  maxAmount?: number,
+  from: ?MonetaryValuesMap,
+  to: ?MonetaryValuesMap,
+  fee: ?MonetaryValuesMap,
+  minAmount?: MonetaryValue,
+  maxAmount?: MonetaryValue,
   isLoading: boolean,
   error: ?string,
 };

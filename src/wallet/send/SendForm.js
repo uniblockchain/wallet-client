@@ -97,7 +97,7 @@ export const SendForm = ({
               <FieldInput
                 input={{
                   name: 'amountInFiat',
-                  value: quote.to ? quote.to.value : 0,
+                  value: quote.to ? quote.to[fiatCurrencyCode] : 0,
                   readOnly: true,
                 }}
                 meta={{}}

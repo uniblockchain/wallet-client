@@ -2,7 +2,7 @@
 
 import config from 'react-global-configuration';
 import { get } from '../../http';
-import type { MonetaryValue } from '../walletState';
+import type { MonetaryValue, MonetaryValuesMap } from '../walletState';
 
 export type QuoteCommand = {|
   fromValue?: number,
@@ -10,11 +10,11 @@ export type QuoteCommand = {|
 |};
 
 export type Quote = {|
-  from: MonetaryValue,
-  to: MonetaryValue,
-  fee: MonetaryValue,
-  minAmount?: number,
-  maxAmount?: number,
+  from: MonetaryValuesMap,
+  to: MonetaryValuesMap,
+  fee: MonetaryValuesMap,
+  minAmount?: MonetaryValue,
+  maxAmount?: MonetaryValue,
 |};
 
 const getQuote = (fromWalletId: number, quote: QuoteCommand): Promise<Quote> =>
