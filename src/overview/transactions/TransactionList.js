@@ -22,7 +22,10 @@ type Props = {
   transactions: Array<TransactionType>,
 };
 
-export const TransactionsWithoutStyles = ({ classes, transactions }: Props) => (
+export const TransactionListWithoutStyles = ({
+  classes,
+  transactions,
+}: Props) => (
   <div className={classes.root}>
     <List>
       {transactions.map((transaction: TransactionType) => (
@@ -32,7 +35,7 @@ export const TransactionsWithoutStyles = ({ classes, transactions }: Props) => (
   </div>
 );
 
-export const Transactions = withStyles(styles)(TransactionsWithoutStyles);
+export const TransactionList = withStyles(styles)(TransactionListWithoutStyles);
 
 const getSortedTransactions = (
   wallets: Array<WalletType>,
@@ -49,4 +52,4 @@ export const mapStateToProps: MapStateToProps<*, *, *> = state => ({
   transactions: state.wallet ? getSortedTransactions(state.wallet.wallets) : [],
 });
 
-export default connect(mapStateToProps)(Transactions);
+export default connect(mapStateToProps)(TransactionList);

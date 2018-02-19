@@ -5,7 +5,7 @@ import type { Location } from 'react-router';
 import styled from 'styled-components';
 
 import { Card } from '../ui';
-import Transactions from './transactions';
+import TransactionList from './transactions';
 import withWallet from '../wallet/withWallet';
 import BalanceDoughnut from './balance';
 import OverviewSlider from './slider';
@@ -29,7 +29,7 @@ export const Overview = ({ location }: Props) => (
     </Card>
     <OverviewSlider isNewUser={location.state && location.state.isNewUser} />
     <TransactionsCard title="Activity">
-      <Transactions />
+      <TransactionList />
     </TransactionsCard>
   </div>
 );

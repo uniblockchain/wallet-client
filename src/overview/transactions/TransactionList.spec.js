@@ -3,14 +3,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { TransactionsWithoutStyles, mapStateToProps } from './Transactions';
+import {
+  TransactionListWithoutStyles,
+  mapStateToProps,
+} from './TransactionList';
 import Transaction from './transaction';
 import type {
   WalletType,
   Transaction as TransactionType,
 } from '../../wallet/walletState';
 
-describe('Transactions component', () => {
+describe('TransactionList component', () => {
   let component;
 
   const transactions: Array<TransactionType> = [
@@ -22,6 +25,7 @@ describe('Transactions component', () => {
       fee: [],
       value: [],
       address: null,
+      transactionId: 'some_transaction_id',
     },
     {
       id: '2',
@@ -31,6 +35,7 @@ describe('Transactions component', () => {
       fee: [],
       value: [],
       address: null,
+      transactionId: 'some_transaction_id',
     },
   ];
 
@@ -40,7 +45,7 @@ describe('Transactions component', () => {
   };
 
   beforeEach(() => {
-    component = shallow(<TransactionsWithoutStyles {...props} />);
+    component = shallow(<TransactionListWithoutStyles {...props} />);
   });
 
   it('renders the component', () => {

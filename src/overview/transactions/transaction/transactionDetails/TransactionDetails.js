@@ -5,6 +5,7 @@ import { Modal, Header } from '../../../../ui';
 import type { Transaction as TransactionType } from '../../../../wallet/walletState';
 import walletCurrencyValueResolver from '../../../../wallet/walletCurrencyValueResolver';
 import FiatValue from '../fiatValue';
+import { getTransactionInfo } from './transactionInfo';
 
 export const Amount = Header.extend`
   font-size: 36px;
@@ -40,6 +41,11 @@ export const StatusField = Field.extend`
   }
 `;
 
+export const TransactionInfoLink = styled.a`
+  font-size: 14px;
+  margin-bottom: 10px;
+`;
+
 type Props = {
   transaction: TransactionType,
   onConfirm: () => void,
@@ -63,6 +69,8 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
   const valueWalletCurrency = Math.abs(value);
 
   const isFeeIncluded = transaction.currency !== 'ETH';
+
+  const transactionInfo = getTransactionInfo(transaction);
 
   const sending = value < 0;
   const netValueWalletCurrency =
@@ -116,6 +124,14 @@ export const TransactionDetails = ({ transaction, onConfirm }: Props) => {
         <Field>{transaction.date.toUTCString()}</Field>
         <Label>{sending ? 'RECIPIENT ADDRESS' : 'SENDER ADDRESS'}</Label>
         <AddressField>{transaction.address}</AddressField>
+        {transactionInfo && <Label>TRANSACTION ON BLOCKCHAIN</Label>}
+        {transactionInfo && (
+          <TransactionInfoLink
+            href={transactionInfo.baseURL + transaction.transactionId}
+          >
+            View on {transactionInfo.siteName}
+          </TransactionInfoLink>
+        )}
       </Modal>
     </div>
   );

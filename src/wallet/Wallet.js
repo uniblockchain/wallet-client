@@ -10,7 +10,7 @@ import CurrencyName from './CurrencyName';
 import withWallet from './withWallet';
 import { getActiveWallet } from '../redux/selectors';
 import address from './img/address.png';
-import { Transactions } from '../overview/transactions/Transactions';
+import { TransactionList } from '../overview/transactions/TransactionList';
 import type { State } from '../redux/rootReducer';
 import { Balance } from './Balance';
 
@@ -77,7 +77,7 @@ export const WalletButtons = ({ wallet }: WalletProps) => {
 
 export const WalletActivity = ({ wallet }: WalletProps) => {
   if (wallet.hasBalance()) {
-    return <Transactions transactions={wallet.transactions} />;
+    return <TransactionList transactions={wallet.transactions} />;
   }
   const currency = CurrencyName.get(wallet.currency);
   return (

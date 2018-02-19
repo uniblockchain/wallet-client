@@ -17,6 +17,7 @@ describe('Transaction component', () => {
 
   const sampleValue = 123;
   const address = 'some address';
+  const transactionId = 'some_transaction_id';
 
   const sampleTransaction: TransactionType = {
     id: '1',
@@ -36,6 +37,7 @@ describe('Transaction component', () => {
       },
     ],
     address,
+    transactionId,
   };
 
   const props = {

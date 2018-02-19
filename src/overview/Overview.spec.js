@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 
 import { Overview } from './Overview';
 import type { Props } from './Overview';
-import Transactions from './transactions';
+import TransactionList from './transactions';
 import BalanceDoughnut from './balance';
 import OverviewSlider from './slider';
 
@@ -46,6 +46,6 @@ describe('Overview component', () => {
   });
 
   it('renders transactions', () => {
-    expect(component.contains(<Transactions />)).toBe(true);
+    expect(component.contains(<TransactionList />)).toBe(true);
   });
 });

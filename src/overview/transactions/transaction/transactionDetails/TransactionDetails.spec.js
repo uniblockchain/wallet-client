@@ -8,6 +8,7 @@ import {
   AddressField,
   Label,
   StatusField,
+  TransactionInfoLink,
 } from './TransactionDetails';
 import type { Transaction as TransactionType } from '../../../../wallet/walletState';
 import { Modal } from '../../../../ui';
@@ -23,6 +24,7 @@ describe('Transaction details component', () => {
     valueCrypto,
     valueFiat,
     currency,
+    transactionId,
   }): TransactionType => {
     const transaction: TransactionType = {
       id: '1',
@@ -50,6 +52,7 @@ describe('Transaction details component', () => {
         },
       ],
       address,
+      transactionId,
     };
     return transaction;
   };
@@ -61,9 +64,12 @@ describe('Transaction details component', () => {
     valueCrypto: 556,
     valueFiat: 556000,
     currency: 'ETH',
+    transactionId: 'some_transaction_id',
   };
 
   let transaction = getTransaction(transactionInput);
+
+  global.console = { error: jest.fn() };
 
   beforeEach(() => {
     const props = {
@@ -119,6 +125,7 @@ describe('Transaction details component', () => {
       valueCrypto: -456,
       valueFiat: -456000,
       currency: 'ETH',
+      transactionId: 'some_transaction_id',
     };
 
     beforeEach(() => {
@@ -178,5 +185,30 @@ describe('Transaction details component', () => {
         </Field>,
       );
     });
+  });
+
+  it('does not render transaction info link if link for currency has not been added', () => {
+    const transactionWithoutInfoUrl = getTransaction({
+      ...transactionInput,
+      currency: 'SOME_NEW_CURRENCY',
+    });
+
+    component.setProps({ transaction: transactionWithoutInfoUrl });
+
+    expect(console.error).toBeCalled();
+  });
+
+  it('renders transaction info link if link for currency is added', () => {
+    const transactionWithInfoUrl = getTransaction({
+      ...transactionInput,
+      currency: 'ETH',
+    });
+
+    component.setProps({ transaction: transactionWithInfoUrl });
+
+    expect(component).toContainReact(<Label>TRANSACTION ON BLOCKCHAIN</Label>);
+    expect(component.find(TransactionInfoLink).prop('href')).toEqual(
+      `https://etherscan.io/tx/${transactionWithInfoUrl.transactionId}`,
+    );
   });
 });

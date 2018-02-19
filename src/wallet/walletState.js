@@ -25,6 +25,7 @@ export type Transaction = {
   +fee: MonetaryValues,
   +value: MonetaryValues,
   +address: ?string,
+  +transactionId: string,
 };
 
 export type WalletType = {
