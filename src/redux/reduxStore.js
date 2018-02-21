@@ -1,6 +1,7 @@
 // @flow
 
 import createHistory from 'history/createBrowserHistory';
+import createHashHistory from 'history/createHashHistory';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
@@ -28,7 +29,7 @@ import rootReducer from './rootReducer';
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const history = createHistory();
+export const history = window.cordova ? createHashHistory() : createHistory();
 
 const appReducer = combineReducers({
   router: routerReducer,

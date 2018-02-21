@@ -42,6 +42,7 @@ class GoogleTagManager extends React.Component<Props> {
       dataLayerName: this.props.dataLayerName || 'dataLayer',
       additionalEvents: this.props.additionalEvents || {},
       previewVariables: this.props.previewVariables || false,
+      scheme: 'https:',
     });
 
     return (

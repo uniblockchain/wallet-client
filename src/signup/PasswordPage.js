@@ -47,7 +47,7 @@ export const PasswordPage = (props: FormProps) => {
               <span>
                 I agree to the{' '}
                 <a
-                  href="//getchange.com/legal/beta/"
+                  href="https://getchange.com/legal/beta/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -52,77 +52,98 @@ const PublicContent = withRouter(({ location, children }) => (
   </TransitionGroup>
 ));
 
-render(
-  <div>
-    <GoogleTagManager gtmId="GTM-55R5ZNL" />
-    <ReduxProvider store={store}>
-      <ConnectedRouter history={history}>
-        <ConnectedFlagsProvider>
-          <ThemeProvider theme={DefaultTheme}>
-            <div>
-              <Switch>
-                <Route exact path="/" component={Landing} />
-                <Route path="/about" component={Landing} />
-                <Route path="/careers" component={Landing} />
-                <Route path="/legal" component={Landing} />
-                <Route path="/notify-me-success" component={Landing} />
-              </Switch>
-              <PublicContent>
-                <Route exact path={routes.BASE} component={App} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path={routes.RESET_PASSWORD} component={ResetPassword} />
+const startApp = () => {
+  render(
+    <div>
+      <GoogleTagManager gtmId="GTM-55R5ZNL" />
+      <ReduxProvider store={store}>
+        <ConnectedRouter history={history}>
+          <ConnectedFlagsProvider>
+            <ThemeProvider theme={DefaultTheme}>
+              <div>
+                <Switch>
+                  <Route exact path="/" component={Landing} />
+                  <Route path="/about" component={Landing} />
+                  <Route path="/careers" component={Landing} />
+                  <Route path="/legal" component={Landing} />
+                  <Route path="/notify-me-success" component={Landing} />
+                </Switch>
+                <PublicContent>
+                  <Route exact path={routes.BASE} component={App} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
+                  <Route
+                    path={routes.RESET_PASSWORD}
+                    component={ResetPassword}
+                  />
+                  <Route
+                    path={routes.RESET_PASSWORD_DONE}
+                    component={ResetPasswordDone}
+                  />
+                </PublicContent>
+                <Switch>
+                  <Route path="/logout" component={Logout} />
+                  <Route
+                    path={routes.WALLET_COMING_SOON}
+                    component={WalletComingSoon}
+                  />
+                  <Route
+                    path={routes.OVERVIEW}
+                    component={authenticatedPage(Overview)}
+                  />
+                  <Route
+                    path={routes.WALLET}
+                    component={authenticatedPage(Wallet)}
+                  />
+                  <Route path="/send" component={authenticatedPage(Send)} />
+                  <Route
+                    path="/receive"
+                    component={authenticatedPage(Receive)}
+                  />
+                  <Route
+                    exact
+                    path="/card"
+                    component={authenticatedPage(Card)}
+                  />
+                  {cardOrderRoutes}
+                  <Route
+                    path="/marketplace"
+                    component={authenticatedPage(Marketplace)}
+                  />
+                  <Route
+                    path="/settings"
+                    component={authenticatedPage(Settings)}
+                  />
+                </Switch>
+                <Route path="/sidebar">
+                  {({ match }) => (
+                    <CSSTransition
+                      in={match && match.isExact}
+                      classNames="slide"
+                      timeout={300}
+                    >
+                      <Styled>{match && <Sidebar />}</Styled>
+                    </CSSTransition>
+                  )}
+                </Route>
                 <Route
-                  path={routes.RESET_PASSWORD_DONE}
-                  component={ResetPasswordDone}
+                  path={routes.UPDATE_PASSWORD}
+                  component={UpdatePassword}
                 />
-              </PublicContent>
-              <Switch>
-                <Route path="/logout" component={Logout} />
-                <Route
-                  path={routes.WALLET_COMING_SOON}
-                  component={WalletComingSoon}
-                />
-                <Route
-                  path={routes.OVERVIEW}
-                  component={authenticatedPage(Overview)}
-                />
-                <Route
-                  path={routes.WALLET}
-                  component={authenticatedPage(Wallet)}
-                />
-                <Route path="/send" component={authenticatedPage(Send)} />
-                <Route path="/receive" component={authenticatedPage(Receive)} />
-                <Route exact path="/card" component={authenticatedPage(Card)} />
-                {cardOrderRoutes}
-                <Route
-                  path="/marketplace"
-                  component={authenticatedPage(Marketplace)}
-                />
-                <Route
-                  path="/settings"
-                  component={authenticatedPage(Settings)}
-                />
-              </Switch>
-              <Route path="/sidebar">
-                {({ match }) => (
-                  <CSSTransition
-                    in={match && match.isExact}
-                    classNames="slide"
-                    timeout={300}
-                  >
-                    <Styled>{match && <Sidebar />}</Styled>
-                  </CSSTransition>
-                )}
-              </Route>
-              <Route path={routes.UPDATE_PASSWORD} component={UpdatePassword} />
-            </div>
-          </ThemeProvider>
-        </ConnectedFlagsProvider>
-      </ConnectedRouter>
-    </ReduxProvider>
-  </div>,
-  document.getElementById('root'),
-);
+              </div>
+            </ThemeProvider>
+          </ConnectedFlagsProvider>
+        </ConnectedRouter>
+      </ReduxProvider>
+    </div>,
+    document.getElementById('root'),
+  );
+};
+
+if (!window.cordova) {
+  startApp();
+} else {
+  document.addEventListener('deviceready', startApp, false);
+}
 
 unregister();
