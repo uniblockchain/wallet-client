@@ -85,13 +85,20 @@ const BackgroundImage = styled.img`
 
 export const Careers = class Careers extends React.Component<{}> {
   componentWillMount() {
-    const script = document.createElement('script');
-
-    script.src = 'https://getchange.bamboohr.co.uk/js/jobs2.php';
-    script.async = true;
+    const leverCore = document.createElement('script');
+    leverCore.src = 'https://andreasmb.github.io/lever-jobs-embed/index.js';
+    leverCore.async = true;
 
     if (document.body) {
-      document.body.appendChild(script);
+      document.body.appendChild(leverCore);
+    }
+    const leverJobs = document.createElement('script');
+    leverJobs.type = 'text/javascript';
+    leverJobs.text =
+      "window.leverJobsOptions = {accountName: 'getchange', includeCss: true};";
+
+    if (document.body) {
+      document.body.appendChild(leverJobs);
     }
   }
 
@@ -122,13 +129,7 @@ export const Careers = class Careers extends React.Component<{}> {
             </Background>
           </Intro>
 
-          <div id="BambooHR">
-            <link
-              href="https://getchange.bamboohr.co.uk/css/jobs-embed.css"
-              rel="stylesheet"
-            />
-            <div id="BambooHR-ATS" />
-          </div>
+          <div id="lever-jobs-container" />
         </InnerContainer>
       </Container>
     );
