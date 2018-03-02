@@ -23,6 +23,8 @@ import imageLesly from './img/people/lesly.jpg';
 import imageMiguel from './img/people/miguel.jpg';
 import imageCofi from './img/people/cofi.jpg';
 import imageRoger from './img/people/roger.jpg';
+import imageLiisi from './img/people/liisi.jpg';
+
 import LogoStrip from './LogoStrip';
 import Team from './Team';
 import Timeline from './Timeline';
@@ -137,15 +139,20 @@ export const About = () => (
           image: imageDragos,
         },
         {
+          name: 'Liisi Eenmaa',
+          title: 'HR',
+          linkedin: 'http://bit.ly/2oKApNN',
+          image: imageLiisi,
+        },
+        {
           name: 'Helen Kokk',
           title: 'UX Designer',
-          linkedin: 'http://bit.ly/2zuj9AS',
+          linkedin: 'http://bit.ly/2GWukFM',
           image: imageHelen,
         },
         {
           name: 'Cofi',
           title: 'Auditor',
-          linkedin: 'http://bit.ly/2zuj9AS',
           image: imageCofi,
         },
       ]}
