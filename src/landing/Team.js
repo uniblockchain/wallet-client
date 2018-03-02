@@ -58,17 +58,17 @@ const TeamContainer = styled.div`
   justify-content: space-between;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     margin-top: 48px;
+    margin-left: -10px;
   `};
 `;
 
 const Person = styled.div`
   flex: 0 0 50%;
   margin-bottom: 48px;
-  padding-right: 0;
   ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
     flex: 0 0 192px;
     margin-bottom: 24px;
-    padding-right: 0;
+    margin-left: 10px;
   `};
 `;
 
