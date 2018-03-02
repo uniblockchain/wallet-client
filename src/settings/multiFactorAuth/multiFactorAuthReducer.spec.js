@@ -1,41 +1,39 @@
 // @flow
 
-import { removeSecret } from './multiFactorAuthActions';
+import {
+  closeAllModals,
+  openConfirmationModal,
+  openQRCodeModal,
+} from './multiFactorAuthActions';
 import multiFactorAuthReducer, {
-  type MultiFactorAuthState,
   initialMultiFactorAuthState,
+  type MultiFactorAuthState,
 } from './multiFactorAuthReducer';
-import { createRoutine } from './multiFactorAuthRoutines';
+import { createSecretRoutine } from './multiFactorAuthRoutines';
 
 describe('multi factor auth reducer', () => {
-  const multiFactorAuth: MultiFactorAuthState = {
+  const multiFactorAuthState: MultiFactorAuthState = {
     secret: 'someSecret',
     error: null,
+    showConfirmationModal: false,
+    show2FaSetupModal: false,
   };
   const error = 'whoops';
 
   describe('handles multi factor auth secret creation', () => {
-    it('triggers', () => {
-      const password = 'test';
-      const action = createRoutine.trigger(password);
-      const newState = multiFactorAuthReducer(
-        initialMultiFactorAuthState,
-        action,
-      );
-      expect(newState).toEqual(initialMultiFactorAuthState);
-    });
-
     it('succeeds', () => {
-      const action = createRoutine.success(multiFactorAuth);
+      const action = createSecretRoutine.success(multiFactorAuthState);
+
       const newState = multiFactorAuthReducer(
         initialMultiFactorAuthState,
         action,
       );
-      expect(newState.secret).toEqual(multiFactorAuth.secret);
+
+      expect(newState.secret).toEqual(multiFactorAuthState.secret);
     });
 
     it('fails', () => {
-      const action = createRoutine.failure(error);
+      const action = createSecretRoutine.failure(error);
       const newState = multiFactorAuthReducer(
         initialMultiFactorAuthState,
         action,
@@ -44,9 +42,45 @@ describe('multi factor auth reducer', () => {
     });
   });
 
-  it('handles multi factor auth secret removal', () => {
-    const action = removeSecret();
-    const newState = multiFactorAuthReducer(multiFactorAuth, action);
-    expect(newState).toEqual(initialMultiFactorAuthState);
+  describe('handles modals', () => {
+    it('handles confirmation modal open', () => {
+      const action = openConfirmationModal();
+
+      const newState = multiFactorAuthReducer(
+        initialMultiFactorAuthState,
+        action,
+      );
+
+      expect(newState.showConfirmationModal).toEqual(true);
+      expect(newState.show2FaSetupModal).toEqual(false);
+      expect(newState.error).toEqual(null);
+    });
+
+    it('handles multi factor setup (QR code) modal open', () => {
+      const action = openQRCodeModal();
+
+      const newState = multiFactorAuthReducer(
+        initialMultiFactorAuthState,
+        action,
+      );
+
+      expect(newState.showConfirmationModal).toEqual(false);
+      expect(newState.show2FaSetupModal).toEqual(true);
+      expect(newState.error).toEqual(null);
+    });
+
+    it('handles modal close', () => {
+      const action = closeAllModals();
+
+      const newState = multiFactorAuthReducer(
+        initialMultiFactorAuthState,
+        action,
+      );
+
+      expect(newState.showConfirmationModal).toEqual(false);
+      expect(newState.show2FaSetupModal).toEqual(false);
+      expect(newState.error).toEqual(null);
+      expect(newState.secret).toEqual(null);
+    });
   });
 });

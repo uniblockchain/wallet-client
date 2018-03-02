@@ -18,11 +18,7 @@ describe('Settings component', () => {
       isUsing2Fa: false,
       isVerified: false,
     },
-    email: 'erko@risthein.ee',
-    fetchNewQRCode: () => {},
-    removeSecretFromState: () => {},
-    password: 'pass',
-    secret: 'secret',
+    openMultiFactorAuthModal: jest.fn(),
   };
 
   beforeEach(() => {

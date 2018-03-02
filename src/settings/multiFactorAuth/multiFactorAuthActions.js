@@ -1,17 +1,46 @@
 // @flow
+import type RoutineAction from 'redux-saga-routines';
 
-export const SECRET_REMOVE = '@multiFactorAuth/SECRET_REMOVE';
+export const MODALS_CLOSE = '@multiFactorAuth/MODALS_CLOSE';
+export const CONFIRMATION_MODAL_OPEN =
+  '@multiFactorAuth/CONFIRMATION_MODAL_OPEN';
+export const QR_CODE_MODAL_OPEN = '@multiFactorAuth/QR_CODE_MODAL_OPEN';
 
-export type RemoveSecret = {|
-  +type: '@multiFactorAuth/SECRET_REMOVE',
-|};
+export type CloseModals = {
+  type: '@multiFactorAuth/MODALS_CLOSE',
+  payload?: any,
+};
 
-export type MultiFactorAuthAction = RemoveSecret;
+export type OpenConfirmationModal = {
+  type: '@multiFactorAuth/CONFIRMATION_MODAL_OPEN',
+  payload?: any,
+};
 
-export const removeSecret = (): RemoveSecret => ({
-  type: SECRET_REMOVE,
+export type OpenQRModal = {
+  type: '@multiFactorAuth/QR_CODE_MODAL_OPEN',
+  payload?: any,
+};
+
+export type MultiFactorAuthAction =
+  | RoutineAction
+  | CloseModals
+  | OpenConfirmationModal
+  | OpenQRModal;
+
+export const closeAllModals = (): CloseModals => ({
+  type: MODALS_CLOSE,
+});
+
+export const openConfirmationModal = (): OpenConfirmationModal => ({
+  type: CONFIRMATION_MODAL_OPEN,
+});
+
+export const openQRCodeModal = (): OpenQRModal => ({
+  type: QR_CODE_MODAL_OPEN,
 });
 
 export default {
-  removeSecret,
+  closeAllModals,
+  openConfirmationModal,
+  openQRCodeModal,
 };

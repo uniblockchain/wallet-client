@@ -1,7 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { put } from '../../http/index';
+import { put } from '../../http';
 
 export type SecretHolder = {
   secret: string,

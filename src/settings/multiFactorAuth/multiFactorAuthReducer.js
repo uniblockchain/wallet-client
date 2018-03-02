@@ -1,44 +1,69 @@
 // @flow
-import type RoutineAction from 'redux-saga-routines';
-import { SECRET_REMOVE } from './multiFactorAuthActions';
-import { createRoutine } from './multiFactorAuthRoutines';
+import {
+  type MultiFactorAuthAction,
+  MODALS_CLOSE,
+  QR_CODE_MODAL_OPEN,
+  CONFIRMATION_MODAL_OPEN,
+} from './multiFactorAuthActions';
+import { createSecretRoutine } from './multiFactorAuthRoutines';
 
 export type MultiFactorAuthState = {|
   +secret: ?string,
   +error: ?string,
+  +showConfirmationModal: boolean,
+  +show2FaSetupModal: boolean,
 |};
 
 export const initialMultiFactorAuthState: MultiFactorAuthState = {
   secret: null,
   error: null,
+  showConfirmationModal: false,
+  show2FaSetupModal: false,
 };
 
 const multiFactorAuthReducer = (
   state: MultiFactorAuthState = initialMultiFactorAuthState,
-  action: RoutineAction,
+  action: MultiFactorAuthAction,
 ): any => {
   switch (action.type) {
-    case createRoutine.TRIGGER:
-      return {
-        ...state,
-      };
-
-    case createRoutine.SUCCESS:
+    case createSecretRoutine.SUCCESS:
       return {
         ...state,
         ...action.payload,
+        showConfirmationModal: false,
+        show2FaSetupModal: true,
+        error: null,
       };
 
-    case createRoutine.FAILURE:
+    case createSecretRoutine.FAILURE:
       return {
         ...state,
         error: action.payload,
+        showConfirmationModal: true,
+        show2FaSetupModal: false,
       };
 
-    case SECRET_REMOVE:
+    case MODALS_CLOSE:
       return {
         ...state,
+        showConfirmationModal: false,
+        show2FaSetupModal: false,
+        error: null,
         secret: null,
+      };
+
+    case CONFIRMATION_MODAL_OPEN:
+      return {
+        ...state,
+        showConfirmationModal: true,
+        show2FaSetupModal: false,
+      };
+
+    case QR_CODE_MODAL_OPEN:
+      return {
+        ...state,
+        showConfirmationModal: false,
+        show2FaSetupModal: true,
       };
 
     default:

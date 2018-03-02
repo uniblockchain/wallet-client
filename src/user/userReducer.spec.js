@@ -13,7 +13,7 @@ import {
   fetchAddressRoutine,
   createOrUpdateAddressRoutine,
 } from '../card/order/address/addressRoutine';
-import { createRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
+import { createSecretRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
 
 describe('user reducer', () => {
   const address: AddressState = {

@@ -10,7 +10,7 @@ import {
   createOrUpdateAddressRoutine,
   fetchAddressRoutine,
 } from '../card/order/address/addressRoutine';
-import { createRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
+import { createSecretRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
 
 const userReducer = (
   state: UserState = initialUserState,
