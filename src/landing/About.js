@@ -21,6 +21,7 @@ import imageHelen from './img/people/helen.jpg';
 import imageKristjan from './img/people/kristjan.jpg';
 import imageLesly from './img/people/lesly.jpg';
 import imageMiguel from './img/people/miguel.jpg';
+import imageCofi from './img/people/cofi.jpg';
 import imageRoger from './img/people/roger.jpg';
 import LogoStrip from './LogoStrip';
 import Team from './Team';
@@ -140,6 +141,12 @@ export const About = () => (
           title: 'UX Designer',
           linkedin: 'http://bit.ly/2zuj9AS',
           image: imageHelen,
+        },
+        {
+          name: 'Cofi',
+          title: 'Auditor',
+          linkedin: 'http://bit.ly/2zuj9AS',
+          image: imageCofi,
         },
       ]}
     />
