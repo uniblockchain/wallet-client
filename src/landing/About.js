@@ -16,6 +16,7 @@ import imageAndras from './img/people/andras.jpg';
 import imageDragos from './img/people/dragos.jpg';
 import imageFrancisco from './img/people/francisco.jpg';
 import imageGustav from './img/people/gustav.jpg';
+import imageHelen from './img/people/helen.jpg';
 
 import imageKristjan from './img/people/kristjan.jpg';
 import imageLesly from './img/people/lesly.jpg';
@@ -133,6 +134,12 @@ export const About = () => (
           title: 'Partnerships',
           linkedin: 'http://bit.ly/2zuj9AS',
           image: imageDragos,
+        },
+        {
+          name: 'Helen Kokk',
+          title: 'UX Designer',
+          linkedin: 'http://bit.ly/2zuj9AS',
+          image: imageHelen,
         },
       ]}
     />
