@@ -8,7 +8,6 @@ import { reduxForm } from 'redux-form';
 import styled from 'styled-components';
 import {
   Col,
-  Col3,
   Field,
   Form,
   FormFeedback,
@@ -17,11 +16,10 @@ import {
   Header,
   Label,
   PrimaryButton,
-  SelectField,
 } from '../../../ui';
+import { PhoneField } from './phoneField';
 import { profileFormSubmitHandler, withProfile } from '../../../user/profile';
 import { CARD_ORDER_ADDRES_ROUTE } from '../constants';
-import countryCodes from './countryCodes';
 
 const StyledHeader = styled(Header)`
   color: #2a2a2a;
@@ -45,20 +43,7 @@ export const Profile = ({ handleSubmit, error }: Props) => (
 
       <Label>Mobile number</Label>
       <FormRow>
-        <Col3>
-          <SelectField
-            name="phoneCountryCode"
-            items={countryCodes
-              .sort((a, b) => a.dialCode.localeCompare(b.dialCode))
-              .map(code => ({
-                value: code.dialCode,
-                label: code.dialCode,
-              }))}
-          />
-        </Col3>
-        <Col>
-          <Field name="phoneNumber" placeholder="Phone number" type="text" />
-        </Col>
+        <PhoneField name="phoneNumber" />
       </FormRow>
 
       <Label>Date of birth</Label>
@@ -114,22 +99,11 @@ const getInitialFormData = (profile: Profile) => {
       };
     }
 
-    let phoneNumber = profile.mobileNumber;
-    let phoneCountryCode = '';
-
-    countryCodes.forEach(countryCode => {
-      if (profile.mobileNumber.startsWith(countryCode.dialCode)) {
-        [, phoneNumber] = profile.mobileNumber.split(countryCode.dialCode);
-        phoneCountryCode = countryCode.dialCode;
-      }
-    });
-
     return {
       id: profile.id,
       firstName: profile.firstName,
       lastName: profile.lastName,
-      phoneNumber,
-      phoneCountryCode,
+      phoneNumber: profile.phoneNumber,
       ...dateFields,
     };
   }

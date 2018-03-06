@@ -75,7 +75,7 @@ export function get(url: string, params: * = {}, headers: * = {}): * {
       ...headers,
     },
     mode: 'cors',
-    credentials: 'include',
+    credentials: 'same-origin',
     cache: 'default',
   }).then(transformResponse);
 }
@@ -96,7 +96,7 @@ export function put(url: string, params: * = {}, headers: * = {}): * {
       ...headers,
     },
     body: paramsToBody(params),
-    credentials: 'include',
+    credentials: 'same-origin',
     mode: 'cors',
     cache: 'default',
   }).then(transformResponse);
@@ -111,7 +111,7 @@ export function post(url: string, params: * = {}, headers: * = {}): * {
       ...headers,
     },
     body: paramsToBody(params),
-    credentials: 'include',
+    credentials: 'same-origin',
     mode: 'cors',
     cache: 'default',
   }).then(transformResponse);
