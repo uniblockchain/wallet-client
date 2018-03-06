@@ -11,7 +11,7 @@ export const GradientText = styled.div`
     ${variables.colorBlue}
   );
   -webkit-background-clip: text;
-  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 `;
 
 export default GradientText;
