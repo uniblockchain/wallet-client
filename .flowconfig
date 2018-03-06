@@ -10,6 +10,8 @@
 .*/node_modules/styled-components/.*
 .*/node_modules/immutable/.*
 .*/node_modules/vue/.*
+.*/node_modules/radium/.*
+.*/node_modules/react-style-proptype/.*
 
 ; Comment this line if you do not use enzyme.
 .*/node_modules/material-ui/test-utils
