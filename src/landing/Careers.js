@@ -16,24 +16,24 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   padding: 96px 24px 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
 
 const Intro = styled.div`
   margin: 24px 0 48px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
     padding: 244px 0 36px;
     padding-right: calc(480px + 48px);
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
     padding-right: calc(576px + 48px);
   `};
@@ -43,7 +43,7 @@ const IntroHeading = styled.div`
   font-family: ${variables.fontSecondary};
   font-size: ${variables.fontSizeLarge};
   margin-bottom: 18px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     margin-bottom: 36px;
   `};
@@ -52,11 +52,11 @@ const IntroHeading = styled.div`
 const IntroBody = styled.div`
   color: ${variables.colorNeutralDark};
   font-family: ${variables.fontSecondary};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
   p {
     margin-bottom: 12px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeMedium};
     `};
   }
@@ -65,7 +65,7 @@ const IntroBody = styled.div`
 const Background = styled.div`
   display: none;
   pointer-events: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: block;
     position: absolute;
     top: 0;
@@ -78,7 +78,7 @@ const Background = styled.div`
 `;
 
 const BackgroundImage = styled.img`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 100%;
   `};
 `;

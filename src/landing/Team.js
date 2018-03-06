@@ -11,19 +11,19 @@ import variables from './variables';
 
 const Container = styled.div`
   margin: 36px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin: 60px 0;
   `};
 `;
 
 const InnerContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
     padding: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
@@ -34,7 +34,7 @@ const Heading = styled.div`
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 12px;
   letter-spacing: -0.5px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     letter-spacing: -1px;
   `};
@@ -43,7 +43,7 @@ const Heading = styled.div`
 const Body = styled.div`
   color: ${variables.colorNeutralDark};
   font-family: ${variables.fontSecondary};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeMedium};
   `};
   p {
@@ -56,7 +56,7 @@ const TeamContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-top: 48px;
     margin-left: -10px;
   `};
@@ -65,7 +65,7 @@ const TeamContainer = styled.div`
 const Person = styled.div`
   flex: 0 0 50%;
   margin-bottom: 48px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 192px;
     margin-bottom: 24px;
     margin-left: 10px;
@@ -77,7 +77,7 @@ const PersonImage = styled.img`
   margin-bottom: 18px;
   border: 4px solid ${variables.colorNeutralLightest};
   border-radius: 9999px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 192px;
   `};
 `;
@@ -87,7 +87,7 @@ const PersonName = styled.div`
   font-size: ${variables.fontSizeNormal};
   line-height: 1.2;
   margin-bottom: 6px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
     text-align: center;
   `};
@@ -98,7 +98,7 @@ const PersonTitle = styled.div`
   font-family: ${variables.fontSecondary};
   font-size: ${variables.fontSizeSmall};
   padding-right: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeNormal};
     text-align: center;
     padding: 0;
@@ -107,7 +107,7 @@ const PersonTitle = styled.div`
 
 const PersonLinks = styled.div`
   margin-top: 12px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     text-align: center;
     margin-top: 18px;
   `};
@@ -125,7 +125,7 @@ const Icon = styled.div`
   &:last-child {
     margin-right: 0;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     &:hover {
       opacity: .5;
   `};

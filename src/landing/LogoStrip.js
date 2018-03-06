@@ -12,13 +12,13 @@ import { Modal } from './ui';
 const Container = styled.div`
   overflow: hidden;
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 0;
   `};
 `;
 
 const InnerContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
@@ -47,7 +47,7 @@ const ItemSlot = styled.div`
   overflow: hidden;
   position: relative;
   height: 100px;
-  ${({ theme }) => breakpoint('landscape', theme.breakpoints)`
+  ${breakpoint('landscape')`
     flex: 0 0 ${props => 100 / props.itemsPerRow + '%'};
   `};
 `;
@@ -63,7 +63,7 @@ const Item = styled.div`
   transform: translateX(100%);
   transition: all 0.6s;
   user-select: none;
-  ${({ theme }) => breakpoint('landscape', theme.breakpoints)`
+  ${breakpoint('landscape')`
     padding: 0 30px;
     &:hover {
       opacity: .75;

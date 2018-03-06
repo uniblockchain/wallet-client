@@ -15,23 +15,23 @@ const Container = styled.div`
   margin-bottom: 1px;
   padding-bottom: 48px;
   background: ${variables.colorNeutralLightest};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 96px 0 96px;
   `};
 `;
 
 const InnerContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
 const TextContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding-left: 480px;
     text-align: left;
     margin-bottom: 0;
@@ -44,7 +44,7 @@ const Heading = styled.div`
   font-size: ${variables.fontSizeLargest};
   line-height: 1;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeHuge};
     letter-spacing: -1px;
   `};
@@ -55,7 +55,7 @@ const Body = styled.div`
   font-family: ${variables.fontSecondary};
   line-height: 1.5;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     line-height: 1.4;
     margin-bottom: 36px;
@@ -80,7 +80,7 @@ const Body = styled.div`
 const ImageContainer = styled.div`
   position: relative;
   margin-bottom: 36px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     overflow: hidden;
     position: absolute;
     left: calc(50% - 480px);
@@ -101,7 +101,7 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   display: block;
   width: 100%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: auto;
     height: 100%;
   `};

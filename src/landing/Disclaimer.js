@@ -7,7 +7,7 @@ import variables from './variables';
 
 const Container = styled.span`
   position: relative;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
 
   `};
 `;
@@ -15,7 +15,7 @@ const Container = styled.span`
 const Asterisk = styled.span`
   color: ${variables.colorBlue};
   cursor: pointer;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     &:hover {
       color: ${variables.colorBlueDark};
     }
@@ -39,7 +39,7 @@ const Body = styled.span`
     props.isVisible &&
     `
     display: block;
-    `} ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    `} ${breakpoint('tablet')`
     width: 240px;
     left: 0;
     right: auto;

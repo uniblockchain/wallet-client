@@ -16,7 +16,7 @@ const Container = styled.div`
   );
   border-radius: 30px;
   box-shadow: ${variables.boxShadowNeutralLarge};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 360px;
     height: 740px;
     padding: 2px;
@@ -30,7 +30,7 @@ const InnerContainer = styled.div`
   border-radius: 28px;
   background: ${variables.colorWhite};
   padding: 70px 18px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 83px 18px 84px;
   `};
 `;
@@ -54,7 +54,7 @@ const Speaker = styled.div`
   background: ${variables.colorNeutralLightest};
   border-radius: 999px;
   transform: translateX(-50%);
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     top: 39px;
     width: 60px;
     height: 6px;
@@ -83,7 +83,7 @@ const HomeButton = styled.div`
     border-radius: 999px;
     background: ${variables.colorWhite};
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 60px;
     height: 60px;
   `};

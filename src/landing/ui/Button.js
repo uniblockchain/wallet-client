@@ -20,7 +20,9 @@ function getBackground(color) {
     case 'blue':
       return variables.colorBlue;
     case 'gradient':
-      return `linear-gradient(to right, ${variables.colorGreenLight}, ${variables.colorBlue})`;
+      return `linear-gradient(to right, ${variables.colorGreenLight}, ${
+        variables.colorBlue
+      })`;
     default:
       return variables.colorNeutral;
   }
@@ -80,7 +82,7 @@ const Button = styled(ButtonBase)`
     color: ${props => getColor(props.color)};
     text-decoration: none;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     &:hover {
       opacity: .9;
       background: ${props => getBackgroundHover(props.color)};

@@ -13,18 +13,18 @@ import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: 60px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto 120px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
 
 const InnerContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     padding: 0;
   `};
@@ -32,7 +32,7 @@ const InnerContainer = styled.div`
 
 const Column = styled.div`
   margin-bottom: 36px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 50%;
     padding-right: 48px;
   `};
@@ -45,7 +45,7 @@ const Heading = styled.div`
   letter-spacing: -0.5px;
   line-height: 1.1;
   margin-bottom: 12px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     margin-bottom: 24px;
     letter-spacing: -1px;
@@ -57,7 +57,7 @@ const Body = styled.div`
   color: ${variables.colorNeutralDark};
   p {
     margin-bottom: 12px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeMedium};
     `};
   }
@@ -65,7 +65,7 @@ const Body = styled.div`
 
 const CTA = styled.div`
   margin-top: 24px;
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     margin-top: 42px;
   `};
 `;

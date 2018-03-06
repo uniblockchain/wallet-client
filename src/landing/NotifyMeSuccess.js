@@ -11,13 +11,13 @@ import SocialIcons from './SocialIcons';
 
 const Container = styled.div`
   text-align: center;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
 const Follow = styled.div`
   margin-top: 48px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
@@ -25,12 +25,12 @@ const FollowHeading = styled.div`
   color: ${variables.colorNeutral};
   font-size: ${variables.fontSizeSmall};
   margin-bottom: 18px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
 const FollowIcons = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 

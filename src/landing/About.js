@@ -41,7 +41,7 @@ const Container = styled.div`
   width: 100%;
   padding: 96px 0 0;
   background: ${variables.colorWhite};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 0;
   `};
 `;
@@ -50,7 +50,7 @@ const CareersCTA = styled.div`
   color: ${variables.colorNeutral};
   margin: 48px 0;
   text-align: center;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 

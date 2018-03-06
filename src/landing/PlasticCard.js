@@ -16,7 +16,7 @@ const Container = styled.div`
   );
   border-radius: 12px;
   box-shadow: ${variables.boxShadowNeutralNormal};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 480px;
     height: 294px;
     border-radius: 16px;
@@ -32,7 +32,7 @@ const Chip = styled.div`
   background: ${variables.colorGreen};
   border-radius: 4px;
   opacity: 0.25;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     left: 36px;
     bottom: 148px;
     width: 66px;
@@ -49,7 +49,7 @@ const Number = styled.div`
   position: absolute;
   left: 24px;
   bottom: 65px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     font-weight: ${variables.fontWeightNormal};
     left: 36px;
@@ -66,7 +66,7 @@ const Date = styled.div`
   position: absolute;
   left: 140px;
   bottom: 39px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
     font-weight: ${variables.fontWeightNormal};
     left: 180px;
@@ -83,7 +83,7 @@ const Name = styled.div`
   position: absolute;
   left: 24px;
   bottom: 12px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
     font-weight: ${variables.fontWeightNormal};
     left: 36px;
@@ -103,7 +103,7 @@ const Good = styled.div`
   left: 80px;
   bottom: 43px;
   width: 48px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: 11px;
     left: 120px;
     bottom: 69px;

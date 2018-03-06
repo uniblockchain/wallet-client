@@ -10,17 +10,17 @@ import variables from './variables';
 
 const Container = styled.div`
   padding: 48px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 60px 0;
   `};
 `;
 
 const InnerContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
@@ -30,7 +30,7 @@ const ItemsContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     justify-content: center;
   `};
@@ -47,7 +47,7 @@ const ItemLink = styled(Link)`
     color: ${variables.colorNeutral};
     text-decoration: none;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: inline-block;
     padding: 12px 24px;
     &:hover {
@@ -66,7 +66,7 @@ const SocialContainer = styled.div`
 const CompanyContainer = styled.div`
   text-align: center;
   padding: 9px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 12px 0;
   `};
 `;
@@ -75,7 +75,7 @@ const Company = styled.div`
   color: ${variables.colorNeutralLight};
   font-size: ${variables.fontSizeSmall};
   white-space: nowrap;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: inline;
   `};
 `;
@@ -91,7 +91,7 @@ const LegalLink = styled.a`
     color: ${variables.colorNeutralLight};
     text-decoration: none;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-left: 24px;
     &:hover {
       color: ${variables.colorNeutralDark};

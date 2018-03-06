@@ -18,29 +18,29 @@ import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: 96px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-bottom: 240px;
   `};
 `;
 
 const InnerContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
 
   `};
 `;
 
 const TextContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     text-align: left;
     padding: 0;
     padding-left: 480px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
@@ -50,7 +50,7 @@ const Heading = styled.div`
   font-size: ${variables.fontSizeLargest};
   line-height: 1;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeHuge};
     letter-spacing: -1px;
   `};
@@ -61,7 +61,7 @@ const Body = styled.div`
   font-family: ${variables.fontSecondary};
   line-height: 1.5;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     line-height: 1.4;
     margin-bottom: 36px;
@@ -74,7 +74,7 @@ const Highlight = styled.div`
   font-weight: ${variables.fontWeightBold};
   line-height: 1.2;
   margin-bottom: 12px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     margin-bottom: 24px;
   `};
@@ -82,14 +82,14 @@ const Highlight = styled.div`
 
 const VisualContainer = styled.div`
   position: relative;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 480px;
     margin-bottom: 168px;
   `};
 `;
 
 const ImageContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     overflow: hidden;
     position: absolute;
     top: 0;
@@ -112,7 +112,7 @@ const PlasticContainer = styled.div`
   @media (max-width: 340px) {
     transform: scale(0.9);
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     position: absolute;
     top: auto;
     bottom: -60px;

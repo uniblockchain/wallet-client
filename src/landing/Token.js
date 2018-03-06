@@ -17,40 +17,40 @@ const Container = styled.div`
   margin-bottom: 1px;
   padding: 36px 0 0;
   background: ${variables.colorNeutralLightest};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-top: 96px;
     padding: 60px 0 30px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
 const InnerContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
     padding: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
 
 const Columns = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
 const Column = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 50%;
     padding-right: 48px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
@@ -60,7 +60,7 @@ const Heading = styled.div`
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 12px;
   letter-spacing: -0.5px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     margin-bottom: 24px;
     letter-spacing: -1px;
@@ -70,11 +70,11 @@ const Heading = styled.div`
 const Body = styled.div`
   color: ${variables.colorNeutralDark};
   font-family: ${variables.fontSecondary};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
   p {
     margin-bottom: 12px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeMedium};
     `};
   }
@@ -86,7 +86,7 @@ const ExchangesHeading = styled.div`
   color: ${variables.colorNeutralDark};
   text-align: center;
   margin-top: 36px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-top: 48px;
   `};
 `;

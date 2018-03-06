@@ -40,7 +40,7 @@ const Arrow = styled(ArrowLink)`
     `
     opacity: 0;
     pointer-events: none;
-    `} ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    `} ${breakpoint('tablet')`
     display: none;
   `};
 `;

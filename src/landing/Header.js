@@ -22,7 +22,7 @@ const Container = styled.div`
   box-shadow: ${props =>
     props.withBackground ? variables.boxShadowNeutralSmall : 'none'};
   transition: all 0.3s;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 0 48px;
   `};
 `;
@@ -31,17 +31,14 @@ const InnerContainer = styled.div`
   height: 60px;
   display: flex;
   align-items: center;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 72px;
-  `};
-  '${({ theme }) => breakpoint('tablet', theme.breakpoints)`
-    height: 96px;
   `};
 `;
 
 const LogoContainer = styled.div`
   flex: 25%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 10%;
     margin-right: 24px;
   `};
@@ -49,7 +46,7 @@ const LogoContainer = styled.div`
 
 const LeftNavContainer = styled.div`
   display: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 40%;
     display: flex;
     justify-content: flex-start;
@@ -58,7 +55,7 @@ const LeftNavContainer = styled.div`
 
 const RightNavContainer = styled.div`
   display: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 80%;
     display: flex;
     justify-content: flex-end;
@@ -69,7 +66,7 @@ const MobileNav = styled.div`
   flex: 75%;
   display: flex;
   justify-content: flex-end;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: none;
   `};
 `;
@@ -86,7 +83,7 @@ const NavLink = styled(Link)`
     props.color === 'blue' ? variables.colorBlue : variables.colorNeutral};
   font-size: ${variables.fontSizeSmall};
   line-height: 1;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 12px 18px;
     &:hover {
       color: ${props =>

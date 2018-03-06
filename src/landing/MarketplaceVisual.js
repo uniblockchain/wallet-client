@@ -29,7 +29,7 @@ const DeviceContainer = styled.div`
 
 const CardSlots = styled.div`
   display: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     overflow: hidden;
     position: absolute;
@@ -62,7 +62,7 @@ const DeviceCards = styled.div`
   height: 230px;
   margin-left: -115px;
   z-index: ${variables.zIndexMarketplaceVisualDeviceCards};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     top: 252px;
     left: 36px;
     width: 288px;
@@ -78,7 +78,7 @@ const DeviceCardContainer = styled.div`
   z-index: ${variables.zIndexMarketplaceVisualDeviceCardContainer};
   transform: translateX(100%);
   transition: all 0.6s;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
 
   `};
   ${props =>

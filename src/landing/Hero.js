@@ -20,7 +20,7 @@ const Container = styled.div`
   overflow: hidden;
   margin-bottom: 60px;
   padding: 72px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 1302px;
     padding: 144px 96px;
     margin: 0;
@@ -29,7 +29,7 @@ const Container = styled.div`
 
 const InnerContainer = styled.div`
   padding: 30px 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 0;
   `};
 `;
@@ -51,7 +51,7 @@ const WordsHeading = styled.div`
   position: relative;
   z-index: ${variables.zIndexHeroWords};
   margin-bottom: 9px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
   `};
 `;
@@ -74,7 +74,7 @@ const DeviceContainer = styled.div`
   top: 240px;
   z-index: ${variables.zIndexHeroDevice};
   width: 100%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: block;
     top: 420px;
     left: 50%;
@@ -101,7 +101,7 @@ const Background = styled.div`
   height: 640px;
   transform: translateX(-50%);
   pointer-events: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     top: -720px;
     width: 1680px;
     height: 1680px;
@@ -110,7 +110,7 @@ const Background = styled.div`
 
 const BackgroundImage = styled.img`
   width: 100%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 

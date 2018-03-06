@@ -14,7 +14,7 @@ const Container = styled.div`
   width: 100%;
   height: 60px;
   z-index: ${variables.zIndexHeroWords};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 130px;
   `};
 `;
@@ -34,7 +34,7 @@ const Word = styled.div`
   transform: translateX(-50%);
   transition: all 0.6s;
 
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeMassive};
     height: 130px;
   `};

@@ -16,31 +16,31 @@ import variables from './variables';
 
 const Container = styled.div`
   margin-bottom: -96px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-bottom: 480px;
   `};
 `;
 
 const InnerContainer = styled.div`
   position: relative;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
 const TextContainer = styled.div`
   margin-bottom: 60px;
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     text-align: left;
     padding: 0;
     padding-right: 480px;
     margin: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     padding-right: 576px;
   `};
 `;
@@ -51,7 +51,7 @@ const Highlight = styled.div`
   font-weight: ${variables.fontWeightBold};
   line-height: 1.2;
   margin-bottom: 12px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     margin-bottom: 24px;
   `};
@@ -63,7 +63,7 @@ const Heading = styled.div`
   font-size: ${variables.fontSizeLargest};
   line-height: 1;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeHuge};
     letter-spacing: -1px;
   `};
@@ -74,7 +74,7 @@ const Body = styled.div`
   font-family: ${variables.fontSecondary};
   line-height: 1.5;
   margin-bottom: 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     line-height: 1.4;
     margin-bottom: 36px;
@@ -85,7 +85,7 @@ const ImageTransition = styled.div`
   opacity: 0;
   transform: translateX(100%) translateX(0);
   transition: transform 0.9s, opacity 0.6s;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     transform: translateX(0) translateY(-100%);
     ${props =>
       (props.state === 'entering' || props.state === 'entered') &&
@@ -103,31 +103,31 @@ const ImageTransition = styled.div`
 
 const ImageContainer = styled.div`
   margin-bottom: 36px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     overflow: hidden;
     width: 100%;
     height: 360px;
     margin-bottom: 120px;
   `};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     height: 480px;
   `};
 `;
 
 const Image = styled.img`
   width: 100%;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
 const VisualContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     position: absolute;
     right: 60px;
     top: 326px;
     z-index: ${variables.zIndexMarketplaceVisualContainer};
   `};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 

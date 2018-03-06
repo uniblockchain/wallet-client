@@ -8,7 +8,7 @@ import variables from './variables';
 import { Button } from './ui';
 
 const Container = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: inline-block;
     width: 360px;
   `};

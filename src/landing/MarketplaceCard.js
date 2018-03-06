@@ -12,7 +12,7 @@ const Container = styled.div`
   position: relative;
   padding: 24px 24px;
   background: ${props => (props.color ? props.color : null)};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 288px;
     height: 288px;
   `};
@@ -35,7 +35,7 @@ const Icon = styled.div`
   bottom: 24px;
   right: 24px;
   height: 72px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     bottom: 30px;
     right: 30px;
     height: 96px;

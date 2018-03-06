@@ -17,7 +17,7 @@ const Container = styled.div`
   &:focus {
     outline: none;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 768px;
   `};
 `;

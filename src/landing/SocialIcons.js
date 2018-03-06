@@ -14,14 +14,14 @@ const Container = styled.div``;
 
 const InnerContainer = styled.div`
   display: inline-block;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
 const Icons = styled.div`
   display: flex;
   align-items: center;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
 `;
 
@@ -36,7 +36,7 @@ const Icon = styled.div`
   &:last-child {
     margin-right: 0;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     &:hover {
       opacity: .5;
   `};

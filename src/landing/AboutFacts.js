@@ -16,7 +16,7 @@ const InnerContainer = styled.div`
   position: relative;
   padding: 48px 24px;
   z-index: ${variables.zIndexAboutFacts};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,7 +25,7 @@ const InnerContainer = styled.div`
     margin: 0 auto;
     padding: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
@@ -34,7 +34,7 @@ const FactsColumn = styled.div`
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 33.33%;
     display: flex;
     align-items: center;
@@ -52,10 +52,10 @@ const Fact = styled.div`
   font-family: ${variables.fontSecondary};
   line-height: 1.1;
   text-align: center;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     padding: 0 48px;
   `};
   strong {
@@ -63,7 +63,7 @@ const Fact = styled.div`
     font-size: ${variables.fontSizeLarger};
     display: block;
     margin: 9px 0;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeLargest};
     `};
   }

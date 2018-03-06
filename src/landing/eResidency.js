@@ -9,19 +9,19 @@ import logo from './img/e-residency.png';
 
 const Container = styled.div`
   margin: 36px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin: 96px 0;
   `};
 `;
 
 const InnerContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
     padding: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
@@ -32,7 +32,7 @@ const Heading = styled.div`
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 12px;
   letter-spacing: -0.5px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     margin-bottom: 24px;
     letter-spacing: -1px;
@@ -40,14 +40,14 @@ const Heading = styled.div`
 `;
 
 const Columns = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     justify-content: space-between;
   `};
 `;
 
 const Column = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 33%;
     &:last-child {
       flex: 0 0 19%;
@@ -58,7 +58,7 @@ const Column = styled.div`
 
 const Logo = styled.img`
   display: none;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: inline-block;
     width: 80%;
     opacity: .5;
@@ -70,7 +70,7 @@ const Body = styled.div`
   font-family: ${variables.fontSecondary};
   p {
     margin-bottom: 12px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeMedium};
     `};
   }

@@ -10,18 +10,18 @@ import variables from './variables';
 const Container = styled.div`
   margin: 30px 0 60px;
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin: 96px 0 120px;
     padding: 0;
   `};
 `;
 
 const InnerContainer = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
     width: 1152px;
   `};
 `;
@@ -32,7 +32,7 @@ const Heading = styled.div`
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 24px;
   letter-spacing: -0.5px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     margin-bottom: 36px;
     letter-spacing: -1px;
@@ -56,7 +56,7 @@ const Line = styled.div`
     ${variables.colorBlue} 100%
   );
   border-radius: 9999px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     justify-content: space-between;
     position: static;
@@ -73,7 +73,7 @@ const Line = styled.div`
 `;
 
 const Milestones = styled.div`
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     display: flex;
     justify-content: space-between;
   `};
@@ -84,7 +84,7 @@ const Milestone = styled.div`
   z-index: ${variables.zIndexTimelineMilestone};
   margin-bottom: 18px;
   padding-left: 36px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     flex: 0 0 ${props => props.width + '%'};
     margin: 0;
     padding: 0;
@@ -120,7 +120,7 @@ const Milestone = styled.div`
     height: 18px;
     border: 4px solid ${variables.colorWhite};
     border-radius: 9999px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       top: -38px;
       left: 0;
     `};
@@ -132,7 +132,7 @@ const MilestoneTitle = styled.div`
     props.highlighted ? variables.colorNeutralDark : variables.colorNeutral};
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 3px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     margin-bottom: 9px;
   `};
 `;

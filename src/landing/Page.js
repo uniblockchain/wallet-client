@@ -7,19 +7,19 @@ import variables from './variables';
 
 const Container = styled.div`
   padding: 96px 0;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     padding: 144px 0;
   `};
 `;
 
 const InnerContainer = styled.div`
   padding: 0 24px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     width: 960px;
     margin: 0 auto;
     padding: 0;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
@@ -29,25 +29,25 @@ export const Heading = styled.div`
   font-weight: ${variables.fontWeightBold};
   margin-bottom: 12px;
   letter-spacing: -0.5px;
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLargest};
     margin-bottom: 24px;
     letter-spacing: -1px;
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
 `;
 
 export const Body = styled.div`
   color: ${variables.colorNeutralDark};
   font-family: ${variables.fontSecondary};
-  ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+  ${breakpoint('tablet')`
   `};
-  ${({ theme }) => breakpoint('desktop', theme.breakpoints)`
+  ${breakpoint('desktop')`
   `};
   p {
     margin-bottom: 12px;
-    ${({ theme }) => breakpoint('tablet', theme.breakpoints)`
+    ${breakpoint('tablet')`
       font-size: ${variables.fontSizeMedium};
     `};
   }
