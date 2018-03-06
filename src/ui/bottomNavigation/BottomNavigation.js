@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import MaterialBottomNavigation, {
-  BottomNavigationButton,
+  BottomNavigationAction,
 } from 'material-ui/BottomNavigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -82,19 +82,19 @@ const buttonStyles = {
   },
 };
 
-const StyledBottomNavigationButton = withStyles(
-  buttonStyles,
-)(({ classes, type, ...other }) => (
-  <BottomNavigationButton
-    classes={{
-      root: classes.root,
-      label: classes.label,
-      selected: classes[type],
-      selectedLabel: classes[type],
-    }}
-    {...other}
-  />
-));
+const StyledBottomNavigationAction = withStyles(buttonStyles)(
+  ({ classes, type, ...other }) => (
+    <BottomNavigationAction
+      classes={{
+        root: classes.root,
+        label: classes.label,
+        selected: classes[type],
+        labelSelected: classes[type],
+      }}
+      {...other}
+    />
+  ),
+);
 
 export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
   const { menu, value, classes, onNavigation } = props;
@@ -109,7 +109,7 @@ export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
       showLabels
     >
       {menu.map(it => (
-        <StyledBottomNavigationButton
+        <StyledBottomNavigationAction
           key={it.link}
           label={it.name}
           value={it.link}

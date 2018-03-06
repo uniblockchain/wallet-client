@@ -11,10 +11,10 @@ const styles = {
     left: 0,
     width: '100vw',
   },
-  primaryColor: {
+  colorPrimary: {
     backgroundColor: DefaultTheme.background,
   },
-  primaryColorBar: {
+  barColorPrimary: {
     backgroundColor: DefaultTheme.main,
   },
 };
@@ -23,8 +23,8 @@ export const Progress = withStyles(styles)(props => (
   <LinearProgress
     classes={{
       root: props.classes.root,
-      primaryColor: props.classes.primaryColor,
-      primaryColorBar: props.classes.primaryColorBar,
+      colorPrimary: props.classes.colorPrimary,
+      barColorPrimary: props.classes.barColorPrimary,
     }}
   />
 ));
