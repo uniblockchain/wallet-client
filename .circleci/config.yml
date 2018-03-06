@@ -5,7 +5,7 @@
 defaults: &defaults
   working_directory: ~/wallet-client
   docker:
-    - image: circleci/node:8
+    - image: circleci/node:9
 
 version: 2
 jobs:
@@ -16,15 +16,15 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          - v1-node9-dependencies-{{ arch }}-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-node8-dependencies-
+          - v1-node9-dependencies-
       - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          key: v1-node9-dependencies-{{ arch }}-{{ checksum "package.json" }}
 
       - run:
           name: "Test Suite"
@@ -41,9 +41,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          - v1-node9-dependencies-{{ arch }}-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-node8-dependencies-
+          - v1-node9-dependencies-
       - run: yarn install
       - run: yarn build
       - run: 'sudo apt install python-pip python-dev'
@@ -62,9 +62,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-node8-dependencies-{{ arch }}-{{ checksum "package.json" }}
+          - v1-node9-dependencies-{{ arch }}-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-node8-dependencies-
+          - v1-node9-dependencies-
       - run: yarn install
       - run:
           name: Build production
