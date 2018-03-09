@@ -79,6 +79,7 @@ jobs:
             aws s3 sync build/ s3://change-wallet-client --delete
             aws configure set preview.cloudfront true
             aws cloudfront create-invalidation --distribution-id E2CH23YWJE7QP1 --paths "/*"
+            aws cloudfront create-invalidation --distribution-id E223F8QANJEC59 --paths "/*"
 
 workflows:
   version: 2
