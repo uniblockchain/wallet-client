@@ -11,7 +11,7 @@ describe('app router', () => {
   const props = {
     wallet: true,
     overview: null,
-    cardOrderFlow: null,
+    verificationFlow: null,
     card: null,
     walletComingSoon: null,
   };

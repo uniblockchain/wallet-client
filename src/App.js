@@ -38,7 +38,7 @@ type Props = {
 
 export const App = ({ authenticated }: Props) => {
   if (authenticated) {
-    return <AppRouter cardOrderFlow />;
+    return <AppRouter verificationFlow />;
   }
   return (
     <StyledContent>

@@ -8,11 +8,11 @@ import {
   fetchRoutine as fetchProfileRoutine,
   creationRoutine as createOrUpdateProfileRoutine,
 } from './profile/profileRoutines';
-import { type AddressState } from '../card/order/address/addressState';
+import { type AddressState } from '../verification/address/addressState';
 import {
   fetchAddressRoutine,
   createOrUpdateAddressRoutine,
-} from '../card/order/address/addressRoutine';
+} from '../verification/address/addressRoutine';
 import { createSecretRoutine as createMultiFactorAuth } from '../settings/multiFactorAuth/multiFactorAuthRoutines';
 
 describe('user reducer', () => {

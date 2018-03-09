@@ -6,7 +6,7 @@ import type { MapStateToProps } from 'react-redux';
 import {} from '../user';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';
-import { CARD_ORDER_INTRO_ROUTE } from '../card/order/constants';
+import { VERIFICATION_INTRO_ROUTE } from '../verification/constants';
 
 export type Props = {
   authenticated: boolean,
@@ -36,7 +36,7 @@ export class Signup extends Component<Props, State> {
       return (
         <Redirect
           to={{
-            pathname: CARD_ORDER_INTRO_ROUTE,
+            pathname: VERIFICATION_INTRO_ROUTE,
             state: { isNewUser: true },
           }}
         />

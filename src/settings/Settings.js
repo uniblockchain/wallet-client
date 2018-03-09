@@ -47,6 +47,10 @@ export const Settings = ({ user, openMultiFactorAuthModal }: Props) => (
           <Item>2-Factor Authentication</Item>
           <Status>{user.isUsing2Fa ? 'On' : 'Off'}</Status>
         </StyledListItem>
+        <StyledListItem>
+          <Item>Verification Status</Item>
+          <Status>{user.isVerified ? 'Verified' : 'Not Verified'}</Status>
+        </StyledListItem>
       </StyledList>
     </Top>
     <MultiFactorAuth />
@@ -55,6 +59,7 @@ export const Settings = ({ user, openMultiFactorAuthModal }: Props) => (
 
 const mapStateToProps = state => ({
   user: state.user,
+  verification: state.verification,
 });
 
 const mapDispatchToProps = {

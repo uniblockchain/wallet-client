@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { CardOrder } from './order';
+import Verification from '../verification';
 
-export const Card = () => <CardOrder />;
+export const Card = () => <Verification />;
 
 export default Card;

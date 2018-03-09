@@ -4,7 +4,7 @@ import moment from 'moment-es6';
 import {
   type AddressState,
   initialAddressState,
-} from '../../card/order/address/addressState';
+} from '../../verification/address/addressState';
 
 export type Profile = {
   +id: ?number,

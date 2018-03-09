@@ -20,9 +20,9 @@ import { quoteSagas, quoteReducer } from '../wallet/quote';
 import { feeSagas, feeReducer } from '../wallet/fee';
 import { pageReducer } from '../page';
 import { flagsReducer } from '../flags';
-import { addressSagas } from '../card/order/address';
-import { confirmSagas, confirmReducer } from '../card/order/confirm';
-import verificationSagas from '../card/order/verification/verificationSagas';
+import { addressSagas } from '../verification/address';
+import { confirmSagas, confirmReducer } from '../verification/confirm';
+import verificationSagas from '../verification/verificationFiles/verificationSagas';
 import { resetPasswordSagas } from '../user/password/reset';
 import rootReducer from './rootReducer';
 

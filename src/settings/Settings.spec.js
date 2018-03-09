@@ -32,4 +32,17 @@ describe('Settings component', () => {
   it('renders the 2fa setting', () => {
     expect(component.contains('2-Factor Authentication')).toBe(true);
   });
+
+  it('renders the verification status', () => {
+    expect(component.contains('Verification Status')).toBe(true);
+  });
+
+  it('should show user as not verified', () => {
+    expect(component.contains('Not Verified')).toBe(true);
+  });
+
+  it('should show user as not verified', () => {
+    component.setProps({ user: { isVerified: true } });
+    expect(component.contains('Verified')).toBe(true);
+  });
 });

@@ -30,9 +30,10 @@ import { DefaultTheme } from './ui';
 import { routes } from './router';
 import './index.css';
 import { GoogleTagManager } from './tracker';
-import { cardOrderRoutes } from './card/order';
+import verificationRoutes from './verification/routes';
 import ResetPassword, { ResetPasswordDone } from './user/password/reset';
 import UpdatePassword from './user/password/update';
+import Verification from './verification/Verification';
 
 const animationEnter = keyframes`${slideInRight}`;
 
@@ -105,7 +106,6 @@ const startApp = () => {
                     path="/card"
                     component={authenticatedPage(Card)}
                   />
-                  {cardOrderRoutes}
                   <Route
                     path="/marketplace"
                     component={authenticatedPage(Marketplace)}
@@ -114,6 +114,12 @@ const startApp = () => {
                     path="/settings"
                     component={authenticatedPage(Settings)}
                   />
+                  <Route
+                    exact
+                    path="/verify"
+                    component={authenticatedPage(Verification)}
+                  />
+                  {verificationRoutes}
                 </Switch>
                 <Route path="/sidebar">
                   {({ match }) => (

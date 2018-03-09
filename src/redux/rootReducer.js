@@ -8,7 +8,7 @@ import type { PageState } from '../page/pageState';
 import type { UserState } from '../user/userState';
 import type { SendState } from '../wallet/send/sendReducer';
 import type { WalletState } from '../wallet/walletState';
-import type { ConfirmState } from '../card/order/confirm/confirmReducer';
+import type { ConfirmState } from '../verification/confirm/confirmReducer';
 import tracker from '../tracker';
 
 export type State = {

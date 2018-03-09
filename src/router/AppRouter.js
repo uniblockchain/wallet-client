@@ -2,12 +2,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import routes from './routes';
-import { CARD_ORDER_INTRO_ROUTE } from '../card/order/constants';
+import { VERIFICATION_INTRO_ROUTE } from '../verification/constants';
 
 type Props = {
   wallet: ?boolean,
   overview: ?boolean,
-  cardOrderFlow: ?boolean,
+  verificationFlow: ?boolean,
   card: ?boolean,
   walletComingSoon: ?boolean,
 };
@@ -17,8 +17,8 @@ const AppRouter = (props: Props) => {
     return <Redirect to={routes.WALLET} />;
   } else if (props.overview) {
     return <Redirect to={routes.OVERVIEW} />;
-  } else if (props.cardOrderFlow) {
-    return <Redirect to={CARD_ORDER_INTRO_ROUTE} />;
+  } else if (props.verificationFlow) {
+    return <Redirect to={VERIFICATION_INTRO_ROUTE} />;
   } else if (props.card) {
     return <Redirect to={routes.CARD} />;
   } else if (props.walletComingSoon) {
