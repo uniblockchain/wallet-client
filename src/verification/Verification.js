@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { Header, PrimaryButton, Top, SubHeader, WrappedContent } from '../ui';
+import { Redirect } from 'react-router-dom';
+import { WrappedContent } from '../ui';
 import { VERIFICATION_INTRO_ROUTE } from './constants';
 import Done from './done';
 
