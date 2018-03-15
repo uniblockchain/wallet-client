@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import verificationRoutine from './verificationRoutine';
+import { verificationUploadRoutine } from './verificationRoutine';
 
 type Props = {
   dispatch: *,
@@ -25,7 +25,7 @@ export const verificationFileUploader = (WrappedComponent: *, type: string) => {
   uploader.displayName = `verificationFileUploader(${WrappedComponent.name})`;
 
   const mapDispatchToProps = {
-    upload: verificationRoutine,
+    upload: verificationUploadRoutine,
   };
 
   return connect(null, mapDispatchToProps)(uploader);

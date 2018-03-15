@@ -1,6 +1,6 @@
 // @flow
 import { createRoutine } from 'redux-saga-routines';
 
-const verificationRoutine = createRoutine('VERIFICATION');
+export const verificationUploadRoutine = createRoutine('VERIFICATION_UPLOAD');
 
-export default verificationRoutine;
+export const verificationPostRoutine = createRoutine('VERIFICATION_POST');

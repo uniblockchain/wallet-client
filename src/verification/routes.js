@@ -14,10 +14,15 @@ import {
   VERIFICATION_ADDRESS_VERIFICATION_ROUTE,
   VERIFICATION_CONFIRM_ROUTE,
   VERIFICATION_DONE_ROUTE,
+  VERIFICATION_SELFIE_VERIFICATION_ROUTE,
 } from './constants';
 import Profile from './profile';
 import AddressComponent from './address/AddressComponent';
-import { IdVerification, AddressVerification } from './verificationFiles';
+import {
+  IdVerification,
+  AddressVerification,
+  SelfieVerification,
+} from './verificationFiles';
 import Done from './done';
 import Confirm from './confirm';
 
@@ -63,9 +68,17 @@ const addressVerificationRoute = (
   />
 );
 
-const confirmRoute = (
+const selfieVerificationRoute = (
   <Route
     key={4}
+    path={VERIFICATION_SELFIE_VERIFICATION_ROUTE}
+    component={requireAuthentication(verificationFlow(SelfieVerification))}
+  />
+);
+
+const confirmRoute = (
+  <Route
+    key={5}
     path={VERIFICATION_CONFIRM_ROUTE}
     component={requireAuthentication(verificationFlow(Confirm))}
   />
@@ -73,7 +86,7 @@ const confirmRoute = (
 
 const doneRoute = (
   <Route
-    key={5}
+    key={6}
     path={VERIFICATION_DONE_ROUTE}
     component={authenticatedPage(verificationFlow(Done))}
   />
@@ -85,6 +98,7 @@ export default [
   addressRoute,
   idVerificationRoute,
   addressVerificationRoute,
+  selfieVerificationRoute,
   confirmRoute,
   doneRoute,
 ];

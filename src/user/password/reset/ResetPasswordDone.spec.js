@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ResetPasswordDone } from './ResetPasswordDone';
-import { PrimaryButton, Header } from '../../../ui/index';
+import { PrimaryButton, Header } from '../../../ui';
 
 describe('Overview component', () => {
   let component;

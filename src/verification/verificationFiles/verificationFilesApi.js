@@ -7,7 +7,12 @@ export type VerificationFile = {
   +file: string,
 };
 
-const uploadDocument = (
+export type VerificationFileBase64 = {
+  +type: string,
+  +base64Data: string,
+};
+
+export const uploadFile = (
   verificationFile: VerificationFile,
 ): Promise<VerificationFile> => {
   const formData = new FormData();
@@ -15,4 +20,11 @@ const uploadDocument = (
   formData.append('file', verificationFile.file);
   return post('/v1/verification-files', formData);
 };
-export default { uploadDocument };
+
+export const postFile = (
+  verificationFile: VerificationFileBase64,
+): Promise<VerificationFile> => {
+  return post('/v1/verification-files', verificationFile);
+};
+
+export default { uploadFile, postFile };

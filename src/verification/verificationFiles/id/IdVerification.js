@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-import { FileUpload, Header, Paragraph } from '../../ui';
-import { VERIFICATION_ADDRESS_VERIFICATION_ROUTE } from '../constants';
+import { FileUpload, Header, Paragraph } from '../../../ui';
+import { VERIFICATION_ADDRESS_VERIFICATION_ROUTE } from '../../constants';
 import passport from './img/passport.png';
-import verificationFileUploader from './verificationFileUploader';
+import verificationFileUploader from '../verificationFileUploader';
 
 const LargeHeader = Header.extend`
   font-size: 36px;

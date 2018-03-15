@@ -10,7 +10,7 @@ import {
   describe,
   beforeEach,
   it,
-} from '../../../.storybook/facade';
+} from '../../../../.storybook/facade';
 import { AddressVerification } from './AddressVerification';
 
 storiesOf('Page', module).add('Address Verification', () => {

@@ -12,6 +12,7 @@
     "email": "maido@getchange.com"
   },
   "dependencies": {
+    "@cliener/react-webcam": "^0.3.2",
     "alpha2-countries": "^1.1.0",
     "bs58check": "^2.0.2",
     "change-bootstrap": "ChangeFinance/change-bootstrap",

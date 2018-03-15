@@ -69,7 +69,7 @@ store.dispatch(loginRoutine.fulfill());
   quoteSagas,
   ...(addressSagas || []),
   routinePromiseWatcherSaga,
-  verificationSagas,
+  ...(verificationSagas || []),
   confirmSagas,
   ...(feeSagas || []),
   resetPasswordSagas,

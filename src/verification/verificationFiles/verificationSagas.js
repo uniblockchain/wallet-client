@@ -1,11 +1,14 @@
 // @flow
 import { call, put, takeEvery, type IOEffect } from 'redux-saga/effects';
 import type RoutineAction from 'redux-saga-routines';
-import verificationRoutine from './verificationRoutine';
+import {
+  verificationUploadRoutine,
+  verificationPostRoutine,
+} from './verificationRoutine';
 import verificationApi from './verificationFilesApi';
 import type { VerificationFile } from './verificationFilesApi';
 
-export function* createVerificationFile(
+export function* uploadVerificationFile(
   action: RoutineAction,
 ): Generator<IOEffect, void, *> {
   try {
@@ -14,14 +17,11 @@ export function* createVerificationFile(
       file: action.payload.file,
     };
 
-    verificationFile = yield call(
-      verificationApi.uploadDocument,
-      verificationFile,
-    );
-    yield put(verificationRoutine.success(verificationFile));
+    verificationFile = yield call(verificationApi.uploadFile, verificationFile);
+    yield put(verificationUploadRoutine.success(verificationFile));
   } catch (error) {
     yield put(
-      verificationRoutine.failure({
+      verificationUploadRoutine.failure({
         _error:
           error.body.message ||
           'Oops! Something went wrong, please try again later.',
@@ -49,15 +49,40 @@ function* validateVerificationFile(
 ): Generator<IOEffect, void, *> {
   const errors = getErrors(action.payload);
   if (Object.keys(errors).length) {
-    yield put(verificationRoutine.failure(errors));
+    yield put(verificationUploadRoutine.failure(errors));
   } else {
-    yield call(createVerificationFile, action);
+    yield call(uploadVerificationFile, action);
   }
-  yield put(verificationRoutine.fulfill());
+  yield put(verificationUploadRoutine.fulfill());
 }
 
-function* createVerificationFileSaga(): Generator<IOEffect, void, *> {
-  yield takeEvery(verificationRoutine.TRIGGER, validateVerificationFile);
+function* uploadVerificationFileSaga(): Generator<IOEffect, void, *> {
+  yield takeEvery(verificationUploadRoutine.TRIGGER, validateVerificationFile);
 }
 
-export default createVerificationFileSaga;
+export function* postVerificationFile(
+  action: RoutineAction,
+): Generator<IOEffect, void, *> {
+  try {
+    const verificationFile = yield call(
+      verificationApi.postFile,
+      action.payload,
+    );
+    yield put(verificationUploadRoutine.success(verificationFile));
+  } catch (error) {
+    yield put(
+      verificationUploadRoutine.failure({
+        _error:
+          error.body.message ||
+          'Oops! Something went wrong, please try again later.',
+      }),
+    );
+    console.error(error);
+  }
+}
+
+function* postVerificationFileSaga(): Generator<IOEffect, void, *> {
+  yield takeEvery(verificationPostRoutine.TRIGGER, postVerificationFile);
+}
+
+export default [uploadVerificationFileSaga, postVerificationFileSaga];

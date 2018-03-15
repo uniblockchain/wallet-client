@@ -1,13 +1,14 @@
 // @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-import { FileUpload, Header, Paragraph } from '../../ui';
-import { VERIFICATION_CONFIRM_ROUTE } from '../constants';
+import { FileUpload, Header, Paragraph } from '../../../ui';
+import { VERIFICATION_SELFIE_VERIFICATION_ROUTE } from '../../constants';
+import verificationFileUploader from '../verificationFileUploader';
 import address from './img/address.png';
-import verificationFileUploader from './verificationFileUploader';
 
 const LargeHeader = Header.extend`
   font-size: 36px;
@@ -86,7 +87,7 @@ export const AddressVerification = ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      redirectToNextStep: () => push(VERIFICATION_CONFIRM_ROUTE),
+      redirectToNextStep: () => push(VERIFICATION_SELFIE_VERIFICATION_ROUTE),
     },
     dispatch,
   );
