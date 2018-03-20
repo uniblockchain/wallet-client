@@ -35,7 +35,6 @@ const mapDispatchToProps = {
   confirm: confirmRoutine,
 };
 
-const reduxComponent = connect(mapStateToProps, mapDispatchToProps);
-const ConfirmWithWallet = reduxComponent(Confirm);
+const ConfirmWithWallet = connect(mapStateToProps, mapDispatchToProps)(Confirm);
 ConfirmWithWallet.displayName = 'Confirm';
 export default ConfirmWithWallet;
