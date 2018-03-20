@@ -69,7 +69,7 @@ IdVerification.displayName = 'IdVerification';
 const component = connect(null, mapDispatchToProps)(IdVerification);
 const IdVerificationWithFileUploader = verificationFileUploader(
   component,
-  'ID',
+  'PASSPORT',
 );
 IdVerificationWithFileUploader.displayName = 'IdVerification';
 export default IdVerificationWithFileUploader;
