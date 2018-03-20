@@ -7,5 +7,7 @@ export type VerificationType = {
   status: string,
 };
 
-export const createVerification = (userId: number): Promise<void> =>
-  post(`${config.get('apiUrl')}/v1/users/${userId}/verifications`, { userId });
+const createVerification = (userId: number): Promise<void> =>
+  post(`${config.get('apiUrl')}/v1/users/verification`, { userId });
+
+export default { createVerification };

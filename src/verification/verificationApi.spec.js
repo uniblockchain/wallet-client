@@ -2,12 +2,11 @@
 
 import config from 'react-global-configuration';
 import type { VerificationType } from './verificationApi';
+import verificationApi from './verificationApi';
 
 jest.mock('../http');
 
 const mockHttp = require('../http');
-
-const verificationApi = require('./verificationApi');
 
 describe('verification api', () => {
   const apiUrl = 'sample-api-url';
