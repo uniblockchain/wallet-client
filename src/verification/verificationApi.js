@@ -1,18 +1,17 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { post, get } from '../http';
+import { post } from '../http';
 
 export type VerificationType = {
+  userId: number,
+  id: number,
+  externalId: string,
   status: string,
+  checks: Array<any>,
 };
 
-export const createVerification = (userId: number): Promise<void> =>
-  post(`${config.get('apiUrl')}/v1/users/${userId}/verifications`);
+const createVerification = (userId: number): Promise<void> =>
+  post(`${config.get('apiUrl')}/v1/me/verification`, { userId });
 
-export const getSuccessfulVerifications = (
-  userId: number,
-): Promise<Array<VerificationType>> =>
-  get(
-    `${config.get('apiUrl')}/v1/users/${userId}/verifications?status=SUCCESS`,
-  );
+export default { createVerification };

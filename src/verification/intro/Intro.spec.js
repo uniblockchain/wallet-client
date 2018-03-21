@@ -3,11 +3,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
-import AppRouter from '../../router';
+import AppRouter, { routes } from '../../router';
 import { Intro } from './Intro';
 import { PrimaryButton, Button } from '../../ui';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
-import { routes } from '../../router';
 
 jest.mock('../cardOrderApi', () => ({
   hasOrder: jest.fn(() => Promise.resolve(false)),

@@ -2,23 +2,23 @@
 import { call, type IOEffect, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import confirmRoutine from './confirmRoutine';
-import cardOrderApi from '../cardOrderApi';
 import { routes } from '../../router';
+import verificationApi from '../verificationApi';
 
-export function* createOrder(): Generator<IOEffect, void, *> {
+export function* startVerification(): Generator<IOEffect, void, *> {
   try {
-    yield call(cardOrderApi.createOrder);
+    yield call(verificationApi.createVerification);
     yield put(confirmRoutine.success());
     yield put(push(routes.WALLET_COMING_SOON));
   } catch (error) {
-    console.error(error);
+    console.log(error);
     yield put(confirmRoutine.failure(error.body.message));
   }
   yield put(confirmRoutine.fulfill());
 }
 
 function* createConfirmSaga(): Generator<IOEffect, void, *> {
-  yield takeLatest(confirmRoutine.TRIGGER, createOrder);
+  yield takeLatest(confirmRoutine.TRIGGER, startVerification);
 }
 
 export default createConfirmSaga;

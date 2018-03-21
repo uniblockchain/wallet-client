@@ -2,12 +2,11 @@
 
 import config from 'react-global-configuration';
 import type { VerificationType } from './verificationApi';
+import verificationApi from './verificationApi';
 
 jest.mock('../http');
 
 const mockHttp = require('../http');
-
-const verificationApi = require('./verificationApi');
 
 describe('verification api', () => {
   const apiUrl = 'sample-api-url';
@@ -17,16 +16,12 @@ describe('verification api', () => {
   });
 
   const testVerification: VerificationType = {
-    status: 'SUCCESS',
+    userId: 1,
+    id: 1,
+    externalId: 'ad8781de-2cfe-11e8-b467-0ed5f89f718b',
+    checks: [],
+    status: 'NEW',
   };
-
-  it('gets a list of successful verifications', () => {
-    mockHttp.get = jest.fn(() => Promise.resolve(testVerification));
-
-    return verificationApi
-      .getSuccessfulVerifications(1)
-      .then(response => expect(response).toEqual(testVerification));
-  });
 
   it('posts a new verification', () => {
     mockHttp.post = jest.fn(() => Promise.resolve(testVerification));
