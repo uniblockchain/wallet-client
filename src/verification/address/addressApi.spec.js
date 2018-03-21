@@ -17,6 +17,7 @@ describe('address api', () => {
     countryCode: 'EE',
     city: 'Tallinn',
     streetAddress: 'Viru väljak 1-1',
+    apartment: null,
     postalCode: '10000',
   };
 
@@ -25,6 +26,7 @@ describe('address api', () => {
     countryCode: 'EE',
     city: 'Tallinn',
     streetAddress: 'Viru väljak 1-1',
+    apartment: null,
     postalCode: '10000',
   };
 

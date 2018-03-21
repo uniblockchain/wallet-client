@@ -14,6 +14,7 @@ function countryToCountryCode(address: AddressForm): Address {
   return {
     id: address.id,
     streetAddress: address.streetAddress,
+    apartment: address.apartment,
     city: address.city,
     postalCode: address.postalCode,
     countryCode: countries.resolveCode(address.country),

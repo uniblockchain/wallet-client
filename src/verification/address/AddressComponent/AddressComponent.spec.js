@@ -21,6 +21,7 @@ describe('Address component', () => {
     countryCode: null,
     city: null,
     streetAddress: null,
+    apartment: null,
     postalCode: null,
   };
 

@@ -39,6 +39,8 @@ export const AddressReduxForm = ({ handleSubmit, error }: Props) => (
         type="text"
       />
 
+      <Field name="apartment" label="Apartment" type="text" />
+
       <Field name="city" label="City" type="text" />
 
       <Field name="postalCode" label="Postal Code" type="text" />

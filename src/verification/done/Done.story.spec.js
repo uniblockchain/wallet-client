@@ -24,6 +24,7 @@ storiesOf('Verification', module).add('Done', () => {
         countryCode: null,
         city: null,
         streetAddress: null,
+        apartment: null,
         postalCode: null,
       };
 
