@@ -16,7 +16,11 @@ describe('verification api', () => {
   });
 
   const testVerification: VerificationType = {
-    status: 'ok',
+    userId: 1,
+    id: 1,
+    externalId: 'ad8781de-2cfe-11e8-b467-0ed5f89f718b',
+    checks: [],
+    status: 'NEW',
   };
 
   it('posts a new verification', () => {
