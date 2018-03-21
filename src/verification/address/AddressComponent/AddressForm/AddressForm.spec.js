@@ -48,4 +48,10 @@ describe('Address form', () => {
       <Field name="postalCode" label="Postal Code" type="text" />,
     );
   });
+
+  it('renders apartment field', () => {
+    expect(component).toContainReact(
+      <Field name="apartment" label="Apartment" type="text" />,
+    );
+  });
 });

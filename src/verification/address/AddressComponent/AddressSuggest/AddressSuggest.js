@@ -55,6 +55,7 @@ export class AddressSuggest extends React.Component<Props, State> {
 
   fillAddressForm(suggestFields: any) {
     let streetAddress = null;
+    const apartment = null;
     let countryCode = null;
     let city = null;
     let postalCode = null;
@@ -82,6 +83,7 @@ export class AddressSuggest extends React.Component<Props, State> {
     this.props.setAddress({
       id: null,
       streetAddress,
+      apartment,
       city,
       postalCode,
       countryCode,

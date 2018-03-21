@@ -16,6 +16,7 @@ describe('address sagas', () => {
       country: 'Estonia',
       city: 'Tallinn',
       streetAddress: 'Viru väljak 1-1',
+      apartment: '12',
       postalCode: '10000',
     };
 
@@ -27,6 +28,7 @@ describe('address sagas', () => {
       call(addressApi.createOrUpdateAddress, {
         id: null,
         streetAddress: address.streetAddress,
+        apartment: address.apartment,
         city: address.city,
         postalCode: address.postalCode,
         countryCode: 'EE',
@@ -44,6 +46,7 @@ describe('address sagas', () => {
       countryCode: 'EE',
       city: 'Tallinn',
       streetAddress: 'Viru väljak 1-1',
+      apartment: '12',
       postalCode: '10000',
     };
 
