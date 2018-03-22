@@ -3,10 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   position: relative;
+  display: inline-block;
   width: 320px;
   height: 200px;
   background: linear-gradient(
@@ -93,7 +94,7 @@ const Name = styled.div`
 
 const Good = styled.div`
   color: ${variables.colorWhite};
-  font-family: ${variables.fontTertiary};
+  font-family: ${variables.fontSecondary};
   font-size: 9px;
   font-weight: ${variables.fontWeightBold};
   line-height: 1.1;

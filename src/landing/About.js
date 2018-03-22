@@ -32,7 +32,7 @@ import Token from './Token';
 
 import { NavButton } from './ui';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 import VisionMission from './VisionMission';
 

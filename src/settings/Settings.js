@@ -2,8 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import variables from '../landing/variables';
-import { Header, Top, WrappedContent } from '../ui';
+import variables from '../ui/variables';
+import { Heading, Top, WrappedContent } from '../ui';
 import { withUser } from '../user';
 import type { User } from '../user/userState';
 import MultiFactorAuth, { openMultiFactorAuthModal } from './multiFactorAuth';
@@ -41,7 +41,7 @@ export type Props = {
 export const Settings = ({ user, openMultiFactorAuthModal }: Props) => (
   <WrappedContent>
     <Top>
-      <Header alt>My account</Header>
+      <Heading alt>My account</Heading>
       <StyledList>
         <StyledListItem onClick={openMultiFactorAuthModal}>
           <Item>2-Factor Authentication</Item>

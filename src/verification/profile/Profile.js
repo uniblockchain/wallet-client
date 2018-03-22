@@ -13,7 +13,7 @@ import {
   FormFeedback,
   FormGroup,
   FormRow,
-  Header,
+  Heading,
   Label,
   PrimaryButton,
 } from '../../ui';
@@ -21,7 +21,7 @@ import { PhoneField } from './phoneField';
 import { profileFormSubmitHandler, withProfile } from '../../user/profile';
 import { VERIFICATION_ADDRESS_ROUTE } from '../constants';
 
-const StyledHeader = styled(Header)`
+const StyledHeading = styled(Heading)`
   color: #2a2a2a;
 `;
 
@@ -29,7 +29,7 @@ type Props = {} & FormProps;
 
 export const Profile = ({ handleSubmit, error }: Props) => (
   <div>
-    <StyledHeader>Who are you?</StyledHeader>
+    <StyledHeading>Who are you?</StyledHeading>
     <Form
       id="profileForm"
       onSubmit={handleSubmit(profileFormSubmitHandler)}

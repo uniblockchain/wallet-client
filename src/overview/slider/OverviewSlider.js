@@ -5,7 +5,7 @@ import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import { Wallet } from '../../wallet/walletState';
 import type { WalletType } from '../../wallet/walletState';
-import { Header, Link, Paragraph, PrimaryButton } from '../../ui';
+import { Heading, Link, Paragraph, PrimaryButton } from '../../ui';
 
 import { Slide, Slider } from '../../ui/slider';
 import withWallet from '../../wallet/withWallet';
@@ -33,21 +33,21 @@ export const OverviewSlider = ({ isNewUser, wallets }: Props) => (
     {isNewUser ? (
       <div>
         <CongratzSlide>
-          <Header>Congratulations</Header>
+          <Heading>Congratulations</Heading>
           <StyledParagraph>Your account is now ready</StyledParagraph>
         </CongratzSlide>
       </div>
     ) : (
       <div>
         <CongratzSlide>
-          <Header>Welcome back!</Header>
+          <Heading>Welcome back!</Heading>
           <StyledParagraph>Good to see you again.</StyledParagraph>
         </CongratzSlide>
       </div>
     )}
     <div>
       <Slide>
-        <Header>Order your card</Header>
+        <Heading>Order your card</Heading>
         <StyledParagraph>
           Make everyday purchases with Bitcoin and other cryptocurrencies
         </StyledParagraph>
@@ -59,7 +59,7 @@ export const OverviewSlider = ({ isNewUser, wallets }: Props) => (
     {!hasAnyBalance(wallets) && (
       <div>
         <Slide alt>
-          <Header alt>Deposit funds</Header>
+          <Heading alt>Deposit funds</Heading>
           <StyledParagraph alt>
             Start by depositing Bitcoin to your account
           </StyledParagraph>

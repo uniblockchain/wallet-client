@@ -1,13 +1,13 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Modal, Header } from '../../../../ui';
+import { Modal, Heading } from '../../../../ui';
 import type { Transaction as TransactionType } from '../../../../wallet/walletState';
 import walletCurrencyValueResolver from '../../../../wallet/walletCurrencyValueResolver';
 import FiatValue from '../fiatValue';
 import { getTransactionInfo } from './transactionInfo';
 
-export const Amount = Header.extend`
+export const Amount = Heading.extend`
   font-size: 36px;
   margin-bottom: 40px;
   text-transform: uppercase;

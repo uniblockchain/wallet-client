@@ -18,7 +18,7 @@ import PrivacyPolicy from './PrivacyPolicy';
 import ScrollToTop from './ScrollToTop';
 import TermsAndConditions from './TermsAndConditions';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   overflow: hidden;

@@ -8,7 +8,7 @@ import { Intro } from './Intro';
 import { PrimaryButton, Button } from '../../ui';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 
-jest.mock('../cardOrderApi', () => ({
+jest.mock('../../card/order/cardOrderApi', () => ({
   hasOrder: jest.fn(() => Promise.resolve(false)),
 }));
 

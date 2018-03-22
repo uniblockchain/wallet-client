@@ -5,7 +5,7 @@ import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AppRouter, { routes } from '../router';
-import { Button, Header, Top, WrappedContent } from '../ui';
+import { Button, Heading, Top, WrappedContent } from '../ui';
 import { withUser } from '../user';
 
 export type Props = {
@@ -20,10 +20,10 @@ export const WalletComingSoon = ({ verified }: Props) => {
     <div>
       <WrappedContent>
         <Top>
-          <Header alt>
+          <Heading alt>
             You’re all set!
             <br />
-          </Header>
+          </Heading>
           <div>
             The wallet will be available soon and you’ll be the first to know.
           </div>

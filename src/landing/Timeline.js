@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 import { GradientText } from './GradientText';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   margin: 30px 0 60px;

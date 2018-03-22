@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { Link } from 'react-router-dom';
 
-import variables from '../variables';
+import variables from '../../ui/variables';
 
 function getColor(color) {
   switch (color) {
@@ -66,7 +66,7 @@ const ButtonBase = ({ color, size, fluid, ...props }: Props) => (
 
 const Button = styled(ButtonBase)`
   color: ${props => getColor(props.color)};
-  font-family: ${variables.fontTertiary};
+  font-family: ${variables.fontSecondary};
   font-size: ${variables.fontSizeNormal};
   font-weight: ${variables.fontWeightBold};
   text-transform: uppercase;

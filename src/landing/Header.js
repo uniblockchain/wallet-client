@@ -9,7 +9,7 @@ import Logo from './Logo';
 
 import { NavButton } from './ui';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   overflow: hidden;

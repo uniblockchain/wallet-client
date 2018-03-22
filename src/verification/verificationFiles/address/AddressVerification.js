@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
-import { FileUpload, Header, Paragraph } from '../../../ui';
+import { FileUpload, Heading, Paragraph } from '../../../ui';
 import { VERIFICATION_SELFIE_VERIFICATION_ROUTE } from '../../constants';
 import verificationFileUploader from '../verificationFileUploader';
 import address from './img/address.png';
+import variables from '../../../ui/variables';
 
-const LargeHeader = Header.extend`
+const LargeHeading = Heading.extend`
   font-size: 36px;
   margin-bottom: 22px;
 `;
@@ -35,7 +36,7 @@ const List = styled.ul`
   }
 
   & li span {
-    font-family: Usual;
+    font-family: ${variables.fontPrimary};
     font-size: 14px;
     color: #2a2a2a;
   }
@@ -57,7 +58,7 @@ export const AddressVerification = ({
 
   return (
     <div>
-      <LargeHeader alt>Your proof of address.</LargeHeader>
+      <LargeHeading alt>Your proof of address.</LargeHeading>
       <AddressImg src={address} />
       <Paragraph alt>
         Please upload (less than 10MB) one of the following documents with your

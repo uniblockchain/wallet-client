@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import { PasswordPage, type Props } from './UpdatePassword';
 import UpdatePasswordForm from './UpdatePasswordForm';
-import { Header } from '../../../ui';
+import { Heading } from '../../../ui';
 
 describe('PasswordPage component', () => {
   let component;
@@ -33,8 +33,8 @@ describe('PasswordPage component', () => {
     expect(props.loginWithVerificationToken.mock.calls).toHaveLength(1);
   });
 
-  it('renders header', () => {
-    expect(component.find(Header).length).toBe(1);
+  it('renders heading', () => {
+    expect(component.find(Heading).length).toBe(1);
   });
 
   it('renders error', () => {

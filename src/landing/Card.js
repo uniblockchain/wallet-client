@@ -9,12 +9,12 @@ import Disclaimer from './Disclaimer';
 import GradientText from './GradientText';
 
 import photo from './img/photo-landing-card.jpg';
-import PlasticCard from './PlasticCard';
+import PlasticCard from '../card/PlasticCard';
 
 import ScrollToTarget from './ScrollToTarget';
 import { Button } from './ui';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   margin-bottom: 96px;

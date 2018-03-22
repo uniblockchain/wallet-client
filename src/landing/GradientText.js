@@ -1,7 +1,7 @@
 // @flow
 import styled from 'styled-components';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 export const GradientText = styled.div`
   display: inline;

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   color: ${variables.colorWhite};

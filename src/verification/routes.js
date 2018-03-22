@@ -5,7 +5,6 @@ import { Route } from 'react-router';
 import Intro from './intro';
 import verificationFlow from './VerificationFlow';
 import requireAuthentication from '../requireAuthentication';
-import { authenticatedPage } from '../page';
 import {
   VERIFICATION_INTRO_ROUTE,
   VERIFICATION_PROFILE_ROUTE,
@@ -13,7 +12,6 @@ import {
   VERIFICATION_ID_VERIFICATION_ROUTE,
   VERIFICATION_ADDRESS_VERIFICATION_ROUTE,
   VERIFICATION_CONFIRM_ROUTE,
-  VERIFICATION_DONE_ROUTE,
   VERIFICATION_SELFIE_VERIFICATION_ROUTE,
 } from './constants';
 import Profile from './profile';
@@ -23,7 +21,6 @@ import {
   AddressVerification,
   SelfieVerification,
 } from './verificationFiles';
-import Done from './done';
 import Confirm from './confirm';
 
 const introRoute = (
@@ -84,14 +81,6 @@ const confirmRoute = (
   />
 );
 
-const doneRoute = (
-  <Route
-    key={6}
-    path={VERIFICATION_DONE_ROUTE}
-    component={authenticatedPage(verificationFlow(Done))}
-  />
-);
-
 export default [
   introRoute,
   profileRoute,
@@ -100,5 +89,4 @@ export default [
   addressVerificationRoute,
   selfieVerificationRoute,
   confirmRoute,
-  doneRoute,
 ];

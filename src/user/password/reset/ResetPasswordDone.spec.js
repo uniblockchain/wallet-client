@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ResetPasswordDone } from './ResetPasswordDone';
-import { PrimaryButton, Header } from '../../../ui';
+import { PrimaryButton, Heading } from '../../../ui';
 
 describe('Overview component', () => {
   let component;
@@ -20,8 +20,8 @@ describe('Overview component', () => {
     expect(component);
   });
 
-  it('renders header', () => {
-    expect(component.find(Header).length).toBe(1);
+  it('renders heading', () => {
+    expect(component.find(Heading).length).toBe(1);
   });
 
   it('renders back button', () => {

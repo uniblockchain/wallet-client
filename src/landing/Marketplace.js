@@ -12,7 +12,7 @@ import MarketplaceVisual from './MarketplaceVisual';
 
 import ScrollToTarget from './ScrollToTarget';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   margin-bottom: -96px;

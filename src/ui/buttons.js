@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import variables from './variables';
 import { Link as RouterLink } from 'react-router-dom';
 
 type Props = {
@@ -29,6 +30,20 @@ export const Button = styled(ButtonBase)`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const GradientButton = Button.extend`
+  background-image: linear-gradient(
+    to right,
+    ${variables.colorGreenLighter},
+    ${variables.colorGreenBright}
+  );
+  box-shadow: 0 2px 6px 0 rgba(2, 189, 165, 0.4);
+  height: 52px;
+  margin: 0 auto;
+  border-radius: 54.5px;
+  font-family: OpenSansBold;
+  color: ${variables.colorWhite};
 `;
 
 export const Link = styled(RouterLink)`

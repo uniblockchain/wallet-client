@@ -9,7 +9,7 @@ import menu from '../menu';
 import { Sidebar } from '../sidebar/Sidebar';
 import { BottomNavigation } from '../ui/bottomNavigation/BottomNavigation';
 import { Slide, Slider } from '../ui/slider';
-import { Header, PrimaryButton, Content, Paragraph, Tabs, Tab } from '../ui';
+import { Heading, PrimaryButton, Content, Paragraph, Tabs, Tab } from '../ui';
 
 storiesOf('Structure', module)
   .addDecorator(StoryRouter())
@@ -41,14 +41,14 @@ storiesOf('Structure', module)
       <Slider>
         <div>
           <Slide>
-            <Header>First slide</Header>
+            <Heading>First slide</Heading>
             <Paragraph>This is a test text on first slide</Paragraph>
             <PrimaryButton>Action</PrimaryButton>
           </Slide>
         </div>
         <div>
           <Slide alt>
-            <Header alt>Second slide</Header>
+            <Heading alt>Second slide</Heading>
             <Paragraph alt>This is a test text on second slide</Paragraph>
             <PrimaryButton alt>Action</PrimaryButton>
           </Slide>

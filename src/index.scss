@@ -1,23 +1,16 @@
 @font-face {
-  font-family: CircularPro;
-  src: url('fonts/lineto-circular-pro-book.woff2') format('woff2');
+  font-family: OpenSans;
+  src: url('fonts/OpenSans-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: CircularPro;
-  font-weight: bold;
-  src: url('fonts/lineto-circular-pro-bold.woff2') format('woff2');
+  font-family: OpenSansBold;
+  src: url('fonts/OpenSans-Bold.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: CircularProBold;
-  font-weight: bold;
-  src: url('fonts/lineto-circular-pro-bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: Usual;
-  src: url('fonts/Usual-Regular.otf') format('opentype');
+  font-family: OpenSansExtraBold;
+  src: url('fonts/OpenSans-ExtraBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -45,18 +38,18 @@ body {
 }
 
 h1 {
-  font-family: CircularProBold, Fallback, sans-serif;
+  font-family: OpenSansBold, Fallback, sans-serif;
   font-size: 30px;
 }
 
 h2 {
-  font-family: Usual, Fallback, sans-serif; // should be UsualLight
+  font-family: OpenSans, Fallback, sans-serif;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: -0.5px;
 }
 
 p {
-  font-family: Usual, Fallback, sans-serif;
+  font-family: OpenSans, Fallback, sans-serif;
   font-size: 16px;
 }

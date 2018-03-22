@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ResetPassword } from './ResetPassword';
-import { Field, PrimaryButton, LinkButton, Header } from '../../../ui';
+import { Field, PrimaryButton, LinkButton, Heading } from '../../../ui';
 
 describe('Overview component', () => {
   let component;
@@ -20,8 +20,8 @@ describe('Overview component', () => {
     expect(component);
   });
 
-  it('renders header', () => {
-    expect(component.find(Header).length).toBe(1);
+  it('renders heading', () => {
+    expect(component.find(Heading).length).toBe(1);
   });
 
   it('renders email field', () => {

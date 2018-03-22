@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { PrimaryButton, Button } from '../buttons';
 import { Divider } from '../layout';
-import { Header, Paragraph } from '../text';
+import { Heading, Paragraph } from '../text';
 import pageActions from '../../page/pageActions'; // FIXME
 
 type ModalType = 'Confirmation' | 'Prompt';
@@ -33,7 +33,7 @@ const Box = styled.div`
   padding: 5vmin;
 `;
 
-const StyledHeader = Header.extend`
+const StyledHeading = Heading.extend`
   font-size: 30px;
   color: ${props => props.theme.main};
 `;
@@ -94,7 +94,7 @@ export class Modal extends Component<Props> {
       <Portal>
         <ModalBox>
           <Box>
-            <StyledHeader>{this.props.title}</StyledHeader>
+            <StyledHeading>{this.props.title}</StyledHeading>
             {this.props.description && (
               <StyledParagraph alt>{this.props.description}</StyledParagraph>
             )}

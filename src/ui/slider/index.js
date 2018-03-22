@@ -1,8 +1,11 @@
 // @flow
-import Slide from './Slide';
-import Slider from './Slider';
+import slides from './Slide';
+import sliders from './Slider';
 
-export { default as Slide } from './Slide';
-export { default as Slider } from './Slider';
+export * from './Slide';
+export * from './Slider';
 
-export default { Slide, Slider };
+export default {
+  ...slides,
+  ...sliders,
+};

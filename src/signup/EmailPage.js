@@ -7,7 +7,7 @@ import {
   Field,
   Form,
   FormFeedback,
-  Header,
+  Heading,
   Link,
   LinkButton,
   PrimaryButton,
@@ -21,7 +21,7 @@ export const EmailPage = (props: FormProps) => {
     <Form onSubmit={handleSubmit}>
       <WrappedContent>
         <Top>
-          <Header alt>Let&apos;s set up your account.</Header>
+          <Heading alt>Let&apos;s set up your account.</Heading>
           {error && <FormFeedback>{error}</FormFeedback>}
           <Field
             type="email"

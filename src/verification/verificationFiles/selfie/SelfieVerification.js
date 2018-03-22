@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
-import { Header, Paragraph, PrimaryButton } from '../../../ui';
+import { Heading, Paragraph, PrimaryButton } from '../../../ui';
 import { VERIFICATION_CONFIRM_ROUTE } from '../../constants';
 import { type VerificationFileBase64 } from '../verificationFilesApi';
 import { verificationPostRoutine } from '../verificationRoutine';
@@ -15,7 +15,7 @@ export type Props = {
   redirectToNextStep: () => void,
 };
 
-const LargeHeader = Header.extend`
+const LargeHeading = Heading.extend`
   font-size: 36px;
   margin-bottom: 22px;
 `;
@@ -41,7 +41,7 @@ export class SelfieVerification extends Component<Props> {
   render() {
     return (
       <div>
-        <LargeHeader alt>Your facial similarity check.</LargeHeader>
+        <LargeHeading alt>Your facial similarity check.</LargeHeading>
         <Paragraph alt>Please take a self-portrait of yourself.</Paragraph>
         <WebcamContainer>
           <Webcam

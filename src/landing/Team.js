@@ -7,7 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import svgLinkedIn from './img/social/linkedin.svg';
 import svgTwitter from './img/social/twitter.svg';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   margin: 36px 0;

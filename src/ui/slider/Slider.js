@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SlickSlider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import variables from '../variables';
 
 const settings = {
   dots: true,
@@ -12,7 +13,7 @@ const settings = {
   arrows: false,
 };
 
-export default styled(SlickSlider).attrs(settings)`
+export const Slider = styled(SlickSlider).attrs(settings)`
   .slick-dots {
     bottom: 20px;
     li {
@@ -26,3 +27,26 @@ export default styled(SlickSlider).attrs(settings)`
     }
   }
 `;
+
+export const GradientSlider = styled(SlickSlider).attrs(settings)`
+  .slick-dots {
+    top: 0px;
+    li {
+      margin: 0;
+      width: auto;
+      height: auto;
+      button {
+        font-size: 30px;
+      }
+      button:before {
+        font-size: 13.5px;
+      }
+    }
+  }
+
+  .slick-dots li.slick-active button:before {
+    color: ${variables.colorBlue};
+  }
+`;
+
+export default { Slider, GradientSlider };

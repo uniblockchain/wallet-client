@@ -40,8 +40,8 @@ storiesOf('Components', module).add('Address Block', () => {
       });
 
       it('renders deposit address intro', () => {
-        const header = component.find('AddressHeader');
-        expect(header.render().text()).toBe('Your Ether address');
+        const heading = component.find('AddressHeading');
+        expect(heading.render().text()).toBe('Your Ether address');
       });
 
       it('renders copying button', () => {
@@ -93,16 +93,16 @@ storiesOf('Components', module).add('Address Block', () => {
             .text(),
         ).toBe('2N25LSBNsyWnkPUUBNAMsusjVUY2kNzeS1T');
 
-        const addressHeaders = component.find('AddressHeader');
-        expect(addressHeaders.length).toBe(2);
+        const addressHeadings = component.find('AddressHeading');
+        expect(addressHeadings.length).toBe(2);
         expect(
-          addressHeaders
+          addressHeadings
             .at(0)
             .render()
             .text(),
         ).toBe('Your Litecoin address');
         expect(
-          addressHeaders
+          addressHeadings
             .at(1)
             .render()
             .text(),

@@ -5,7 +5,7 @@ import {
   WrappedContent,
   Top,
   Bottom,
-  Header,
+  Heading,
   Link,
   PrimaryButton,
 } from '../../../ui';
@@ -14,11 +14,11 @@ import { routes } from '../../../router';
 export const ResetPasswordDone = () => (
   <WrappedContent>
     <Top>
-      <Header alt>
+      <Heading alt>
         Your request has been sent.
         <br />
         Go to email.
-      </Header>
+      </Heading>
     </Top>
     <div>
       If your email exists, then a password reset link has been sent. It is

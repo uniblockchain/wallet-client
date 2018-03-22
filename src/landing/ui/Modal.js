@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from '../variables';
+import variables from '../../ui/variables';
 
 import svgClose from '../img/icon-close.svg';
 

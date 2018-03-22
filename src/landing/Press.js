@@ -18,7 +18,7 @@ import logoYahooFinance from './img/press/yahoo-finance.png';
 
 import LogoStrip from './LogoStrip';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   background: ${variables.colorNeutralLightest};

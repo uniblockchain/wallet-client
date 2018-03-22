@@ -11,7 +11,7 @@ const SlideDiv = ({ alt, ...props }: Props) => (
   <div {...props}>{props.children}</div>
 );
 
-const Slide = styled(SlideDiv)`
+export const Slide = styled(SlideDiv)`
   padding: 1em;
   width: 100vw;
   height: 240px;
@@ -24,4 +24,14 @@ const Slide = styled(SlideDiv)`
   text-align: center;
 `;
 
-export default Slide;
+export const WhiteBackgroundSlide = styled.div`
+  padding: 1em;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
+
+export default { Slide, WhiteBackgroundSlide };

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AppRouter, { routes } from '../../router';
-import { Button, Header, Paragraph, PrimaryButton, Top } from '../../ui';
-import cardOrderApi from '../cardOrderApi';
+import { Button, Heading, Paragraph, PrimaryButton, Top } from '../../ui';
+import cardOrderApi from '../../card/order/cardOrderApi';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 
-const StyledHeader = styled(Header)`
+const StyledHeading = styled(Heading)`
   color: #2a2a2a;
   margin-bottom: 14px;
 `;
@@ -41,7 +41,7 @@ export class Intro extends Component<any, State> {
     ) : (
       <div>
         <Top>
-          <StyledHeader>We need to get to know you better.</StyledHeader>
+          <StyledHeading>We need to get to know you better.</StyledHeading>
         </Top>
         <Paragraph alt>
           The wallet is down for maintenance. You may still get ready for

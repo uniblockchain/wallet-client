@@ -9,7 +9,7 @@ import Press from './Press';
 
 import ScrollToTarget from './ScrollToTarget';
 
-import variables from './variables';
+import variables from '../ui/variables';
 import Wallet from './Wallet';
 
 const Container = styled.div`

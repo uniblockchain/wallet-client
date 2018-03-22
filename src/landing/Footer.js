@@ -6,7 +6,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 import SocialIcons from './SocialIcons';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   padding: 48px 0;

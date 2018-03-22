@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import type { Props } from './OverviewSlider';
 import { OverviewSlider } from './OverviewSlider';
-import { Header } from '../../ui';
+import { Heading } from '../../ui';
 import { testWallet } from '../../fixtures';
 
 describe('Overview Slider component', () => {
@@ -24,17 +24,22 @@ describe('Overview Slider component', () => {
   });
 
   it('renders the signup congratz message for new users', () => {
-    props.isNewUser = true;
-    expect(component.contains(<Header>Welcome back!</Header>)).toBe(true);
+    component.setProps({ isNewUser: true });
+
+    expect(component.contains(<Heading>Congratulations</Heading>)).toBe(true);
   });
 
   it('renders the login welcome message for existing users', () => {
-    props.isNewUser = false;
-    expect(component.contains(<Header>Congratulations</Header>)).toBe(true);
+    component.setProps({ isNewUser: false });
+
+    expect(component.contains(<Heading>Welcome back!</Heading>)).toBe(true);
   });
 
   it('does not render deposit slide when any wallet has deposit', () => {
-    props.isNewUser = false;
-    expect(component.contains(<Header alt>Deposit funds</Header>)).toBe(false);
+    component.setProps({ isNewUser: false });
+
+    expect(component.contains(<Heading alt>Deposit funds</Heading>)).toBe(
+      false,
+    );
   });
 });

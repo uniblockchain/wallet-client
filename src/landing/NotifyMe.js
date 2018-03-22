@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 import { Button } from './ui';
 
@@ -29,7 +29,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Input = styled.input`
-  font-family: ${variables.fontTertiary};
+  font-family: ${variables.fontSecondary};
   font-size: ${variables.fontSizeNormal};
   width: calc(100% - 18px);
   margin-right: 18px;

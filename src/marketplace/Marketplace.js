@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import { Header, SubHeader } from '../ui';
+import { Heading, SubHeading } from '../ui';
 import skyline from './img/skyline.png';
 
 const DivWithGradient = styled.div`
@@ -9,7 +9,7 @@ const DivWithGradient = styled.div`
   padding: 60px 40px 0 40px;
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeading = styled(Heading)`
   font-size: 42px;
   font-weight: bold;
   line-height: 1.05;
@@ -17,7 +17,7 @@ const StyledHeader = styled(Header)`
   text-align: center;
 `;
 
-const StyledSubHeader = styled(SubHeader)`
+const StyledSubHeading = styled(SubHeading)`
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
@@ -57,11 +57,11 @@ const Skyline = styled.img.attrs({
 export const Marketplace = () => (
   <div>
     <DivWithGradient>
-      <StyledHeader alt>Marketplace</StyledHeader>
-      <StyledSubHeader>
+      <StyledHeading alt>Marketplace</StyledHeading>
+      <StyledSubHeading>
         All the innovation in fintech right at your fingertips. Launching Q1
         2018.
-      </StyledSubHeader>
+      </StyledSubHeading>
     </DivWithGradient>
     <StyledList>
       <StyledListItem>Invest with RoboAdvisor</StyledListItem>

@@ -7,7 +7,7 @@ import {
   Field,
   Form,
   FormFeedback,
-  Header,
+  Heading,
   LinkButton,
   PrimaryButton,
   renderCheckbox,
@@ -25,11 +25,11 @@ export const PasswordPage = (props: FormProps) => {
     <Form onSubmit={handleSubmit(signupFormSubmitHandler)}>
       <WrappedContent>
         <Top>
-          <Header alt>
+          <Heading alt>
             One more thing.
             <br />
             Create your password.
-          </Header>
+          </Heading>
           <Field
             name="password"
             type="password"

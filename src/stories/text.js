@@ -4,14 +4,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean } from '@storybook/addon-knobs';
 
-import { Header, SubHeader, Paragraph } from '../ui';
+import { Heading, SubHeading, Paragraph } from '../ui';
 
 storiesOf('Text', module)
-  .add('Header', () => (
-    <Header alt={boolean('Alternative', false)}>Header</Header>
+  .add('Heading', () => (
+    <Heading alt={boolean('Alternative', false)}>Heading</Heading>
   ))
-  .add('Sub Header', () => (
-    <SubHeader alt={boolean('Alternative', false)}>SubHeader</SubHeader>
+  .add('Sub Heading', () => (
+    <SubHeading alt={boolean('Alternative', false)}>SubHeading</SubHeading>
   ))
   .add('Paragraph', () => (
     <Paragraph alt={boolean('Alternative', false)}>

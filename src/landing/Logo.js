@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 import logo from './img/logo.svg';
 

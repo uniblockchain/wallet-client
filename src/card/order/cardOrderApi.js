@@ -1,7 +1,7 @@
 // @flow
 
 import config from 'react-global-configuration';
-import { post, get } from '../http';
+import { post, get } from '../../http';
 
 const createOrder = (): Promise<void> =>
   post(`${config.get('apiUrl')}/v1/me/card-orders`);

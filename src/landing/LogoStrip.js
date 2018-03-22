@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { Link } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 import { Modal } from './ui';
 

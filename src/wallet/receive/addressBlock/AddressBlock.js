@@ -38,14 +38,14 @@ const AddressBox = styled.div`
   width: 100%;
 `;
 
-const AddressHeader = styled.h2`
+const AddressHeading = styled.h2`
   padding-top: 13px;
   font-size: 12px;
   text-transform: uppercase;
   color: #02bda5;
 `;
 
-AddressHeader.displayName = 'AddressHeader';
+AddressHeading.displayName = 'AddressHeading';
 
 const Address = styled.h2`
   font-size: 12px;
@@ -101,7 +101,7 @@ export class AddressBlock extends React.Component<Props, State> {
       <StyledContent>
         <h1>Receive {currencyName}</h1>
         <AddressBox>
-          <AddressHeader>Your {currencyName} address</AddressHeader>
+          <AddressHeading>Your {currencyName} address</AddressHeading>
           <Address>{wallet.receiveAddress}</Address>
           <CopyButton
             onClick={() => this.handleCopy(wallet ? wallet.receiveAddress : '')}
@@ -110,7 +110,7 @@ export class AddressBlock extends React.Component<Props, State> {
           </CopyButton>
           {ltcAddress && (
             <div className="text-center">
-              <AddressHeader>{ltcAddress.type}</AddressHeader>
+              <AddressHeading>{ltcAddress.type}</AddressHeading>
               <Address>{ltcAddress.address}</Address>
               <CopyButton onClick={() => this.handleCopy(ltcAddress.address)}>
                 Tap to copy

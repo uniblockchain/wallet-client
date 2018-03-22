@@ -6,6 +6,7 @@ import * as form from './form';
 import * as theme from './theme';
 import * as tabs from './tabs';
 import * as progress from './progress';
+import * as sliders from './slider';
 import Notification from './notification';
 import Modal from './modal';
 
@@ -16,6 +17,7 @@ export * from './form';
 export * from './theme';
 export * from './tabs';
 export * from './progress';
+export * from './slider';
 export { default as NavigationDots } from './navigationDots';
 export { default as FileUpload } from './upload';
 export { default as Modal } from './modal';
@@ -29,6 +31,7 @@ export default {
   ...theme,
   ...tabs,
   ...progress,
+  ...sliders,
   Modal,
   Notification,
 };

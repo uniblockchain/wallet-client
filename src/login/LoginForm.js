@@ -8,7 +8,7 @@ import {
   Field,
   Form,
   FormFeedback,
-  Header,
+  Heading,
   Link,
   LinkButton,
   PrimaryButton,
@@ -30,11 +30,11 @@ export const LoginForm = (props: FormProps) => {
   return (
     <WrappedForm onSubmit={handleSubmit(loginFormSubmitHandler)}>
       <Top>
-        <Header alt>
+        <Heading alt>
           Welcome back.
           <br />
           Please log in.
-        </Header>
+        </Heading>
         {error && <FormFeedback className="mt-4">{error}</FormFeedback>}
         <Field
           name="username"

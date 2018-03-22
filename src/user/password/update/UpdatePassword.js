@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { FormFeedback, Header, Top, WrappedContent } from '../../../ui';
+import { FormFeedback, Heading, Top, WrappedContent } from '../../../ui';
 import { verificationTokenLoginRoutine } from '../../../login/verification-token/verificationTokenRoutines';
 import UpdatePasswordForm from './UpdatePasswordForm';
 
@@ -28,11 +28,11 @@ export class PasswordPage extends React.Component<Props> {
     return (
       <WrappedContent>
         <Top>
-          <Header alt>
+          <Heading alt>
             Reset your password.
             <br />
             Make it a good one!
-          </Header>
+          </Heading>
           {this.props.error && (
             <FormFeedback className="mt-3">{this.props.error}</FormFeedback>
           )}

@@ -1,7 +1,8 @@
 export const variables = {
-  fontPrimary: '"CircularPro", sans-serif',
-  fontSecondary: '"Usual", sans-serif',
-  fontTertiary: '"Favorit", sans-serif',
+  fontPrimary: '"OpenSans", sans-serif',
+  fontPrimaryBold: '"OpenSansBold", sans-serif',
+  fontPrimaryExtraBold: '"OpenSansExtraBold", sans-serif',
+  fontSecondary: '"Favorit", sans-serif',
   fontOCR: '"OCR A Std", "Favorit", monospace',
 
   fontSizeTiny: '12px',
@@ -11,9 +12,9 @@ export const variables = {
   fontSizeLarge: '20px',
   fontSizeLarger: '24px',
   fontSizeLargest: '36px',
+  fontSizeSuperLarge: '42px',
   fontSizeHuge: '48px',
   fontSizeMassive: '120px',
-
   fontWeightNormal: 'normal',
   fontWeightBold: 'bold',
 
@@ -24,10 +25,15 @@ export const variables = {
   colorNeutral: '#a1a1a1',
   colorNeutralDark: '#686868',
   colorNeutralDarkest: '#2a2a2a',
+  colorNeutralExtraDark: '#060606',
+
   colorGreen: '#02bda5',
-  colorGreenLight: '#8bf2d3',
+  colorGreenLighter: '#3edbb5',
+  colorGreenLight: '#89f1d4',
+  colorGreenBright: '#07e9b2',
+
   colorGreenLightest: '#e5f9f3',
-  colorBlue: '#19c3ed',
+  colorBlue: '#1fc5ec',
   colorBlueLight: '#c6f3ff',
   colorBlueLightest: '#effcfd',
   colorBlueDark: '#00346b',

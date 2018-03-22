@@ -11,7 +11,7 @@ const StyledContent = WrappedContent.extend`
   background-image: linear-gradient(151deg, #19c3ed, #8bf2d3);
 `;
 
-const Header = styled.h1`
+const Heading = styled.h1`
   font-size: 42px;
   line-height: 1.05;
   letter-spacing: -0.9px;
@@ -19,7 +19,7 @@ const Header = styled.h1`
   margin-top: 10px;
 `;
 
-const SubHeader = styled.h2`
+const SubHeading = styled.h2`
   font-size: 24px;
   font-weight: 300;
   line-height: 1.25;
@@ -43,10 +43,10 @@ export const App = ({ authenticated }: Props) => {
   return (
     <StyledContent>
       <Top>
-        <Header>Change makes money simple.</Header>
-        <SubHeader>
+        <Heading>Change makes money simple.</Heading>
+        <SubHeading>
           Get started with a free digital wallet. It’s easy!
-        </SubHeader>
+        </SubHeading>
       </Top>
       <Bottom>
         <Link to="/signup">

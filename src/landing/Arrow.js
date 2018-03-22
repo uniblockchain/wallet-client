@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { Link } from 'react-router-dom';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 import svgDown from './img/icon-down.svg';
 

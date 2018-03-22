@@ -8,7 +8,7 @@ import {
   WrappedContent,
   Top,
   Bottom,
-  Header,
+  Heading,
   LinkButton,
   Link,
   PrimaryButton,
@@ -23,11 +23,11 @@ export const ResetPassword = (props: FormProps) => {
   return (
     <WrappedContent>
       <Top>
-        <Header alt>
+        <Heading alt>
           Forgot password?
           <br />
           Send reset link to your email.
-        </Header>
+        </Heading>
         <Form
           id="resetPasswordForm"
           onSubmit={handleSubmit(resetPasswordFormSubmitHandler)}

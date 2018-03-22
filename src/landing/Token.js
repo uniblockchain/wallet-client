@@ -11,7 +11,7 @@ import logoYoBit from './img/exchanges/yobit.png';
 
 import LogoStrip from './LogoStrip';
 
-import variables from './variables';
+import variables from '../ui/variables';
 
 const Container = styled.div`
   margin-bottom: 1px;
