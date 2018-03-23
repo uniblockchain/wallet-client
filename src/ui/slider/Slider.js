@@ -31,6 +31,7 @@ export const Slider = styled(SlickSlider).attrs(settings)`
 export const GradientSlider = styled(SlickSlider).attrs(settings)`
   .slick-dots {
     top: 0px;
+    max-height: 30px;
     li {
       margin: 0;
       width: auto;
@@ -40,6 +41,8 @@ export const GradientSlider = styled(SlickSlider).attrs(settings)`
       }
       button:before {
         font-size: 13.5px;
+        opacity: 1;
+        color: ${variables.colorNeutralLight};
       }
     }
   }
