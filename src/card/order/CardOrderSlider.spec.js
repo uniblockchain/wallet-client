@@ -1,12 +1,8 @@
 // @flow
 import React from 'react';
 import { shallow } from 'enzyme';
-import {
-  CardOrderSlider,
-  type Props,
-  StyledGradientHeading,
-  StyledWiderGradientHeading,
-} from './CardOrderSlider';
+import { CardOrderSlider, type Props } from './CardOrderSlider';
+import { GradientHeading } from '../../ui';
 
 describe('CardOrderSlider component', () => {
   let component;
@@ -25,10 +21,10 @@ describe('CardOrderSlider component', () => {
 
   it('renders slides for users who already ordered card', () => {
     const youAreInWaitingListHeading = (
-      <StyledWiderGradientHeading>
+      <GradientHeading>
         You are in the <br />
         waiting list
-      </StyledWiderGradientHeading>
+      </GradientHeading>
     );
 
     component.setProps({ cardOrdered: true });
@@ -38,16 +34,16 @@ describe('CardOrderSlider component', () => {
 
   it('renders slides for users who have not ordered card', () => {
     const payWithAnyCurrencyHeading = (
-      <StyledGradientHeading>
+      <GradientHeading>
         Pay with any <br />
         currency
-      </StyledGradientHeading>
+      </GradientHeading>
     );
     const acceptedAnywhereHeading = (
-      <StyledGradientHeading>
+      <GradientHeading>
         Accepted <br />
         everywhere
-      </StyledGradientHeading>
+      </GradientHeading>
     );
 
     component.setProps({ cardOrdered: false });
@@ -58,10 +54,10 @@ describe('CardOrderSlider component', () => {
 
   it('only renders introductory slides for users who have not ordered card', () => {
     const youAreInWaitingListHeading = (
-      <StyledWiderGradientHeading>
+      <GradientHeading>
         You are in the <br />
         waiting list
-      </StyledWiderGradientHeading>
+      </GradientHeading>
     );
 
     component.setProps({ cardOrdered: false });
@@ -71,10 +67,10 @@ describe('CardOrderSlider component', () => {
 
   it('only renders slides with success message for users who have ordered card', () => {
     const payWithAnyCurrencyHeading = (
-      <StyledGradientHeading>
+      <GradientHeading>
         Pay with any <br />
         currency
-      </StyledGradientHeading>
+      </GradientHeading>
     );
 
     component.setProps({ cardOrdered: true });

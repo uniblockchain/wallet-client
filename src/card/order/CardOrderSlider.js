@@ -12,33 +12,23 @@ export type Props = {
   cardOrdered: boolean,
 };
 
-export const StyledGradientHeading = GradientHeading.extend`
-  width: 220px;
-  margin: 0 auto;
-`;
-
-export const StyledWiderGradientHeading = GradientHeading.extend`
-  width: 240px;
-  margin: 0 auto;
-`;
-
 const youAreInTheWaitingListSection = (
   <GradientSlider>
     <WhiteBackgroundSlide>
-      <StyledWiderGradientHeading>
+      <GradientHeading>
         You are in the <br />
         waiting list
-      </StyledWiderGradientHeading>
+      </GradientHeading>
       <PrimaryParagraph>
         With Change Card you can make your payments and ATM withdrawals with
         Bitcoin, Ether, or any other supported currency.
       </PrimaryParagraph>
     </WhiteBackgroundSlide>
     <WhiteBackgroundSlide>
-      <StyledWiderGradientHeading>
+      <GradientHeading>
         You are in the <br />
         waiting list
-      </StyledWiderGradientHeading>
+      </GradientHeading>
       <PrimaryParagraph>
         Change Card is universally accepted, even in stores that don't accept
         virtual currencies.
@@ -50,20 +40,20 @@ const youAreInTheWaitingListSection = (
 const joinWaitingListSection = (
   <GradientSlider>
     <WhiteBackgroundSlide>
-      <StyledGradientHeading>
+      <GradientHeading>
         Pay with any <br />
         currency
-      </StyledGradientHeading>
+      </GradientHeading>
       <PrimaryParagraph>
         With Change Card you can make your payments and ATM withdrawals with
         Bitcoin, Ether, or any other supported currency.
       </PrimaryParagraph>
     </WhiteBackgroundSlide>
     <WhiteBackgroundSlide>
-      <StyledGradientHeading>
+      <GradientHeading>
         Accepted <br />
         everywhere
-      </StyledGradientHeading>
+      </GradientHeading>
       <PrimaryParagraph>
         Change Card is universally accepted, even in stores that don't accept
         virtual currencies.

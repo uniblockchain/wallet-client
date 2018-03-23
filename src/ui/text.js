@@ -22,6 +22,7 @@ export const GradientHeading = styled(H1)`
     ${variables.colorBlue}
   );
   position: relative;
+  display:inline-block;
   font-family: ${variables.fontPrimaryExtraBold};
   font-size: ${variables.fontSizeLargest};
   fontSizeLargest;
