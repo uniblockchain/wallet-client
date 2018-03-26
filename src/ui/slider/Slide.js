@@ -13,7 +13,6 @@ const SlideDiv = ({ alt, ...props }: Props) => (
 
 export const Slide = styled(SlideDiv)`
   padding: 1em;
-  width: 100vw;
   height: 240px;
   background-color: ${props =>
     props.alt ? props.theme.altBackground : props.theme.background};

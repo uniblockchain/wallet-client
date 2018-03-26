@@ -20,7 +20,7 @@ describe('Send Form component', () => {
       handleSubmit: jest.fn(),
       clearQuote: jest.fn(),
       error: undefined,
-      initialValues: { activeWallet: testWallet },
+      activeWallet: testWallet,
     };
     component = shallow(<SendForm {...props} />);
   });

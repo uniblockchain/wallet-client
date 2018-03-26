@@ -49,7 +49,7 @@ const Icon = withStyles(iconStyles)(({ item, classes }: IconProps): any => {
 
 const navigationStyles = {
   root: {
-    position: 'fixed',
+    position: 'absolute',
     bottom: 0,
     left: 0,
     width: '100%',

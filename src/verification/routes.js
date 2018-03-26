@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Route } from 'react-router';
+import appWrapper from '../appWrapper';
 import Intro from './intro';
 import verificationFlow from './VerificationFlow';
 import requireAuthentication from '../requireAuthentication';
@@ -28,7 +29,7 @@ const introRoute = (
     key={1}
     exact
     path={VERIFICATION_INTRO_ROUTE}
-    component={requireAuthentication(verificationFlow(Intro))}
+    component={appWrapper(requireAuthentication(verificationFlow(Intro)))}
   />
 );
 
@@ -37,7 +38,7 @@ const profileRoute = (
     key={1}
     exact
     path={VERIFICATION_PROFILE_ROUTE}
-    component={requireAuthentication(verificationFlow(Profile))}
+    component={appWrapper(requireAuthentication(verificationFlow(Profile)))}
   />
 );
 
@@ -45,7 +46,9 @@ const addressRoute = (
   <Route
     key={2}
     path={VERIFICATION_ADDRESS_ROUTE}
-    component={requireAuthentication(verificationFlow(AddressComponent))}
+    component={appWrapper(
+      requireAuthentication(verificationFlow(AddressComponent)),
+    )}
   />
 );
 
@@ -53,7 +56,9 @@ const idVerificationRoute = (
   <Route
     key={2}
     path={VERIFICATION_ID_VERIFICATION_ROUTE}
-    component={requireAuthentication(verificationFlow(IdVerification))}
+    component={appWrapper(
+      requireAuthentication(verificationFlow(IdVerification)),
+    )}
   />
 );
 
@@ -61,7 +66,9 @@ const addressVerificationRoute = (
   <Route
     key={3}
     path={VERIFICATION_ADDRESS_VERIFICATION_ROUTE}
-    component={requireAuthentication(verificationFlow(AddressVerification))}
+    component={appWrapper(
+      requireAuthentication(verificationFlow(AddressVerification)),
+    )}
   />
 );
 
@@ -69,7 +76,9 @@ const selfieVerificationRoute = (
   <Route
     key={4}
     path={VERIFICATION_SELFIE_VERIFICATION_ROUTE}
-    component={requireAuthentication(verificationFlow(SelfieVerification))}
+    component={appWrapper(
+      requireAuthentication(verificationFlow(SelfieVerification)),
+    )}
   />
 );
 
@@ -77,7 +86,7 @@ const confirmRoute = (
   <Route
     key={5}
     path={VERIFICATION_CONFIRM_ROUTE}
-    component={requireAuthentication(verificationFlow(Confirm))}
+    component={appWrapper(requireAuthentication(verificationFlow(Confirm)))}
   />
 );
 

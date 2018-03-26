@@ -1,7 +1,10 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect, type MapStateToProps } from 'react-redux';
+import styled from 'styled-components';
+import { Heading } from '../../../ui';
+import variables from '../../../ui/variables';
 import AddressSuggest from './AddressSuggest';
 import AddressForm from './AddressForm';
 import withAddress from '../withAddress';
@@ -15,7 +18,11 @@ type State = {
   showFullForm: boolean,
 };
 
-export const AddressComponent = class AddressComponent extends React.Component<
+const StyledHeading = styled(Heading)`
+  color: ${variables.colorNeutralDarkest};
+`;
+
+export const AddressComponent = class AddressComponent extends Component<
   Props,
   State,
 > {
@@ -35,6 +42,7 @@ export const AddressComponent = class AddressComponent extends React.Component<
 
     return (
       <div>
+        <StyledHeading>Address</StyledHeading>
         {showFullForm ? (
           <AddressForm />
         ) : (

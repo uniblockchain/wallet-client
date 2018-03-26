@@ -3,6 +3,8 @@ import React from 'react';
 import { connect, type MapStateToProps } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reduxForm, type FormProps } from 'redux-form';
+import { getActiveWallet } from '../../redux/selectors';
+import type { WalletType } from '..';
 import { sendFormSubmitHandler } from './sendRoutines';
 import {
   LinkButton,
@@ -33,6 +35,7 @@ type Props = {
   quote: QuoteState,
   getNewQuote: Quote => void,
   clearQuote: () => void,
+  activeWallet: WalletType,
 } & FormProps;
 
 export const SendForm = ({
@@ -43,10 +46,9 @@ export const SendForm = ({
   getNewQuote,
   clearQuote,
   clearSubmitErrors,
-  initialValues,
+  activeWallet,
   quote,
 }: Props) => {
-  const { activeWallet } = initialValues;
   if (!activeWallet) {
     return <AppRouter wallet />;
   }
@@ -71,11 +73,7 @@ export const SendForm = ({
     <WrappedContent>
       <Top>
         <Balance wallet={activeWallet} currency={fiatCurrencyCode} />
-        <Form
-          id="sendForm"
-          onSubmit={handleSubmit(sendFormSubmitHandler)}
-          className="mt-5"
-        >
+        <Form id="sendForm" onSubmit={handleSubmit(sendFormSubmitHandler)}>
           <Field
             name="sendToAddress"
             label="Send to"
@@ -109,7 +107,7 @@ export const SendForm = ({
             </Col>
           </FormRow>
           {quote.error && <FormFeedback>{quote.error}</FormFeedback>}
-          <FormGroup className="mt-5">
+          <FormGroup className="mt-4">
             <PrimaryButton
               type="submit"
               form="sendForm"
@@ -135,6 +133,7 @@ export const SendForm = ({
 };
 
 const mapStateToProps: MapStateToProps<*, *, *> = state => ({
+  activeWallet: getActiveWallet(state),
   fiatCurrencyCode: state.wallet.currency,
   quote: state.quote,
 });

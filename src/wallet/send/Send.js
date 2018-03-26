@@ -1,16 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CurrencyTabs from '../currencyTabs';
-import { clearRoutine } from './sendRoutines';
-import type { WalletType } from '..';
-import { getActiveWallet } from '../../redux/selectors';
-import { Modal, Progress } from '../../ui';
-import SendForm from './SendForm';
 import AppRouter from '../../router';
+import { Modal, Progress } from '../../ui';
+import CurrencyTabs from '../currencyTabs';
+import SendForm from './SendForm';
+import { clearRoutine } from './sendRoutines';
 
 type Props = {
-  activeWallet: WalletType,
   isLoading: boolean,
   transactionStatus: ?string,
   clear: () => void,
@@ -46,7 +43,7 @@ export class Send extends Component<Props, State> {
     return (
       <div>
         <CurrencyTabs />
-        <SendForm initialValues={{ activeWallet: this.props.activeWallet }} />
+        <SendForm />
         {this.props.transactionStatus && (
           <Modal
             title="Sent!"
@@ -66,7 +63,6 @@ export class Send extends Component<Props, State> {
   }
 }
 const mapStateToProps = state => ({
-  activeWallet: getActiveWallet(state),
   transactionStatus: state.send.transactionStatus,
   isLoading: state.send.isLoading,
 });

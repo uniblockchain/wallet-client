@@ -41,28 +41,32 @@ export const Profile = ({ handleSubmit, error }: Props) => (
 
       <Field name="lastName" label="Last name" type="text" />
 
-      <Label>Mobile number</Label>
-      <FormRow>
-        <PhoneField />
-      </FormRow>
+      <FormGroup>
+        <Label>Mobile number</Label>
+        <FormRow>
+          <PhoneField />
+        </FormRow>
+      </FormGroup>
 
-      <Label>Date of birth</Label>
-      <FormRow>
-        <Col>
-          <Field name="day" placeholder="Day" type="number" />
-        </Col>
-        <Col>
-          <Field
-            name="month"
-            alabel="Month"
-            placeholder="Month"
-            type="number"
-          />
-        </Col>
-        <Col>
-          <Field name="year" placeholder="Year" type="number" />
-        </Col>
-      </FormRow>
+      <FormGroup>
+        <Label>Date of birth</Label>
+        <FormRow>
+          <Col>
+            <Field name="day" placeholder="Day" type="number" />
+          </Col>
+          <Col>
+            <Field
+              name="month"
+              alabel="Month"
+              placeholder="Month"
+              type="number"
+            />
+          </Col>
+          <Col>
+            <Field name="year" placeholder="Year" type="number" />
+          </Col>
+        </FormRow>
+      </FormGroup>
 
       <FormGroup className="mt-5">
         <PrimaryButton type="submit">Next</PrimaryButton>

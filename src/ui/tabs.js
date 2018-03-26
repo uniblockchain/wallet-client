@@ -41,7 +41,6 @@ const StyledTabs = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  width: 100vw;
   height: 80px;
 `;
 

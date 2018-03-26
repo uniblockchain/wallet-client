@@ -13,6 +13,7 @@ import 'change-bootstrap/dist/css/bootstrap-material-design.css';
 
 import './polyfills';
 import './initialize';
+import appWrapper from './appWrapper';
 import { history, store } from './redux/reduxStore';
 import App from './App';
 import { Wallet, Send, Receive } from './wallet';
@@ -39,19 +40,24 @@ const animationEnter = keyframes`${slideInRight}`;
 
 const Styled = styled.div`
   &.slide-enter {
-    animation: 300ms ${animationEnter};
+    animation: 200ms ${animationEnter};
+  }
+  &.slide-exit {
+    display: none;
   }
 `;
 
 const PublicContent = withRouter(({ location, children }) => (
   <TransitionGroup>
-    <CSSTransition key={location.key} classNames="slide" timeout={300}>
+    <CSSTransition key={location.key} classNames="slide" timeout={200}>
       <Switch location={location}>
         <Styled>{children}</Styled>
       </Switch>
     </CSSTransition>
   </TransitionGroup>
 ));
+
+const WrappedSidebar = appWrapper(Sidebar);
 
 const startApp = () => {
   render(
@@ -70,54 +76,57 @@ const startApp = () => {
                   <Route path="/notify-me-success" component={Landing} />
                 </Switch>
                 <PublicContent>
-                  <Route exact path={routes.BASE} component={App} />
-                  <Route path="/login" component={Login} />
-                  <Route path="/signup" component={Signup} />
+                  <Route exact path={routes.BASE} component={appWrapper(App)} />
+                  <Route path="/login" component={appWrapper(Login)} />
+                  <Route path="/signup" component={appWrapper(Signup)} />
                   <Route
                     path={routes.RESET_PASSWORD}
-                    component={ResetPassword}
+                    component={appWrapper(ResetPassword)}
                   />
                   <Route
                     path={routes.RESET_PASSWORD_DONE}
-                    component={ResetPasswordDone}
+                    component={appWrapper(ResetPasswordDone)}
                   />
                 </PublicContent>
                 <Switch>
-                  <Route path="/logout" component={Logout} />
+                  <Route path="/logout" component={appWrapper(Logout)} />
                   <Route
                     path={routes.WALLET_COMING_SOON}
-                    component={WalletComingSoon}
+                    component={appWrapper(WalletComingSoon)}
                   />
                   <Route
                     path={routes.OVERVIEW}
-                    component={authenticatedPage(Overview)}
+                    component={appWrapper(authenticatedPage(Overview))}
                   />
                   <Route
                     path={routes.WALLET}
-                    component={authenticatedPage(Wallet)}
+                    component={appWrapper(authenticatedPage(Wallet))}
                   />
-                  <Route path="/send" component={authenticatedPage(Send)} />
+                  <Route
+                    path="/send"
+                    component={appWrapper(authenticatedPage(Send))}
+                  />
                   <Route
                     path="/receive"
-                    component={authenticatedPage(Receive)}
+                    component={appWrapper(authenticatedPage(Receive))}
                   />
                   <Route
                     exact
                     path="/card"
-                    component={authenticatedPage(Card)}
+                    component={appWrapper(authenticatedPage(Card))}
                   />
                   <Route
                     path="/marketplace"
-                    component={authenticatedPage(Marketplace)}
+                    component={appWrapper(authenticatedPage(Marketplace))}
                   />
                   <Route
                     path="/settings"
-                    component={authenticatedPage(Settings)}
+                    component={appWrapper(authenticatedPage(Settings))}
                   />
                   <Route
                     exact
                     path="/verify"
-                    component={authenticatedPage(Verification)}
+                    component={appWrapper(authenticatedPage(Verification))}
                   />
                   {verificationRoutes}
                 </Switch>
@@ -128,7 +137,7 @@ const startApp = () => {
                       classNames="slide"
                       timeout={300}
                     >
-                      <Styled>{match && <Sidebar />}</Styled>
+                      <Styled>{match && <WrappedSidebar />}</Styled>
                     </CSSTransition>
                   )}
                 </Route>

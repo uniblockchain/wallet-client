@@ -1,33 +1,28 @@
 // @flow
+import countries from 'alpha2-countries';
 import React from 'react';
-import styled from 'styled-components';
-import { reduxForm, type FormProps } from 'redux-form';
 import { connect, type MapStateToProps } from 'react-redux';
 import { push } from 'react-router-redux';
-import countries from 'alpha2-countries';
+import { type FormProps, reduxForm } from 'redux-form';
 import {
-  Form,
-  FormGroup,
   Field,
-  PrimaryButton,
+  Form,
   FormFeedback,
+  FormGroup,
+  PrimaryButton,
 } from '../../../../ui';
-import { addressFormSubmitHandler } from '../../addressRoutine';
 import { VERIFICATION_ID_VERIFICATION_ROUTE } from '../../../constants';
+import { addressFormSubmitHandler } from '../../addressRoutine';
 import { type Address, type AddressForm } from '../../addressState';
-
-const StyledForm = styled(Form)`
-  padding-bottom: 100px;
-`;
 
 type Props = {} & FormProps;
 
 export const AddressReduxForm = ({ handleSubmit, error }: Props) => (
   <div>
-    <StyledForm
+    <Form
       id="addressForm"
       onSubmit={handleSubmit(addressFormSubmitHandler)}
-      className="mt-5"
+      className="mt-4"
     >
       {error && <FormFeedback>{error}</FormFeedback>}
 
@@ -48,7 +43,7 @@ export const AddressReduxForm = ({ handleSubmit, error }: Props) => (
       <FormGroup className="mt-5">
         <PrimaryButton type="submit">Next</PrimaryButton>
       </FormGroup>
-    </StyledForm>
+    </Form>
   </div>
 );
 

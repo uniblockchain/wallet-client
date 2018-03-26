@@ -51,7 +51,7 @@ const Skyline = styled.img.attrs({
   src: skyline,
   alt: 'Skyline',
 })`
-  width: 100vw;
+  width: 100%;
 `;
 
 export const Marketplace = () => (

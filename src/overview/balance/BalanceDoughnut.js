@@ -95,8 +95,8 @@ export class BalanceDoughnut extends Component<Props> {
         },
       },
       onClick: () => {
-        (this.chart || {}).chart_instance.options.legend.display ^= 1; // toggle boolean
-        (this.chart || {}).chart_instance.update();
+        (this.chart || {}).chartInstance.options.legend.display ^= 1; // toggle boolean
+        (this.chart || {}).chartInstance.update();
       },
     };
   }
@@ -119,7 +119,8 @@ export class BalanceDoughnut extends Component<Props> {
 
   render() {
     const DoughnutContainer = styled.div`
-      height: 30vh;
+      height: 200px;
+      margin: 10px 0;
     `;
     return (
       <DoughnutContainer>

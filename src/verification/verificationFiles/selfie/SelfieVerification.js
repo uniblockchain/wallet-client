@@ -52,7 +52,9 @@ export class SelfieVerification extends Component<Props> {
             width={300}
           />
         </WebcamContainer>
-        <PrimaryButton onClick={this.capture}>Capture photo</PrimaryButton>
+        <PrimaryButton className="mt-4" onClick={this.capture}>
+          Capture photo
+        </PrimaryButton>
       </div>
     );
   }
@@ -69,5 +71,6 @@ const mapDispatchToProps = dispatch => {
 const ConnectedSelfieVerification = connect(null, mapDispatchToProps)(
   SelfieVerification,
 );
+ConnectedSelfieVerification.displayName = 'SelfieVerification';
 
 export default ConnectedSelfieVerification;

@@ -39,10 +39,11 @@ const TopBarWithoutStyles = ({ className }: Props) => (
 export const TopBar = styled(TopBarWithoutStyles)`
   display: flex;
   flex-direction: row;
-  position: absolute;
   width: 100%;
   color: ${props => (props.light ? '#ffffff' : '#54ccde')};
   padding: 15px 10px 0px 10px;
+  margin-bottom: -15px;
+  height: 0;
 `;
 
 export default TopBar;

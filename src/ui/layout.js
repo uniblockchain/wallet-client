@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 export const Content = styled.div`
   background-color: white;
@@ -8,11 +9,15 @@ export const Content = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  min-height: 650px;
+  overflow: scroll;
+  ${breakpoint('landscape')`
+     width: unset;
+     height: 650px;
+  `};
 `;
 
 export const WrappedContent = Content.extend`
-  padding: 5vh 10vw 10vh 10vw;
+  padding: 35px;
 `;
 
 export const Top = styled.div`
@@ -24,7 +29,7 @@ export const Top = styled.div`
 `;
 
 export const Bottom = styled.div`
-  margin: auto;
+  margin-top: auto;
   width: 100%;
   height: 100%;
   display: flex;

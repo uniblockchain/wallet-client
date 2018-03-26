@@ -24,7 +24,7 @@ const MainContent = styled.div`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-evenly;
-  width: 90vw;
+  width: 100%;
 `;
 
 const LinkWithMargin = Link.extend`
@@ -33,7 +33,7 @@ const LinkWithMargin = Link.extend`
 `;
 
 const Image = styled.img`
-  width: 80vw;
+  width: 80%;
   display: block;
   margin: 0 auto;
 `;

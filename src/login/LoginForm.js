@@ -23,6 +23,9 @@ const Links = styled.div`
   justify-content: space-between;
 `;
 
+const StyledLinkButton = styled(LinkButton)`
+  padding: 0 1em;
+`;
 const WrappedForm = WrappedContent.withComponent(Form);
 
 export const LoginForm = (props: FormProps) => {
@@ -59,10 +62,10 @@ export const LoginForm = (props: FormProps) => {
         <PrimaryButton type="submit">Log In</PrimaryButton>
         <Links>
           <Link to={routes.BASE}>
-            <LinkButton>Cancel</LinkButton>
+            <StyledLinkButton>Cancel</StyledLinkButton>
           </Link>
           <Link to={routes.RESET_PASSWORD}>
-            <LinkButton>Forgot password</LinkButton>
+            <StyledLinkButton>Forgot password</StyledLinkButton>
           </Link>
         </Links>
       </Bottom>
