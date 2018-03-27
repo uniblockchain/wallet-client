@@ -1,9 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AppRouter, { routes } from '../../router';
-import { Button, Heading, Paragraph, PrimaryButton, Top } from '../../ui';
+import { Link, Button, Heading, Paragraph, PrimaryButton, Top } from '../../ui';
 import cardOrderApi from '../../card/order/cardOrderApi';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 

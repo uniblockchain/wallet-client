@@ -3,11 +3,11 @@
 import React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
-import { Wallet } from '../../wallet/walletState';
-import type { WalletType } from '../../wallet/walletState';
 import { Heading, Link, Paragraph, PrimaryButton } from '../../ui';
 
 import { Slide, Slider } from '../../ui/slider';
+import type { WalletType } from '../../wallet/walletState';
+import { Wallet } from '../../wallet/walletState';
 import withWallet from '../../wallet/withWallet';
 import congratzImage from './img/congratz.svg';
 
@@ -51,7 +51,7 @@ export const OverviewSlider = ({ isNewUser, wallets }: Props) => (
         <StyledParagraph>
           Make everyday purchases with Bitcoin and other cryptocurrencies
         </StyledParagraph>
-        <PrimaryButton>
+        <PrimaryButton inline>
           <Link to="/card">Order here</Link>
         </PrimaryButton>
       </Slide>
@@ -63,7 +63,7 @@ export const OverviewSlider = ({ isNewUser, wallets }: Props) => (
           <StyledParagraph alt>
             Start by depositing Bitcoin to your account
           </StyledParagraph>
-          <PrimaryButton alt>
+          <PrimaryButton alt inline>
             <Link to="/receive">Learn more</Link>
           </PrimaryButton>
         </Slide>

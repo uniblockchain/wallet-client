@@ -2,10 +2,9 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Link } from 'react-router-dom';
 import AppRouter, { routes } from '../../router';
 import { Intro } from './Intro';
-import { PrimaryButton, Button } from '../../ui';
+import { Link, PrimaryButton, Button } from '../../ui';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 
 jest.mock('../../card/order/cardOrderApi', () => ({

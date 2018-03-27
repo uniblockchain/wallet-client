@@ -30,6 +30,11 @@ export const Button = styled(ButtonBase)`
   &:hover {
     cursor: pointer;
   }
+
+  a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export const GradientButton = Button.extend`
@@ -44,6 +49,12 @@ export const GradientButton = Button.extend`
   border-radius: 54.5px;
   font-family: OpenSansBold;
   color: ${variables.colorWhite};
+  text-shadow: 0 1px 0 #0cb88e;
+
+  a:hover {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export const Link = styled(RouterLink)`

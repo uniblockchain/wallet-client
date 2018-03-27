@@ -3,8 +3,7 @@ import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { NavigationDots, Progress, WrappedContent } from '../ui';
+import { Link, NavigationDots, Progress, WrappedContent } from '../ui';
 import {
   VERIFICATION_INTRO_ROUTE,
   VERIFICATION_PROFILE_ROUTE,
