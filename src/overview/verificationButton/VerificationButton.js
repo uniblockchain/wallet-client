@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import type { MapStateToProps } from 'react-redux';
-import type { Location } from 'react-router';
 import { Card, GradientButton, Link } from '../../ui';
 import withUser from '../../user/withUser';
 import { VERIFICATION_INTRO_ROUTE } from '../../verification/constants';
