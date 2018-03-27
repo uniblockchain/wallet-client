@@ -52,18 +52,18 @@ export const Profile = ({ handleSubmit, error }: Props) => (
         <Label>Date of birth</Label>
         <FormRow>
           <Col>
-            <Field name="day" placeholder="Day" type="number" />
+            <Field name="day" placeholder="Day" type="text" />
           </Col>
           <Col>
             <Field
               name="month"
               alabel="Month"
               placeholder="Month"
-              type="number"
+              type="text"
             />
           </Col>
           <Col>
-            <Field name="year" placeholder="Year" type="number" />
+            <Field name="year" placeholder="Year" type="text" />
           </Col>
         </FormRow>
       </FormGroup>
