@@ -3,9 +3,8 @@
 import React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import AppRouter, { routes } from '../router';
-import { Bottom, Button, Heading, Top, WrappedContent } from '../ui';
+import { Link, Bottom, Button, Heading, Top, WrappedContent } from '../ui';
 import { withUser } from '../user';
 
 export type Props = {
