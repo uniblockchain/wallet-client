@@ -17,6 +17,9 @@ const Container = styled.div`
   );
   border-radius: 12px;
   box-shadow: ${variables.boxShadowNeutralNormal};
+`;
+
+const ScalingContainer = Container.extend`
   ${breakpoint('tablet')`
     width: 480px;
     height: 294px;
@@ -33,6 +36,9 @@ const Chip = styled.div`
   background: ${variables.colorGreen};
   border-radius: 4px;
   opacity: 0.25;
+`;
+
+const ScalingChip = Chip.extend`
   ${breakpoint('tablet')`
     left: 36px;
     bottom: 148px;
@@ -50,6 +56,9 @@ const Number = styled.div`
   position: absolute;
   left: 24px;
   bottom: 65px;
+`;
+
+const ScalingNumber = Number.extend`
   ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarger};
     font-weight: ${variables.fontWeightNormal};
@@ -67,6 +76,9 @@ const Date = styled.div`
   position: absolute;
   left: 140px;
   bottom: 39px;
+`;
+
+const ScalingDate = Date.extend`
   ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
     font-weight: ${variables.fontWeightNormal};
@@ -84,6 +96,9 @@ const Name = styled.div`
   position: absolute;
   left: 24px;
   bottom: 12px;
+`;
+
+const ScalingName = Name.extend`
   ${breakpoint('tablet')`
     font-size: ${variables.fontSizeLarge};
     font-weight: ${variables.fontWeightNormal};
@@ -104,6 +119,9 @@ const Good = styled.div`
   left: 80px;
   bottom: 43px;
   width: 48px;
+`;
+
+const ScalingGood = Good.extend`
   ${breakpoint('tablet')`
     font-size: 11px;
     left: 120px;
@@ -125,6 +143,16 @@ export const PlasticCard = (props: Props) => (
     <Date>{props.date}</Date>
     <Name>{props.name}</Name>
   </Container>
+);
+
+export const ScalingPlasticCard = (props: Props) => (
+  <ScalingContainer>
+    <ScalingChip />
+    <ScalingNumber>{props.number}</ScalingNumber>
+    <ScalingGood>Good thru</ScalingGood>
+    <ScalingDate>{props.date}</ScalingDate>
+    <ScalingName>{props.name}</ScalingName>
+  </ScalingContainer>
 );
 
 export default PlasticCard;

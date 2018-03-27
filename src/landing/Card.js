@@ -9,7 +9,7 @@ import Disclaimer from './Disclaimer';
 import GradientText from './GradientText';
 
 import photo from './img/photo-landing-card.jpg';
-import PlasticCard from '../card/PlasticCard';
+import { ScalingPlasticCard } from '../card/PlasticCard';
 
 import ScrollToTarget from './ScrollToTarget';
 import { Button } from './ui';
@@ -209,7 +209,7 @@ class Card extends React.Component<Props, State> {
                       </ImageContainer>
                       <PlasticContainer>
                         <PlasticTransition state={state}>
-                          <PlasticCard
+                          <ScalingPlasticCard
                             name="Lisa Robinson"
                             number="1234 5678 9012 1101"
                             date="12/20"
