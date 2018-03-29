@@ -7,11 +7,11 @@ import { Doughnut, Chart } from 'react-chartjs-2';
 import type { MapStateToProps } from 'react-redux';
 import styled from 'styled-components';
 
-import { Wallet } from '../../wallet/walletState';
-import withWallet from '../../wallet/withWallet';
+import { Wallet, type WalletType } from '../../../wallet/walletState';
+import withWallet from '../../../wallet/withWallet';
 
 type Props = {
-  wallets: Array<Wallet>,
+  wallets: Array<WalletType>,
   currency: string,
 };
 
@@ -68,7 +68,7 @@ export class BalanceDoughnut extends Component<Props> {
           borderWidth: [0, 0, 0],
         },
       ],
-      labels: wallets.map((wallet: Wallet) => wallet.currency),
+      labels: wallets.map((wallet: WalletType) => wallet.currency),
       wallets,
     };
   }
@@ -101,13 +101,13 @@ export class BalanceDoughnut extends Component<Props> {
     };
   }
 
-  getBalances(wallets: Array<Wallet>, currency: string) {
-    return wallets.map((wallet: Wallet) =>
+  getBalances(wallets: Array<WalletType>, currency: string) {
+    return wallets.map((wallet: WalletType) =>
       new Wallet(wallet).getRepresentationalBalance(currency),
     );
   }
 
-  getTotalBalance(wallets: Array<Wallet>, currency: string) {
+  getTotalBalance(wallets: Array<WalletType>, currency: string) {
     const walletBalances = this.getBalances(wallets, currency);
     return walletBalances.reduce(
       (balance1, balance2) => balance1 + balance2,

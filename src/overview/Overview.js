@@ -6,7 +6,8 @@ import styled from 'styled-components';
 
 import { Card } from '../ui';
 import withWallet from '../wallet/withWallet';
-import BalanceDoughnut from './balance';
+import BalanceDoughnut from './balance/doughnut';
+import BalanceTable from './balance/table';
 import OverviewSlider from './slider';
 import TransactionList from './transactions';
 import { withUser } from '../user';
@@ -27,6 +28,9 @@ export const Overview = ({ location }: Props) => (
   <div>
     <Card>
       <BalanceDoughnut />
+    </Card>
+    <Card>
+      <BalanceTable />
     </Card>
     <OverviewSlider isNewUser={location.state && location.state.isNewUser} />
     <VerificationButton />

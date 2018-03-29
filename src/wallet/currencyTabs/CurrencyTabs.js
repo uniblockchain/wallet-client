@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import type { WalletType } from '../walletState';
 import walletActions from '../walletActions';
-import CurrencyName from '../CurrencyName';
+import { CurrencyName } from '../../currency';
 import { Tabs, Tab } from '../../ui';
 
 type Props = {

@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import { Overview } from './Overview';
 import type { Props } from './Overview';
 import TransactionList from './transactions';
-import BalanceDoughnut from './balance';
+import BalanceDoughnut from './balance/doughnut';
 import OverviewSlider from './slider';
 
 describe('Overview component', () => {

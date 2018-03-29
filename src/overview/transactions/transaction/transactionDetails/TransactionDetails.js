@@ -14,7 +14,6 @@ export const Amount = Heading.extend`
 `;
 
 export const Label = styled.div`
-  font-family: Favorit;
   font-size: 12px;
   font-weight: bold;
   text-align: left;
@@ -22,7 +21,6 @@ export const Label = styled.div`
 `;
 
 export const Field = styled.div`
-  font-family: Favorit;
   font-size: 14px;
   line-height: 1.57;
   text-align: left;

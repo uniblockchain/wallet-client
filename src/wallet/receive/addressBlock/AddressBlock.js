@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
 import { connect } from 'react-redux';
 import { Wallet } from '../../walletState';
-import CurrencyName from '../../CurrencyName';
+import { CurrencyName } from '../../../currency';
 import withWallet from '../../withWallet';
 import { getActiveWallet } from '../../../redux/selectors';
 import { PrimaryButton, Content, Notification } from '../../../ui';

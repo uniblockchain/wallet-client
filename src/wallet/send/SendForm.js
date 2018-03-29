@@ -19,7 +19,7 @@ import {
   WrappedContent,
   Modal,
 } from '../../ui';
-import CurrencyName from '../CurrencyName';
+import { CurrencyName } from '../../currency';
 import {
   quoteRoutine,
   clearRoutine as clearQuoteRoutine,

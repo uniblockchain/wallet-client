@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Wallet as WalletClass } from './walletState';
 import CurrencyTabs from './currencyTabs';
 import { Card, Link, Paragraph, PrimaryButton, Divider } from '../ui';
-import CurrencyName from './CurrencyName';
+import { CurrencyName } from '../currency';
 import withWallet from './withWallet';
 import { getActiveWallet } from '../redux/selectors';
 import address from './img/address.png';
