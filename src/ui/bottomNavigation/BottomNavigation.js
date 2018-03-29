@@ -7,10 +7,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { withStyles } from 'material-ui/styles';
-import OverviewIcon from './icon/OverviewIcon';
-import WalletIcon from './icon/WalletIcon';
+import ConversionIcon from './icon/ConversionIcon';
+import DashboardIcon from './icon/DashboardIcon';
 import CardIcon from './icon/CardIcon';
-import MarketplaceIcon from './icon/MarketplaceIcon';
+import GearIcon from './icon/GearIcon';
 import type { Menu } from '../../menu';
 
 type Props = {
@@ -35,13 +35,13 @@ const iconStyles = {
 const Icon = withStyles(iconStyles)(({ item, classes }: IconProps): any => {
   switch (item) {
     case '/overview':
-      return <OverviewIcon classes={{ root: classes.root }} />;
+      return <DashboardIcon classes={{ root: classes.root }} />;
     case '/wallet':
-      return <WalletIcon classes={{ root: classes.root }} />;
+      return <ConversionIcon classes={{ root: classes.root }} />;
     case '/card':
       return <CardIcon classes={{ root: classes.root }} />;
-    case '/marketplace':
-      return <MarketplaceIcon classes={{ root: classes.root }} />;
+    case '/settings':
+      return <GearIcon classes={{ root: classes.root }} />;
     default:
       return null;
   }
@@ -67,18 +67,19 @@ const buttonStyles = {
   label: {
     fontSize: '12px',
     color: '#a1a1a1',
+    display: 'none',
   },
   overview: {
-    color: '#19c3ed !important',
+    color: 'black !important',
   },
   wallet: {
-    color: '#02bda5 !important',
+    color: 'black !important',
   },
   card: {
-    color: '#00346b !important',
+    color: 'black !important',
   },
-  marketplace: {
-    color: '#19c3ed !important',
+  settings: {
+    color: 'black !important',
   },
 };
 
@@ -106,7 +107,6 @@ export const BottomNavigation = withStyles(navigationStyles)((props: Props) => {
       classes={{ root: classes.root }}
       value={value}
       onChange={handleChange}
-      showLabels
     >
       {menu.map(it => (
         <StyledBottomNavigationAction

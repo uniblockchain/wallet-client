@@ -11,5 +11,5 @@ export default [
   { link: '/overview', name: 'Overview', code: 'overview' },
   { link: '/wallet', name: 'Wallet', code: 'wallet' },
   { link: '/card', name: 'Card', code: 'card' },
-  { link: '/marketplace', name: 'Marketplace', code: 'marketplace' },
+  { link: '/settings', name: 'Settings', code: 'settings' },
 ];
