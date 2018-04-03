@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import About from './About';
 
 import Arrow from './Arrow';
-import BetaTerms from './BetaTerms';
 import Careers from './Careers';
 import Footer from './Footer';
 import Header from './Header';
@@ -75,7 +74,6 @@ class Landing extends React.Component<Props, State> {
             <Route path="/about" component={About} />
             <Route path="/careers" component={Careers} />
             <Route path="/legal/terms" component={TermsAndConditions} />
-            <Route path="/legal/beta" component={BetaTerms} />
             <Route path="/legal/privacy-policy" component={PrivacyPolicy} />
             <Route path="/notify-me-success" component={NotifyMeSuccess} />
             <Route path="/" component={Home} />
