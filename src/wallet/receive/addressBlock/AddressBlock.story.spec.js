@@ -85,13 +85,13 @@ storiesOf('Components', module).add('Address Block', () => {
             .at(0)
             .render()
             .text(),
-        ).toBe('QVS6ZCF7zcqqXfEDzGPtzaAvcvUaJpegV5');
+        ).toBe('Coming soon.');
         expect(
           addresses
             .at(1)
             .render()
             .text(),
-        ).toBe('2N25LSBNsyWnkPUUBNAMsusjVUY2kNzeS1T');
+        ).toBe('Coming soon.');
 
         const addressHeadings = component.find('AddressHeading');
         expect(addressHeadings.length).toBe(2);

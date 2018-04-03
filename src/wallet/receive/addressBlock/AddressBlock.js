@@ -102,7 +102,7 @@ export class AddressBlock extends React.Component<Props, State> {
         <h1>Receive {currencyName}</h1>
         <AddressBox>
           <AddressHeading>Your {currencyName} address</AddressHeading>
-          <Address>{wallet.receiveAddress}</Address>
+          <Address>Coming soon.</Address>
           <CopyButton
             onClick={() => this.handleCopy(wallet ? wallet.receiveAddress : '')}
           >
@@ -111,7 +111,7 @@ export class AddressBlock extends React.Component<Props, State> {
           {ltcAddress && (
             <div className="text-center">
               <AddressHeading>{ltcAddress.type}</AddressHeading>
-              <Address>{ltcAddress.address}</Address>
+              <Address>Coming soon.</Address>
               <CopyButton onClick={() => this.handleCopy(ltcAddress.address)}>
                 Tap to copy
               </CopyButton>
