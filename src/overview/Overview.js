@@ -12,7 +12,6 @@ import OverviewSlider from './slider';
 import TransactionList from './transactions';
 import { withUser } from '../user';
 import VerificationButton from './verificationButton';
-import MarketRateTable from './marketRates';
 
 export type Props = {
   location: Location,
