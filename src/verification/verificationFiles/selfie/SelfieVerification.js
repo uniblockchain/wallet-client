@@ -1,6 +1,6 @@
 // @flow
 
-import Webcam from '@cliener/react-webcam';
+import Webcam from 'react-webcam';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';

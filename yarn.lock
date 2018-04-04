@@ -71,12 +71,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@cliener/react-webcam@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@cliener/react-webcam/-/react-webcam-0.3.2.tgz#1c78c342500efbf6530ba1d0a1d85c0ce5e21ed0"
-  dependencies:
-    prop-types "^15.5.8"
-
 "@storybook/addon-actions@^3.2.10", "@storybook/addon-actions@^3.2.13", "@storybook/addon-actions@^3.3.14":
   version "3.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-3.3.14.tgz#b78e707b32130ad16ea8a0af62a66f23b5df502b"
@@ -8612,6 +8606,12 @@ react-waypoint@^7.3.1:
   dependencies:
     consolidated-events "^1.1.0"
     prop-types "^15.0.0"
+
+react-webcam@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-webcam/-/react-webcam-0.3.1.tgz#6fa57f223759b10418715080dc33f6438ce0fee9"
+  dependencies:
+    prop-types "^15.5.8"
 
 "react@^0.14.7 || ^15.0.0":
   version "15.6.2"
