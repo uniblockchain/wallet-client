@@ -8,6 +8,7 @@ import { CurrencyName } from '../../../currency';
 import { Wallet, type WalletType } from '../../../wallet/walletState';
 import withWallet from '../../../wallet/withWallet';
 import { formatCurrency } from '../../../currency';
+import variables from '../../../ui/variables';
 
 export type Props = {
   wallets: Array<Wallet>,
@@ -23,16 +24,20 @@ const Table = styled.table`
   }
 `;
 
-const TableHead = styled.thead`
+export const TableHead = styled.thead`
   th {
-    color: #ccc !important;
+    color: ${variables.colorNeutralLight} !important;
     border: 0 !important;
     padding-bottom: 0;
     line-height: 2.14;
+    font-size: ${variables.fontSizeSmall};
   }
 `;
 
-const TableBody = styled.tbody`
+export const TableBody = styled.tbody`
+  tr {
+    font-size: ${variables.fontSizeMedium};
+  }
   tr:nth-child(1) td {
     border: 0;
     padding-top: 0;
