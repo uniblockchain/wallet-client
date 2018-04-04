@@ -8,6 +8,7 @@ import BalanceTable from './balance/table';
 import { TotalBalance } from './balance';
 import { withUser } from '../user';
 import VerificationButton from './verificationButton';
+import MarketRateTable from './marketRates';
 
 const TotalBalanceCard = Card.extend`
   margin-top: 46px;
