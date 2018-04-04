@@ -19,7 +19,6 @@ const withWallet = (WrappedComponent: *) => {
   class ComponentWithWallet extends Component<Props> {
     componentWillMount() {
       this.loadWallet();
-      console.log('load wallet');
     }
 
     loadWallet = () => {
