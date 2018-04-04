@@ -26,15 +26,15 @@ const FileUploadBase = ({
       name={name}
       onChange={uploadFile(onChoose)}
       capture={type === 'camera' ? 'environment' : null}
-      accept="image/*"
+      accept={type === 'camera' ? 'image/*;capture=camera' : 'image/*'}
     />
     {children}
   </label>
 );
 
 const FileUpload = styled(FileUploadBase)`
-  display: 'inline';
-  width: 'fit-content';
+  display: inline;
+  width: fit-content;
   padding: 14px 32px 14px 32px;
   height: 44px;
   border-radius: 49px;
