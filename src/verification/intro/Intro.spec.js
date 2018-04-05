@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import AppRouter, { routes } from '../../router';
-import { Intro } from './Intro';
+import { Intro, type Props } from './Intro';
 import { Link, PrimaryButton, Button } from '../../ui';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 
@@ -14,8 +14,12 @@ jest.mock('../../card/order/cardOrderApi', () => ({
 describe('Verification flow Intro', () => {
   let component;
 
+  const props: Props = {
+    isVerified: false,
+  };
+
   beforeEach(() => {
-    component = shallow(<Intro />);
+    component = shallow(<Intro {...props} />);
   });
 
   it('renders the component', () => {
@@ -41,7 +45,7 @@ describe('Verification flow Intro', () => {
   });
 
   it('redirects to default on enter page when the user has already gone through the verification flow', () => {
-    component.setState({ verified: true });
+    component.setProps({ isVerified: true });
     expect(component.contains(<AppRouter defaultOnEnter />)).toBe(true);
   });
 });

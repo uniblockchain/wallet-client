@@ -1,9 +1,12 @@
 // @flow
-import React, { Component } from 'react';
+
+import React from 'react';
+import type { MapStateToProps } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import AppRouter, { routes } from '../../router';
-import { Link, Button, Heading, Paragraph, PrimaryButton, Top } from '../../ui';
-import cardOrderApi from '../../card/order/cardOrderApi';
+import { Button, Heading, Link, Paragraph, PrimaryButton, Top } from '../../ui';
+import withUser from '../../user/withUser';
 import { VERIFICATION_PROFILE_ROUTE } from '../constants';
 
 const StyledHeading = styled(Heading)`
@@ -19,59 +22,51 @@ const Links = styled(Paragraph)`
   margin-top: 24px;
 `;
 
-type State = {
-  verified: ?boolean,
+export type Props = {
+  isVerified: ?boolean,
 };
 
-export class Intro extends Component<any, State> {
-  state = {
-    verified: false,
-  };
+export const Intro = (props: Props) =>
+  props.isVerified ? (
+    <AppRouter defaultOnEnter />
+  ) : (
+    <div>
+      <Top>
+        <StyledHeading>We need to get to know you better.</StyledHeading>
+      </Top>
+      <Paragraph alt>
+        The wallet is down for maintenance. You may still get ready for launch.
+      </Paragraph>
+      <ul>
+        <li>
+          <Bulletpoint alt>
+            Please have your passport copy and utility bill nearby.
+          </Bulletpoint>
+        </li>
+        <li>
+          <Bulletpoint alt>
+            As a welcome to the community we are giving you a Change card for
+            free.
+          </Bulletpoint>
+        </li>
+      </ul>
+      <Links>
+        <Link to={VERIFICATION_PROFILE_ROUTE}>
+          <PrimaryButton>Let’s get started</PrimaryButton>
+        </Link>
+        <Link to={routes.BASE}>
+          <Button>Cancel</Button>
+        </Link>
+      </Links>
+    </div>
+  );
 
-  componentDidMount() {
-    cardOrderApi.hasOrder().then((ordered: boolean) => {
-      this.setState({ verified: ordered });
-    });
-  }
+const mapStateToProps: MapStateToProps<*, Props, *> = state => ({
+  isVerified: state.user.isVerified,
+});
 
-  render() {
-    return this.state.verified ? (
-      <AppRouter defaultOnEnter />
-    ) : (
-      <div>
-        <Top>
-          <StyledHeading>We need to get to know you better.</StyledHeading>
-        </Top>
-        <Paragraph alt>
-          The wallet is down for maintenance. You may still get ready for
-          launch.
-        </Paragraph>
-        <ul>
-          <li>
-            <Bulletpoint alt>
-              Please have your passport copy and utility bill nearby.
-            </Bulletpoint>
-          </li>
-          <li>
-            <Bulletpoint alt>
-              As a welcome to the community we are giving you a Change card for
-              free.
-            </Bulletpoint>
-          </li>
-        </ul>
-        <Links>
-          <Link to={VERIFICATION_PROFILE_ROUTE}>
-            <PrimaryButton>Let’s get started</PrimaryButton>
-          </Link>
-          <Link to={routes.BASE}>
-            <Button>Cancel</Button>
-          </Link>
-        </Links>
-      </div>
-    );
-  }
-}
+const ConnectedIntro = connect(mapStateToProps)(withUser(Intro));
 
-Intro.displayName = 'Intro';
+ConnectedIntro.displayName = 'Intro';
 
-export default Intro;
+export default ConnectedIntro;
