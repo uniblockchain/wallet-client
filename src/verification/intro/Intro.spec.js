@@ -35,7 +35,7 @@ describe('Verification flow Intro', () => {
     expect(
       component
         .find(Link)
-        .find({ to: routes.LOGOUT })
+        .find({ to: routes.BASE })
         .find(Button).length,
     ).toBe(1);
   });

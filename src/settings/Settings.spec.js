@@ -18,7 +18,9 @@ describe('Settings component', () => {
       isUsing2Fa: false,
       isVerified: false,
     },
-    openMultiFactorAuthModal: jest.fn(),
+    open2FaAuthModal: jest.fn(),
+    goTo: jest.fn(),
+    noop: jest.fn(),
   };
 
   beforeEach(() => {

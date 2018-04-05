@@ -1,12 +1,11 @@
 // @flow
+
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import type { MapStateToProps } from 'react-redux';
-import {} from '../user';
+import { connect } from 'react-redux';
+import AppRouter from '../router';
 import EmailPage from './EmailPage';
 import PasswordPage from './PasswordPage';
-import { VERIFICATION_INTRO_ROUTE } from '../verification/constants';
 
 export type Props = {
   authenticated: boolean,
@@ -33,14 +32,7 @@ export class Signup extends Component<Props, State> {
     const { authenticated } = this.props;
     const { page } = this.state;
     if (authenticated) {
-      return (
-        <Redirect
-          to={{
-            pathname: VERIFICATION_INTRO_ROUTE,
-            state: { isNewUser: true },
-          }}
-        />
-      );
+      return <AppRouter defaultOnEnter />;
     }
     return (
       <div>

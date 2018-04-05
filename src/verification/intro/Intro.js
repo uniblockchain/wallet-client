@@ -63,8 +63,8 @@ export class Intro extends Component<any, State> {
           <Link to={VERIFICATION_PROFILE_ROUTE}>
             <PrimaryButton>Let’s get started</PrimaryButton>
           </Link>
-          <Link to={routes.LOGOUT}>
-            <Button>Log out</Button>
+          <Link to={routes.BASE}>
+            <Button>Cancel</Button>
           </Link>
         </Links>
       </div>

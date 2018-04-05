@@ -1,10 +1,13 @@
 // @flow
 
-const formatCurrency = (fiatAmount: number, fiatCurrency: string): string => {
-  return fiatAmount.toLocaleString('en-US', {
+export const formatFiatCurrency = (
+  fiatAmount: number,
+  fiatCurrency: string,
+): string =>
+  fiatAmount.toLocaleString('en-US', {
     style: 'currency',
     currency: fiatCurrency,
   });
-};
 
-export default formatCurrency;
+export const formatCryptoCurrency = (amount: number): string =>
+  amount ? amount.toFixed(6) : '0';

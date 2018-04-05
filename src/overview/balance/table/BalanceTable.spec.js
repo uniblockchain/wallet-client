@@ -23,7 +23,7 @@ describe('Balance table', () => {
 
   it('renders the wallet balance table row', () => {
     expect(component.contains(<td>Ether</td>)).toBe(true);
-    expect(component.contains(<td>{1.8}</td>)).toBe(true);
+    expect(component.contains(<td>1.800000</td>)).toBe(true);
     expect(component.contains(<td>€455.88</td>)).toBe(true);
   });
 });

@@ -1,11 +1,13 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import styled from 'styled-components';
-import variables from '../ui/variables';
 import { Heading, Top, WrappedContent } from '../ui';
+import variables from '../ui/variables';
 import { withUser } from '../user';
 import type { User } from '../user/userState';
+import { VERIFICATION_INTRO_ROUTE } from '../verification/constants';
 import MultiFactorAuth, { openMultiFactorAuthModal } from './multiFactorAuth';
 
 const StyledList = styled.ul`
@@ -35,19 +37,25 @@ const Status = styled.span`
 
 export type Props = {
   user: User,
-  openMultiFactorAuthModal: () => void,
+  open2FaAuthModal: () => void,
+  goTo: string => void,
+  noop: () => void,
 };
 
-export const Settings = ({ user, openMultiFactorAuthModal }: Props) => (
+export const Settings = ({ user, open2FaAuthModal, goTo, noop }: Props) => (
   <WrappedContent>
     <Top>
       <Heading alt>My account</Heading>
       <StyledList>
-        <StyledListItem onClick={openMultiFactorAuthModal}>
+        <StyledListItem onClick={open2FaAuthModal}>
           <Item>2-Factor Authentication</Item>
           <Status>{user.isUsing2Fa ? 'On' : 'Off'}</Status>
         </StyledListItem>
-        <StyledListItem>
+        <StyledListItem
+          onClick={() =>
+            !user.isVerified ? goTo(VERIFICATION_INTRO_ROUTE) : noop
+          }
+        >
           <Item>Verification Status</Item>
           <Status>{user.isVerified ? 'Verified' : 'Not Verified'}</Status>
         </StyledListItem>
@@ -63,7 +71,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  openMultiFactorAuthModal,
+  open2FaAuthModal: openMultiFactorAuthModal,
+  goTo: push,
+  noop: () => null,
 };
 
 const ConnectedSettings = connect(mapStateToProps, mapDispatchToProps)(
