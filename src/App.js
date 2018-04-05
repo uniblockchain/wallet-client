@@ -38,7 +38,7 @@ type Props = {
 
 export const App = ({ authenticated }: Props) => {
   if (authenticated) {
-    return <AppRouter verificationFlow />;
+    return <AppRouter defaultOnEnter />;
   }
   return (
     <StyledContent>

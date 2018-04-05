@@ -4,10 +4,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import type { MapStateToProps } from 'react-redux';
-import { CurrencyName } from '../../../currency';
+import {
+  CurrencyName,
+  formatFiatCurrency,
+  formatCryptoCurrency,
+} from '../../../currency';
 import { Wallet, type WalletType } from '../../../wallet/walletState';
 import withWallet from '../../../wallet/withWallet';
-import { formatCurrency } from '../../../currency';
 import variables from '../../../ui/variables';
 
 export type Props = {
@@ -58,9 +61,9 @@ export const BalanceTable = ({ wallets, currency }: Props) => (
         {wallets.map(wallet => (
           <tr key={wallet.currency}>
             <td>{CurrencyName.get(wallet.currency)}</td>
-            <td>{wallet.getBalance()}</td>
+            <td>{formatCryptoCurrency(wallet.getBalance())}</td>
             <td>
-              {formatCurrency(
+              {formatFiatCurrency(
                 wallet.getRepresentationalBalance(currency),
                 currency,
               )}

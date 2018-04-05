@@ -1,23 +1,17 @@
 // @flow
 
-import React from 'react';
 import { shallow } from 'enzyme';
-
+import React from 'react';
 import { Overview } from './Overview';
-import type { Props } from './Overview';
-import TransactionList from './transactions';
 import BalanceDoughnut from './balance/doughnut';
-import OverviewSlider from './slider';
+import BalanceTable from './balance/table';
+import VerificationButton from './verificationButton';
 
 describe('Overview component', () => {
   let component;
 
-  const props: Props = {
-    location: { pathname: '/overview', search: '', hash: '' },
-  };
-
   beforeEach(() => {
-    component = shallow(<Overview {...props} />);
+    component = shallow(<Overview />);
   });
 
   it('renders the component', () => {
@@ -28,24 +22,11 @@ describe('Overview component', () => {
     expect(component.find(BalanceDoughnut).length).toEqual(1);
   });
 
-  it('renders the overview slider for existing users', () => {
-    expect(component.contains(<OverviewSlider />)).toBe(true);
+  it('renders the balance table', () => {
+    expect(component.find(BalanceTable).length).toEqual(1);
   });
 
-  it('renders the overview slider for new users', () => {
-    const slideProps: Props = {
-      location: {
-        pathname: '/overview',
-        search: '',
-        hash: '',
-        state: { isNewUser: true },
-      },
-    };
-    component = shallow(<Overview {...slideProps} />);
-    expect(component.contains(<OverviewSlider isNewUser />)).toBe(true);
-  });
-
-  it('renders transactions', () => {
-    expect(component.contains(<TransactionList />)).toBe(true);
+  it('renders the verification button table', () => {
+    expect(component.find(VerificationButton).length).toEqual(1);
   });
 });

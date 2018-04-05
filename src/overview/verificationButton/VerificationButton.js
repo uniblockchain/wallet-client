@@ -22,7 +22,7 @@ export const VerificationButton = ({ isVerified }: Props) => (
     {!isVerified && (
       <Card>
         <div className="text-center">
-          <GradientButton inline className="mt-3">
+          <GradientButton inline>
             <Link to={VERIFICATION_INTRO_ROUTE}>
               Take the next step{' '}
               <Rocket height="16px" src={svgRocket} alt="Rocket" />

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import { type CurrencyExchangeRate, getMarketRate } from './marketRateApi';
-import { formatCurrency } from '../../../currency';
+import { formatFiatCurrency } from '../../../currency';
 
 export type Props = {
   fromCurrency: string,
@@ -41,7 +41,7 @@ export class MarketRate extends Component<Props, State> {
     }
     return (
       <div>
-        {formatCurrency(this.state.exchangeRate, this.props.toCurrency)}
+        {formatFiatCurrency(this.state.exchangeRate, this.props.toCurrency)}
       </div>
     );
   }
