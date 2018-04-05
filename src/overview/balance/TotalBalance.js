@@ -1,11 +1,11 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import type { MapStateToProps } from 'react-redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import variables from '../../ui/variables';
-
+import { formatCurrency } from '../../currency';
 import withWallet from '../../wallet/withWallet';
 import { withUser } from '../../user';
 import type { WalletType } from '../../wallet/walletState';
@@ -34,39 +34,31 @@ type Props = {
   isVerified: boolean,
 };
 
-type State = {
-  totalBalance: number,
-};
-
-export class TotalBalance extends Component<Props, State> {
-  getTotalBalance(wallets: Array<WalletType>, currency: string) {
-    const walletBalances = this.getBalances(wallets, currency);
-    return walletBalances
-      .reduce((balance1, balance2) => balance1 + balance2, 0)
-      .toFixed(2);
-  }
-
-  getBalances(wallets: Array<WalletType>, currency: string) {
-    return wallets.map((wallet: WalletType) =>
-      new Wallet(wallet).getRepresentationalBalance(currency),
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        {this.props.isVerified && (
-          <div>
-            <BrightGreenText>My Balance</BrightGreenText>
-            <StyledBalanceText>
-              {this.getTotalBalance(this.props.wallets, this.props.currency)}
-            </StyledBalanceText>
-          </div>
-        )}
-      </div>
-    );
-  }
+function getWalletBalances(wallets: Array<WalletType>, currency: string) {
+  return wallets.map((wallet: WalletType) =>
+    new Wallet(wallet).getRepresentationalBalance(currency),
+  );
 }
+
+export function getTotalBalance(wallets: Array<WalletType>, currency: string) {
+  const walletBalances = getWalletBalances(wallets, currency);
+  return walletBalances
+    .reduce((balance1, balance2) => balance1 + balance2, 0)
+    .toFixed(2);
+}
+
+export const TotalBalance = ({ wallets, currency, isVerified }: Props) => (
+  <div>
+    {isVerified && (
+      <div>
+        <BrightGreenText>My Balance</BrightGreenText>
+        <StyledBalanceText>
+          {formatCurrency(Number(getTotalBalance(wallets, currency)), currency)}
+        </StyledBalanceText>
+      </div>
+    )}
+  </div>
+);
 
 const mapStateToProps: MapStateToProps<*, Props, *> = state => ({
   wallets: state.wallet

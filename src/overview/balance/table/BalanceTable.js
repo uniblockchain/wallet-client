@@ -15,7 +15,11 @@ export type Props = {
   currency: string,
 };
 
-const Table = styled.table`
+export const Table = styled.table`
+  th:nth-child(1),
+  td:nth-child(1) {
+    text-align: left;
+  }
   th:nth-child(2),
   td:nth-child(2),
   th:nth-child(3),
