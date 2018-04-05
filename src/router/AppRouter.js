@@ -9,7 +9,7 @@ type Props = {
   overview: ?boolean,
   verificationFlow: ?boolean,
   card: ?boolean,
-  walletComingSoon: ?boolean,
+  defaultOnEnter: ?boolean,
 };
 
 const AppRouter = (props: Props) => {
@@ -21,8 +21,8 @@ const AppRouter = (props: Props) => {
     return <Redirect to={VERIFICATION_INTRO_ROUTE} />;
   } else if (props.card) {
     return <Redirect to={routes.CARD} />;
-  } else if (props.walletComingSoon) {
-    return <Redirect to={routes.WALLET_COMING_SOON} />;
+  } else if (props.defaultOnEnter) {
+    return <Redirect to={routes.DEFAULT_ON_ENTER} />;
   }
   throw new Error('Route is not set');
 };

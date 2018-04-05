@@ -9,7 +9,7 @@ export function* startVerification(): Generator<IOEffect, void, *> {
   try {
     yield call(verificationApi.createVerification);
     yield put(confirmRoutine.success());
-    yield put(push(routes.WALLET_COMING_SOON));
+    yield put(push(routes.DEFAULT_ON_ENTER));
   } catch (error) {
     console.log(error);
     yield put(confirmRoutine.failure(error.body.message));

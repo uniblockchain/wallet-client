@@ -8,8 +8,7 @@ const LOGOUT = '/logout';
 const RESET_PASSWORD = '/reset-password';
 const RESET_PASSWORD_DONE = '/reset-password-done';
 const UPDATE_PASSWORD = '/update-password/:verificationToken';
-const WALLET_COMING_SOON = '/wallet-coming-soon';
-const DEFAULT_ON_ENTER = WALLET_COMING_SOON;
+const DEFAULT_ON_ENTER = OVERVIEW;
 
 export default {
   BASE,
@@ -21,5 +20,4 @@ export default {
   RESET_PASSWORD_DONE,
   UPDATE_PASSWORD,
   DEFAULT_ON_ENTER,
-  WALLET_COMING_SOON,
 };

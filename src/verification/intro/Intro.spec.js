@@ -40,8 +40,8 @@ describe('Verification flow Intro', () => {
     ).toBe(1);
   });
 
-  it('redirects to the wallet-coming-soon page when the user has already gone through the verification flow', () => {
+  it('redirects to default on enter page when the user has already gone through the verification flow', () => {
     component.setState({ verified: true });
-    expect(component.contains(<AppRouter walletComingSoon />)).toBe(true);
+    expect(component.contains(<AppRouter defaultOnEnter />)).toBe(true);
   });
 });

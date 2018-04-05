@@ -19,7 +19,7 @@ import App from './App';
 import { Wallet, Send, Receive } from './wallet';
 import { Signup } from './signup';
 import { Login, Logout } from './login';
-import { Overview, WalletComingSoon } from './overview';
+import { Overview } from './overview';
 import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
@@ -90,10 +90,6 @@ const startApp = () => {
                 </PublicContent>
                 <Switch>
                   <Route path="/logout" component={appWrapper(Logout)} />
-                  <Route
-                    path={routes.WALLET_COMING_SOON}
-                    component={appWrapper(WalletComingSoon)}
-                  />
                   <Route
                     path={routes.OVERVIEW}
                     component={appWrapper(authenticatedPage(Overview))}

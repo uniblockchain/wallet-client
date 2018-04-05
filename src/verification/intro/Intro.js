@@ -36,7 +36,7 @@ export class Intro extends Component<any, State> {
 
   render() {
     return this.state.verified ? (
-      <AppRouter walletComingSoon />
+      <AppRouter defaultOnEnter />
     ) : (
       <div>
         <Top>
