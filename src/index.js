@@ -24,7 +24,6 @@ import { Card } from './card';
 import { Marketplace } from './marketplace';
 import { Landing } from './landing';
 import { Settings } from './settings';
-import { Sidebar } from './sidebar';
 import { unregister } from './registerServiceWorker';
 import { authenticatedPage } from './page';
 import { DefaultTheme } from './ui';
@@ -56,8 +55,6 @@ const PublicContent = withRouter(({ location, children }) => (
     </CSSTransition>
   </TransitionGroup>
 ));
-
-const WrappedSidebar = appWrapper(Sidebar);
 
 const startApp = () => {
   render(
@@ -126,17 +123,6 @@ const startApp = () => {
                   />
                   {verificationRoutes}
                 </Switch>
-                <Route path="/sidebar">
-                  {({ match }) => (
-                    <CSSTransition
-                      in={match && match.isExact}
-                      classNames="slide"
-                      timeout={300}
-                    >
-                      <Styled>{match && <WrappedSidebar />}</Styled>
-                    </CSSTransition>
-                  )}
-                </Route>
                 <Route
                   path={routes.UPDATE_PASSWORD}
                   component={UpdatePassword}
