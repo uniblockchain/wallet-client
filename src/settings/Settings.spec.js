@@ -47,4 +47,8 @@ describe('Settings component', () => {
     component.setProps({ user: { isVerified: true } });
     expect(component.contains('Verified')).toBe(true);
   });
+
+  it('should show log out link', () => {
+    expect(component.contains('Log Out')).toBe(true);
+  });
 });
