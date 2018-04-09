@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import styled from 'styled-components';
 import { Heading, Top, WrappedContent } from '../ui';
@@ -31,6 +32,8 @@ const Item = styled.span`
   color: ${variables.colorNeutral};
 `;
 
+const LinkItem = Item.withComponent(Link);
+
 const Status = styled.span`
   color: #02bda5;
 `;
@@ -58,6 +61,9 @@ export const Settings = ({ user, open2FaAuthModal, goTo, noop }: Props) => (
         >
           <Item>Verification Status</Item>
           <Status>{user.isVerified ? 'Verified' : 'Not Verified'}</Status>
+        </StyledListItem>
+        <StyledListItem onClick={open2FaAuthModal}>
+          <LinkItem to="/logout">Log Out</LinkItem>
         </StyledListItem>
       </StyledList>
     </Top>
