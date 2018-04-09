@@ -49,7 +49,7 @@ enzymeConfigure({ adapter: new Adapter() });
 
 setOptions({
   name: 'Change',
-  url: 'http://change.producement.com',
+  url: 'https://getchange.com',
   downPanelInRight: true,
 });
 
