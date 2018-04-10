@@ -24,7 +24,7 @@ import {
   quoteRoutine,
   clearRoutine as clearQuoteRoutine,
 } from '../quote/quoteRoutine';
-import type { Quote } from '../quote/quoteApi';
+import type { QuoteCommand } from '../quote/quoteApi';
 import { Balance } from '../Balance';
 import AppRouter from '../../router';
 import type { QuoteState } from '../quote/quoteReducer';
@@ -33,7 +33,7 @@ import { FormFeedback } from '../../ui/form';
 type Props = {
   fiatCurrencyCode: string,
   quote: QuoteState,
-  getNewQuote: Quote => void,
+  getNewQuote: QuoteCommand => void,
   clearQuote: () => void,
   activeWallet: WalletType,
 } & FormProps;
@@ -62,10 +62,8 @@ export const SendForm = ({
     clearQuote();
     getNewQuote({
       fromWalletId: activeWallet.id,
-      quote: {
-        fromValue,
-        toCurrency: fiatCurrencyCode,
-      },
+      fromValue,
+      toCurrency: fiatCurrencyCode,
     });
   };
   const submitAllowed = !submitting && !quote.isLoading;

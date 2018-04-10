@@ -1,4 +1,6 @@
 // @flow
+import { type Theme as StyledTheme } from 'styled-components';
+
 export type Theme = {
   background: string,
   altBackground: string,
@@ -6,7 +8,7 @@ export type Theme = {
   alt: string,
   text: string,
   altText: string,
-};
+} & StyledTheme;
 
 export const DefaultTheme: Theme = {
   background: '#e5f9f3',

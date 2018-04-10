@@ -11,6 +11,7 @@ export const testQuote: Quote = {
 };
 
 export const testQuoteCommand: QuoteCommand = {
+  fromWalletId: 1,
   fromValue: 1,
   toCurrency: 'EUR',
 };
