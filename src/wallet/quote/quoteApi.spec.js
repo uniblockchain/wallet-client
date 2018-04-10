@@ -20,7 +20,7 @@ describe('quote api', () => {
     mockHttp.get = jest.fn(() => Promise.resolve(testQuote));
 
     return quoteApi
-      .getQuote(1, testQuoteCommand)
+      .getQuote(testQuoteCommand)
       .then(response => expect(response).toEqual(testQuote));
   });
 });

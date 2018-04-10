@@ -8,6 +8,7 @@
 .*/node_modules/kefir
 .*/node_modules/react-event-listener/src
 .*/node_modules/styled-components/.*
+.*/node_modules/styled-components-breakpoint/.*
 .*/node_modules/immutable/.*
 .*/node_modules/vue/.*
 .*/node_modules/radium/.*
@@ -32,8 +33,6 @@ esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 esproposal.export_star_as=enable
 esproposal.decorators=ignore
-
-unsafe.enable_getters_and_setters=true
 
 module.name_mapper='^wallet-client\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 module.name_mapper.extension='css' -> 'empty/object'
